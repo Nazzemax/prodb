@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 223.64 11.58% 18.63%;
+    --background-gray: 240 25% 98.43%;
+    --background-gray-2: 220 27.27% 95.69%;
+    --background-dark: 0 0% 5.1%;
+    --background-dark-2: 240 4% 9.8%;
+    --card: 0 0% 100%;
+    --card-foreground: 223.64 11.58% 18.63%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 223.64 11.58% 18.63%;
+    --primary: 223.64 11.58% 18.63%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 223.64 11.58% 18.63%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 353 100% 58%;
+    --accent-hover: 353 80% 48%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --gray: 224 7% 69%;
+    --gray-2: 223.33 7.83% 54.9%;
+    --border: 218.82 22.67% 85.29%;
+    --input: 0 0% 100%;
+    --ring: 223.64 11.58% 18.63%;
+    --graphic-light: 0 0% 100%;
+    --graphic-gray: 218.82 22.67% 85.29%;
+    --graphic-gray-2: 214.74 12.26% 69.61%;
+    --graphic-dark: 223.64 11.58% 18.63%;
+    --radius: 1rem
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 100%;
+    --background-gray: 240, 4%, 9.8%;
+    --background-dark: 0, 0%, 5.1%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 100%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 0 0% 100%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 352.92 100% 58.43%;
+    --accent-light: 352.9 100% 66.86%;
+    --accent-hover: 352.89 79.51% 47.84%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --gray: 223.64 6.92% 68.82%;
+    --gray-2: 225 5.83% 40.39%;
+    --border: 218.82 22.67% 85.29%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 30.1%;
+    --graphic-light: 0 0% 100%;
+    --graphic-gray: 225 5.83% 40.39%;
+    --graphic-gray-2: 216 4.85% 20.2%;
+  }
+}
+
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 32px;
+  overflow: hidden;
+}
+
+.react-player-about {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
