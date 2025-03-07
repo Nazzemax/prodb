@@ -1,12 +1,16 @@
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { Heading } from "@/components/atoms/heading";
+import { VideoPlayer } from "@/components/atoms/video-player";
 import { Badge } from "@/components/ui/badge";
+import { useAppData } from "@/context/app-context";
 import { cn } from "@/lib/utils";
 import Image from "next/image"
+import { memo } from "react";
 
 interface ServicePostItemProps {
     image?: string;
     video_link?:string;
+    btn?:string;
     image_right: boolean;
     title: string;
     sub_title?: string;
@@ -16,20 +20,23 @@ interface ServicePostItemProps {
     scrollToFeedback?: () => void;
 }
 
-export const ServicePostItem = ({
+export const ServicePostItem = memo(({
     image,
     video_link,
     image_right,
     title,
     sub_title,
+    btn,
     tags,
     description,
     has_button,
-    scrollToFeedback
 }: ServicePostItemProps) => {
+
+    const { scrollToFeedback } = useAppData()
+
     return (
         <div className={cn('flex gap-5 flex-col-reverse', image_right ? 'lg:flex-row-reverse' : 'lg:flex-row')}>
-            <div className="lg:w-1/2 m-auto">
+            <div className="lg:w-1/2 lg:m-auto">
                 {image && (  <Image
                     src={image}
                     alt={title}
@@ -39,18 +46,10 @@ export const ServicePostItem = ({
                 />)}
 
                 {video_link && (
-                    <div className="w-full h-full max-h-[540px] max-w-[648px] relative aspect-video">
-                        <iframe 
-                            className="w-full h-full object-cover"
-                            src={video_link}
-                            title="YouTube video player"  
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerPolicy="strict-origin-when-cross-origin" 
-                            allowFullScreen
-                        ></iframe>
+                    <div className="w-full h-full lg:min-h-[400px] xl:min-h-[540px] max-w-[648px] relative aspect-video">
+                        <VideoPlayer video={video_link} controls={false} />
                     </div>
                 )}
-              
             </div>
             <div className="lg:w-1/2 flex flex-col justify-center items-start gap-y-2 md:gap-y-4 lg:p-14">
                 <Heading as="h4" className="text-2xl md:text-3xl">{title}</Heading>
@@ -63,8 +62,10 @@ export const ServicePostItem = ({
                         ))}
                     </div>
                 }
-                {has_button && <ButtonWithIcon onClick={scrollToFeedback} variant="feature">Заказать</ButtonWithIcon>}
+                {has_button && <ButtonWithIcon onClick={scrollToFeedback} variant="feature">{btn}</ButtonWithIcon>}
             </div>
         </div>
     )
-}
+})
+
+ServicePostItem.displayName = 'ServicePostItem'

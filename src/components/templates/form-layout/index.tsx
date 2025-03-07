@@ -1,8 +1,10 @@
+'use client';
+
 import { FeedbackContactItem } from "@/components/atoms/feedback-contact-item";
 import { Heading } from "@/components/atoms/heading";
 import { useAppData } from "@/context/app-context";
 import { fadeIn, staggerTransition, textVariant, viewportConfig } from "@/lib/motion";
-import { cn } from "@/lib/utils";
+import mergeRefs, { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react"
 import Image from "next/image";
@@ -47,9 +49,12 @@ export const FormLayout = forwardRef<HTMLDivElement, FormProps>(({
     isContactPage
 }, ref) => {
 
+    const { feedbackRef } = useAppData()
+    const refs = mergeRefs(ref, feedbackRef)
+
     return (
         <div
-            ref={ref}
+            ref={refs}
             className="relative w-full max-w-[1920px] min-h-screen bg-background-dark flex justify-center items-center"
         >
             {/* Фоновое изображение */}
@@ -71,11 +76,11 @@ export const FormLayout = forwardRef<HTMLDivElement, FormProps>(({
                 viewport={viewportConfig}
                 transition={staggerTransition(0)}
                 className={cn(
-                    "relative z-10 m-auto max-w-[1280px] flex flex-col lg:flex-row items-center gap-3 py-10 lg:py-0 justify-center px-4 text-white",
+                    "relative z-10 m-auto max-w-[1328px] flex flex-col lg:flex-row items-center gap-y-3 py-10 lg:py-0 justify-center px-4 text-white",
                     isContactPage ? 'pt-24' : ''
                 )}>
                 <div className="flex flex-col gap-y-3 md:gap-y-8 lg:w-1/2">
-                    <Heading as="h2" className="text-primary-foreground">{title}</Heading>
+                    <Heading as="h2" className="text-primary-foreground lg:text-3xl xl:">{title}</Heading>
                     <motion.h3
                         transition={staggerTransition(0)}
                     >

@@ -1,3 +1,5 @@
+'use client';
+
 import { MarketingChapter } from "@/components/molecules/marketing-department-chapter"
 import MarketingDepartmentBg from '@/assets/backgrounds/marketing_department.svg'
 import { Heading } from "@/components/atoms/heading"

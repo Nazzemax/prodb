@@ -96,9 +96,11 @@ export const ClientReviewList = ({ hasSubTitle, hasBg }: { hasSubTitle?: boolean
                         />
                     </div>
                 </div>
-                <div>
-                    <CompanyInfoSVG className="absolute -z-10 top-44 max-w-[1920px] object-cover" />
-                </div>
+                {hasBg &&
+                    <div>
+                        <CompanyInfoSVG className="absolute -z-10 top-44 max-w-[1920px] object-cover" />
+                    </div>
+                }
             </div>
         </section>
     )

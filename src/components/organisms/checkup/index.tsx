@@ -1,30 +1,28 @@
-import { ButtonWithIcon } from "@/components/atoms/button-with-icon"
+"use client";
+
+import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { CheckupBg } from "@/assets/backgrounds";
 import { Heading } from "@/components/atoms/heading";
 import { motion } from "framer-motion";
-import {
-    defaultTransition,
-    fadeIn,
-    staggerTransition,
-    textVariant,
-    viewportConfig
-} from "@/lib/motion";
+import { staggerTransition, textVariant, viewportConfig } from "@/lib/motion";
+import { useAppData } from "@/context/app-context";
+import { useTranslations } from "next-intl";
 
-interface CheckupProps {
-    onScrollToFeedback: () => void;
-}
+export const Checkup = () => {
+    const t = useTranslations("HomePage");
+    const checkupData = {
+        title: t("section1.title"),
+        description: t("section1.description"),
+    };
 
-const checkupData = {
-    title: 'Не знаете, с чего начать?',
-    description: 'Запишитесь на диагностику маркетинга, и мы поможем определить эффективные решения для вашего бизнеса.',
-}
-
-export const Checkup: React.FC<CheckupProps> = ({ onScrollToFeedback }) => {
+    const { scrollToFeedback } = useAppData();
 
     return (
         <div className="w-full max-w-[1920px] p-4">
             <div className="relative flex flex-col justify-center items-center gap-y-7 bg-black rounded-xl px-7 py-9 md:py-24 text-center overflow-hidden">
-                <Heading as="h2" className="text-secondary">{checkupData.title}</Heading>
+                <Heading as="h2" className="text-secondary">
+                    {checkupData.title}
+                </Heading>
                 <motion.p
                     variants={textVariant(0.3)}
                     initial="hidden"
@@ -43,15 +41,13 @@ export const Checkup: React.FC<CheckupProps> = ({ onScrollToFeedback }) => {
                     viewport={viewportConfig}
                     transition={staggerTransition(0)}
                 >
-                    <ButtonWithIcon
-                        onClick={onScrollToFeedback}
-                    >
-                        Пройти диагностику
+                    <ButtonWithIcon onClick={scrollToFeedback}>
+                        {t("section1.btn")}
                     </ButtonWithIcon>
                 </motion.div>
 
                 <CheckupBg className="absolute max-w-[1920px] m-auto z-20" />
             </div>
         </div>
-    )
-}
+    );
+};
