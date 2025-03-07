@@ -113,10 +113,7 @@
     }
   },
   "ServicePage4":{
-    "btn":"Получить консультацию",
-    "howWeWork":{
-      
-    }
+    "btn":"Получить консультацию"
   },
   "ServicePage5":{
     "headerBtn":"Order Video",
