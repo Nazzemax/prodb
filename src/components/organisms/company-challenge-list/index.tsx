@@ -1,5 +1,3 @@
-'use client'
-
 import React from 'react'
 import { useGetCompanyChallengesQuery } from '@/api/Company'
 import ChallengeCard from '@/components/molecules/company-challenge-card'
@@ -41,10 +39,10 @@ export const CompanyChallengeList = () => {
                                 </motion.div>
                             ))}
                         </div>
-                        <ChallengesSVG className='absolute top-[150px] left-[405px] hidden xl:flex' />
-                        <ChallengesBg className="hidden lg:block absolute top-7 mx-auto w-full -z-10" />
                     </div>
                 </RequestHandler>
+                <ChallengesBg className="hidden lg:block absolute top-52 mx-auto w-full -z-10" />
+                <ChallengesSVG className='absolute top-[400px] left-[405px] hidden xl:flex' />
             </div>
         </section>
     );

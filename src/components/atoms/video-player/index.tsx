@@ -12,16 +12,13 @@ export const VideoPlayer = ({ video, controls }: { video: string; controls: bool
     const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
-        const currentRef = playerRef.current; // Сохраняем ссылку в локальную переменную
-        
+        const node = playerRef.current; // Capture current ref value in closure
+        if (!node) return;
+    
         const observer = new IntersectionObserver(
             ([entry]) => {
                 setIsVisible(entry.isIntersecting);
-                if (entry.isIntersecting) {
-                    setIsPlaying(true);
-                } else {
-                    setIsPlaying(false);
-                }
+                setIsPlaying(entry.isIntersecting);
             },
             {
                 root: null,
@@ -29,21 +26,27 @@ export const VideoPlayer = ({ video, controls }: { video: string; controls: bool
             }
         );
     
-        if (currentRef) {
-            observer.observe(currentRef);
-        }
+        observer.observe(node);
     
         return () => {
-            if (currentRef) {
-                observer.unobserve(currentRef);
+            if (node) {
+                observer.unobserve(node);
             }
         };
-    }, []); // Зависимости остаются пустыми, так как ref должен сохранять свою идентичность
+    }, []);
     
+    const handleToggleMute = () => {
+        setIsMuted((prev) => !prev);
+    };
+
+    const handleTogglePlaying = () => {
+        setIsPlaying((prev) => !prev);
+    };
+
     return (
         <div
             ref={playerRef}
-            className="relative w-full h-full overflow-hidden rounded-md"
+            className="relative w-full overflow-hidden rounded-md"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >

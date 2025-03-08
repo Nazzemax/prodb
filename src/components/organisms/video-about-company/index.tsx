@@ -50,7 +50,7 @@ export const VideoAboutCompany = () => {
                     <ReactPlayer
                         fallback={<VideoLoader />}
                         playing={play}
-                        url={'/videos/marketing.mp4'}
+                        url={'https://youtu.be/RgRt1B7HOZI?list=RDRgRt1B7HOZI'}
                         width={'100%'}
                         height={'100%'}
                         controls={true}

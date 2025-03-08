@@ -17,7 +17,7 @@ export const SmmAdItem = ({
     description
 }: SmmAdItemProps) => {
     return (
-        <Card className="rounded-2xl max-w-[421px] bg-transparent h-full flex flex-col">
+        <Card className="rounded-2xl max-w-[421px] bg-transparent  h-full flex flex-col">
             <CardHeader className="relative p-0">
                 <Image
                     src={image}
@@ -31,7 +31,7 @@ export const SmmAdItem = ({
                 </span>
             </CardHeader>
             <CardContent className="mt-4 space-y-3 flex-grow">
-                <Heading as="h4" className="text-primary text-lg md:text-xl">{title}</Heading>
+                <Heading as="h4" className="text-primary text-xl md:text-2xl">{title}</Heading>
                 <SubTitle>{description}</SubTitle>
             </CardContent>
         </Card>

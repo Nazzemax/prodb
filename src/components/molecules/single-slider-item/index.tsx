@@ -8,7 +8,6 @@ import {
     textVariant,
     viewportConfig
 } from '@/lib/motion';
-import { useAppData } from '@/context/app-context';
 
 interface SingleSliderProps {
     index: number;
@@ -17,6 +16,7 @@ interface SingleSliderProps {
     button_text: string;
     image: string;
     is_active?: boolean;
+    onScrollToFeedback: () => void;
 }
 
 export const SingleSliderItem = ({
@@ -25,9 +25,8 @@ export const SingleSliderItem = ({
     sub_title,
     button_text,
     image,
+    onScrollToFeedback
 }: SingleSliderProps) => {
-
-    const { scrollToFeedback } = useAppData()
 
     return (
         <CarouselItem key={index}>
@@ -65,7 +64,7 @@ export const SingleSliderItem = ({
                         viewport={viewportConfig}
                         transition={defaultTransition}
                     >
-                        <ButtonWithIcon onClick={scrollToFeedback}>
+                        <ButtonWithIcon onClick={onScrollToFeedback}>
                             {button_text}
                         </ButtonWithIcon>
                     </motion.div>

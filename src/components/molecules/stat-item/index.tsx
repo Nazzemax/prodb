@@ -27,7 +27,7 @@ export const StatItem = ({
             {icon}
             <div className={cn(
                 'absolute left-16 md:left-20 mt-8 md:mt-0 w-52 space-y-1 text-center md:text-start',
-                isService ? 'top-32 mt-0 md:top-1/4' : 'top-20 md:top-1/4'
+                isService ? 'top-32 mt-0 md:top-1/3' : 'top-20 md:top-1/4'
             )}>
                 {isService
                     ? <>

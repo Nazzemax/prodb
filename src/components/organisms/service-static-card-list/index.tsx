@@ -12,7 +12,7 @@ export const ServiceStaticCardList = ({
     items,
 }: ISmmCreatingAdData) => {
     return (
-        <div className="w-full max-w-[1920px] flex justify-center px-4 lg:px-10 py-5 md:py-20 bg-[#FAFAFC]">
+        <div className="w-full max-w-[1920px] flex justify-center px-4 md:px-16 lg:px-32 py-5 md:py-20 bg-[#FAFAFC]">
             <div className="max-w-[1280px] flex flex-col justify-center items-center gap-y-5 lg:gap-y-10">
                 <div className="flex flex-col xl:flex-row gap-4">
                     <div>
@@ -25,7 +25,7 @@ export const ServiceStaticCardList = ({
                         </SubTitle>
                     }
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 xl:gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {items.map((item, idx) => (
                         <AnimatedItem key={idx} idx={idx}>
                             <SmmAdItem

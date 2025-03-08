@@ -3,10 +3,6 @@
 import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
 import { useGetTaskTypesQuery } from "@/api/Types";
 import { MarketingSupportIcon } from "@/assets/info-card";
-import { ContextAd5Icon } from "@/assets/services/context-ad";
-import { ServiceCrmIcon2} from "@/assets/services/crm";
-import { MarketingIcon } from "@/assets/services/marketing";
-import { SeoHowWeWork5 } from "@/assets/services/seo";
 import { RequestHandler } from "@/components/atoms/request-handler";
 import { MarketingSupportFeedbackForm } from "@/components/forms/marketing-support-form";
 import { CompanyPostList } from "@/components/organisms/company-post-list";
@@ -20,133 +16,100 @@ import { smmTeamMembers } from "@/consts/data";
 import { useAppData } from "@/context/app-context";
 import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
-import { useTranslations } from "next-intl";
 
+const serviceData = {
+    title: 'Что мы делаем',
+    items: [
+        {
 
+            image: "/images/services/marketing-support/marketing1.png",
+            image_right: false,
+            title: 'Разработка и реализация стратегии',
+            sub_title: '',
+            description: 'Мы анализируем ваши цели, аудиторию и особенности рынка, создаём эффективный план продвижения и пошагово внедряем его в работу.',
+            tags: [
+                {
+                    tags: '',
+                },
+                {
+                    tags: ''
+                }
+            ]
+        },
+        {
 
+            image: "/images/services/marketing-support/marketing2.png",
+            image_right: true,
+            title: 'Продвижение в цифровых каналах',
+            sub_title: '',
+            description: 'От SEO и контекстной рекламы до управления социальными сетями и e-mail маркетинга — мы подбираем оптимальный набор инструментов для достижения конкретных KPI.',
+            tags: [
+                {
+                    tags: '',
+                },
+                {
+                    tags: ''
+                }
+            ]
+        },
+        {
 
+            image: "/images/services/marketing-support/marketing3.png",
+            image_right: false,
+            title: 'Контент и креатив',
+            sub_title: '',
+            description: 'Создаём тексты, визуалы и видеоконтент, которые не просто «красиво выглядят», а работают на вовлечение аудитории и рост конверсий.',
+            tags: [
+                {
+                    tags: '',
+                },
+                {
+                    tags: ''
+                }
+            ]
+        },
+        {
+
+            image: "/images/services/marketing-support/marketing4.png",
+            image_right: true,
+            title: 'Интеграция и автоматизация',
+            sub_title: '',
+            description: 'Помогаем наладить сквозную аналитику, интегрировать CRM и выстроить эффективные процессы в колл-центре и отделе продаж, чтобы каждый лид доводился до сделки.',
+            tags: [
+                {
+                    tags: '',
+                },
+                {
+                    tags: ''
+                }
+            ]
+        },
+        {
+
+            image: "/images/services/marketing-support/marketing5.png",
+            image_right: false,
+            title: 'Аналитика и оптимизация',
+            sub_title: '',
+            description: 'Отслеживаем показатели на каждом этапе, регулярно предоставляем отчёты и вносим корректировки для повышения эффективности и прозрачности затрат.',
+            tags: [
+                {
+                    tags: '',
+                },
+                {
+                    tags: ''
+                }
+            ]
+        },
+    ]
+}
 
 const MarketingSupportPage = () => {
-    const t = useTranslations("ServicesPage8")
     const slug = useSlug()
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug)
     const { data: task_types } = useGetTaskTypesQuery()
     const { business_types } = useAppData()
     const { ref, scrollToFeedback } = useScrollToFeedback()
 
-    const serviceData = {
-        title: t('WhatWeDo.mainTitle'),
-        items: [
-            {
-                image: "/images/services/marketing-support/marketing1.png",
-                image_right: false,
-                title: t('WhatWeDo.fTitle'),
-                sub_title: '',
-                description: t('WhatWeDo.fText'),
-                tags: [
-                    { tags: '' },
-                    { tags: '' }
-                ]
-            },
-            {
-                image: "/images/services/marketing-support/marketing2.png",
-                image_right: true,
-                title: t('WhatWeDo.sTitle'),
-                sub_title: '',
-                description: t('WhatWeDo.sText'),
-                tags: [
-                    { tags: '' },
-                    { tags: '' }
-                ]
-            },
-            {
-                image: "/images/services/marketing-support/marketing3.png",
-                image_right: false,
-                title: t('WhatWeDo.thTitle'),
-                sub_title: '',
-                description: t('WhatWeDo.thText'),
-                tags: [
-                    { tags: '' },
-                    { tags: '' }
-                ]
-            },
-            {
-                image: "/images/services/marketing-support/marketing4.png",
-                image_right: true,
-                title: t('WhatWeDo.fourTitle'),
-                sub_title: '',
-                description: t('WhatWeDo.fourText'),
-                tags: [
-                    { tags: '' },
-                    { tags: '' }
-                ]
-            },
-            {
-                image: "/images/services/marketing-support/marketing5.png",
-                image_right: false,
-                title: t('WhatWeDo.fiveTitle'),
-                sub_title: '',
-                description: t('WhatWeDo.fiveText'),
-                tags: [
-                    { tags: '' },
-                    { tags: '' }
-                ]
-            }
-        ]
-    };
-
-    const serviceWhyChooseUsData = {
-        title: t('WhyChoose.title'),
-        items: [
-            {
-                image: <ContextAd5Icon />,
-                number: "01",
-                title: t('WhyChoose.fBlockTitle'),
-                description: t('WhyChoose.fBlockText')
-            },
-            {
-                image: <ServiceCrmIcon2 />,
-                number: "02",
-                title: t('WhyChoose.sBlockTitle'),
-                description: t('WhyChoose.sBlockText')
-            },
-            {
-                image: <MarketingIcon/>,
-                number: "03",
-                title: t('WhyChoose.tBlockTitle'),
-                description: t('WhyChoose.tBlockText')
-            },
-            {
-                image: <SeoHowWeWork5 />,
-                number: "04",
-                title: t('WhyChoose.fourBlockTitle'),
-                description: t('WhyChoose.fourBlockText')
-            }
-        ],
-    };
-
-    const dataResults = [
-        {
-            title:t('ResultsBlock.title'),
-            number: t('ResultsBlock.number1'),
-            text: t('ResultsBlock.text1')
-        },
-        {
-            title:'',
-            number: t('ResultsBlock.number2'),
-            text: t('ResultsBlock.text2')
-        },
-        {
-            title:'',
-            number: t('ResultsBlock.number3'),
-            text: t('ResultsBlock.text3')
-        },
-        {
-            title:'',
-            number: t('ResultsBlock.number4'),
-            text: t('ResultsBlock.text4')
-        }
-    ];
 
     return (
         <RequestHandler
@@ -160,7 +123,7 @@ const MarketingSupportPage = () => {
                     title={data.title}
                     sub_title={data.content}
                     bg_image={data.image}
-                    button_text={t('headerBtn')}
+                    button_text={"Заказать интерграцию"}
                     breadcrumb={[
                         { text: 'Главная', href: '/home' },
                         { text: 'Комплексное маркетинговое сопровождение', href: '/services/marketing-support' },
@@ -169,10 +132,10 @@ const MarketingSupportPage = () => {
                 />
             }
             <InfoCard
-                title={t("MarketingSupport.title")}
-                description={t("MarketingSupport.subtitle")}
-                card_title={t("MarketingSupport.bottomTitle")}
-                card_description={t("MarketingSupport.bottomText")}
+                title={"Комплексное маркетинговое сопровождение"}
+                description={"это стратегический подход, который помогает бизнесу не просто заявить о себе, а достичь реальных результатов: увеличить продажи, расширить клиентскую базу и укрепить позиции на рынке."}
+                card_title={"В Bold Brands мы:"}
+                card_description={"объединяем все ключевые инструменты цифрового маркетинга в единую экосистему, чтобы вы получили максимум отдачи от каждого вложенных средств."}
                 card_icon={<MarketingSupportIcon />}
                 image={'/images/services/smm/creating-ad_1.webp'}
             />
@@ -181,10 +144,10 @@ const MarketingSupportPage = () => {
                 items={serviceData.items}
             />
             <CompanyServiceCardList
-                title={serviceWhyChooseUsData.title}
-                items={serviceWhyChooseUsData.items}
+                title={smmTeamMembers.title}
+                items={smmTeamMembers.items}
             />
-            <MarketingResults data={dataResults} />
+            <MarketingResults />
             <CompanyPostList />
             <FormLayout
                 ref={ref}

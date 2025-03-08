@@ -1,20 +1,20 @@
-import { NextConfig } from "next";
-import createNextIntlPlugin from "next-intl/plugin";
+import type { NextConfig } from "next";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-expect-error
-import withSvgr from "next-plugin-svgr";
-const nextConfig: NextConfig = withSvgr({
-  reactStrictMode: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "api.boldbrands.pro",
-        pathname: "**",
-      },
-    ],
-  },
-});
+import withSvgr from 'next-plugin-svgr';
 
-const withNextIntl = createNextIntlPlugin();
-export default withNextIntl(nextConfig);
+const nextConfig: NextConfig = withSvgr({
+    reactStrictMode: true,
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'api.boldbrands.pro',
+                pathname: '**'
+            }
+        ]
+    },
+    
+    
+});
+export default nextConfig;

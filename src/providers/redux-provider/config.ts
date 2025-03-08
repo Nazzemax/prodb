@@ -1,11 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { baseApi } from '@/api/Base';
-import { languageReducer } from '@/api/LanguageSelect';
 
 export const store = configureStore({
     reducer: {
-        [baseApi.reducerPath]: baseApi.reducer,
-        language: languageReducer
+        [baseApi.reducerPath]: baseApi.reducer
     },
 
     middleware(getDefaultMiddleware) {

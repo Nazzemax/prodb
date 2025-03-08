@@ -28,10 +28,10 @@ const CasesPage = () => {
         >
             {data &&
                 <PageTitleLayout
-                    scrollToFeedback={scrollToFeedback}
                     bg_image={data.image}
                     title={data.title}
                     button_text={"Получить консультацию"}
+                    scrollToFeedback={scrollToFeedback}
                     breadcrumb={[
                         { text: 'Главная', href: '/home' },
                         { text: 'Кейсы', href: '/cases' },

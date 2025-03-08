@@ -1,5 +1,3 @@
-'use client';
-
 import { useGetCompanyPartnersQuery } from "@/api/Company"
 import { Heading } from "@/components/atoms/heading"
 import { RequestHandler } from "@/components/atoms/request-handler"
