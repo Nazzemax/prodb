@@ -16,14 +16,15 @@ import { MultiSelect } from "@/components/atoms/multi-select";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { CrmFeedbackFormSchema } from "./schema";
+import { useCrmFeedbackFormSchema } from "./schema";
 import { Type } from "@/api/Types/types";
 import { useSendSrmServiceFormMutation } from "@/api/Form";
+import { useTranslations } from "next-intl";
 
 
 interface FeedbackFormProps {
     business_types: Type[];
-    task_types: Type[];   
+    task_types: Type[];
 }
 
 export const CrmFeedbackForm = ({
@@ -31,15 +32,18 @@ export const CrmFeedbackForm = ({
     task_types,
 }: FeedbackFormProps) => {
 
+    const t = useTranslations("Form")
+
     const [
-        sendForm, { 
-            isLoading, 
-            isSuccess, 
-            isError, 
-            reset: resetApi 
+        sendForm, {
+            isLoading,
+            isSuccess,
+            isError,
+            reset: resetApi
         }
     ] = useSendSrmServiceFormMutation()
 
+    const CrmFeedbackFormSchema = useCrmFeedbackFormSchema()
     const form = useForm<z.infer<typeof CrmFeedbackFormSchema>>({
         resolver: zodResolver(CrmFeedbackFormSchema),
         defaultValues: {
@@ -71,18 +75,18 @@ export const CrmFeedbackForm = ({
     };
 
     const onSubmit = async (data: z.infer<typeof CrmFeedbackFormSchema>) => {
-   
+
         if (selectedBusinessTypes.length === 0 || selectedServiceTypes.length === 0) {
             toast.error("Выберите хотя бы один пункт в каждом поле!");
             return;
         }
-       
-        
+
+
         if (!data.acceptTerms) {
             toast.error('Примите соглашение с политикой конфиденциальности!');
             return;
         }
-       
+
         try {
             const formData = {
                 ...data,
@@ -91,7 +95,7 @@ export const CrmFeedbackForm = ({
             };
             console.log('Data being sent:', JSON.stringify(formData, null, 2));
             await sendForm(formData).unwrap();
-               
+
             form.reset({
                 sender_name: "",
                 sender_phone: "",
@@ -102,7 +106,7 @@ export const CrmFeedbackForm = ({
             setSelectedBusinessTypes([]);
             setIsFirstStepCompleted(false);
             setTabValue('business');
-       
+
             toast.success('Успешно отправлено');
             setTimeout(resetApi, 3000);
         } catch (err) {
@@ -114,7 +118,7 @@ export const CrmFeedbackForm = ({
     return (
         <Card className="bg-background-dark2 border-none md:p-8 rounded-3xl">
             <CardHeader className="font-bold text-primary-foreground text-xl md:text-3xl">
-                Заполните форму и получите предложение
+                {t("title")}
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -143,8 +147,8 @@ export const CrmFeedbackForm = ({
 
 
                                         <div className="flex flex-col text-left">
-                                            <span className="text-sm xl:text-base">О вашем бизнесе</span>
-                                            <span className="text-xs xl:text-sm">Тип бизнеса и услуги</span>
+                                            <span className="text-sm xl:text-base">{t("tabs.title1")}</span>
+                                            <span className="text-xs xl:text-sm">{t("tabs.subTitle1")}</span>
                                         </div>
                                     </TabsTrigger>
                                     <TabsTrigger value='contacts' className="space-x-2 group">
@@ -152,30 +156,30 @@ export const CrmFeedbackForm = ({
                                             2
                                         </div>
                                         <div className="flex flex-col text-left">
-                                            <span className="text-sm xl:text-base">Контактные данные</span>
-                                            <span className="text-xs xl:text-sm">Ваши данные для связи</span>
+                                            <span className="text-sm xl:text-base">{t("tabs.title2")}</span>
+                                            <span className="text-xs xl:text-sm">{t("tabs.subTitle2")}</span>
                                         </div>
                                     </TabsTrigger>
                                 </TabsList>
                                 <TabsContent value="business" className="space-y-8">
                                     <MultiSelect
-                                        label="Тип бизнеса"
+                                        label={t("businessType")}
                                         options={business_types}
                                         selected={selectedBusinessTypes}
                                         setSelected={setSelectedBusinessTypes}
-                                        placeholder="Выберите тип бизнеса"
-                                        description="Это поможет нам лучше понять ваш бизнес и предложить оптимальное решение"
+                                        placeholder={t("businessTypePlaceholder")}
+                                        description={t("businessTypeDescriptoin")}
                                     />
                                     <MultiSelect
-                                        label="Какие задачи вы хотите автоматизировать?"
+                                        label={t("marketingType")}
                                         options={task_types}
                                         selected={selectedServiceTypes}
                                         setSelected={setSelectedServiceTypes}
-                                        placeholder="Выберите задачи для автоматизации из списка"
-                                        description="Мы адаптируем стратегию под ваши цели и платформы"
+                                        placeholder={t("marketingTypePlaceholder")}
+                                        description={t("marketingTypeDescription")}
                                     />
                                     <ButtonWithIcon type="button" onClick={handleNextStep}>
-                                        Продолжить
+                                        {t("nextButton")}
                                     </ButtonWithIcon>
                                 </TabsContent>
                                 <TabsContent value="contacts" className="space-y-5">
@@ -184,12 +188,12 @@ export const CrmFeedbackForm = ({
                                         name="sender_name"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-col items-start">
-                                                <FormLabel className="text-left text-slate-400">Имя</FormLabel>
+                                                <FormLabel className="text-left text-slate-400">{t("name")}</FormLabel>
                                                 <FormControl className="w-full">
                                                     <Input
                                                         {...field}
                                                         type="name"
-                                                        placeholder="Иван Иванов Иванович"
+                                                        placeholder={t("namePlaceholder")}
                                                         className="border-b-2 bg-transparent"
                                                         onClear={() => form.setValue("sender_name", "")}
                                                     />
@@ -203,7 +207,7 @@ export const CrmFeedbackForm = ({
                                         name="sender_phone"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-col items-start">
-                                                <FormLabel className="text-left text-slate-400">Номер телефона</FormLabel>
+                                                <FormLabel className="text-left text-slate-400">{t("phone")}</FormLabel>
                                                 <FormControl className="w-full">
                                                     <PhoneInput
                                                         defaultCountry="KG"
@@ -225,12 +229,12 @@ export const CrmFeedbackForm = ({
                                         name="sender_email"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-col items-start">
-                                                <FormLabel className="text-left text-slate-400">Электронная почта</FormLabel>
+                                                <FormLabel className="text-left text-slate-400">{t("email")}</FormLabel>
                                                 <FormControl className="w-full">
                                                     <Input
                                                         {...field}
                                                         type="email"
-                                                        placeholder="Введите электронную почту"
+                                                        placeholder={t("emailPlaceholder")}
                                                         className="border-b-2 bg-transparent"
                                                         onClear={() => form.setValue("sender_email", "")}
                                                     />
@@ -253,12 +257,12 @@ export const CrmFeedbackForm = ({
                                                     </FormControl>
                                                     <div className="space-y-1 leading-none">
                                                         <FormLabel className="text-sm md:text-md leading-6">
-                                                            Я согласен на обработку моих данных в соответствии с{' '}
+                                                            {t("terms")}{' '}
                                                             <span
                                                                 onClick={showTerms}
                                                                 className="text-rose-500 underline hover:cursor-pointer"
                                                             >
-                                                                политикой конфиденциальности
+                                                                {t("termsLink")}
                                                             </span>
                                                         </FormLabel>
                                                         <Dialog open={openTerms} onOpenChange={setOpenTerms}>
@@ -272,7 +276,9 @@ export const CrmFeedbackForm = ({
                                                 </FormItem>
                                             )}
                                         />
-                                        <ButtonWithIcon type="submit">Отправить</ButtonWithIcon>
+                                        <ButtonWithIcon type="submit">
+                                            {t("submitButton")}
+                                        </ButtonWithIcon>
                                     </div>
                                 </TabsContent>
                             </Tabs>

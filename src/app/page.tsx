@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 
-function Home() {
-    redirect('/home')
+// This page only renders when the app is built statically (output: 'export')
+export default function RootPage() {
+    redirect("/");
 }
-
-export default Home

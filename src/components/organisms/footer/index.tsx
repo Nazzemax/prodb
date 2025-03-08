@@ -1,6 +1,5 @@
 'use client';
 
-import { Designer } from "@/components/atoms/designer";
 import { Logo } from "@/components/atoms/logo";
 import { FooterLinks } from "@/components/molecules/footer-links";
 import { Separator } from "@/components/ui/separator";
@@ -27,14 +26,12 @@ export const Footer = () => {
                         <Logo className="w-[300px] h-[40px]" />
                         <p className="text-gray2 text-base max-w-sm">{data?.description}</p>
                     </motion.div>
-                    <Designer className="hidden lg:flex" />
                 </div>
                 <FooterLinks />
             </div>
             <div>
                 <Separator />
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2 mt-3 text-gray2">
-                    <Designer className="md:hidden" />
                     <span className="text-left">&copy; 2024 Bold Brands International. Все права защищены</span>
                     <span className="md:text-right">Политика конфиденциальности</span>
                 </div>

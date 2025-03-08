@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import { CompanyInfo } from "@/components/organisms/company-info";
@@ -17,12 +17,16 @@ import { useSlug } from "@/hooks/useSlug";
 import { useAppData } from "@/context/app-context";
 import { useGetPromotionTypesQuery } from "@/api/Types";
 import { useRef } from "react";
+import { useTranslations } from "next-intl";
+import { Advantages } from "@/components/organisms/advantages/Advantages";
 
 const AboutPage = () => {
-    const slug = useSlug()
+    const t = useTranslations("AboutPage");
+
+    const slug = useSlug();
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: promotion_types } = useGetPromotionTypesQuery()
-    const { business_types } = useAppData()
+    const { data: promotion_types } = useGetPromotionTypesQuery();
+    const { business_types } = useAppData();
 
     const feedbackRef = useRef<HTMLDivElement>(null);
 
@@ -31,40 +35,38 @@ const AboutPage = () => {
     };
 
     return (
-        <RequestHandler
-            isLoading={isLoading}
-            error={error}
-            data={data}
-        >
-            {data &&
+        <RequestHandler isLoading={isLoading} error={error} data={data}>
+            {data && (
                 <PageTitleLayout
                     bg_image={data.image}
                     title={data.title}
                     button_text={"Получить консультацию"}
                     scrollToFeedback={scrollToFeedback}
                     breadcrumb={[
-                        { text: 'Главная', href: '/home' },
-                        { text: 'О нас', href: '/about' },
+                        { text: "Главная", href: "/home" },
+                        { text: "О нас", href: "/about" },
                     ]}
                 />
-            }
+            )}
             <InfoCard
-                title={"Результаты, которые работают на ваш бизнес"}
+                title={t("BusinessResults.title")}
                 sub_title={""}
-                description={"Мы понимаем, что для предпринимателей важны не просто идеи, а измеримые результаты - рост заявок, привлечение клиентов и увеличение прибыли."}
+                description={t("BusinessResults.description")}
                 image={"/images/about_page/our_philosophy.webp"}
-                card_title={"Наша философия"}
-                card_description={"Работать для вашего успеха, предлагая стратегии, которые решают именно ваши бизнес-задачи и обеспечивают конкретные достижения."}
-                card_icon={<OurPhilosophyIcon className="w-[80px] h-[80px] sm:w-[118px] sm:h-[118px]" />}
+                card_title={t("BusinessResults.subtitle")}
+                card_description={t("BusinessResults.subdesk")}
+                card_icon={
+                    <OurPhilosophyIcon className="w-[80px] h-[80px] sm:w-[118px] sm:h-[118px]" />
+                }
             />
-            <CompanyInfo />
+            <Advantages />
             <CompanyTeam />
             <CompanyPostList />
             <CompanyPartners />
             <PartnerReviewList />
             <FormLayout
                 ref={feedbackRef}
-                title={'Рассчитайте стоимость услуги'}
+                title={"Рассчитайте стоимость услуги"}
                 nestedForm={
                     <CostCalculationForm
                         business_types={business_types}
@@ -74,6 +76,6 @@ const AboutPage = () => {
             />
         </RequestHandler>
     );
-}
+};
 
 export default AboutPage;

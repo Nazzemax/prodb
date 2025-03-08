@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 interface LinkProps {
     title: string;
@@ -19,23 +20,25 @@ interface innerLinksProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
     linkIcon?: React.ReactNode
 }
 
-const innerLinks: LinkProps[] = [
-    { title: "Брендинг", href: "/services/branding" },
-    { title: "Digital продвижение", href: "/services/smm"},
-    { title: "Видеопродакшн", href: "/services/video-production"},
-    { title: "Веб-разработка и дизайн", href: "/services/site-creating"},
-    { title: "Комплексное маркетинговое продвижение", href: "/services/marketing-support"},
-    { title: "Внедрение CRM системы", href: "/services/crm"},
-    { title: "SEO-оптимизация", href: "/services/seo",},
-];
-
-const links: LinkProps[] = [
-    { title: "Главная", href: "/home" },
-    { title: "О нас", href: "/about" },
-    { title: "Кейсы", href: "/cases" },
-]
-
 export const MobileNavigationBar = ({ closeSheet }: { closeSheet: () => void }) => {
+
+    const t = useTranslations("HomePage");
+
+    const links: LinkProps[] = React.useMemo(() => [
+        { title: t("navLinks.home"), href: "/home" },
+        { title: t("navLinks.about"), href: "/about" },
+        { title: t("navLinks.cases"), href: "/cases" },
+    ], [t]);
+
+    const innerLinks: LinkProps[] = React.useMemo(() => [
+        { title: t("navLinks.services.branding"), href: "/services/branding" },
+        { title: t("navLinks.services.smm"), href: "/services/smm" },
+        { title: t("navLinks.services.videoProduction"), href: "/services/video-production" },
+        { title: t("navLinks.services.siteCreating"), href: "/services/site-creating" },
+        { title: t("navLinks.services.marketingSupport"), href: "/services/marketing-support" },
+        { title: t("navLinks.services.crm"), href: "/services/crm" },
+        { title: t("navLinks.services.seo"), href: "/services/seo" },
+    ], [t]);
 
     return (
         <nav className="mt-8 space-y-2 font-bold">
@@ -50,7 +53,7 @@ export const MobileNavigationBar = ({ closeSheet }: { closeSheet: () => void }) 
             ))}
             <Accordion type="single" collapsible className="w-full">
                 <AccordionItem value="services">
-                    <AccordionTrigger className="text-lg font-medium">Услуги</AccordionTrigger>
+                    <AccordionTrigger className="text-lg font-medium">{t('navLinks.services.initial')}</AccordionTrigger>
                     <AccordionContent className="flex flex-col text-primary space-y-1 pl-4">
                         {innerLinks.map((link) => (
                             <LinkItem
@@ -67,7 +70,7 @@ export const MobileNavigationBar = ({ closeSheet }: { closeSheet: () => void }) 
             <LinkItem
                 closeSheet={closeSheet}
                 linkHref="/contacts"
-                linkTitle={"Контакты"}
+                linkTitle={t('navLinks.contacts')}
             />
         </nav>
     );

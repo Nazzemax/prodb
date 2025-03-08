@@ -2,16 +2,12 @@
 
 import { SingleSliderItem } from '@/components/molecules/single-slider-item'
 import { Carousel, CarouselContent, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC } from 'react';
 import { CustomCarouselControls } from '@/components/molecules/custom-controls';
 import { useGetBannersQuery } from '@/api/Banners';
 import { Spinner } from '@/components/atoms/spinner';
 
-interface SingleSliderListProps {
-    onScrollToFeedback: () => void;
-}
-
-export const SingleSliderList: FC<SingleSliderListProps> = ({ onScrollToFeedback }) => {
+export const SingleSliderList = () => {
     const { data, error, isLoading } = useGetBannersQuery()
 
 
@@ -42,7 +38,6 @@ export const SingleSliderList: FC<SingleSliderListProps> = ({ onScrollToFeedback
             <CarouselContent>
                 {data?.map((slide, index) => (
                     <SingleSliderItem
-                        onScrollToFeedback={onScrollToFeedback}
                         key={index}
                         title={slide.title}
                         sub_title={slide.sub_title}

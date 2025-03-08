@@ -6,8 +6,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { PhoneInput } from "@/components/ui/phone-input";
 import ruLabels from "react-phone-number-input/locale/ru.json";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { isValid, z } from "zod";
-import { FeedbackSchema } from "./schema";
+import { z } from "zod";
+import { useFeedbackSchema } from "./schema";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
@@ -15,6 +15,7 @@ import { toast } from "sonner";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { useSendContactsFormMutation } from "@/api/Form";
+import { useTranslations } from "next-intl";
 
 
 export const FeedbackForm = () => {
@@ -27,10 +28,12 @@ export const FeedbackForm = () => {
     }] = useSendContactsFormMutation()
     const [openTerms, setOpenTerms] = useState(false)
 
+    const t = useTranslations('Form')
     const showTerms = () => {
         setOpenTerms(prev => !prev)
     }
 
+    const FeedbackSchema = useFeedbackSchema()
     const form = useForm<z.infer<typeof FeedbackSchema>>({
         resolver: zodResolver(FeedbackSchema),
         defaultValues: {
@@ -70,8 +73,8 @@ export const FeedbackForm = () => {
 
     return (
         <Card className="bg-[#18181A] border-none md:p-8 rounded-3xl">
-            <CardHeader className="font-bold text-white text-xl md:text-3xl">
-                Заполните форму и получите предложение
+            <CardHeader className="font-bold text-white text-xl md:text-2xl">
+                {t("title")}
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -82,12 +85,12 @@ export const FeedbackForm = () => {
                                 name="sender_name"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col items-start">
-                                        <FormLabel>Имя</FormLabel>
+                                        <FormLabel>{t("name")}</FormLabel>
                                         <FormControl className="w-full">
                                             <Input
                                                 {...field}
                                                 type="name"
-                                                placeholder="Иван Иванов Иванович"
+                                                placeholder={t('namePlaceholder')}
                                                 error={!!form.formState.errors.sender_name}
                                                 onClear={() => form.setValue("sender_name", "")}
                                             />
@@ -101,7 +104,7 @@ export const FeedbackForm = () => {
                                 name="sender_phone"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col items-start">
-                                        <FormLabel>Номер телефона</FormLabel>
+                                        <FormLabel>{t("phone")}</FormLabel>
                                         <FormControl className="w-full">
                                             <PhoneInput
                                                 {...field}
@@ -123,12 +126,12 @@ export const FeedbackForm = () => {
                                 name="sender_email"
                                 render={({ field }) => (
                                     <FormItem className="flex flex-col items-start">
-                                        <FormLabel>Электронная почта</FormLabel>
+                                        <FormLabel>{t("email")}</FormLabel>
                                         <FormControl className="w-full">
                                             <Input
                                                 {...field}
                                                 type="email"
-                                                placeholder="Введите электронную почту"
+                                                placeholder={t('emailPlaceholder')}
                                                 error={!!form.formState.errors.sender_email}
                                                 onClear={() => form.setValue("sender_email", "")}
                                             />
@@ -153,12 +156,12 @@ export const FeedbackForm = () => {
                                             </FormControl>
                                             <div className="space-y-1 leading-none">
                                                 <FormLabel className="text-sm md:text-md leading-6">
-                                                    Я согласен на обработку моих данных в соответствии с{' '}
+                                                    {t('terms')}{' '}
                                                     <span
                                                         onClick={showTerms}
                                                         className="text-accent underline hover:cursor-pointer"
                                                     >
-                                                        политикой конфиденциальности
+                                                        {t('termsLink')}
                                                     </span>
                                                 </FormLabel>
                                                 <Dialog open={openTerms} onOpenChange={setOpenTerms}>

@@ -1,3 +1,4 @@
+import { useGetFaqsQuery } from '@/api/Faq'
 import { Heading } from '@/components/atoms/heading'
 import { FaqItem } from '@/components/molecules/faq-item'
 import { Accordion } from '@/components/ui/accordion'
@@ -19,12 +20,14 @@ const faq = [
 ]
 
 export const Faq = () => {
+    const { data } = useGetFaqsQuery()
+
     return (
         <div className='max-w-[1920px] bg-background-gray'>
             <div className='max-w-[1280px] m-auto py-10 md:py-24'>
                 <Heading as='h2' className='text-center mb-16'>Часто задаваемые вопросы</Heading>
                 <Accordion type="single" collapsible className='max-w-[800px] m-auto space-y-3 px-5 lg:px-0'>
-                    {faq.map((item) => (
+                    {data?.map((item) => (
                         <FaqItem
                             key={item.question}
                             question={item.question}

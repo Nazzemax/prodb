@@ -1,13 +1,13 @@
 
 
 import { baseApi } from "../Base";
-import { FaqResponse } from "./types";
+import { Faq } from "./types";
 
 
 export const FaqApi = baseApi.injectEndpoints({
     endpoints(build) {
         return {
-            getFaqs: build.query<FaqResponse, void>({
+            getFaqs: build.query<Faq[], void>({
                 query: () => ({
                     url: '/faq/',
                 })
@@ -17,4 +17,4 @@ export const FaqApi = baseApi.injectEndpoints({
     }
 })
 
-export const { useGetFaqsQuery} = FaqApi
+export const { useGetFaqsQuery } = FaqApi

@@ -1,5 +1,6 @@
 
 
-export interface FaqResponse {
-    answers: { question: string; answer: string; }[]
+export interface Faq {
+    question: string; 
+    answer: string;
 }

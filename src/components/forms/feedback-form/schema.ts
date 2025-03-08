@@ -1,15 +1,22 @@
+// import { isValidPhoneNumber } from "react-phone-number-input";
+// import { boolean, string, z } from "zod";
+
+
 import { isValidPhoneNumber } from "react-phone-number-input";
 import { boolean, string, z } from "zod";
+import { useTranslations } from "next-intl";
 
+export const useFeedbackSchema = () => {
+    const t = useTranslations("FormErrors");
 
-export const FeedbackSchema = z.object({
-    sender_name: string().min(2, "Заполните поле!"),
-    sender_phone: string({
-        required_error: "Заполните поле!"
-    }).refine(isValidPhoneNumber, { message: "Неверный номер телефона!" }),
-    sender_email: string().email("Заполните поле!"),
-    acceptTerms: boolean(),
-})
+    return z.object({
+        sender_name: string().min(2, t("required")),
+        sender_phone: string({ required_error: t("phone_error") })
+            .refine(isValidPhoneNumber, { message: t("required") }),
+        sender_email: string().email(t("required")),
+        acceptTerms: boolean().refine(val => val === true, { message: t("required") }),
+    });
+};
 
 // .refine(value => value === true, {
 //     message: "Вы должны принять условия!",

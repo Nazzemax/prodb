@@ -10,7 +10,7 @@ import { z } from "zod";
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { toast } from "sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { CostCalculationSchema } from "./schema";
+import { useCostCalculationSchema } from "./schema";
 import { useState } from "react";
 import { MultiSelect } from "@/components/atoms/multi-select";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
@@ -18,6 +18,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Check } from "lucide-react";
 import { Type } from "@/api/Types/types";
+import { useTranslations } from "next-intl";
 
 interface CostCalculationFormProps {
     business_types: Type[];
@@ -28,6 +29,10 @@ export const CostCalculationForm = ({
     business_types,
     promotion_types,
 }: CostCalculationFormProps) => {
+
+    const t = useTranslations('Form')
+
+    const CostCalculationSchema = useCostCalculationSchema()
     const form = useForm<z.infer<typeof CostCalculationSchema>>({
         resolver: zodResolver(CostCalculationSchema),
         defaultValues: {
@@ -74,8 +79,8 @@ export const CostCalculationForm = ({
 
     return (
         <Card className="bg-background-dark2 border-none md:p-8 rounded-3xl">
-            <CardHeader className="font-bold text-primary-foreground text-xl md:text-3xl">
-                Заполните форму и получите предложение
+            <CardHeader className="font-bold text-primary-foreground text-xl md:text-2xl">
+                {t("title")}
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -94,7 +99,7 @@ export const CostCalculationForm = ({
                                 <TabsList className="flex flex-col items-start lg:flex-row mb-8 mt-5 md:mt-0 bg-transparent">
                                     <TabsTrigger value='business' className="space-x-2 group">
                                         {isFirstStepCompleted
-                                            ? <div className="border-2 rounded-full p-2  group-data-[state=active]:border-accent">
+                                            ? <div className="border-2 rounded-full p-2 group-data-[state=active]:border-accent">
                                                 <Check />
                                             </div>
                                             : <div className="border-2 rounded-full py-2 px-4  group-data-[state=active]:border-accent">
@@ -104,8 +109,8 @@ export const CostCalculationForm = ({
 
 
                                         <div className="flex flex-col text-left">
-                                            <span className="text-sm xl:text-base">О вашем бизнесе</span>
-                                            <span className="text-xs xl:text-sm">Тип бизнеса и услуги</span>
+                                            <span className="text-sm xl:text-base">{t("tabs.title1")}</span>
+                                            <span className="text-xs xl:text-sm">{t("tabs.subTitle1")}</span>
                                         </div>
                                     </TabsTrigger>
                                     <TabsTrigger value='contacts' className="space-x-2 group">
@@ -113,30 +118,30 @@ export const CostCalculationForm = ({
                                             2
                                         </div>
                                         <div className="flex flex-col text-left">
-                                            <span className="text-sm xl:text-base">Контактные данные</span>
-                                            <span className="text-xs xl:text-sm">Ваши данные для связи</span>
+                                            <span className="text-sm xl:text-base">{t("tabs.title2")}</span>
+                                            <span className="text-xs xl:text-sm">{t("tabs.subTitle2")}</span>
                                         </div>
                                     </TabsTrigger>
                                 </TabsList>
                                 <TabsContent value="business" className="space-y-8">
                                     <MultiSelect
-                                        label="Тип бизнеса"
+                                        label={t("businessType")}
                                         options={business_types}
                                         selected={selectedBusinesses}
                                         setSelected={setSelectedBusinesses}
-                                        placeholder="Выберите тип бизнеса"
-                                        description="Это поможет нам лучше понять ваш бизнес и предложить оптимальное решение"
+                                        placeholder={t("businessTypePlaceholder")}
+                                        description={t("businessTypeDescriptoin")}
                                     />
                                     <MultiSelect
-                                        label="Какая услуга вам нужна?"
+                                        label={t('promotionType')}
                                         options={promotion_types}
                                         selected={selectedServices}
                                         setSelected={setSelectedServices}
-                                        placeholder="Выберите услуги"
-                                        description="Мы адаптируем стратегию под ваши цели и платформы"
+                                        placeholder={t("promotionTypePlaceholder")}
+                                        description={t("promotionTypeDescriptoin")}
                                     />
                                     <ButtonWithIcon type="button" onClick={handleNextStep}>
-                                        Продолжить
+                                        {t("nextButton")}
                                     </ButtonWithIcon>
                                 </TabsContent>
                                 <TabsContent value="contacts" className="space-y-5">
@@ -145,12 +150,12 @@ export const CostCalculationForm = ({
                                         name="sender_name"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-col items-start">
-                                                <FormLabel className="text-left text-slate-400">Имя</FormLabel>
+                                                <FormLabel className="text-left text-slate-400">{t("name")}</FormLabel>
                                                 <FormControl className="w-full">
                                                     <Input
                                                         {...field}
                                                         type="name"
-                                                        placeholder="Иван Иванов Иванович"
+                                                        placeholder={t("namePlaceholder")}
                                                         className="border-b-2 bg-transparent"
                                                     />
                                                 </FormControl>
@@ -163,7 +168,7 @@ export const CostCalculationForm = ({
                                         name="sender_phone"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-col items-start">
-                                                <FormLabel className="text-left text-slate-400">Номер телефона</FormLabel>
+                                                <FormLabel className="text-left text-slate-400">{t("phone")}</FormLabel>
                                                 <FormControl className="w-full">
                                                     <PhoneInput
                                                         defaultCountry="KG"
@@ -185,12 +190,12 @@ export const CostCalculationForm = ({
                                         name="sender_email"
                                         render={({ field }) => (
                                             <FormItem className="flex flex-col items-start">
-                                                <FormLabel className="text-left text-slate-400">Электронная почта</FormLabel>
+                                                <FormLabel className="text-left text-slate-400">{t("email")}</FormLabel>
                                                 <FormControl className="w-full">
                                                     <Input
                                                         {...field}
                                                         type="email"
-                                                        placeholder="Введите электронную почту"
+                                                        placeholder={t("emailPlaceholder")}
                                                         className="border-b-2 bg-transparent"
                                                     />
                                                 </FormControl>
@@ -212,12 +217,12 @@ export const CostCalculationForm = ({
                                                     </FormControl>
                                                     <div className="space-y-1 leading-none">
                                                         <FormLabel className="text-sm md:text-md leading-6">
-                                                            Я согласен на обработку моих данных в соответствии с{' '}
+                                                            {t('terms')}{' '}
                                                             <span
                                                                 onClick={showTerms}
                                                                 className="text-rose-500 underline hover:cursor-pointer"
                                                             >
-                                                                политикой конфиденциальности
+                                                                {t('termsLink')}
                                                             </span>
                                                         </FormLabel>
                                                         <Dialog open={openTerms} onOpenChange={setOpenTerms}>
@@ -231,7 +236,9 @@ export const CostCalculationForm = ({
                                                 </FormItem>
                                             )}
                                         />
-                                        <ButtonWithIcon type="submit">Отправить</ButtonWithIcon>
+                                        <ButtonWithIcon type="submit">
+                                            {t("submitButton")}
+                                        </ButtonWithIcon>
                                     </div>
                                 </TabsContent>
                             </Tabs>

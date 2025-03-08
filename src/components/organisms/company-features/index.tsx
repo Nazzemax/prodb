@@ -1,10 +1,6 @@
+'use client';
+
 import { CompanyFeatureItem } from "@/components/molecules/company-feautre-item"
-import Feature1SVG from '@/assets/features/feature_1.svg'
-import Feature2SVG from '@/assets/features/feature_2.svg'
-import Feature3SVG from '@/assets/features/feature_3.svg'
-import Feature4SVG from '@/assets/features/feature_4.svg'
-import Feature5SVG from '@/assets/features/feature_5.svg'
-import Feature6SVG from '@/assets/features/feature_6.svg'
 import FeaturesBgSVG from '@/assets/backgrounds/features_bg.svg'
 import { Heading } from "@/components/atoms/heading"
 import { useGetCompanyServicesQuery } from "@/api/Company"

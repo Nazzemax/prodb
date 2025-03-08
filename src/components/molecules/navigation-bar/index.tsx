@@ -1,16 +1,13 @@
-"use client"
+"use client";
 
 import * as React from "react";
 import Link from "next/link";
-import BrandingIcon from '@/assets/dropdown/dropdown_1.svg';
-import DigitalPromotionIcon from '@/assets/dropdown/dropdown_2.svg';
-import VideoProductionIcon from '@/assets/dropdown/dropdown_3.svg';
-import WebDevIcon from '@/assets/dropdown/dropdown_4.svg';
-import MarketingPromotionIcon from '@/assets/dropdown/dropdown_5.svg';
-import CRMIcon from '@/assets/dropdown/dropdown_6.svg';
-
-
-
+import BrandingIcon from "@/assets/dropdown/dropdown_1.svg";
+import DigitalPromotionIcon from "@/assets/dropdown/dropdown_2.svg";
+import VideoProductionIcon from "@/assets/dropdown/dropdown_3.svg";
+import WebDevIcon from "@/assets/dropdown/dropdown_4.svg";
+import MarketingPromotionIcon from "@/assets/dropdown/dropdown_5.svg";
+import CRMIcon from "@/assets/dropdown/dropdown_6.svg";
 
 import { cn } from "@/lib/utils";
 import {
@@ -22,96 +19,96 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { Button } from "@/components/ui/button";
 import { usePrevSlug } from "@/hooks/useSlug";
-
-interface ComponentsProps {
-    title: string;
-    href: string;
-    icon?: React.ReactNode;
-}
-
-const components: ComponentsProps[] = [
-    {
-        title: "Брендинг",
-        href: "/services/branding",
-        icon: <BrandingIcon />
-    },
-    {
-        title: "Digital продвижение",
-        href: "/services/smm",
-        icon: <DigitalPromotionIcon />
-    },
-    {
-        title: "Видеопродакшн",
-        href: "/services/video-production",
-        icon: <VideoProductionIcon />
-    },
-    {
-        title: "Веб-разработка и дизайн",
-        href: "/services/site-creating",
-        icon: <WebDevIcon />
-    },
-    {
-        title: "Комплексное маркетинговое продвижение",
-        href: "/services/marketing-support",
-        icon: <MarketingPromotionIcon />
-    },
-    {
-        title: "Внедрение CRM системы",
-        href: "/services/crm",
-        icon: <CRMIcon />
-    },
-    {
-        title: "SEO-оптимизация",
-        href: "/services/seo",
-        icon: <CRMIcon />
-    },
-    {
-        title: "Контекстная реклама",
-        href: "/services/context-ads",
-        icon: <CRMIcon />
-    },
-]
+import { useTranslations } from "next-intl";
 
 export const NavigationBar = () => {
-    const slug = usePrevSlug()
-    const isCases = slug === 'cases'
+    const slug = usePrevSlug();
+    const isCases = slug === "cases";
+    const t = useTranslations("HomePage");
+
+    const components = React.useMemo(
+        () => [
+            {
+                title: t("navLinks.services.branding"),
+                href: "/services/branding",
+                icon: <BrandingIcon />,
+            },
+            {
+                title: t("navLinks.services.smm"),
+                href: "/services/smm",
+                icon: <DigitalPromotionIcon />,
+            },
+            {
+                title: t("navLinks.services.videoProduction"),
+                href: "/services/video-production",
+                icon: <VideoProductionIcon />,
+            },
+            {
+                title: t("navLinks.services.siteCreating"),
+                href: "/services/site-creating",
+                icon: <WebDevIcon />,
+            },
+            {
+                title: t("navLinks.services.marketingSupport"),
+                href: "/services/marketing-support",
+                icon: <MarketingPromotionIcon />,
+            },
+            {
+                title: t("navLinks.services.crm"),
+                href: "/services/crm",
+                icon: <CRMIcon />,
+            },
+            {
+                title: t("navLinks.services.seo"),
+                href: "/services/seo",
+                icon: <CRMIcon />,
+            },
+            {
+                title: t("navLinks.services.contextAd"),
+                href: "/services/context-ads",
+                icon: <CRMIcon />,
+            },
+        ],
+        [t]
+    );
 
     return (
         <NavigationMenu>
-            <NavigationMenuList
-                className={cn(
-                    'hidden lg:flex',
-                )}
-            >
+            <NavigationMenuList className={cn("hidden lg:flex")}>
                 <NavigationMenuItem>
                     <Link href="/home" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(
-                            navigationMenuTriggerStyle(),
-                            isCases ? "text-primary hover:bg-black/5" : "text-white"
-                        )}>
-                            Главная
+                        <NavigationMenuLink
+                            className={cn(
+                                navigationMenuTriggerStyle(),
+                                isCases ? "text-primary hover:bg-black/5" : "text-white"
+                            )}
+                        >
+                            {t("navLinks.home")}
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link href="/about" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(
-                            navigationMenuTriggerStyle(),
-                            isCases ? "text-primary hover:bg-black/5" : "text-white"
-                        )}>
-                            О нас
+                        <NavigationMenuLink
+                            className={cn(
+                                navigationMenuTriggerStyle(),
+                                isCases ? "text-primary hover:bg-black/5" : "text-white"
+                            )}
+                        >
+                            {t("navLinks.about")}
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link href="/cases" legacyBehavior passHref>
-                        <NavigationMenuLink className={cn(
-                            navigationMenuTriggerStyle(),
-                            isCases ? "text-primary hover:bg-black/5" : "text-white"
-                        )}>
-                            Кейсы
+                        <NavigationMenuLink
+                            className={cn(
+                                navigationMenuTriggerStyle(),
+                                isCases ? "text-primary hover:bg-black/5" : "text-white"
+                            )}
+                        >
+                            {t("navLinks.cases")}
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
@@ -122,7 +119,7 @@ export const NavigationBar = () => {
                             isCases ? "text-primary hover:bg-black/5" : "text-white"
                         )}
                     >
-                        Услуги
+                        {t("navLinks.services.initial")}
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="flex flex-col w-[350px] gap-2 p-3">
@@ -145,18 +142,18 @@ export const NavigationBar = () => {
                                 isCases ? "text-primary hover:bg-black/5" : "text-white"
                             )}
                         >
-                            Контакты
+                            {t("navLinks.contacts")}
                         </NavigationMenuLink>
                     </Link>
                 </NavigationMenuItem>
             </NavigationMenuList>
         </NavigationMenu>
-    )
-}
+    );
+};
 
 const ListItem = React.forwardRef<
-    React.ComponentRef<"a">,
-    React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode }
+  React.ComponentRef<"a">,
+  React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode }
 >(({ className, title, icon, ...props }, ref) => {
     return (
         <li>
@@ -174,7 +171,6 @@ const ListItem = React.forwardRef<
                 </a>
             </NavigationMenuLink>
         </li>
-    )
-})
-ListItem.displayName = "ListItem"
-
+    );
+});
+ListItem.displayName = "ListItem";

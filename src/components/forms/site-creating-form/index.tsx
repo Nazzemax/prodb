@@ -16,15 +16,16 @@ import { MultiSelect } from "@/components/atoms/multi-select";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
-import { BrandingFeedbackFormSchema } from "./schema";
 import { Type } from "@/api/Types/types";
-import { useSendServiceFormMutation, useSendSiteServiceFormMutation } from "@/api/Form";
+import { useSendSiteServiceFormMutation } from "@/api/Form";
 import { SiteServiceFormRequest } from "@/api/Form/types";
+import { useTranslations } from "next-intl";
+import { useFeedbackSchema } from "../feedback-form/schema";
 
 
 interface FeedbackFormProps {
     business_types: Type[];
-    site_types: Type[];   
+    site_types: Type[];
 }
 
 export const SiteCreatingFeedbackForm = ({
@@ -33,14 +34,15 @@ export const SiteCreatingFeedbackForm = ({
 }: FeedbackFormProps) => {
 
     const [
-        sendForm, { 
-            isLoading, 
-            isSuccess, 
-            isError, 
-            reset: resetApi 
+        sendForm, {
+            isLoading,
+            isSuccess,
+            isError,
+            reset: resetApi
         }
     ] = useSendSiteServiceFormMutation()
 
+    const BrandingFeedbackFormSchema = useFeedbackSchema()
     const form = useForm<z.infer<typeof BrandingFeedbackFormSchema>>({
         resolver: zodResolver(BrandingFeedbackFormSchema),
         defaultValues: {
@@ -51,6 +53,7 @@ export const SiteCreatingFeedbackForm = ({
         },
     });
 
+    const t = useTranslations("Form")
     const [tabValue, setTabValue] = useState("business");
     const [selectedSiteTypes, setSelectedSiteTypes] = useState<number[]>([]);
     const [selectedBusinessTypes, setSelectedBusinessTypes] = useState<number[]>([]);
@@ -72,27 +75,27 @@ export const SiteCreatingFeedbackForm = ({
     };
 
     const onSubmit = async (data: z.infer<typeof BrandingFeedbackFormSchema>) => {
-  
+
         if (selectedBusinessTypes.length === 0 || selectedSiteTypes.length === 0) {
             toast.error("Выберите хотя бы один пункт в каждом поле!");
             return;
         }
-      
-       
+
+
         if (!data.acceptTerms) {
             toast.error('Примите соглашение с политикой конфиденциальности!');
             return;
         }
-      
+
         try {
-            const formData:SiteServiceFormRequest = {
+            const formData: SiteServiceFormRequest = {
                 ...data,
                 business_type: selectedBusinessTypes,
                 site_type: selectedSiteTypes
             };
             console.log('Data being sent:', JSON.stringify(formData, null, 2));
             await sendForm(formData).unwrap();
-              
+
             form.reset({
                 sender_name: "",
                 sender_phone: "",
@@ -103,7 +106,7 @@ export const SiteCreatingFeedbackForm = ({
             setSelectedBusinessTypes([]);
             setIsFirstStepCompleted(false);
             setTabValue('business');
-      
+
             toast.success('Успешно отправлено');
             setTimeout(resetApi, 3000);
         } catch (err) {
@@ -115,7 +118,7 @@ export const SiteCreatingFeedbackForm = ({
     return (
         <Card className="bg-background-dark2 border-none md:p-8 rounded-3xl">
             <CardHeader className="font-bold text-primary-foreground text-xl md:text-2xl">
-                Заполните форму и получите предложение
+                {t("title")}
             </CardHeader>
             <CardContent>
                 <Form {...form}>
@@ -144,8 +147,8 @@ export const SiteCreatingFeedbackForm = ({
 
 
                                         <div className="flex flex-col text-left">
-                                            <span className="text-sm xl:text-base">О вашем бизнесе</span>
-                                            <span className="text-xs xl:text-sm">Тип бизнеса и услуги</span>
+                                            <span className="text-sm xl:text-base">{t("tabs.title1")}</span>
+                                            <span className="text-xs xl:text-sm">{t("tabs.subTitle1")}</span>
                                         </div>
                                     </TabsTrigger>
                                     <TabsTrigger value='contacts' className="space-x-2 group">
@@ -153,27 +156,27 @@ export const SiteCreatingFeedbackForm = ({
                                             2
                                         </div>
                                         <div className="flex flex-col text-left">
-                                            <span className="text-sm xl:text-base">Контактные данные</span>
-                                            <span className="text-xs xl:text-sm">Ваши данные для связи</span>
+                                            <span className="text-sm xl:text-base">{t("tabs.title2")}</span>
+                                            <span className="text-xs xl:text-sm">{t("tabs.subTitle2")}</span>
                                         </div>
                                     </TabsTrigger>
                                 </TabsList>
                                 <TabsContent value="business" className="space-y-8">
                                     <MultiSelect
-                                        label="Тип бизнеса"
+                                        label={t("businessType")}
                                         options={business_types}
                                         selected={selectedBusinessTypes}
                                         setSelected={setSelectedBusinessTypes}
-                                        placeholder="Выберите тип бизнеса"
-                                        description="Это поможет нам лучше понять ваш бизнес и предложить оптимальное решение"
+                                        placeholder={t("businessTypePlaceholder")}
+                                        description={t("businessTypeDescriptoin")}
                                     />
                                     <MultiSelect
-                                        label="Выберите тип сайта"
+                                        label={t("siteType")}
                                         options={site_types}
                                         selected={selectedSiteTypes}
                                         setSelected={setSelectedSiteTypes}
-                                        placeholder="Выберите из списка тип сайта"
-                                        description="Мы адаптируем стратегию под ваши цели и платформы"
+                                        placeholder={t("siteTypePlaceholder")}
+                                        description={t("siteTypeDescription")}
                                     />
                                     <ButtonWithIcon type="button" onClick={handleNextStep}>
                                         Продолжить
