@@ -14,7 +14,8 @@
         "marketingSupport": "Integrated marketing promotion",
         "crm": "Implementation of CRM system",
         "seo": "SEO optimization",
-        "contextAd": "Contextual advertising"
+        "contextAd": "Contextual advertising",
+        "operativePrint": "Operative print"
       }
     },
     "section1": {
@@ -25,7 +26,8 @@
     "section2": {
       "title": "Marketing Company of the Year",
       "description": "at The Great Award of the Year 2023!",
-      "btn": "Received the Award"
+      "btn": "Received the Award",
+      "readAll": "Read all"
     }
   },
   "AboutPage": {
@@ -34,7 +36,27 @@
       "description": "We understand that entrepreneurs need not just ideas, but measurable results - increased leads, customer acquisition, and profit growth.",
       "subtitle": "Our Philosophy",
       "subdesk": "Working for your success by offering strategies that solve your specific business challenges and deliver tangible achievements."
+    },
+    "banner": {
+      "title": "We are changing the perception of marketing in Central Asia",
+      "btn": "Get a consultation",
+      "road": "About us"
     }
+  },
+  "Cases": {
+    "banner": {
+      "title": "Our mission is to bring ideas to life",
+      "btn": "Get a consultation",
+      "road": "Cases"
+    },
+    "text": {
+      "title": "Cases",
+      "tag1": "SMM",
+      "tag2": "Targeting",
+      "tag3": "Marketing",
+      "search": "Search..."
+    },
+    "video": "Video testimonials from our clients"
   },
   "ThreePost": {
     "btn": "All cases"
@@ -119,19 +141,48 @@
     }
   },
   "ServicesPage3": {
+    "banner": {
+      "title": "Take your business to the top of search rankings",
+      "description": "Attract more customers with professional SEO optimization from Bold Brands",
+      "btn": "Get a consultation"
+    },
     "whySEO": {
-      "title": "Why is SEO optimization essential for your business?",
-      "title1": "Increased Organic Traffic",
-      "content1": "Over 70% of users click on the first three search results. Ranking in the top positions increases website traffic without additional advertising costs.",
-      "title2": "Enhanced Trust and Brand Recognition",
-      "content2": "Top-ranked websites are perceived as more reliable. This builds customer trust and encourages repeat sales.",
+      "title": "Why Is SEO Optimization Essential for Your Business?",
+      "title1": "Increase in Organic Traffic",
+      "content1": "More than 70% of users click on the top three search results. Ranking higher allows you to increase website traffic without additional advertising costs.",
+      "title2": "Boost Trust and Brand Awareness",
+      "content2": "Websites in the top search results are perceived as more reliable. This strengthens customer trust and encourages repeat sales.",
       "title3": "Long-Term Results",
       "content3": "SEO investments pay off in the long run, unlike paid advertising, which only provides short-term effects."
     }
   },
   "ServicePage4": {
-    "btn": "Получить консультацию",
-    "howWeWork": {}
+    "banner": {
+      "title": "Branding that sets you apart from competitors",
+      "description": "From concept to implementation — we guide you through every stage of building your brand",
+      "btn": "Get a consultation"
+    },
+    "btn": "Get a Consultation",
+    "howWeWork": {
+      "title1": "How We Work",
+      "title11": "Research and Analysis",
+      "description11": "We delve into your business, study the target audience, market, and competitors to understand your unique value proposition.",
+      "title12": "Concept Development",
+      "description12": "We create multiple name, logo, and brand style options that reflect your brand essence.",
+      "title13": "Approval and Refinement",
+      "description13": "Together, we select the best option and make necessary adjustments to meet your expectations perfectly.",
+      "title14": "Creating a Logo Book and Brand Book",
+      "description14": "We formalize all brand elements into clear and convenient documents for future use.",
+      "title15": "Implementation and Support",
+      "description15": "We help integrate the new brand into all aspects of your business and provide recommendations for its development."
+    },
+    "design": {
+      "title1": "Design Support",
+      "subtitle1": "Your External Design Department",
+      "description1": "We regularly update your brand’s visual materials to keep it modern and appealing. Our experts quickly adapt designs to new trends and platforms, maintaining audience engagement.",
+      "title2": "Our Experts",
+      "description2": "Quickly adapt designs to new trends and platforms, maintaining audience engagement. With us, your brand always stands out and effectively interacts with customers."
+    }
   },
   "ServicePage5": {
     "headerBtn": "Order Video",
@@ -291,6 +342,29 @@
       "text4": "A trained marketer who knows the ins and outs of promoting your product or service."
     }
   },
+  "ServicesPage9": {
+    "btn": "Get a consultation",
+    "howWeWork": {
+      "title1": "How we work",
+      "title11": "Receiving the order",
+      "description11": "Leave a request in any convenient way – through social networks, on the website, or by phone.",
+      "title12": "Approving the layout",
+      "description12": "We agree on the design, layout, and technical parameters, preparing a test sample.",
+      "title13": "Starting production",
+      "description13": "We prepare the file for printing, print, and carry out post-print processing.",
+      "title14": "Delivery",
+      "description14": "We send your order to a convenient address.",
+      "title15": "Support",
+      "description15": "We keep your files safe to always be ready for a new order."
+    },
+    "banner": {
+      "title1": "Operative Printing",
+      "description1": "Fast and high-quality printing production",
+      "btn": "Order Printing",
+      "title2": "Printing That Works for You"
+    },
+    "design": "Business Cards"
+  },
   "FormLayout": {
     "title": "Get a free consultation",
     "subTitle": "Leave your contact details, and we will call you back",
@@ -345,5 +419,54 @@
   "FormErrors": {
     "required": "Please fill out this field",
     "phone_error": "Incorrect phone number!"
+  },
+  "Buttons": {
+    "btn1": "Get a Consultation"
+  },
+  "Map": {
+    "btn1": "Bishkek",
+    "btn2": "Tashkent",
+    "adress1": "Matrosova St., 102",
+    "adress2": "Yashnobod District, Yangibozor 1"
+  },
+  "footer": {
+    "companyInfo": {
+      "companyName": "Bold Brands International",
+      "companyDescription": "ваш внешний отдел маркетинга",
+      "copyright": "© 2024 Bold Brands International. Все права защищены"
+    },
+    "title":"Servicces",
+    "companyLinks": {
+      "aboutUs": "О нас",
+      "cases": "Кейсы",
+      "reviews": "Отзывы"
+    },
+    "servicesLinks": {
+      "branding": "Branding",
+      "digitalMarketing": "Digital promotion",
+      "videoProduction": "Video production",
+      "webDevelopment": "Web development and design",
+      "marketingSupport": "Integrated marketing promotion",
+      "automationAnalytics": "Seo optimization",
+      "printing":"Operative Print"
+    },
+    "contactInfo": {
+      "addresses": {
+        "Bishkek": "ул. Матросова, дом 102",
+        "Tashkent": "Янгибозорский район, Янгибозор 1"
+      },
+      "phones": {
+        "Bishkek": "+996 999 50 44 44",
+        "Tashkent": "+998 909 36 09 36"
+      },
+      "email": "info@boldbrands.kg",
+      "workingHours": "Пн — Пт 9:00 — 18:00"
+    },
+    "socialLinks": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "telegram": "Telegram"
+    },
+    "privacyPolicy": "Политика конфиденциальности"
   }
 }

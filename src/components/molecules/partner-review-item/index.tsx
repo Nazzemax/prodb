@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { ChevronRight, Star } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { useTranslations } from "next-intl";
 
 interface ReviewItemProps {
     rating: number;
@@ -17,6 +18,7 @@ interface ReviewItemProps {
 
 export const ReviewItem = ({ rating, user_image, user_name, user_position, text }: ReviewItemProps) => {
     const [open, setOpen] = useState(false);
+    const t = useTranslations("HomePage")
 
     return (
         <>
@@ -47,7 +49,9 @@ export const ReviewItem = ({ rating, user_image, user_name, user_position, text 
                                 variant="clean"
                                 className="mt-auto w-fit text-accent py-2 px-4 gap-1 text-center hover:bg-background-gray2"
                             >
-                                <span className="text-base">Читать все</span>
+                                <span className="text-base">
+                                    {t("section2.readAll")}
+                                </span>
                                 <ChevronRight />
                             </Button>
                         </DialogTrigger>

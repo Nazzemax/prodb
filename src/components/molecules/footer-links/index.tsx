@@ -7,6 +7,7 @@ import WhatsAppIcon from '@/assets/socials/whatsapp.svg';
 import { motion } from 'framer-motion';
 import { fadeIn, viewportConfig, staggerTransition } from '@/lib/motion';
 import { useAppData } from '@/context/app-context';
+import { useTranslations } from 'next-intl';
 
 interface LinkProps {
     title?: string;
@@ -16,78 +17,87 @@ interface LinkProps {
     hasScrollToReview?: boolean;
 }
 
-const links: {
-    title: string;
-    items: LinkProps[];
-}[] = [
-    {
-        title: 'О компании',
-        items: [
-            { title: 'О нас', href: '/about' },
-            { title: 'Кейсы', href: '/cases' },
-            { title: 'Отзывы', hasScrollToReview: true }
-        ]
-    },
-    {
-        title: 'Услуги',
-        items: [
-            { title: 'Брендинг', href: '/services/branding' },
-            { title: 'Digital продвижение', href: '/services/smm' },
-            { title: 'Видеопродакшн', href: '/services/video-production' },
-            { title: 'Веб-разработка и дизайн', href: '/services/site-creating' },
-            { title: 'Комплексное маркетинговое продвижение', href: '/services/marketing-support' },
-            { title: 'Автоматизация и аналитика', href: '/services/crm' }
-        ]
-    },
-    {
-        title: 'Мы есть',
-        items: [
-            { href: 'https://www.instagram.com/boldbrands.international', icon: <InstagramIcon />, label: 'Instagram' },
-            { href: 'https://www.facebook.com/boldbrands.kg', icon: <FacebookIcon />, label: 'Facebook' },
-            { href: 'https://wa.me/996999992244', icon: <WhatsAppIcon />, label: 'WhatsApp' }
-        ]
-    }
-];
 
-const contacts: { label: string; title: string; href?: string; }[] = [
-    {
-        label: 'Адрес (Бишкек)',
-        title: 'ул. Матросова, дом 102',
-        href: 'https://2gis.kg/bishkek/inside/15763234350961665/firm/70000001074948407?m=74.618308%2C42.846298%2F16.57'
-    },
-    {
-        label: 'Адрес (Ташкент)',
-        title: 'Яшнободский район, Янгибозор 1',
-    },
-    {
-        label: 'Телефон (Бишкек)',
-        title: '+996 999 50 44 44',
-        href: 'tel:+996 999 50 44 44'
-    },
-    {
-        label: 'Телефон (Ташкент)',
-        title: '+998 909 36 09 36',
-        href: 'tel:+998 909 36 09 36'
-    },
-    {
-        label: 'Электронная почта',
-        title: 'info@boldbrands.kg',
-        href: 'mailto:info@boldbrands.kg'
-    },
-    {
-        label: 'Работаем',
-        title: 'Пн — Пт 9:00 — 18:00',
-    },
-]
 
 export const FooterLinks = () => {
+    const t = useTranslations("footer")
+    const { data } = useAppData()
 
+    const links: {
+        title: string;
+        items: LinkProps[];
+    }[] = [
+        {
+            title: 'О компании',
+            items: [
+                { title: t('companyLinks.aboutUs'), href: '/about' },
+                { title: t('companyLinks.cases'), href: '/cases' },
+                { title: t('companyLinks.reviews'), hasScrollToReview: true }
+            ]
+        },
+        {
+            title: t('title'),
+            items: [
+                { title: t('servicesLinks.branding'), href: '/services/branding' },
+                { title: t('servicesLinks.digitalMarketing'), href: '/services/smm' },
+                { title:  t('servicesLinks.videoProduction'), href: '/services/video-production' },
+                { title:  t('servicesLinks.webDevelopment'), href: '/services/site-creating' },
+                { title:  t('servicesLinks.marketingSupport'), href: '/services/marketing-support' },
+                { title:  t('servicesLinks.automationAnalytics'), href: '/services/crm' },
+                { title:  t('servicesLinks.printing'), href: '/services/operative-print'}
+            ]
+        },
+        {
+            title: 'Мы есть',
+            items: [
+                { href: 'https://www.instagram.com/boldbrands.international', icon: <InstagramIcon />, label: 'Instagram' },
+                { href: 'https://www.facebook.com/boldbrands.kg', icon: <FacebookIcon />, label: 'Facebook' },
+                { href: 'https://wa.me/996999992244', icon: <WhatsAppIcon />, label: 'WhatsApp' }
+            ]
+        }
+    ];
+    
+
+
+    const contacts: { label: string; title: string; href?: string; }[] = [
+        {
+            label: data?.addresses[0].title || "",
+            title: data?.addresses[0].address || "",
+            href: 'https://2gis.kg/bishkek/inside/15763234350961665/firm/70000001074948407?m=74.618308%2C42.846298%2F16.57'
+        },
+        {
+            label: data?.addresses[1].title || "",
+            title: data?.addresses[1].address || "",
+            href: 'https://2gis.uz/tashkent/geo/70030076378532364?m=69.273172%2C41.220454%2F16'
+        },
+        { 
+            label: data?.phones[0].title || "",
+            title: data?.phones[0].phone || "" ,
+            href: 'https://api.whatsapp.com/send/?phone=996999504444&text&type=phone_number&app_absent=0'
+        },
+        {
+            label: data?.phones[1].title || "",
+            title: data?.phones[1].phone || "" ,
+            href: 'https://api.whatsapp.com/send?phone=998909360936'
+        },
+        {
+            label: data?.emails[0].title || "Электронная почта",
+            title:  data?.emails[0].email || "info@boldbrands.kg",
+            href: 'mailto:info@boldbrands.kg'
+        },
+        {
+            label: 'Работаем',
+            title: data?.work_time || "Пн-Пт: 09:00-18:00",
+        },
+    ]
+    
+    
     return (
-
+        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 lg:gap-y-10 gap-x-3">
             {links.map(({ title, items }, idx) => (
                 <motion.div
-                    key={title}
+                    key={idx}
                     variants={fadeIn('up', 'spring', idx * 0.2)}
                     initial="hidden"
                     whileInView="show"
@@ -109,7 +119,7 @@ export const FooterLinks = () => {
             ))}
             {contacts.map((contact, idx) => (
                 <motion.div
-                    key={contact.label}
+                    key={idx}
                     variants={fadeIn('up', 'spring', idx * 0.1)}
                     initial="hidden"
                     whileInView="show"

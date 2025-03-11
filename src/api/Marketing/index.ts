@@ -14,6 +14,11 @@ export const MarketingApi = baseApi.injectEndpoints({
                 query: () => ({
                     url: '/marketing-support/'
                 })
+            }),
+            getDesignSupport: build.query<MarketingDepartmentResponse, void>({
+                query: () => ({
+                    url: '/design-development/'
+                })
             })
 
         }
@@ -21,6 +26,7 @@ export const MarketingApi = baseApi.injectEndpoints({
 })
 
 export const {
+    useGetDesignSupportQuery,
     useGetMarketingDepartmentQuery,
     useGetMarketingSupportQuery
 } = MarketingApi

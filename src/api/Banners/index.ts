@@ -16,11 +16,3 @@ const bannersApi = baseApi.injectEndpoints({
 });
 
 export const { useGetBannersQuery } = bannersApi;
-// export const getBanners = async (): Promise<Banner[]> => {
-//     const res = await fetch(`https://api.boldbrands.pro/api/v1/banners/`, {
-//         cache: "force-cache", // Данные кэшируются при билде (SSG)
-//     });
-
-//     if (!res.ok) throw new Error("Ошибка загрузки баннеров");
-//     return res.json();
-// }

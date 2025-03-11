@@ -7,6 +7,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { usePathname } from "next/navigation";
 
 interface LinkProps {
     title: string;
@@ -21,6 +22,12 @@ interface innerLinksProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> 
 }
 
 export const MobileNavigationBar = ({ closeSheet }: { closeSheet: () => void }) => {
+    const pathname = usePathname();
+    const [isCase, setIsCase] = React.useState(false);
+    
+    React.useEffect(() => {
+        setIsCase(/^\/cases\/[^/]+/.test(pathname));
+    }, [pathname]);
 
     const t = useTranslations("HomePage");
 

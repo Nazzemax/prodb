@@ -20,6 +20,7 @@ import { languageActions } from "@/api/LanguageSelect";
 import { Locale } from "@/i18n/routing";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
+import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 
 interface LanguageProps {
   id: string;
@@ -59,8 +60,13 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
     const pathname = usePathname();
 
     const [isClient, setIsClient] = useState(false);
+    const [isCase, setIsCase] = useState(false);
     const dispatch = useAppDispatch();
     const selectedLanguage = useSelector(getLanguage);
+
+    useEffect(() => {
+        setIsCase(/^\/cases\/[^/]+/.test(pathname));
+    }, [pathname]);
 
     useEffect(() => {
         if (isClient && locale) {
@@ -83,17 +89,20 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
 
     if (!isClient || selectedLanguage === null) return null;
 
+
     const selectedLang =
     languageList.find((lang) => lang.headers === selectedLanguage) ||
     languageList[1];
 
     return (
-        <div>
+        <div className="flex gap-[24px] items-center">
             <Select value={selectedLanguage} onValueChange={onChangeLanguage}>
                 <SelectTrigger
                     className={cn(
                         "hover:bg-white/20 transition-all focus:ring-offset-0 outline-none duration-200 w-[110px]",
-                        isMobile ? "text-black" : ""
+                        isMobile || isCase 
+                            ? "text-black" 
+                            : ""
                     )}
                 >
                     <SelectValue>
@@ -116,6 +125,7 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
                     ))}
                 </SelectContent>
             </Select>
+            {isCase && <ButtonWithIcon className="max-lg:hidden" variant="secondary">Связаться</ButtonWithIcon>}
         </div>
     );
 };

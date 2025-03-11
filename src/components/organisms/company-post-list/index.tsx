@@ -27,7 +27,7 @@ export const CompanyPostList = ({ title }: { title?: string }) => {
                 error={error}
                 data={data}
             >
-                <div className="max-w-[1328px] m-auto flex flex-col xl:flex-row lg:justify-between gap-5 mb-8 px-5 xl:px-0 md:ml-28 xl:mr-20 2xl:mr-0 2xl:ml-44">
+                <div className="max-w-[1280px] m-auto flex flex-col lg:flex-row lg:justify-between gap-5 mb-8 px-5 lg:px-0 md:ml-28 lg:mr-20 2xl:mr-0 2xl:ml-44">
                     <Heading as="h2" className={cn(title ? 'w-full max-w-[1186px]' : 'lg:w-3/4 w-full max-w-[1186px] lg:text-4xl xl:text-5xl')}>{title ? title : data?.title}</Heading>
                     <Link href="/cases" className="flex items-end">
                         <ButtonWithIcon variant="feature">{t('btn')}</ButtonWithIcon>
@@ -43,7 +43,7 @@ export const CompanyPostList = ({ title }: { title?: string }) => {
                                 delay: 8000,
                             })
                         ]}
-                        className="w-full hidden md:flex justify-end"
+                        className="w-full hidden md:flex md:ml-28 2xl:ml-44"
                     >
                         <CarouselContent className="w-full gap-4">
                             {data?.items.map((post, idx) => (
@@ -54,7 +54,6 @@ export const CompanyPostList = ({ title }: { title?: string }) => {
                                     whileInView="show"
                                     viewport={viewportConfig}
                                     transition={staggerTransition(idx)}
-                                    className='max-w-[535px] min-w-[335px] max-lg:flex-shrink flex-shrink-0'
                                 >
                                     <CarouselItem className="md:basis-1/2 xl:basis-1/3">
                                         <CompanyPostItem {...post} />

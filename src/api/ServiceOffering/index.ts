@@ -1,5 +1,5 @@
 import { baseApi } from "../Base";
-import { ServiceOfferingResponse } from "./types";
+import { PrintingServicesResponse, ServiceOfferingResponse } from "./types";
 
 
 export const serviceOfferingApi = baseApi.injectEndpoints({
@@ -10,9 +10,16 @@ export const serviceOfferingApi = baseApi.injectEndpoints({
                     url: '/service-offering/',
                 })
             }),
-
+            getPrintingServices: build.query<PrintingServicesResponse, void>({
+                query: () => ({
+                    url: '/printing-service/'
+                })
+            })
         }
     }
 })
 
-export const { useGetServiceOfferingQuery } = serviceOfferingApi
+export const {
+    useGetServiceOfferingQuery,
+    useGetPrintingServicesQuery,
+} = serviceOfferingApi

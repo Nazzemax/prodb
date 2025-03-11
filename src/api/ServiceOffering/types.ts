@@ -9,3 +9,8 @@ export interface ServiceOfferingResponse {
     title: string;
     items: Service[];
 }
+
+export interface PrintingServicesResponse {
+    title: string;
+    items: { logo: string; }[];
+}

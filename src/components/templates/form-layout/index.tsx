@@ -105,7 +105,7 @@ export const FormLayout = forwardRef<HTMLDivElement, FormProps>(
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-7">
                             {data.map((contact, idx) => (
                                 <motion.div
-                                    key={contact.title}
+                                    key={idx}
                                     variants={fadeIn("up", "spring", idx * 0.2)}
                                     initial="hidden"
                                     whileInView="show"

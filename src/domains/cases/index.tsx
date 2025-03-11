@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useGetPostsQuery } from "@/api/Post";
 import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
@@ -12,41 +12,49 @@ import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
-
+import { useTranslations } from "next-intl";
 
 const CasesPage = () => {
-    const slug = useSlug()
+    const slug = useSlug();
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: post_data } = useGetPostsQuery()
-    const { ref, scrollToFeedback } = useScrollToFeedback()
+    const { data: post_data } = useGetPostsQuery();
+    const { ref, scrollToFeedback } = useScrollToFeedback();
+    const t = useTranslations("Cases");
 
-    return (
-        <RequestHandler
-            isLoading={isLoading}
-            error={error}
-            data={data}
-        >
-            {data &&
-                <PageTitleLayout
-                    scrollToFeedback={scrollToFeedback}
-                    bg_image={data.image}
-                    title={data.title}
-                    button_text={"Получить консультацию"}
-                    breadcrumb={[
-                        { text: 'Главная', href: '/home' },
-                        { text: 'Кейсы', href: '/cases' },
-                    ]}
-                />
-            }
-            <CasesList
-                posts={post_data?.results || []}
-            />
-            <ClientReviewList hasBg />
-            <CompanyPartners />
-            <PartnerReviewList />
-            <FormLayout ref={ref} nestedForm={<FeedbackForm />} />
-        </RequestHandler>
-    );
-}
+  type BannerTexts = {
+    title: string;
+    btn: string;
+    road: string;
+  };
+  
+  const texts: BannerTexts = {
+      title: t("banner.title"),
+      btn: t("banner.btn"),
+      road: t("banner.road"),
+  };
+  
+
+  return (
+      <RequestHandler isLoading={isLoading} error={error} data={data}>
+          {data && (
+              <PageTitleLayout
+                  scrollToFeedback={scrollToFeedback}
+                  bg_image={data.image}
+                  title={texts.title}
+                  button_text={texts.btn}
+                  breadcrumb={[
+                      { text: "Главная", href: "/home" },
+                      { text: texts.road, href: "/cases" },
+                  ]}
+              />
+          )}
+          <CasesList posts={post_data?.results || []} />
+          <ClientReviewList hasBg />
+          <CompanyPartners />
+          <PartnerReviewList />
+          <FormLayout ref={ref} nestedForm={<FeedbackForm />} />
+      </RequestHandler>
+  );
+};
 
 export default CasesPage;

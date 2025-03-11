@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useGetCompanyVideoReviewsQuery } from "@/api/Company";
 import { cn } from "@/lib/utils";
 import CompanyInfoSVG from '@/assets/backgrounds/company_info.svg'
+import { useTranslations } from "next-intl";
 
 
 
@@ -16,6 +17,7 @@ export const ClientReviewList = ({ hasSubTitle, hasBg }: { hasSubTitle?: boolean
     const { data } = useGetCompanyVideoReviewsQuery()
     const [currentPage, setCurrentPage] = useState(0);
     const totalPages = data?.items.length || 0;
+    const t = useTranslations("Cases");
 
     const handleNext = () => {
         setCurrentPage((prev) => (prev + 1) % totalPages);
@@ -43,7 +45,7 @@ export const ClientReviewList = ({ hasSubTitle, hasBg }: { hasSubTitle?: boolean
                             <Heading as="h2" className={cn(
                                 "max-w-screen-lg",
                                 hasBg ? 'text-graphic-light' : ''
-                            )}>{data?.title}</Heading>
+                            )}>{t("video")}</Heading>
                         </div>
                         <div className="flex items-end gap-2">
                             <div className="flex items-center gap-x-2">

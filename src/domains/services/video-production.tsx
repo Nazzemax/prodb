@@ -15,6 +15,7 @@ import { useAppData } from "@/context/app-context";
 import { useGetVideoTypesQuery } from "@/api/Types";
 import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useTranslations } from "next-intl";
+import { useGetVideoProductionQuery } from "@/api/VideoProduction";
 
 
 
@@ -22,7 +23,8 @@ const VideoProductionPage = () => {
     const slug = useSlug()
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug)
     const { data: video_types } = useGetVideoTypesQuery()
-    const { business_types, data: info } = useAppData()
+    const { business_types } = useAppData()
+    const {data:videoData } = useGetVideoProductionQuery()
     const { ref, scrollToFeedback } = useScrollToFeedback()
     const t = useTranslations("ServicePage5");
 
@@ -58,7 +60,7 @@ const VideoProductionPage = () => {
                 ]
             },
             {
-                video_link: "https://www.youtube.com/embed/Tf9ei_tQ_QA?si=ZzWL8KKNljesrGOk",
+                video_link: "/videos/idea.mp4",
                 image_right: false,
                 title: t('Services.items.2.title'),
                 description: t('Services.items.2.description'),
@@ -71,7 +73,7 @@ const VideoProductionPage = () => {
                 ]
             },
             {
-                video_link: "https://www.youtube.com/embed/Tf9ei_tQ_QA?si=ZzWL8KKNljesrGOk",
+                video_link: "/videos/event.mp4",
                 image_right: true,
                 title: t('Services.items.3.title'),
                 description: t('Services.items.3.description'),
@@ -84,7 +86,7 @@ const VideoProductionPage = () => {
                 ]
             },
             {
-                video_link: "https://www.youtube.com/embed/Tf9ei_tQ_QA?si=ZzWL8KKNljesrGOk",
+                image: "/images/services/video/photosession.png",
                 image_right: false,
                 title: t('Services.items.4.title'),
                 description: t('Services.items.4.description'),
@@ -121,7 +123,7 @@ const VideoProductionPage = () => {
             <InfoCard
                 title={"Креатив, который выделяет ваш бренд"}
                 description={"С более чем 10-летним опытом в видеопродакшн, наша команда профессионалов создает видеоролики, которые не только привлекают внимание, но и эффективно достигают ваших бизнес-целей."}
-                video={info?.video}
+                video={videoData?.items[0].video}
                 card_title={"В Bold Brands мы уверены"}
                 card_description={"Качественный видеоконтент — это ключ к успешному продвижению вашего бизнеса."}
                 card_icon={<VideoProductionIcon />}

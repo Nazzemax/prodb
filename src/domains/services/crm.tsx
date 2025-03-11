@@ -3,6 +3,8 @@
 import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
 import { useGetTaskTypesQuery } from "@/api/Types";
 import { CrmIcon } from "@/assets/info-card";
+import { ServiceCrmIcon1, ServiceCrmIcon2, ServiceCrmIcon3 } from "@/assets/services/crm";
+import { SeoHowWeWork5 } from "@/assets/services/seo";
 import { RequestHandler } from "@/components/atoms/request-handler";
 import { CrmFeedbackForm } from "@/components/forms/crm-feedback-form";
 import { Award } from "@/components/organisms/award";
@@ -12,19 +14,98 @@ import { InfoCard } from "@/components/organisms/info-card";
 import { ServicePostList } from "@/components/organisms/service-post-list";
 import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { serviceCrmData, serviceData } from "@/consts/data";
+import { ISmmTeamMembers } from "@/consts/types";
 import { useAppData } from "@/context/app-context";
 import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
-
-
+import { useTranslations } from "next-intl";
 
 const CrmPage = () => {
     const slug = useSlug()
+    const t = useTranslations("ServicesPage7")
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug)
     const { data: task_types } = useGetTaskTypesQuery()
     const { business_types } = useAppData()
     const { ref, scrollToFeedback } = useScrollToFeedback()
+   
+    const serviceCrmData: ISmmTeamMembers = {
+        title: t("BenefitsSection.title"),
+        button:t("BenefitsSection.button"),
+        items: [
+            {
+                image: <ServiceCrmIcon1 />,
+                number: "01",
+                title: t("BenefitsSection.items.0.title"),
+                description: t("BenefitsSection.items.0.description"),
+            },
+            {
+                image: <ServiceCrmIcon2 />,
+                number: "02",
+                title: t("BenefitsSection.items.1.title"),
+                description: t("BenefitsSection.items.1.description"),
+            },
+            {
+                image: <ServiceCrmIcon3 />,
+                number: "03",
+                title: t("BenefitsSection.items.2.title"),
+                description: t("BenefitsSection.items.2.description"),
+            },
+            {
+                image: <SeoHowWeWork5 />,
+                number: "04",
+                title: t("BenefitsSection.items.3.title"),
+                description: t("BenefitsSection.items.3.description"),
+            },
+        ],
+    };
+
+    const serviceData = {
+        title: t("integrationServices.titleIntegrationServices"),
+        items: [
+            {
+                image: "/images/services/crm/crm1.png",
+                image_right: false,
+                title: t("integrationServices.servicesList.0.serviceTitle"),
+                description: t("integrationServices.servicesList.0.serviceDescription"),
+                tags: [
+                    { tags: t("integrationServices.servicesList.0.serviceDescription").split(". ")[0] },
+                    { tags: t("integrationServices.servicesList.0.serviceDescription").split(". ")[1] }
+                ],
+            },
+            {
+                image: "/images/services/crm/crm2.png",
+                image_right: true,
+                title: t("integrationServices.servicesList.1.serviceTitle"),
+                description: t("integrationServices.servicesList.1.serviceDescription"),
+                tags: [
+                    { tags: t("integrationServices.servicesList.1.serviceDescription").split(". ")[0] },
+                    { tags: t("integrationServices.servicesList.1.serviceDescription").split(". ")[1] }
+                ],
+            },
+            {
+                image: "/images/services/crm/crm3.png",
+                image_right: false,
+                title: t("integrationServices.servicesList.2.serviceTitle"),
+                description: t("integrationServices.servicesList.2.serviceDescription"),
+                tags: [
+                    { tags: t("integrationServices.servicesList.2.serviceDescription").split(". ")[0] },
+                    { tags: t("integrationServices.servicesList.2.serviceDescription").split(". ")[1] }
+                ],
+            },
+            {
+                image: "/images/services/crm/crm4.png",
+                image_right: true,
+                title: t("integrationServices.servicesList.3.serviceTitle"),
+                description: t("integrationServices.servicesList.3.serviceDescription"),
+                tags: [
+                    { tags: t("integrationServices.servicesList.3.serviceDescription").split(". ")[0] },
+                    { tags: t("integrationServices.servicesList.3.serviceDescription").split(". ")[1] }
+                ],
+            },
+        ],
+    };
+    
+
 
     return (
         <RequestHandler
@@ -38,7 +119,7 @@ const CrmPage = () => {
                     title={data.title}
                     sub_title={data.content}
                     bg_image={data.image}
-                    button_text={"Заказать интерграцию"}
+                    button_text={t("headerBtn")}
                     breadcrumb={[
                         { text: 'Главная', href: '/home' },
                         { text: 'Интеграция CRM', href: '/services/crm' },
@@ -49,18 +130,19 @@ const CrmPage = () => {
             <CompanyServiceCardList
                 title={serviceCrmData.title}
                 items={serviceCrmData.items}
+                button={serviceCrmData.button}
             />
             <InfoCard
-                title={"Наш подход к интеграции CRM"}
-                description={"Мы анализируем потребности вашего бизнеса и подбираем подходящую CRM-систему, которая соответствует вашим целям. Наша команда выполняет плавную миграцию данных и настраивает систему так, чтобы она полностью поддерживала ваши бизнес-процессы."}
-                card_title={"Мы также обучаем вашу команду"}
-                card_description={"и предоставляем регулярную техническую поддержку для удобного использования CRM."}
+                title={t(['integrationApproach', 'titleIntegration'].join('.'))}
+                description={t("integrationApproach.descriptionIntegration")}
+                card_title={t("integrationApproach.teamTraining.titleTeamTraining")}
+                card_description={t("integrationApproach.teamTraining.descriptionTeamTraining")}
                 card_icon={<CrmIcon />}
                 image={'/images/services/crm/info-crm.png'}
             />
             <Award
-                badgeTitle={"Партнерство"}
-                title={"Мы официальные партнеры Битрикс24"}
+                badgeTitle={t("PartersBlog.titleParters")}
+                title={t("PartersBlog.SubTitleParters")}
                 image={"/images/services/crm/sertificate.png"}
             />
             <ServicePostList

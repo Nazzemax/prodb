@@ -8,17 +8,12 @@ import { Button } from "@/components/ui/button";
 import { fadeIn, staggerTransition, viewportConfig } from "@/lib/motion";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Divide } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useState, useMemo, useEffect } from "react";
 
 interface CasesListProps {
     posts: Post[];
 }
-
-const tags = [
-    { name: "SMM", tag: "SMM" },
-    { name: "Таргет", tag: "Таргет" },
-    { name: "Маркетинг", tag: "Маркетинг" },
-];
 
 export const CasesList = ({ posts }: CasesListProps) => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +21,14 @@ export const CasesList = ({ posts }: CasesListProps) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false); // состояние для загрузки
     const pageSize = 4;
+    const t = useTranslations("Cases");
+
+    const tags = [
+        { name: t("text.tag1"), tag: "SMM" },
+        { name: t("text.tag2"), tag: "Таргет" },
+        { name: t("text.tag3"), tag: "Маркетинг" },
+    ];
+
 
     const useDebounce = (value: string, delay: number) => {
         const [debouncedValue, setDebouncedValue] = useState(value);
@@ -74,7 +77,7 @@ export const CasesList = ({ posts }: CasesListProps) => {
             <div className="max-w-[1280px] m-auto px-5">
                 <div className="flex flex-col md:flex-row justify-between md:items-end gap-y-5">
                     <div className="space-y-5">
-                        <Heading as="h2">Кейсы</Heading>
+                        <Heading as="h2">{t("text.title")}</Heading>
                         <div className="flex gap-2">
                             {tags.map((tag) => (
                                 <Badge
@@ -88,7 +91,7 @@ export const CasesList = ({ posts }: CasesListProps) => {
                             ))}
                         </div>
                     </div>
-                    <SearchInput value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                    <SearchInput placeholder={t("text.search")} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>
 
                 {/* POSTS */}

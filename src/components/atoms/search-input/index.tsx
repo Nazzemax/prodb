@@ -8,7 +8,7 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
 
 const SearchInput = memo(
     React.forwardRef<HTMLInputElement, InputProps>(
-        ({ className, type, ...props }, ref) => {
+        ({ className, type, placeholder, ...props }, ref) => {
             return (
                 <div className="grid items-center gap-1.5">
                     <div className="relative">
@@ -19,7 +19,7 @@ const SearchInput = memo(
                             ref={ref}
                             id="search" 
                             type={type} 
-                            placeholder="Найти..." 
+                            placeholder={placeholder} 
                             className={cn('w-full max-w-md bg-transparent pl-8 h-12 text-gray2 focus-visible:border-b-gray2', className)}
                             {...props}
                         />

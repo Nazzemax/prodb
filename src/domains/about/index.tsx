@@ -34,17 +34,23 @@ const AboutPage = () => {
         feedbackRef.current?.scrollIntoView({ behavior: "smooth" });
     };
 
+    const names = {
+        title: t("banner.title"),
+        btn: t("banner.btn"),
+        road: t("banner.road"),
+    };
+
     return (
         <RequestHandler isLoading={isLoading} error={error} data={data}>
             {data && (
                 <PageTitleLayout
                     bg_image={data.image}
-                    title={data.title}
-                    button_text={"Получить консультацию"}
+                    title={names.title}
+                    button_text={names.btn}
                     scrollToFeedback={scrollToFeedback}
                     breadcrumb={[
                         { text: "Главная", href: "/home" },
-                        { text: "О нас", href: "/about" },
+                        { text: names.road, href: "/about" },
                     ]}
                 />
             )}

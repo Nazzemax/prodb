@@ -14,7 +14,7 @@ import { SMMPartnersCarousel } from "@/components/organisms/smm-partner-carousel
 import { SmmStats } from "@/components/organisms/smm-stats";
 import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { smmCreatingAdData, smmTeamMembers } from "@/consts/data";
+import { useSmmCreatingAdData, useSmmTeamMembers } from "@/consts/data";
 import { useAppData } from "@/context/app-context";
 import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
@@ -76,6 +76,9 @@ const SmmPage = () => {
     const { data: social_types } = useGetSocialTypesQuery();
     const { business_types } = useAppData();
     const { ref, scrollToFeedback } = useScrollToFeedback();
+
+    const smmCreatingAdData = useSmmCreatingAdData();
+    const smmTeamMembers = useSmmTeamMembers();
 
     return (
         <RequestHandler isLoading={isLoading} error={error} data={data}>

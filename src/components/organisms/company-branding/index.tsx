@@ -1,6 +1,7 @@
 import { useGetCompanyBrandingQuery } from "@/api/Company"
 import { Heading } from "@/components/atoms/heading"
 import { CompanyBrandingItem } from "@/components/molecules/company-branding-item"
+import Marquee from "react-fast-marquee"
 
 export const CompanyBranding = () => {
     const { data } = useGetCompanyBrandingQuery()
@@ -14,16 +15,14 @@ export const CompanyBranding = () => {
             </div>
 
             <div className="relative flex overflow-hidden group my-8 md:my-14 lg:mb-28">
-                <div className="relative w-full overflow-hidden">
-                    <div className="flex gap-x-5 whitespace-nowrap animate-loop-scroll">
-                        {[...(data?.items || []), ...(data?.items || [])].map((branding, idx) => (
-                            <CompanyBrandingItem
-                                key={idx}
-                                image={branding.image}
-                            />
-                        ))}
-                    </div>
-                </div>
+                <Marquee>
+                    {[...(data?.items || []), ...(data?.items || [])].map((branding, idx) => (
+                        <CompanyBrandingItem
+                            key={idx}
+                            image={branding.image}
+                        />
+                    ))}
+                </Marquee>
             </div>
         </>
     )

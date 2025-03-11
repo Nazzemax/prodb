@@ -29,7 +29,6 @@ export const ServiceStaticCardList = ({
                     {items.map((item, idx) => (
                         <AnimatedItem key={idx} idx={idx}>
                             <SmmAdItem
-                                key={item.title}
                                 image={item.image}
                                 icon={item.icon}
                                 title={item.title}

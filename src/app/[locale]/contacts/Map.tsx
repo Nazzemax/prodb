@@ -7,6 +7,7 @@ import {
     useLoadScript,
 } from "@react-google-maps/api";
 import MapButton from "./ui/MapButton";
+import { useTranslations } from "next-intl";
 
 const mapContainerStyle: React.CSSProperties = {
     width: "95%",
@@ -42,16 +43,16 @@ const infoWindowTashkent: { lat: number; lng: number } = {
 //стилизация карты
 const mapOptions: google.maps.MapOptions = {
     styles: [
-        {
-            featureType: "all",
-            elementType: "geometry",
-            stylers: [{ saturation: -100 }, { lightness: -10 }],
-        },
-        {
-            featureType: "all",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#313336" }],
-        },
+    // {
+    //     featureType: "all",
+    //     elementType: "geometry",
+    //     stylers: [{ saturation: -100 }, { lightness: -10 }],
+    // },
+    // {
+    //     featureType: "all",
+    //     elementType: "labels.text.fill",
+    //     stylers: [{ color: "#313336" }],
+    // },
         {
             featureType: "all",
             elementType: "labels.text.stroke",
@@ -62,46 +63,46 @@ const mapOptions: google.maps.MapOptions = {
             elementType: "geometry",
             stylers: [{ visibility: "on" }],
         },
-        {
-            featureType: "landscape",
-            elementType: "geometry",
-            stylers: [{ color: "#131313" }],
-        },
-        {
-            featureType: "road",
-            elementType: "geometry",
-            stylers: [{ color: "#64686E" }],
-        },
-        {
-            featureType: "water",
-            elementType: "geometry",
-            stylers: [{ color: "#64686E" }],
-        },
-        {
-            featureType: "poi",
-            elementType: "geometry",
-            stylers: [{ color: "#52555A" }],
-        },
-        {
-            featureType: "poi",
-            elementType: "labels.text.fill",
-            stylers: [{ color: "#313336" }],
-        },
-        {
-            featureType: "transit",
-            elementType: "geometry",
-            stylers: [{ color: "#64686E" }],
-        },
-        {
-            featureType: "poi",
-            elementType: "labels.icon", // Для изменения иконок меток
-            stylers: [{ color: "#434343" }],
-        },
-        {
-            featureType: "poi.business",
-            elementType: "geometry",
-            stylers: [{ visibility: "on" }, { color: "#1e1e1e" }],
-        },
+    // {
+    //     featureType: "landscape",
+    //     elementType: "geometry",
+    //     stylers: [{ color: "#131313" }],
+    // },
+    // {
+    //     featureType: "road",
+    //     elementType: "geometry",
+    //     stylers: [{ color: "#64686E" }],
+    // },
+    // {
+    //     featureType: "water",
+    //     elementType: "geometry",
+    //     stylers: [{ color: "#64686E" }],
+    // },
+    // {
+    //     featureType: "poi",
+    //     elementType: "geometry",
+    //     stylers: [{ color: "#52555A" }],
+    // },
+    // {
+    //     featureType: "poi",
+    //     elementType: "labels.text.fill",
+    //     stylers: [{ color: "#313336" }],
+    // },
+    // {
+    //     featureType: "transit",
+    //     elementType: "geometry",
+    //     stylers: [{ color: "#64686E" }],
+    // },
+    // {
+    //     featureType: "poi",
+    //     elementType: "labels.icon", // Для изменения иконок меток
+    //     stylers: [{ color: "#434343" }],
+    // },
+    // {
+    //     featureType: "poi.business",
+    //     elementType: "geometry",
+    //     stylers: [{ visibility: "on" }, { color: "#1e1e1e" }],
+    // },
     ],
     mapTypeControl: false,
     fullscreenControl: false,
@@ -125,19 +126,25 @@ export const Map: React.FC = () => {
         googleMapsApiKey: "AIzaSyCtrTvA1wlB3E3bjqGqPKte_pSN6aVaIoE" as string,
     });
 
-    if (loadError) return <p>Ошибка загрузки карты</p>;
-    if (!isLoaded) return <p>Загрузка карты</p>;
+    const t = useTranslations("Map");
+
+    if (loadError)
+        return (
+            <p className="flex justify-center items-center">Ошибка загрузки карты</p>
+        );
+    if (!isLoaded)
+        return <p className="flex justify-center items-center">Загрузка карты</p>;
 
     return (
         <div className="relative w-full flex flex-col items-start justify-center bg-background-dark ">
             <div className="absolute z-40 top-10 left-7 lg:top-14 lg:left-14 bg-transparent space-x-1.5">
                 <MapButton
-                    text="Бишкек"
+                    text={t("btn1")}
                     isActive={mapCondition}
                     onClick={() => setMapCondition(true)}
                 />
                 <MapButton
-                    text="Ташкент"
+                    text={t("btn2")}
                     isActive={!mapCondition}
                     onClick={() => setMapCondition(false)}
                 />
@@ -152,7 +159,6 @@ export const Map: React.FC = () => {
                     center={center}
                     options={mapOptions}
                 >
-        
                     <OverlayView
                         position={center}
                         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
@@ -161,10 +167,9 @@ export const Map: React.FC = () => {
                             offsetHeight: number
                         ) => ({
                             x: -offsetWidth / 2 + 100, // Смещение вправо
-                            y: -offsetHeight - 100 // Смещение выше маркера
+                            y: -offsetHeight - 100, // Смещение выше маркера
                         })}
                     >
-            
                         <div
                             style={{
                                 backgroundColor: "white",
@@ -187,10 +192,12 @@ export const Map: React.FC = () => {
                                 }}
                             />
                             {mapCondition ? (
-                                <p style={{ fontWeight: "700" }}>ул. Матросова, дом 102</p>
+                                <p style={{ fontWeight: "700", textAlign: "start" }}>
+                                    {t("adress1")}
+                                </p>
                             ) : (
-                                <p style={{ fontWeight: "700" }}>
-                  Яшнободский район, Янгибозор 1
+                                <p style={{ fontWeight: "700", textAlign: "start" }}>
+                                    {t("adress2")}
                                 </p>
                             )}
                         </div>

@@ -45,24 +45,14 @@ export const FeedbackForm = () => {
     })
 
     const onSubmit = async (data: z.infer<typeof FeedbackSchema>) => {
-        if (!form.formState.isValid) return;
-
-        const validation = await form.trigger();
-        if (!validation) {
-            toast.error('Исправьте ошибки в форме');
-            return;
-        }
-        
         if (!data.acceptTerms) {
             toast.error('Примите соглашение с политикой конфиденциальности!');
             return;
         }
-    
         try {
             const { acceptTerms, ...formData } = data;
             await sendForm(formData).unwrap();
             form.reset();
-       
             toast.success('Успешно отправлено');
             setTimeout(resetApi, 3000);
         } catch (err) {
