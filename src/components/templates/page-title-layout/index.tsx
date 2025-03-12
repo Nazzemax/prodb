@@ -11,6 +11,7 @@ import { BreadcrumbProps } from "./type";
 import { Heading } from "@/components/atoms/heading";
 import { motion } from "framer-motion";
 import { fadeIn, viewportConfig, staggerTransition } from "@/lib/motion";
+import { useAppData } from "@/context/app-context";
 
 interface PageTitleLayoutProps {
   title: string;
@@ -20,7 +21,6 @@ interface PageTitleLayoutProps {
   bg_image?: string;
   breadcrumb?: BreadcrumbProps[];
   isGray?: boolean;
-  scrollToFeedback?: () => void;
 }
 
 export const PageTitleLayout = ({
@@ -31,8 +31,9 @@ export const PageTitleLayout = ({
     breadcrumb,
     bg_image,
     isGray,
-    scrollToFeedback,
 }: PageTitleLayoutProps) => {
+    const { scrollToFeedback } = useAppData()
+
     return (
         <div className="relative h-screen max-w-[1920px] flex justify-center items-center bg-cover bg-center bg-no-repeat">
             <div

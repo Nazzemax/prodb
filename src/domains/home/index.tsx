@@ -39,7 +39,7 @@ const HomePage = () => {
             <Advantages />
             <CompanyChallengeList />
             <CompanyFeatures />
-            {/* <Checkup /> */}
+            <Checkup />
             <CompanyPostList />
             <Award
                 badgeTitle={t("section2.btn")}

@@ -168,7 +168,7 @@ export const FeedbackForm = () => {
                                 <ButtonWithIcon
                                     type="submit"
                                 >
-                                    Отправить
+                                    {t("submitButton")}
                                 </ButtonWithIcon>
                             </div>
 

@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* html {
+html {
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
   scroll-behavior: smooth;
-} */
+}
 
 /* html::-webkit-scrollbar {
   width: 0;
@@ -119,7 +119,11 @@
 
 .player-wrapper {
   position: relative;
-  padding-top: 40%;
+  padding-top: 45%;
+
+  @media (max-width: 478px) {
+    padding-top: 70%;
+  }
 }
 
 h1,h2,h3,h4 {

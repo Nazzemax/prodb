@@ -17,7 +17,6 @@ import { ServicePostList } from "@/components/organisms/service-post-list";
 import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { useAppData } from "@/context/app-context";
-import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
 
@@ -27,11 +26,11 @@ import { useTranslations } from "next-intl";
 
 const MarketingSupportPage = () => {
     const t = useTranslations("ServicesPage8")
+    const t2 = useTranslations("Buttons")
     const slug = useSlug()
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug)
     const { data: task_types } = useGetTaskTypesQuery()
     const { business_types } = useAppData()
-    const { ref, scrollToFeedback } = useScrollToFeedback()
 
     const serviceData = {
         title: t('WhatWeDo.mainTitle'),
@@ -155,7 +154,6 @@ const MarketingSupportPage = () => {
         >
             {data &&
                 <PageTitleLayout
-                    scrollToFeedback={scrollToFeedback}
                     title={data.title}
                     sub_title={data.content}
                     bg_image={data.image}
@@ -180,13 +178,13 @@ const MarketingSupportPage = () => {
                 items={serviceData.items}
             />
             <CompanyServiceCardList
+                button={t2("btn1")}
                 title={serviceWhyChooseUsData.title}
                 items={serviceWhyChooseUsData.items}
             />
             <MarketingResults data={dataResults} />
             <CompanyPostList />
             <FormLayout
-                ref={ref}
                 nestedForm={
                     <MarketingSupportFeedbackForm
                         business_types={business_types}

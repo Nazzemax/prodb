@@ -11,12 +11,10 @@ import { CompanyServiceCardList } from "@/components/organisms/company-service-c
 import { ServicePostList } from "@/components/organisms/service-post-list";
 import { ServiceStaticCardList } from "@/components/organisms/service-static-card-list";
 import { SMMPartnersCarousel } from "@/components/organisms/smm-partner-carousel";
-import { SmmStats } from "@/components/organisms/smm-stats";
 import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { useSmmCreatingAdData, useSmmTeamMembers } from "@/consts/data";
 import { useAppData } from "@/context/app-context";
-import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
 
@@ -75,7 +73,6 @@ const SmmPage = () => {
     const { data: ads } = useGetCompanyAdvertisingQuery();
     const { data: social_types } = useGetSocialTypesQuery();
     const { business_types } = useAppData();
-    const { ref, scrollToFeedback } = useScrollToFeedback();
 
     const smmCreatingAdData = useSmmCreatingAdData();
     const smmTeamMembers = useSmmTeamMembers();
@@ -84,7 +81,6 @@ const SmmPage = () => {
         <RequestHandler isLoading={isLoading} error={error} data={data}>
             {data && (
                 <PageTitleLayout
-                    scrollToFeedback={scrollToFeedback}
                     title={data.title}
                     sub_title={data.content}
                     button_text={"Получить консультацию"}
@@ -117,7 +113,6 @@ const SmmPage = () => {
             <Advantages isSmm/>
             <ClientReviewList hasSubTitle />
             <FormLayout
-                ref={ref}
                 title={"Узнайте стоимость SMM-продвижения"}
                 nestedForm={
                     <SmmFeedbackForm

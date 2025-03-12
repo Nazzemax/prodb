@@ -10,7 +10,6 @@ import { CompanyPartners } from "@/components/organisms/company-partners";
 import { PartnerReviewList } from "@/components/organisms/partner-review-list";
 import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
 
@@ -18,7 +17,6 @@ const CasesPage = () => {
     const slug = useSlug();
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
     const { data: post_data } = useGetPostsQuery();
-    const { ref, scrollToFeedback } = useScrollToFeedback();
     const t = useTranslations("Cases");
 
   type BannerTexts = {
@@ -38,7 +36,6 @@ const CasesPage = () => {
       <RequestHandler isLoading={isLoading} error={error} data={data}>
           {data && (
               <PageTitleLayout
-                  scrollToFeedback={scrollToFeedback}
                   bg_image={data.image}
                   title={texts.title}
                   button_text={texts.btn}
@@ -52,7 +49,7 @@ const CasesPage = () => {
           <ClientReviewList hasBg />
           <CompanyPartners />
           <PartnerReviewList />
-          <FormLayout ref={ref} nestedForm={<FeedbackForm />} />
+          <FormLayout nestedForm={<FeedbackForm />} />
       </RequestHandler>
   );
 };

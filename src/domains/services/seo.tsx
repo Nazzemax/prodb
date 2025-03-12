@@ -21,9 +21,8 @@ import { ServiceStaticCardList } from "@/components/organisms/service-static-car
 import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { useSeoData, useSeoPostsData, useSeoCardsData } from "@/consts/data";
-import { Banner, ISmmCreatingAdData, ISmmTeamMembers } from "@/consts/types";
+import { Banner } from "@/consts/types";
 import { useAppData } from "@/context/app-context";
-import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
 
@@ -32,7 +31,6 @@ const SeoPage = () => {
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
     const { data: site_statuses } = useGetSiteStatusQuery();
     const { business_types } = useAppData();
-    const { ref, scrollToFeedback } = useScrollToFeedback();
     const t = useTranslations("ServicesPage3");
     const t2 = useTranslations("Buttons");
 
@@ -49,7 +47,6 @@ const SeoPage = () => {
         <RequestHandler isLoading={isLoading} error={error} data={data}>
             {data && (
                 <PageTitleLayout
-                    scrollToFeedback={scrollToFeedback}
                     title={banner.title}
                     sub_title={banner.sub_title}
                     bg_image={data.image}
@@ -70,7 +67,6 @@ const SeoPage = () => {
             />
             <Faq />
             <FormLayout
-                ref={ref}
                 title="Узнайте стоимость SEO-оптимизации "
                 nestedForm={
                     <SeoFeedbackForm

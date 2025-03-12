@@ -12,7 +12,6 @@ import { useSlug } from "@/hooks/useSlug";
 import { RequestHandler } from "@/components/atoms/request-handler";
 import { useAppData } from "@/context/app-context";
 import { useGetVideoTypesQuery } from "@/api/Types";
-import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useTranslations } from "next-intl";
 import { useGetVideoProductionQuery } from "@/api/VideoProduction";
 import { ClientVideoReviewList } from "@/components/organisms/client-video-review-list";
@@ -23,7 +22,6 @@ const VideoProductionPage = () => {
     const { data: video_types } = useGetVideoTypesQuery()
     const { business_types } = useAppData()
     const {data:videoData } = useGetVideoProductionQuery()
-    const { ref, scrollToFeedback } = useScrollToFeedback()
     const t = useTranslations("ServicePage5");
 
 
@@ -108,7 +106,6 @@ const VideoProductionPage = () => {
         >
             {data &&
                 <PageTitleLayout
-                    scrollToFeedback={scrollToFeedback}
                     title={data.title}
                     sub_title={data.content}
                     button_text={t('headerBtn')}
@@ -133,7 +130,6 @@ const VideoProductionPage = () => {
             />
             <ClientVideoReviewList />
             <FormLayout
-                ref={ref}
                 title={"Рассчитайте стоимость вашего Видеопроекта"}
                 nestedForm={
                     <VideoProductionForm

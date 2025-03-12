@@ -28,12 +28,6 @@ const AboutPage = () => {
     const { data: promotion_types } = useGetPromotionTypesQuery();
     const { business_types } = useAppData();
 
-    const feedbackRef = useRef<HTMLDivElement>(null);
-
-    const scrollToFeedback = () => {
-        feedbackRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
-
     const names = {
         title: t("banner.title"),
         btn: t("banner.btn"),
@@ -47,7 +41,6 @@ const AboutPage = () => {
                     bg_image={data.image}
                     title={names.title}
                     button_text={names.btn}
-                    scrollToFeedback={scrollToFeedback}
                     breadcrumb={[
                         { text: "Главная", href: "/home" },
                         { text: names.road, href: "/about" },
@@ -71,7 +64,6 @@ const AboutPage = () => {
             <CompanyPartners />
             <PartnerReviewList />
             <FormLayout
-                ref={feedbackRef}
                 title={"Рассчитайте стоимость услуги"}
                 nestedForm={
                     <CostCalculationForm

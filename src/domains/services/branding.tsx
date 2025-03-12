@@ -4,7 +4,6 @@ import { CompanyPostList } from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { InfoCard } from "@/components/organisms/info-card";
 import {
-    IServicePostItem,
     ServicePostList,
 } from "@/components/organisms/service-post-list";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
@@ -17,7 +16,6 @@ import { RequestHandler } from "@/components/atoms/request-handler";
 import { CompanyBranding } from "@/components/organisms/company-branding";
 import { useAppData } from "@/context/app-context";
 import { useGetServiceTypesQuery } from "@/api/Types";
-import { useRef } from "react";
 import { Banner, IDesignBrand, ISmmTeamMembers } from "@/consts/types";
 import {
     ServiceBrandingIcon1,
@@ -148,11 +146,6 @@ const BradingPage = () => {
         button_text: t("banner.btn"),
     };
 
-    const feedbackRef = useRef<HTMLDivElement>(null);
-
-    const scrollToFeedback = () => {
-        feedbackRef.current?.scrollIntoView({ behavior: "smooth" });
-    };
 
     return (
         <RequestHandler isLoading={isLoading} error={error} data={data}>
@@ -162,7 +155,6 @@ const BradingPage = () => {
                     sub_title={banner.sub_title}
                     bg_image={data.image}
                     button_text={banner.button_text}
-                    scrollToFeedback={scrollToFeedback}
                     breadcrumb={[
                         { text: "Главная", href: "/home" },
                         { text: "Брендинг", href: "/services/branding" },
@@ -191,7 +183,6 @@ const BradingPage = () => {
                 card_icon={<BrandingIcon />}
             />
             <FormLayout
-                ref={feedbackRef}
                 title={"Узнайте стоимость разработки бренда"}
                 nestedForm={
                     <BrandingFeedbackForm

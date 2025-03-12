@@ -70,11 +70,14 @@ export const ClientReviewList = ({
                                     <ChevronLeft size={18} />
                                 </Button>
 
-                                <div className="text-sm whitespace-nowrap">
+                                <div className={cn(
+                                    "text-sm whitespace-nowrap",
+                                    hasBg ? "text-graphic-light" : ""
+                                )}>
                                     {currentPage + 1}{" "}
                                     <span
                                         className={cn(
-                                            hasBg ? "text-graphic-gray2" : "text-graphic-gray"
+                                            hasBg ? "text-gray2" : "text-graphic-gray"
                                         )}
                                     >
                     / {totalPages}

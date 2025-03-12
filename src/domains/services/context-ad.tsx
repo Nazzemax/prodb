@@ -10,14 +10,12 @@ import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { useContextAdCardData, useContextAdData } from "@/consts/data";
 import { Banner } from "@/consts/types";
-import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
 
 const ContextAdsPage = () => {
     const slug = useSlug();
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { ref, scrollToFeedback } = useScrollToFeedback();
     const contextAdData = useContextAdData();
     const contextAdCardData = useContextAdCardData();
     const t = useTranslations("ServicesPage2");
@@ -33,7 +31,6 @@ const ContextAdsPage = () => {
         <RequestHandler isLoading={isLoading} error={error} data={data}>
             {data && (
                 <PageTitleLayout
-                    scrollToFeedback={scrollToFeedback}
                     title={banner.title}
                     sub_title={banner.sub_title}
                     bg_image={data.image}
@@ -55,7 +52,7 @@ const ContextAdsPage = () => {
                 button={t2("btn1")}
             />
             <CompanyPostList />
-            <FormLayout ref={ref} nestedForm={<FeedbackForm />} />
+            <FormLayout nestedForm={<FeedbackForm />} />
         </RequestHandler>
     );
 };

@@ -297,6 +297,107 @@
       ]
     }
   },
+  "ServicesPage7": {
+    "headerBtn": "Order integration",
+    "BenefitsSection": {
+      "title": "Why does your business need a CRM?",
+      "button": "Get a consultation",
+      "items": [
+        {
+          "image": "ServiceCrmIcon1",
+          "number": "01",
+          "title": "Increased sales",
+          "description": "Automating routine tasks and structuring customer data helps you focus on what matters most – attracting and retaining customers, which significantly increases conversion and overall sales."
+        },
+        {
+          "image": "ServiceCrmIcon2",
+          "number": "02",
+          "title": "Easy client management",
+          "description": "All customer data is collected in one place, making it easy to access information and allowing your team to build personalized interactions."
+        },
+        {
+          "image": "ServiceCrmIcon3",
+          "number": "03",
+          "title": "Saving time and resources",
+          "description": "Optimizing workflows reduces the workload on employees, speeds up task completion, and minimizes errors, helping to reduce costs."
+        },
+        {
+          "image": "SeoHowWeWork5",
+          "number": "04",
+          "title": "Analytics for growth",
+          "description": "A systemized CRM platform provides deep analytics and reports that help identify weaknesses, make strategic decisions, and improve business processes."
+        }
+      ]
+    },
+    "VideoBanner": {
+      "titleBlog": "Mijozlarni samarali boshqaring",
+      "subtitle1": "Jarayonlarni optimallashtirish va savdo hajmini oshirish uchun CRM tizimlarini integratsiyalash",
+      "buttonOrderIntegration": "Integratsiyani buyurtma qilish"
+    },
+    "sectionBenefits": {
+      "titleBenefits": "Biznesingizga nima uchun CRM kerak?",
+      "buttonOrderConsultation": "Maslahat olish",
+      "benefitsList": [
+        {
+          "benefitId": "01",
+          "benefitTitle": "Sotuvlarni ko‘paytirish",
+          "benefitDescription": "Kundalik vazifalarni avtomatlashtirish va mijozlar ma’lumotlarini tizimlashtirish asosiy maqsadga - mijozlarni jalb qilish va ularni saqlab qolishga e’tibor qaratish imkonini beradi. Bu esa konversiya va umumiy savdo hajmini sezilarli darajada oshiradi."
+        },
+        {
+          "benefitId": "02",
+          "benefitTitle": "Mijozlarni boshqarishning qulayligi",
+          "benefitDescription": "Barcha mijozlar haqidagi ma’lumotlar bir joyda to‘planganligi sababli, axborotga kirish osonlashadi va jamoangiz shaxsiylashtirilgan munosabatlar o‘rnatishi mumkin bo‘ladi."
+        },
+        {
+          "benefitId": "03",
+          "benefitTitle": "Vaqt va resurslarni tejash",
+          "benefitDescription": "Оптимизация рабочих процессов снижает нагрузку на сотрудников, упрощает выполнение задач и минимизирует ошибки, помогая сократить издержки."
+        },
+        {
+          "benefitId": "04",
+          "benefitTitle": "Rivojlanish uchun tahlil",
+          "benefitDescription": "Tizimli CRM platformasi chuqur tahlil va hisobotlar taqdim etadi. Bu esa zaif tomonlarni aniqlash, strategik qarorlar qabul qilish va biznes jarayonlarini takomillashtirish imkonini beradi."
+        }
+      ]
+    },
+    "integrationApproach": {
+      "titleIntegration": "Our approach to CRM integration",
+      "descriptionIntegration": "We analyze your business needs and select the appropriate CRM system that meets your goals. Our team performs smooth data migration and configures the system so that it fully supports your business processes.",
+      "teamTraining": {
+        "titleTeamTraining": "We also train your team",
+        "descriptionTeamTraining": "and provide regular technical support for convenient use of CRM."
+      }
+    },
+    "integrationServices": {
+      "titleIntegrationServices": "Our CRM integration services",
+      "servicesList": [
+        {
+          "serviceId": "01",
+          "serviceTitle": "Selecting and configuring a CRM system",
+          "serviceDescription": "Selection of the most suitable CRM platform for your business. Individual system customization according to your requirements."
+        },
+        {
+          "serviceId": "02",
+          "serviceTitle": "Data migration",
+          "serviceDescription": "Safe and accurate data transfer from the existing system. Ensuring the integrity and safety of information."
+        },
+        {
+          "serviceId": "03",
+          "serviceTitle": "Process automation",
+          "serviceDescription": "Set up automated workflows to improve efficiency. Integrate CRM with other tools and systems in your business."
+        },
+        {
+          "serviceId": "04",
+          "serviceTitle": "Training and support",
+          "serviceDescription": "Conducting training sessions for your team. Providing technical support and maintenance."
+        }
+      ]
+    },
+    "PartersBlog": {
+      "titleParters": "partnership",
+      "SubTitleParters": "We are official partners of Bitrix24"
+    }
+  },
   "ServicesPage8": {
     "headerBtn": "Order Integration",
     "MarketingSupport": {

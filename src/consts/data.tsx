@@ -28,11 +28,6 @@ import {
     ServiceSmmIcon6,
 } from "@/assets/services/smm";
 import {
-    ServiceCrmIcon1,
-    ServiceCrmIcon2,
-    ServiceCrmIcon3,
-} from "@/assets/services/crm";
-import {
     ContextAd2Icon,
     ContextAd3Icon,
     ContextAd4Icon,
