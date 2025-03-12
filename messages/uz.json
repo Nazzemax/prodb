@@ -52,7 +52,7 @@
     "text": {
       "title": "Ishlar",
       "tag1": "SMM",
-      "tag2": "Targeting",
+      "tag2": "Target",
       "tag3": "Marketing",
       "search": "Qidirish..."
     },
@@ -326,7 +326,7 @@
       "companyDescription": "ваш внешний отдел маркетинга",
       "copyright": "© 2024 Bold Brands International. Все права защищены"
     },
-    "title":"Xizmatlar",
+    "title": "Xizmatlar",
     "companyLinks": {
       "aboutUs": "Biz haqimizda",
       "cases": "Ishlar",
@@ -339,7 +339,7 @@
       "webDevelopment": "Veb Ishlab chiqish va dizayn",
       "marketingSupport": "Integratsiyalashgan marketing targ'iboti",
       "automationAnalytics": "SEO optimallashtirish",
-       "printing":"Onlayn bosib chiqarish"
+      "printing": "Onlayn bosib chiqarish"
     },
     "contactInfo": {
       "addresses": {

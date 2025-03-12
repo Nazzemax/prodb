@@ -23,35 +23,17 @@ import { useLocale } from "next-intl";
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 
 interface LanguageProps {
-  id: string;
-  title: string;
-  headers: string;
-  shortTitle: string;
-  icon: React.ReactNode;
+    id: string;
+    title: string;
+    headers: string;
+    shortTitle: string;
+    icon: React.ReactNode;
 }
 
 const languageList: LanguageProps[] = [
-    {
-        id: "1",
-        title: "English",
-        shortTitle: "EN",
-        headers: "en",
-        icon: <UsaIcon />,
-    },
-    {
-        id: "2",
-        title: "Русский",
-        shortTitle: "РУ",
-        headers: "ru",
-        icon: <RussianIcon />,
-    },
-    {
-        id: "3",
-        title: "О'zbek",
-        shortTitle: "UZ",
-        headers: "uz",
-        icon: <UzbIcon />,
-    },
+    { id: "1", title: "English", shortTitle: "EN", headers: "en", icon: <UsaIcon /> },
+    { id: "2", title: "Русский", shortTitle: "РУ", headers: "ru", icon: <RussianIcon /> },
+    { id: "3", title: "O'zbek", shortTitle: "UZ", headers: "uz", icon: <UzbIcon /> },
 ];
 
 export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
@@ -78,6 +60,9 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
         dispatch(languageActions.setLanguage(value));
         dispatch(baseApi.util.resetApiState());
 
+      
+        document.cookie = `NEXT_LOCALE=${value}; path=/; max-age=31536000; SameSite=Lax`;
+
         if (value !== locale) {
             router.replace(pathname, { locale: value as Locale });
         }
@@ -89,10 +74,9 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
 
     if (!isClient || selectedLanguage === null) return null;
 
-
     const selectedLang =
-    languageList.find((lang) => lang.headers === selectedLanguage) ||
-    languageList[1];
+        languageList.find((lang) => lang.headers === selectedLanguage) ||
+        languageList[1];
 
     return (
         <div className="flex gap-[24px] items-center">
@@ -100,9 +84,7 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
                 <SelectTrigger
                     className={cn(
                         "hover:bg-white/20 transition-all focus:ring-offset-0 outline-none duration-200 w-[110px]",
-                        isMobile || isCase 
-                            ? "text-black" 
-                            : ""
+                        isMobile || isCase ? "text-black" : ""
                     )}
                 >
                     <SelectValue>

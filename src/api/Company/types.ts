@@ -52,6 +52,7 @@ export interface CompanyInfoResponse {
     whatsapp_text: string;
     work_time: string;
     video: string;
+    production_video?:string;
     addresses: { title: string; address: string }[];
     phones: { title: string; phone: string; }[];
     emails: { title: string; email: string; }[];
@@ -92,8 +93,8 @@ export interface CompanyTeamResponse {
     items: { name: string; position: string; image: string; }[];
 }
 
-export interface CompanyVideoReviewsResponse {
-    title: string;
+export type CompanyVideoReviewsResponse = Array<{
+    items: Array<{ video: string }>;
     sub_title: string;
-    items: { video: string; }[];
-}
+    title: string;
+}>;

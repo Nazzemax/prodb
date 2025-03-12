@@ -112,6 +112,7 @@ const SmmPage = () => {
             <CompanyServiceCardList
                 title={smmTeamMembers.title}
                 items={smmTeamMembers.items}
+                button={t("smm.btn")}
             />
             <Advantages isSmm/>
             <ClientReviewList hasSubTitle />

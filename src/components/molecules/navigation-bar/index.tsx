@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import BrandingIcon from "@/assets/dropdown/dropdown_1.svg";
 import DigitalPromotionIcon from "@/assets/dropdown/dropdown_2.svg";
 import VideoProductionIcon from "@/assets/dropdown/dropdown_3.svg";

@@ -4,7 +4,6 @@ import { InfoCard } from "@/components/organisms/info-card";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { VideoAboutCompany } from "@/components/organisms/video-about-company";
 import { ServicePostList } from "@/components/organisms/service-post-list";
-import { ClientReviewList } from "@/components/organisms/client-review-list";
 import { FormLayout } from "@/components/templates/form-layout";
 import { VideoProductionForm } from "@/components/forms/video-production-form";
 import { VideoProductionIcon } from "@/assets/info-card";
@@ -16,8 +15,7 @@ import { useGetVideoTypesQuery } from "@/api/Types";
 import useScrollToFeedback from "@/hooks/useScrollToFeedback";
 import { useTranslations } from "next-intl";
 import { useGetVideoProductionQuery } from "@/api/VideoProduction";
-
-
+import { ClientVideoReviewList } from "@/components/organisms/client-video-review-list";
 
 const VideoProductionPage = () => {
     const slug = useSlug()
@@ -133,7 +131,7 @@ const VideoProductionPage = () => {
                 title={serviceData.title}
                 items={serviceData.items}
             />
-            <ClientReviewList />
+            <ClientVideoReviewList />
             <FormLayout
                 ref={ref}
                 title={"Рассчитайте стоимость вашего Видеопроекта"}

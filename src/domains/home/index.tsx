@@ -31,7 +31,7 @@ const HomePage = () => {
                 chatMessage="Доброго времени суток, чем могу вам помочь?"
                 statusMessage="Онлайн"
                 darkMode
-                avatar="/src/assets/bold_logo.svg"
+                avatar="/bold_logo.svg"
                 placeholder="Введите текст"
             />
             <MarketingDepartment />
