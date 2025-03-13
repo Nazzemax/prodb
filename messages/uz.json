@@ -5,6 +5,7 @@
       "about": "Biz haqimizda",
       "cases": "Ishlar",
       "contacts": "Kontaktlar",
+      "blog": "Blog",
       "services": {
         "initial": "Xizmatlar",
         "branding": "Brendlash",
@@ -586,6 +587,7 @@
     "terms": "Men ma’lumotlarimning maxfiylik siyosatiga muvofiq qayta ishlanishiga roziman",
     "termsLink": "maxfiylik",
     "submitButton": "Jo‘natish",
+    "submitButtonLoading": "Yuborish",
     "nextButton": "Keyingisi",
     "tabs": {
       "title1": "Sizning biznesingiz haqida",

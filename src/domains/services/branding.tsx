@@ -151,8 +151,8 @@ const BradingPage = () => {
         <RequestHandler isLoading={isLoading} error={error} data={data}>
             {data && (
                 <PageTitleLayout
-                    title={banner.title}
-                    sub_title={banner.sub_title}
+                    title={data?.title}
+                    sub_title={data?.content}
                     bg_image={data.image}
                     button_text={banner.button_text}
                     breadcrumb={[

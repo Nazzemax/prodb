@@ -73,14 +73,14 @@ export const NavigationBar = () => {
                 title: t("navLinks.services.operativePrint"),
                 href: "/services/operative-print",
                 icon: <CRMIcon />,
-            },
+            }
         ],
         [t]
     );
 
     return (
         <NavigationMenu>
-            <NavigationMenuList className={cn("hidden lg:flex")}>
+            <NavigationMenuList className={cn("hidden xl:flex")}>
                 <NavigationMenuItem>
                     <Link href="/home" legacyBehavior passHref>
                         <NavigationMenuLink
@@ -139,6 +139,18 @@ export const NavigationBar = () => {
                         </ul>
                     </NavigationMenuContent>
                 </NavigationMenuItem>
+                {/* <NavigationMenuItem>
+                    <Link href="/blog" legacyBehavior passHref>
+                        <NavigationMenuLink
+                            className={cn(
+                                navigationMenuTriggerStyle(),
+                                isCases ? "text-primary hover:bg-black/5" : "text-white"
+                            )}
+                        >
+                            {t("navLinks.blog")}
+                        </NavigationMenuLink>
+                    </Link>
+                </NavigationMenuItem> */}
                 <NavigationMenuItem>
                     <Link href="/contacts" legacyBehavior passHref>
                         <NavigationMenuLink

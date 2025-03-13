@@ -81,8 +81,8 @@ const SmmPage = () => {
         <RequestHandler isLoading={isLoading} error={error} data={data}>
             {data && (
                 <PageTitleLayout
-                    title={data.title}
-                    sub_title={data.content}
+                    title={data?.title}
+                    sub_title={data?.content}
                     button_text={"Получить консультацию"}
                     breadcrumb={[
                         { text: "Главная", href: "/home" },

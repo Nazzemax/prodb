@@ -26,3 +26,34 @@ export default function mergeRefs<T>(
         }
     };
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function objectToQueryString(obj: Record<string, any>): string {
+    return Object.keys(obj)
+        .map((key) => {
+            if (Array.isArray(obj[key])) {
+                return obj[key]
+                    .map((item, index) =>
+                        // Рекурсивно обрабатываем вложенные объекты в массиве
+                        Object.keys(item)
+                            .map((subKey) => 
+                                // Преобразуем каждый элемент в нужный формат
+                                `FIELDS[${key}][${index}][${subKey}]=${encodeURIComponent(item[subKey])}`
+                            )
+                            .join("&")
+                    )
+                    .join("&");
+            } else if (typeof obj[key] === "object") {
+                // Обрабатываем вложенные объекты
+                return Object.keys(obj[key])
+                    .map((subKey) => 
+                        `FIELDS[${key}][${subKey}]=${encodeURIComponent(obj[key][subKey])}`
+                    )
+                    .join("&");
+            } else {
+                // Простые поля
+                return `FIELDS[${key}]=${encodeURIComponent(obj[key])}`;
+            }
+        })
+        .join("&");
+}

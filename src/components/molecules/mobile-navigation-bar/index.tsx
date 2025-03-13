@@ -52,6 +52,7 @@ export const MobileNavigationBar = ({
             { title: t("navLinks.home"), href: "/home" },
             { title: t("navLinks.about"), href: "/about" },
             { title: t("navLinks.cases"), href: "/cases" },
+            // { title: t("navLinks.blog"), href: "/blog" },
         ],
         [t]
     );
@@ -66,6 +67,7 @@ export const MobileNavigationBar = ({
             { title: t("navLinks.services.marketingSupport"), href: "/services/marketing-support" },
             { title: t("navLinks.services.crm"), href: "/services/crm" },
             { title: t("navLinks.services.seo"), href: "/services/seo" },
+            { title: t("navLinks.services.operativePrint"), href: "/services/operative-print" },
         ],
         [t]
     );
@@ -98,6 +100,11 @@ export const MobileNavigationBar = ({
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
+            {/* <LinkItem
+                closeSheet={closeSheet}
+                linkHref="/blog"
+                linkTitle={t("navLinks.blog")}
+            /> */}
             <LinkItem
                 closeSheet={closeSheet}
                 linkHref="/contacts"

@@ -124,7 +124,7 @@ const VideoProductionPage = () => {
                 card_description={"Качественный видеоконтент — это ключ к успешному продвижению вашего бизнеса."}
                 card_icon={<VideoProductionIcon />}
             />
-         <VideoCompany />
+            <VideoCompany />
             <ServicePostList
                 title={serviceData.title}
                 items={serviceData.items}

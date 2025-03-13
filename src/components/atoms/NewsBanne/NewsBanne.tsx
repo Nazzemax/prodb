@@ -12,54 +12,58 @@ const NewsBanner: React.FC = () => {
     const { data, error, isLoading } = useGetBannersQuery();
     const [showBanner, setShowBanner] = useState(false);
     const [bannerContent, setBannerContent] = useState<BannerText | null>(null);
-    const [currentBannerId, setCurrentBannerId] = useState<string | null>(null);
+    const [currentBannerKey, setCurrentBannerKey] = useState<string | null>(null);
 
     useEffect(() => {
-        // Find valid banner content
-        const validBanner = data?.find(b => {
+    // Find valid banner content
+        const validBanner = data?.find((b) => {
             const banner = b.banner_text as BannerText | undefined;
             return banner?.text?.trim() && banner?.link?.trim();
         });
 
         if (validBanner) {
-            const bannerId = validBanner.id;
-            const dismissKey = `${BANNER_DISMISSED_KEY_PREFIX}${bannerId}`;
+            const banner = validBanner.banner_text as BannerText;
+            // Use text and link to create a unique dismissal key
+            const dismissKey = `${BANNER_DISMISSED_KEY_PREFIX}${banner.text}-${banner.link}`;
             const isDismissed = localStorage.getItem(dismissKey);
 
             // Only show if this specific banner hasn't been dismissed
             if (!isDismissed) {
-                setBannerContent(validBanner.banner_text);
-                setCurrentBannerId(bannerId || null);
+                setBannerContent(banner);
+                setCurrentBannerKey(dismissKey); // Store the dismissal key instead of id
                 setShowBanner(true);
-                window.dispatchEvent(new CustomEvent("bannerVisible", { 
-                    detail: { 
-                        visible: true,
-                        bannerId 
-                    }
-                }));
+                window.dispatchEvent(
+                    new CustomEvent("bannerVisible", {
+                        detail: {
+                            visible: true,
+                            bannerKey: dismissKey, // Use dismissKey in event
+                        },
+                    })
+                );
             }
         }
     }, [data]);
 
     const handleDismiss = () => {
-        if (currentBannerId) {
-            localStorage.setItem(`${BANNER_DISMISSED_KEY_PREFIX}${currentBannerId}`, "true");
+        if (currentBannerKey) {
+            localStorage.setItem(currentBannerKey, "true");
         }
         setShowBanner(false);
-        window.dispatchEvent(new CustomEvent("bannerVisible", { 
-            detail: { 
-                visible: false,
-                bannerId: currentBannerId 
-            }
-        }));
+        window.dispatchEvent(
+            new CustomEvent("bannerVisible", {
+                detail: {
+                    visible: false,
+                    bannerKey: currentBannerKey,
+                },
+            })
+        );
     };
 
     // Don't render if any of these conditions are met
     if (error || isLoading || !showBanner || !bannerContent) return null;
 
     return (
-        <div className="fixed top-0 left-0 w-full bg-red-500 text-white text-sm md:text-base z-[60] 
-            flex items-center justify-center px-6 py-4 shadow-md">
+        <div className="fixed top-0 left-0 w-full bg-red-500 text-white text-sm md:text-base z-[60] flex items-center justify-center px-6 py-4 shadow-md">
             <div className="flex flex-col md:flex-row items-center gap-4 text-center">
                 <span className="font-semibold">{bannerContent.text}</span>
                 <a
@@ -68,16 +72,15 @@ const NewsBanner: React.FC = () => {
                     rel="noopener noreferrer"
                     className="underline font-medium hover:opacity-80"
                 >
-                    Узнать больше &rarr;
+          Узнать больше →
                 </a>
             </div>
-
             <button
                 className="text-white text-2xl font-bold absolute right-4 top-1/2 -translate-y-1/2 hover:opacity-75"
                 onClick={handleDismiss}
                 aria-label="Close banner"
             >
-                ✕
+        ✕
             </button>
         </div>
     );

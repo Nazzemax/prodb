@@ -5,6 +5,7 @@
       "about": "About",
       "cases": "Cases",
       "contacts": "Contacts",
+      "blog": "Blog",
       "services": {
         "initial": "Services",
         "branding": "Branding",
@@ -483,6 +484,7 @@
     "terms": "I agree to the processing of my data in accordance with the ",
     "termsLink": "privacy policy",
     "submitButton": "Send",
+    "submitButtonLoading": "Sending",
     "nextButton": "Continue",
     "tabs": {
       "title1": "About your business",

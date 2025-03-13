@@ -14,19 +14,20 @@ import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { toast } from "sonner";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
-import { useSendContactsFormMutation } from "@/api/Form";
+import { useSendFormMutation } from "@/api/Form";
 import { useTranslations } from "next-intl";
 import { useAppData } from "@/context/app-context";
+import { objectToQueryString } from "@/lib/utils";
+import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import { Spinner } from "@/components/atoms/spinner";
 
 
 export const FeedbackForm = () => {
     const { data } = useAppData()
-    const [sendForm, { 
-        isLoading, 
-        isSuccess, 
-        isError, 
-        reset: resetApi 
-    }] = useSendContactsFormMutation()
+    const [sendForm, {
+        isLoading,
+        reset: resetApi
+    }] = useSendFormMutation()
     const [openTerms, setOpenTerms] = useState(false)
 
     const t = useTranslations('Form')
@@ -46,20 +47,22 @@ export const FeedbackForm = () => {
     })
 
     const onSubmit = async (data: z.infer<typeof FeedbackSchema>) => {
-        if (!data.acceptTerms) {
-            toast.error('Примите соглашение с политикой конфиденциальности!');
-            return;
-        }
-        try {
-            const { acceptTerms, ...formData } = data;
-            await sendForm(formData).unwrap();
-            form.reset();
-            toast.success('Успешно отправлено');
-            setTimeout(resetApi, 3000);
-        } catch (err) {
-            console.error('Form submission error:', err);
-            toast.error('Ошибка при отправке формы');
-        }
+        const queryString = objectToQueryString({
+            TITLE: "Заявка с сайта",
+            NAME: data.sender_name,
+            EMAIL: [{ VALUE: data.sender_email, VALUE_TYPE: "WORK" }],
+            PHONE: [{ VALUE: data.sender_phone, VALUE_TYPE: "WORK" }],
+        })
+        await sendForm(queryString)
+            .unwrap()
+            .then(() => {
+                toast.success('Форма успешно отправлена!');
+                setTimeout(resetApi, 3000);
+                form.reset();
+            })
+            .catch(() => {
+                toast.error("Ошибка при отправке формы")
+            })
     };
 
     return (
@@ -158,25 +161,25 @@ export const FeedbackForm = () => {
                                                 <Dialog open={openTerms} onOpenChange={setOpenTerms}>
                                                     <DialogContent style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                                                         <DialogTitle>
-      Политика конфиденциальности Bold Brands International
+                                                            Политика конфиденциальности Bold Brands International
                                                         </DialogTitle>
                                                         <div className="dialog-body" style={{ padding: '1rem' }}>
                                                             <p>
                                                                 <em>
-          Дата вступления в силу: <time dateTime="2025-01-01">01.01.2025</time>
+                                                                    Дата вступления в силу: <time dateTime="2025-01-01">01.01.2025</time>
                                                                 </em>
                                                             </p>
-      
+
                                                             <section>
                                                                 <h2>1. Общие положения</h2>
                                                                 <p>
-          Настоящая Политика конфиденциальности (далее – «Политика») определяет порядок сбора, использования, хранения и защиты персональных данных пользователей (далее – «Пользователь»), предоставляемых при использовании веб-сайта{' '}
+                                                                    Настоящая Политика конфиденциальности (далее – «Политика») определяет порядок сбора, использования, хранения и защиты персональных данных пользователей (далее – «Пользователь»), предоставляемых при использовании веб-сайта{' '}
                                                                     <a href="https://www.boldbrandsinternational.com" target="_blank" rel="noopener noreferrer">
-            www.boldbrandsinternational.com
+                                                                        www.boldbrandsinternational.com
                                                                     </a>. Политика разработана и применяется Bold Brands International, маркетинговой компанией, для обеспечения безопасности и конфиденциальности информации своих клиентов и посетителей.
                                                                 </p>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>2. Сбор и обработка персональных данных</h2>
                                                                 <article>
@@ -196,11 +199,11 @@ export const FeedbackForm = () => {
                                                                 <article>
                                                                     <h3>2.2. Правовая основа обработки:</h3>
                                                                     <p>
-            Обработка персональных данных осуществляется на основании согласия Пользователя, исполнения договорных обязательств или иных оснований, предусмотренных действующим законодательством.
+                                                                        Обработка персональных данных осуществляется на основании согласия Пользователя, исполнения договорных обязательств или иных оснований, предусмотренных действующим законодательством.
                                                                     </p>
                                                                 </article>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>3. Цели обработки персональных данных</h2>
                                                                 <ul>
@@ -208,52 +211,52 @@ export const FeedbackForm = () => {
                                                                     <li>Предоставление запрашиваемых услуг и информации.</li>
                                                                     <li>Улучшение качества обслуживания и оптимизация работы Сайта.</li>
                                                                     <li>
-            Проведение маркетинговых и аналитических исследований (при наличии согласия Пользователя).
+                                                                        Проведение маркетинговых и аналитических исследований (при наличии согласия Пользователя).
                                                                     </li>
                                                                     <li>Обеспечение безопасности Сайта и предотвращение мошеннических действий.</li>
                                                                 </ul>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>4. Использование файлов cookie и аналогичных технологий</h2>
                                                                 <article>
                                                                     <h3>4.1.</h3>
                                                                     <p>
-            Файлы cookie и аналогичные технологии используются для повышения удобства пользования Сайтом, персонализации контента и проведения статистического анализа.
+                                                                        Файлы cookie и аналогичные технологии используются для повышения удобства пользования Сайтом, персонализации контента и проведения статистического анализа.
                                                                     </p>
                                                                 </article>
                                                                 <article>
                                                                     <h3>4.2.</h3>
                                                                     <p>
-            Пользователь может изменить настройки браузера для ограничения использования файлов cookie, однако это может повлиять на корректную работу некоторых функций Сайта.
+                                                                        Пользователь может изменить настройки браузера для ограничения использования файлов cookie, однако это может повлиять на корректную работу некоторых функций Сайта.
                                                                     </p>
                                                                 </article>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>5. Передача персональных данных третьим лицам</h2>
                                                                 <article>
                                                                     <h3>5.1.</h3>
                                                                     <p>
-            Bold Brands International может передавать персональные данные следующим категориям получателей:
+                                                                        Bold Brands International может передавать персональные данные следующим категориям получателей:
                                                                     </p>
                                                                     <ul>
                                                                         <li>
-              Подрядчикам и партнёрам, оказывающим услуги по техническому обслуживанию, маркетингу, аналитике и обеспечению работы Сайта.
+                                                                            Подрядчикам и партнёрам, оказывающим услуги по техническому обслуживанию, маркетингу, аналитике и обеспечению работы Сайта.
                                                                         </li>
                                                                         <li>
-              Органам государственной власти и иным организациям в случаях, предусмотренных законодательством.
+                                                                            Органам государственной власти и иным организациям в случаях, предусмотренных законодательством.
                                                                         </li>
                                                                     </ul>
                                                                 </article>
                                                                 <article>
                                                                     <h3>5.2.</h3>
                                                                     <p>
-            Передача данных осуществляется с соблюдением всех мер безопасности, установленных законодательством.
+                                                                        Передача данных осуществляется с соблюдением всех мер безопасности, установленных законодательством.
                                                                     </p>
                                                                 </article>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>6. Защита персональных данных</h2>
                                                                 <p>
@@ -263,7 +266,7 @@ export const FeedbackForm = () => {
                                                                     <strong>6.2.</strong> Принятые меры регулярно пересматриваются и обновляются в соответствии с требованиями законодательства.
                                                                 </p>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>7. Права Пользователей</h2>
                                                                 <article>
@@ -271,27 +274,27 @@ export const FeedbackForm = () => {
                                                                     <p>Пользователь имеет право:</p>
                                                                     <ul>
                                                                         <li>
-              Запрашивать информацию о своих персональных данных, находящихся в обработке.
+                                                                            Запрашивать информацию о своих персональных данных, находящихся в обработке.
                                                                         </li>
                                                                         <li>
-              Требовать уточнения, блокирования или удаления своих персональных данных, если обработка данных осуществляется с нарушением законодательства.
+                                                                            Требовать уточнения, блокирования или удаления своих персональных данных, если обработка данных осуществляется с нарушением законодательства.
                                                                         </li>
                                                                         <li>
-              Отзывать данное ранее согласие на обработку персональных данных (обработка может быть прекращена для маркетинговых целей).
+                                                                            Отзывать данное ранее согласие на обработку персональных данных (обработка может быть прекращена для маркетинговых целей).
                                                                         </li>
                                                                         <li>
-              Обращаться с жалобами в надзорные органы в случае нарушения прав в области обработки персональных данных.
+                                                                            Обращаться с жалобами в надзорные органы в случае нарушения прав в области обработки персональных данных.
                                                                         </li>
                                                                     </ul>
                                                                 </article>
                                                                 <article>
                                                                     <h3>7.2.</h3>
                                                                     <p>
-            Для реализации своих прав Пользователь может обращаться по контактным данным, указанным в разделе 9.
+                                                                        Для реализации своих прав Пользователь может обращаться по контактным данным, указанным в разделе 9.
                                                                     </p>
                                                                 </article>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>8. Изменения в Политике конфиденциальности</h2>
                                                                 <p>
@@ -304,11 +307,11 @@ export const FeedbackForm = () => {
                                                                     <strong>8.3.</strong> Рекомендуется регулярно знакомиться с актуальной версией Политики.
                                                                 </p>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>9. Контактная информация</h2>
                                                                 <p>
-          По всем вопросам, связанным с обработкой персональных данных, обращайтесь по следующим контактам:
+                                                                    По всем вопросам, связанным с обработкой персональных данных, обращайтесь по следующим контактам:
                                                                 </p>
                                                                 <ul>
                                                                     <li>
@@ -327,7 +330,7 @@ export const FeedbackForm = () => {
                                                                             target="_blank"
                                                                             rel="noopener noreferrer"
                                                                         >
-              Напишите нам на Whatsapp
+                                                                            Напишите нам на Whatsapp
                                                                         </a>
                                                                     </li>
                                                                     <li>
@@ -337,7 +340,7 @@ export const FeedbackForm = () => {
                                                                             target="_blank"
                                                                             rel="noopener noreferrer"
                                                                         >
-              Смотреть видео
+                                                                            Смотреть видео
                                                                         </a>
                                                                     </li>
                                                                     <li>
@@ -347,7 +350,7 @@ export const FeedbackForm = () => {
                                                                             target="_blank"
                                                                             rel="noopener noreferrer"
                                                                         >
-              Смотреть промо-видео
+                                                                            Смотреть промо-видео
                                                                         </a>
                                                                     </li>
                                                                     <li>
@@ -377,12 +380,12 @@ export const FeedbackForm = () => {
                                                                             target="_blank"
                                                                             rel="noopener noreferrer"
                                                                         >
-              Перейти
+                                                                            Перейти
                                                                         </a>
                                                                     </li>
                                                                 </ul>
                                                             </section>
-      
+
                                                             <section>
                                                                 <h2>10. Заключительные положения</h2>
                                                                 <p>
@@ -395,17 +398,18 @@ export const FeedbackForm = () => {
                                                         </div>
                                                     </DialogContent>
                                                 </Dialog>
-
-
-
                                             </div>
                                         </FormItem>
                                     )}
                                 />
                                 <ButtonWithIcon
                                     type="submit"
+                                    disabled={isLoading}
                                 >
-                                    {t("submitButton")}
+                                    {isLoading
+                                        ? <span className="flex gap-x-1 text-gray2">{t("submitButtonLoading")}<Spinner /></span>
+                                        : (t("submitButton"))
+                                    }
                                 </ButtonWithIcon>
                             </div>
 

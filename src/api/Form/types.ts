@@ -54,3 +54,15 @@ export interface CrmServiceFormRequest {
     business_type: number[];
     task_type: number[];
 }
+
+
+export interface BitrixRequest {
+    TITLE: string;
+    NAME: string
+    EMAIL: string;
+    EMAIL_VALUE_TYPE: string;
+    PHONE: string;
+    PHONE_VALUE_TYPE: string;
+    COMMENTS: string;
+    SOURCE_DESCRIPTION: string;
+}

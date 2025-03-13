@@ -14,6 +14,11 @@ export const routing = defineRouting({
             ru: "/about",
             uz: "/about",
         },
+        "/blog": {
+            en: "/blog",
+            ru: "/blog",
+            uz: "/blog",
+        },
         "/cases": {
             en: "/cases",
             ru: "/cases",
@@ -59,6 +64,11 @@ export const routing = defineRouting({
             ru: "/services/seo",
             uz: "/services/seo",
         },
+        "/services/operative-print": { 
+            en: "/services/operative-print",
+            ru: "/services/operative-print",
+            uz: "/services/operative-print",
+        },
         "/:path*": {
             en: "/:path*",
             ru: "/:path*",
@@ -72,6 +82,7 @@ export type Locale = (typeof routing.locales)[number];
 export type AppPathnames =
   | "/home"
   | "/about"
+  | "/blog"
   | "/cases"
   | "/contacts"
   | "/services/branding"
@@ -81,4 +92,5 @@ export type AppPathnames =
   | "/services/marketing-support"
   | "/services/crm"
   | "/services/seo"
+  | "/services/operative-print"
   | "/:path*";
