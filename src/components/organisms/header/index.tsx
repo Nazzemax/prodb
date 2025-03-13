@@ -13,6 +13,7 @@ export const Header = () => {
     const [isBlurred, setIsBlurred] = useState(true);
     const [isShadowVisible, setIsShadowVisible] = useState(true);
     const [hasBanner, setHasBanner] = useState(false);
+    const [lastBannerId, setLastBannerId] = useState<string | null>(null);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -45,19 +46,27 @@ export const Header = () => {
 
             setLastScrollY(currentScrollY);
         };
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        const handleBannerVisibility = (e: any) => {
-            setHasBanner(e.detail);
+
+        const handleBannerVisibility = (e: CustomEvent) => {
+            const { detail: { visible, bannerId } } = e;
+            
+            // Show banner if it's a new one (different ID)
+            if (bannerId !== lastBannerId) {
+                setHasBanner(visible);
+                setLastBannerId(bannerId);
+            } else {
+                setHasBanner(visible);
+            }
         };
 
         window.addEventListener("scroll", handleScroll);
-        window.addEventListener("bannerVisible", handleBannerVisibility);
+        window.addEventListener("bannerVisible", handleBannerVisibility as EventListener);
 
         return () => {
             window.removeEventListener("scroll", handleScroll);
-            window.removeEventListener("bannerVisible", handleBannerVisibility);
+            window.removeEventListener("bannerVisible", handleBannerVisibility as EventListener);
         };
-    }, [lastScrollY, scrollUpDistance]);
+    }, [lastScrollY, scrollUpDistance, lastBannerId]);
 
     return (
         <div
@@ -66,7 +75,7 @@ export const Header = () => {
             } ${isBlurred ? "bg-black/30 backdrop-blur-md" : "bg-black/0"} ${
                 isShadowVisible ? "shadow-md" : "shadow-none"
             }`}
-            style={{ marginTop: hasBanner ? "4rem" : "0" }} // динамический отступ
+            style={{ marginTop: hasBanner ? "4rem" : "0" }}
         >
             <div className="flex justify-between items-center p-5 md:px-14 md:py-5">
                 <Logo />

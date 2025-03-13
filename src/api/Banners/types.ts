@@ -6,6 +6,7 @@ export interface BannerText {
   
 export interface Banner {
     title: string;
+    id?: string;
     sub_title: string;
     button_text: string;
     image: string;

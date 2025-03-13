@@ -4,8 +4,6 @@ import React from 'react';
 import InstagramIcon from '@/assets/socials/instagram.svg';
 import FacebookIcon from '@/assets/socials/facebook.svg';
 import WhatsAppIcon from '@/assets/socials/whatsapp.svg';
-import { motion } from 'framer-motion';
-import { fadeIn, viewportConfig, staggerTransition } from '@/lib/motion';
 import { useAppData } from '@/context/app-context';
 import { useTranslations } from 'next-intl';
 
@@ -93,16 +91,10 @@ export const FooterLinks = () => {
     
     
     return (
-        
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-8 lg:gap-y-10 gap-x-3">
             {links.map(({ title, items }, idx) => (
-                <motion.div
+                <div
                     key={idx}
-                    variants={fadeIn('up', 'spring', idx * 0.2)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={viewportConfig}
-                    transition={staggerTransition(idx)}
                     className="flex flex-col gap-y-3"
                 >
                     <h2 className="text-xl">{title}</h2>
@@ -115,16 +107,11 @@ export const FooterLinks = () => {
                             )
                         )}
                     </ul>
-                </motion.div>
+                </div>
             ))}
             {contacts.map((contact, idx) => (
-                <motion.div
+                <div
                     key={idx}
-                    variants={fadeIn('up', 'spring', idx * 0.1)}
-                    initial="hidden"
-                    whileInView="show"
-                    viewport={viewportConfig}
-                    transition={staggerTransition(idx)}
                     className="flex flex-col gap-y-3"
                 >
                     <ContactItem
@@ -132,7 +119,7 @@ export const FooterLinks = () => {
                         title={contact.title}
                         href={contact.href}
                     />
-                </motion.div>
+                </div>
 
             ))}
         </div>

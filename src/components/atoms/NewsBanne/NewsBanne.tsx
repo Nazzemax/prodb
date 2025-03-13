@@ -6,18 +6,15 @@ export interface BannerText {
   link: string;
 }
 
-const BANNER_DISMISSED_KEY = "banner_dismissed";
+const BANNER_DISMISSED_KEY_PREFIX = "banner_dismissed_";
 
 const NewsBanner: React.FC = () => {
     const { data, error, isLoading } = useGetBannersQuery();
     const [showBanner, setShowBanner] = useState(false);
     const [bannerContent, setBannerContent] = useState<BannerText | null>(null);
+    const [currentBannerId, setCurrentBannerId] = useState<string | null>(null);
 
     useEffect(() => {
-        // Check localStorage and only proceed if not dismissed
-        const isDismissed = localStorage.getItem(BANNER_DISMISSED_KEY);
-        if (isDismissed) return;
-
         // Find valid banner content
         const validBanner = data?.find(b => {
             const banner = b.banner_text as BannerText | undefined;
@@ -25,16 +22,36 @@ const NewsBanner: React.FC = () => {
         });
 
         if (validBanner) {
-            setBannerContent(validBanner.banner_text);
-            setShowBanner(true);
-            window.dispatchEvent(new CustomEvent("bannerVisible", { detail: true }));
+            const bannerId = validBanner.id;
+            const dismissKey = `${BANNER_DISMISSED_KEY_PREFIX}${bannerId}`;
+            const isDismissed = localStorage.getItem(dismissKey);
+
+            // Only show if this specific banner hasn't been dismissed
+            if (!isDismissed) {
+                setBannerContent(validBanner.banner_text);
+                setCurrentBannerId(bannerId || null);
+                setShowBanner(true);
+                window.dispatchEvent(new CustomEvent("bannerVisible", { 
+                    detail: { 
+                        visible: true,
+                        bannerId 
+                    }
+                }));
+            }
         }
     }, [data]);
 
     const handleDismiss = () => {
-        localStorage.setItem(BANNER_DISMISSED_KEY, "true");
+        if (currentBannerId) {
+            localStorage.setItem(`${BANNER_DISMISSED_KEY_PREFIX}${currentBannerId}`, "true");
+        }
         setShowBanner(false);
-        window.dispatchEvent(new CustomEvent("bannerVisible", { detail: false }));
+        window.dispatchEvent(new CustomEvent("bannerVisible", { 
+            detail: { 
+                visible: false,
+                bannerId: currentBannerId 
+            }
+        }));
     };
 
     // Don't render if any of these conditions are met

@@ -234,3 +234,24 @@ export const MarketingSupportIcon: FC<IconProps> = ({
         </svg>
     );
 };
+
+
+export const RatingIcon: FC<IconProps> = ({
+    ...attributes
+}) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="28"
+            height="26"
+            fill="none"
+            viewBox="0 0 28 26"
+            {...attributes}
+        >
+            <path
+                fill="#F2D600"
+                d="M13.116.676a1 1 0 0 1 1.768 0l3.471 6.579a1 1 0 0 0 .714.519l7.33 1.268a1 1 0 0 1 .546 1.682l-5.184 5.334a1 1 0 0 0-.273.839l1.059 7.362a1 1 0 0 1-1.431 1.04l-6.675-3.282a1 1 0 0 0-.882 0l-6.675 3.282a1 1 0 0 1-1.431-1.04l1.059-7.362a1 1 0 0 0-.273-.84l-5.184-5.333a1 1 0 0 1 .547-1.682L8.93 7.774a1 1 0 0 0 .714-.52z"
+            ></path>
+        </svg>
+    );
+};

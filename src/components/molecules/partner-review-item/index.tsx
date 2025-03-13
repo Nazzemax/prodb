@@ -4,9 +4,10 @@ import { useState } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ChevronRight, Star } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useTranslations } from "next-intl";
+import { RatingIcon } from "@/assets/info-card";
 
 interface ReviewItemProps {
     rating: number;
@@ -27,7 +28,7 @@ export const ReviewItem = ({ rating, user_image, user_name, user_position, text 
                 <div className="p-0 pt-5 lg:pt-12">
                     <div className="flex mb-4 gap-x-2">
                         {Array.from({ length: rating }).map((_, idx) => (
-                            <Star key={idx} className="text-yellow-500" fill="currentColor" />
+                            <RatingIcon key={idx} className="text-yellow-500" fill="currentColor" />
                         ))}
                     </div>
                     <div className="flex gap-x-3">
@@ -40,7 +41,7 @@ export const ReviewItem = ({ rating, user_image, user_name, user_position, text 
                             <div className="text-gray2 text-sm">{user_position}</div>
                         </div>
                     </div>
-                    <p className="text-gray2 line-clamp-6 lg:line-clamp-10 mt-3">{text}</p>
+                    <p className="text-gray2 line-clamp-6 lg:line-clamp-10 mt-3 no-select">{text}</p>
                 </div>
                 <div className="flex justify-center lg:justify-start mt-3">
                     <Dialog open={open} onOpenChange={setOpen}>
@@ -62,7 +63,7 @@ export const ReviewItem = ({ rating, user_image, user_name, user_position, text 
                                     <DialogTitle>
                                         <div className="flex mb-4 gap-x-2">
                                             {Array.from({ length: rating }).map((_, idx) => (
-                                                <Star key={idx} className="text-yellow-500" fill="currentColor" />
+                                                <RatingIcon key={idx} className="text-yellow-500" fill="currentColor" />
                                             ))}
                                         </div>
                                     </DialogTitle>
