@@ -35,30 +35,29 @@ export const FormLayout = forwardRef<HTMLDivElement, FormProps>(
         ref
     ) => {
         const t = useTranslations("FormLayout");
-        const { feedbackRef } = useAppData();
+        const { feedbackRef, data:info } = useAppData();
         const refs = mergeRefs(ref, feedbackRef);
-
         const data: ContactItem[] = useMemo(
             () => [
                 {
                     icon: <Phone />,
                     title: t("companyKGPhone"),
-                    contact: "+996 999 50 44 44",
-                    href: "tel:+996 999 50 44 44",
+                    contact:`${info?.phones[0]?.phone}`,
+                    href:`tel:${info?.phones[0]?.phone}`,
                 },
                 {
                     title: t("companyUZPhone"),
-                    contact: "+998 909 36 09 36",
-                    href: "tel:+998 909 36 09 36",
+                    contact:`${info?.phones[1]?.phone}`,
+                    href:`tel:${info?.phones[1]?.phone}`,
                 },
                 {
                     icon: <Mail />,
                     title: t("companyEmail"),
-                    contact: "info@boldbrands.kg",
-                    href: "mailto:info@boldbrands.kg",
+                    contact:`${info?.emails[0]?.email}`,
+                    href:`tel:${info?.emails[0]?.email}`,
                 },
             ],
-            [t]
+            [t,info]
         );
 
         return (

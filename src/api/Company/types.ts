@@ -81,6 +81,7 @@ export interface CompanyServicesResponse {
     title: string;
     items: { 
         title: string; 
+        link:string;
         image: string;
         tags: { tags: string; }[]
         href?: string;

@@ -8,25 +8,16 @@ import { RequestHandler } from "@/components/atoms/request-handler"
 import { motion } from "framer-motion"
 import { fadeIn, staggerTransition, viewportConfig } from "@/lib/motion"
 
-const hrefMap: Record<string, string> = {
-    "брендинг": "/services/branding",
-    "digital-продвижение": "/services/smm",
-    "видеопродакшн": "/services/video-production",
-    "веб-разработка-и-дизайн": "/services/site-creating",
-    "комплексное-маркетинговое-сопровождение": "/services/marketing-support",
-    "автоматизация-и-аналитика": "/services/crm"
-};
-
 export const CompanyFeatures = () => {
     const { data, isLoading, error } = useGetCompanyServicesQuery()
 
     const normalizeTitle = (title: string) => title.toLowerCase().trim().replace(/\s+/g, '-');
 
     const updatedFeatures = data?.items.map((feature) => {
-        const normalizedTitle = normalizeTitle(feature.title);
         return {
             ...feature,
-            href: hrefMap[normalizedTitle] || "/services/default",
+            title:normalizeTitle(feature.title),
+            href:feature?.link
         };
     });
 
