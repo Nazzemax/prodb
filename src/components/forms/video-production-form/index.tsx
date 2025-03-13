@@ -20,6 +20,8 @@ import { useBrandingFeedbackFormSchema } from "./schema";
 import { Type } from "@/api/Types/types";
 import { useSendVideoServiceFormMutation } from "@/api/Form";
 import { useTranslations } from "next-intl";
+import { useAppData } from "@/context/app-context";
+
 
 
 interface FeedbackFormProps {
@@ -59,7 +61,7 @@ export const VideoProductionForm = ({
     const [selectedBusinessTypes, setSelectedBusinessTypes] = useState<number[]>([]);
     const [openTerms, setOpenTerms] = useState(false);
     const [isFirstStepCompleted, setIsFirstStepCompleted] = useState(false);
-
+    const { data } = useAppData()
     const showTerms = () => {
         setOpenTerms((prev) => !prev);
     };
@@ -265,12 +267,249 @@ export const VideoProductionForm = ({
                                                             </span>
                                                         </FormLabel>
                                                         <Dialog open={openTerms} onOpenChange={setOpenTerms}>
-                                                            <DialogContent>
+                                                            <DialogContent style={{ maxHeight: '80vh', overflowY: 'auto' }}>
                                                                 <DialogTitle>
-                                                                    Скибиди Доп Доп Доп
+      Политика конфиденциальности Bold Brands International
                                                                 </DialogTitle>
+                                                                <div className="dialog-body" style={{ padding: '1rem' }}>
+                                                                    <p>
+                                                                        <em>
+          Дата вступления в силу: <time dateTime="2025-01-01">01.01.2025</time>
+                                                                        </em>
+                                                                    </p>
+      
+                                                                    <section>
+                                                                        <h2>1. Общие положения</h2>
+                                                                        <p>
+          Настоящая Политика конфиденциальности (далее – «Политика») определяет порядок сбора, использования, хранения и защиты персональных данных пользователей (далее – «Пользователь»), предоставляемых при использовании веб-сайта{' '}
+                                                                            <a href="https://www.boldbrandsinternational.com" target="_blank" rel="noopener noreferrer">
+            www.boldbrandsinternational.com
+                                                                            </a>. Политика разработана и применяется Bold Brands International, маркетинговой компанией, для обеспечения безопасности и конфиденциальности информации своих клиентов и посетителей.
+                                                                        </p>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>2. Сбор и обработка персональных данных</h2>
+                                                                        <article>
+                                                                            <h3>2.1. Виды собираемых данных:</h3>
+                                                                            <ul>
+                                                                                <li>
+                                                                                    <strong>Личные данные:</strong> ФИО, адрес электронной почты, номер телефона и иные сведения, предоставляемые Пользователем добровольно.
+                                                                                </li>
+                                                                                <li>
+                                                                                    <strong>Технические данные:</strong> IP-адрес, тип браузера, операционная система, информация о посещённых страницах и прочие данные, автоматически собираемые при посещении Сайта.
+                                                                                </li>
+                                                                                <li>
+                                                                                    <strong>Данные файлов cookie:</strong> Информация, собираемая посредством файлов cookie и аналогичных технологий (см. раздел 4).
+                                                                                </li>
+                                                                            </ul>
+                                                                        </article>
+                                                                        <article>
+                                                                            <h3>2.2. Правовая основа обработки:</h3>
+                                                                            <p>
+            Обработка персональных данных осуществляется на основании согласия Пользователя, исполнения договорных обязательств или иных оснований, предусмотренных действующим законодательством.
+                                                                            </p>
+                                                                        </article>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>3. Цели обработки персональных данных</h2>
+                                                                        <ul>
+                                                                            <li>Обеспечение работы и функциональности Сайта.</li>
+                                                                            <li>Предоставление запрашиваемых услуг и информации.</li>
+                                                                            <li>Улучшение качества обслуживания и оптимизация работы Сайта.</li>
+                                                                            <li>
+            Проведение маркетинговых и аналитических исследований (при наличии согласия Пользователя).
+                                                                            </li>
+                                                                            <li>Обеспечение безопасности Сайта и предотвращение мошеннических действий.</li>
+                                                                        </ul>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>4. Использование файлов cookie и аналогичных технологий</h2>
+                                                                        <article>
+                                                                            <h3>4.1.</h3>
+                                                                            <p>
+            Файлы cookie и аналогичные технологии используются для повышения удобства пользования Сайтом, персонализации контента и проведения статистического анализа.
+                                                                            </p>
+                                                                        </article>
+                                                                        <article>
+                                                                            <h3>4.2.</h3>
+                                                                            <p>
+            Пользователь может изменить настройки браузера для ограничения использования файлов cookie, однако это может повлиять на корректную работу некоторых функций Сайта.
+                                                                            </p>
+                                                                        </article>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>5. Передача персональных данных третьим лицам</h2>
+                                                                        <article>
+                                                                            <h3>5.1.</h3>
+                                                                            <p>
+            Bold Brands International может передавать персональные данные следующим категориям получателей:
+                                                                            </p>
+                                                                            <ul>
+                                                                                <li>
+              Подрядчикам и партнёрам, оказывающим услуги по техническому обслуживанию, маркетингу, аналитике и обеспечению работы Сайта.
+                                                                                </li>
+                                                                                <li>
+              Органам государственной власти и иным организациям в случаях, предусмотренных законодательством.
+                                                                                </li>
+                                                                            </ul>
+                                                                        </article>
+                                                                        <article>
+                                                                            <h3>5.2.</h3>
+                                                                            <p>
+            Передача данных осуществляется с соблюдением всех мер безопасности, установленных законодательством.
+                                                                            </p>
+                                                                        </article>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>6. Защита персональных данных</h2>
+                                                                        <p>
+                                                                            <strong>6.1.</strong> Bold Brands International применяет современные организационные и технические меры для защиты персональных данных от несанкционированного доступа, утраты, изменения или распространения.
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong>6.2.</strong> Принятые меры регулярно пересматриваются и обновляются в соответствии с требованиями законодательства.
+                                                                        </p>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>7. Права Пользователей</h2>
+                                                                        <article>
+                                                                            <h3>7.1.</h3>
+                                                                            <p>Пользователь имеет право:</p>
+                                                                            <ul>
+                                                                                <li>
+              Запрашивать информацию о своих персональных данных, находящихся в обработке.
+                                                                                </li>
+                                                                                <li>
+              Требовать уточнения, блокирования или удаления своих персональных данных, если обработка данных осуществляется с нарушением законодательства.
+                                                                                </li>
+                                                                                <li>
+              Отзывать данное ранее согласие на обработку персональных данных (обработка может быть прекращена для маркетинговых целей).
+                                                                                </li>
+                                                                                <li>
+              Обращаться с жалобами в надзорные органы в случае нарушения прав в области обработки персональных данных.
+                                                                                </li>
+                                                                            </ul>
+                                                                        </article>
+                                                                        <article>
+                                                                            <h3>7.2.</h3>
+                                                                            <p>
+            Для реализации своих прав Пользователь может обращаться по контактным данным, указанным в разделе 9.
+                                                                            </p>
+                                                                        </article>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>8. Изменения в Политике конфиденциальности</h2>
+                                                                        <p>
+                                                                            <strong>8.1.</strong> Bold Brands International оставляет за собой право вносить изменения в данную Политику для её актуализации и приведения в соответствие с законодательством.
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong>8.2.</strong> Новая редакция Политики вступает в силу с момента её публикации на Сайте.
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong>8.3.</strong> Рекомендуется регулярно знакомиться с актуальной версией Политики.
+                                                                        </p>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>9. Контактная информация</h2>
+                                                                        <p>
+          По всем вопросам, связанным с обработкой персональных данных, обращайтесь по следующим контактам:
+                                                                        </p>
+                                                                        <ul>
+                                                                            <li>
+                                                                                <strong>Название компании:</strong> Bold Brands International
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Описание:</strong> Bold Brands International – ваш внешний отдел маркетинга
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Рабочее время:</strong> Пн-Пт: 09:00-18:00
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>WhatsApp:</strong>{' '}
+                                                                                <a
+                                                                                    href={`https://wa.me/${data?.phones[0].phone.slice(1).split(' ').join('')}`}
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                >
+              Напишите нам на Whatsapp
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Видео-презентация:</strong>{' '}
+                                                                                <a
+                                                                                    href="https://api.boldbrands.pro/media/company/video/marketing_wa6DSCy.mp4"
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                >
+              Смотреть видео
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Промо-видео:</strong>{' '}
+                                                                                <a
+                                                                                    href="https://api.boldbrands.pro/media/company/video/202503122240_1.mp4"
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                >
+              Смотреть промо-видео
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Адреса:</strong>
+                                                                                <ul>
+                                                                                    <li>Адрес (Бишкек): {data?.addresses[0]?.address}</li>
+                                                                                    <li>Адрес (Ташкент): {data?.addresses[1]?.address}</li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Телефоны:</strong>
+                                                                                <ul>
+                                                                                    <li>Телефон (Бишкек): {data?.phones[0]?.phone}</li>
+                                                                                    <li>Phone (Tashkent): {data?.phones[1]?.phone}</li>
+                                                                                </ul>
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Электронная почта:</strong>{' '}
+                                                                                <a href={`mailto:${data?.emails?.[0]?.email}`}>
+                                                                                    {data?.emails?.[0]?.email}
+                                                                                </a>
+                                                                            </li>
+                                                                            <li>
+                                                                                <strong>Социальные сети:</strong>{' '}
+                                                                                <a
+                                                                                    href={`${data?.social_networks?.[0]?.link}`}
+                                                                                    target="_blank"
+                                                                                    rel="noopener noreferrer"
+                                                                                >
+              Перейти
+                                                                                </a>
+                                                                            </li>
+                                                                        </ul>
+                                                                    </section>
+      
+                                                                    <section>
+                                                                        <h2>10. Заключительные положения</h2>
+                                                                        <p>
+                                                                            <strong>10.1.</strong> Использование Сайта означает полное согласие Пользователя с условиями данной Политики конфиденциальности.
+                                                                        </p>
+                                                                        <p>
+                                                                            <strong>10.2.</strong> Политика регулируется законодательством Кыргызской Республики.
+                                                                        </p>
+                                                                    </section>
+                                                                </div>
                                                             </DialogContent>
                                                         </Dialog>
+
+
+
+
                                                     </div>
                                                 </FormItem>
                                             )}

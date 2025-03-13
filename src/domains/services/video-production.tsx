@@ -15,7 +15,6 @@ import { useGetVideoTypesQuery } from "@/api/Types";
 import { useTranslations } from "next-intl";
 import { useGetVideoProductionQuery } from "@/api/VideoProduction";
 import { ClientVideoReviewList } from "@/components/organisms/client-video-review-list";
-import { VideoProductionCompany } from "@/components/organisms/video-about-videoproduction";
 
 const VideoProductionPage = () => {
     const slug = useSlug()
@@ -124,7 +123,7 @@ const VideoProductionPage = () => {
                 card_description={"Качественный видеоконтент — это ключ к успешному продвижению вашего бизнеса."}
                 card_icon={<VideoProductionIcon />}
             />
-            <VideoProductionCompany />
+            <VideoAboutCompany />
             <ServicePostList
                 title={serviceData.title}
                 items={serviceData.items}

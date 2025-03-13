@@ -18,9 +18,6 @@ const CasePage = () => {
     const { data, error, isLoading } = useGetPostByIdQuery(id, {
         skip: !id,
     });
-
-    console.log(data)
-
     return (
         <RequestHandler
             isLoading={isLoading}
