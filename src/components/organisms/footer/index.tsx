@@ -9,11 +9,11 @@ import { motion } from "framer-motion";
 import React from "react";
 
 export const Footer = () => {
-    const { data, feedbackRef } = useAppData()
+    const { data } = useAppData()
 
     return (
-        <footer ref={feedbackRef} className="space-y-16 p-4 md:p-16 bg-background">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-3 mt-8">
+        <footer className="space-y-16 p-4 md:p-16 bg-background">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-5 mt-8">
                 <div className="flex flex-col justify-between">
                     <motion.div
                         variants={textVariant(0.3)}
@@ -23,7 +23,7 @@ export const Footer = () => {
                         transition={staggerTransition(0)}
                         className="flex flex-col gap-4"
                     >
-                        <Logo className="w-[300px] h-[40px]" />
+                        <Logo />
                         <p className="text-gray2 text-base max-w-sm">{data?.description}</p>
                     </motion.div>
                 </div>

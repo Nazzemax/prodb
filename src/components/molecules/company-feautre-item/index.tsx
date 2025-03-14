@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useTranslations } from "next-intl";
 export interface FeatureProps {
     title: string;
     tags: { tags: string; }[];
@@ -11,6 +12,9 @@ export interface FeatureProps {
 }
 
 export const CompanyFeatureItem = ({ image, title, tags, href }: FeatureProps) => {
+
+    const t = useTranslations("Buttons")
+    
     return (
         <div className="h-full border rounded-2xl shadow-lg flex flex-col overflow-hidden transition-all duration-300 hover:shadow-xl">
             <div className="w-full h-[250px]  relative overflow-hidden">
@@ -41,7 +45,7 @@ export const CompanyFeatureItem = ({ image, title, tags, href }: FeatureProps) =
                     className="text-accent mt-auto"
                 >
                     <Link href={href || ''}>
-                        Подробнее
+                        {t("details")}
                     </Link>
                 </ButtonWithIcon>
             </div>

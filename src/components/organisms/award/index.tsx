@@ -24,7 +24,7 @@ export const Award = ({
 }: AwardProps) => {
     return (
         <div className='w-full max-w-[1920px] flex justify-center items-center px-4 mb-20'>
-            <div className="relative w-full grid grid-cols-1 lg:grid-cols-2 place-items-center gap-y-5 max-h-[600px] md:max-h-full text-white bg-[#0D0D0D] rounded-3xl py-14 px-6 overflow-hidden">
+            <div className="relative w-full grid grid-cols-1 xl:grid-cols-2 place-items-center gap-y-5 max-h-[600px] md:max-h-full text-white bg-[#0D0D0D] rounded-3xl py-14 px-6 overflow-hidden">
                 <motion.div
                     variants={textVariant(0.3)}
                     initial="hidden"

@@ -59,6 +59,11 @@
     },
     "video": "Mijozlarimizdan videofikrlar"
   },
+  "BlogPage": {
+    "title": "Maqolalar",
+    "sub_title": "Yangiliklar va ishimizni kuzatishingizga yordam beradigan maqolalar.",
+    "totalPosts": "Jami maqolalar: "
+  },
   "ThreePost": {
     "btn": "Barcha Keys"
   },
@@ -627,7 +632,8 @@
     "phone_error": "Telefon raqami noto'g'ri!"
   },
   "Buttons": {
-    "btn1": "Konsultatsiya olish"
+    "btn1": "Konsultatsiya olish",
+    "details": "Batafsil ma'lumot"
   },
   "Map": {
     "btn1": "Bishkek",

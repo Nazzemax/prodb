@@ -4,16 +4,16 @@ import createNextIntlPlugin from "next-intl/plugin";
 // @ts-expect-error
 import withSvgr from "next-plugin-svgr";
 const nextConfig: NextConfig = withSvgr({
-  reactStrictMode: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "api.boldbrands.pro",
-        pathname: "**",
-      },
-    ],
-  },
+    reactStrictMode: true,
+    images: {
+        remotePatterns: [
+            {
+                protocol: "https",
+                hostname: "api.boldbrands.pro",
+                pathname: "**",
+            },
+        ],
+    },
 });
 
 const withNextIntl = createNextIntlPlugin();

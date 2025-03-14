@@ -52,7 +52,6 @@ export const CompanyFeatures = () => {
                     ))}
                 </div>
             </RequestHandler>
-
         </section>
     )
 }

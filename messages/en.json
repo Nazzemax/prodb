@@ -59,6 +59,11 @@
     },
     "video": "Video testimonials from our clients"
   },
+  "BlogPage": {
+    "title": "Articles",
+    "sub_title": "Articles that will help you follow the news and our work.",
+    "totalPosts": "Total articles: "
+  },
   "ThreePost": {
     "btn": "All cases"
   },
@@ -524,7 +529,8 @@
     "phone_error": "Incorrect phone number!"
   },
   "Buttons": {
-    "btn1": "Get a Consultation"
+    "btn1": "Get a Consultation",
+    "details": "Details"
   },
   "Map": {
     "btn1": "Bishkek",

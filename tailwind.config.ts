@@ -108,7 +108,8 @@ export default {
                 '4xl': ['4rem', { lineHeight: '1' }], //64px
                 '5xl': ['4.25rem', { lineHeight: '1' }], //68px
                 '6xl': ['4.5rem', { lineHeight: '1' }] //72px
-            }
+            },
+            
         }
     },
     // eslint-disable-next-line @typescript-eslint/no-require-imports

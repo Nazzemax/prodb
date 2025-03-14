@@ -20,7 +20,7 @@ export const CasesList = ({ posts }: CasesListProps) => {
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(false); // состояние для загрузки
-    const pageSize = 4;
+    const pageSize = 9;
     const t = useTranslations("Cases");
 
     const tags = [
@@ -36,10 +36,10 @@ export const CasesList = ({ posts }: CasesListProps) => {
         useEffect(() => {
             const handler = setTimeout(() => {
                 setDebouncedValue(value);
-                setIsLoading(false); // останавливаем индикатор загрузки
+                setIsLoading(false);
             }, delay);
 
-            setIsLoading(true); // запускаем индикатор загрузки
+            setIsLoading(true);
             return () => {
                 clearTimeout(handler);
             };

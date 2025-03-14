@@ -80,7 +80,7 @@ export const NavigationBar = () => {
 
     return (
         <NavigationMenu>
-            <NavigationMenuList className={cn("hidden xl:flex")}>
+            <NavigationMenuList className={cn("hidden lg:flex")}>
                 <NavigationMenuItem>
                     <Link href="/home" legacyBehavior passHref>
                         <NavigationMenuLink

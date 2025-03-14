@@ -12,15 +12,16 @@ import { Heading } from "@/components/atoms/heading";
 import { motion } from "framer-motion";
 import { fadeIn, viewportConfig, staggerTransition } from "@/lib/motion";
 import { useAppData } from "@/context/app-context";
+import Image from "next/image";
 
 interface PageTitleLayoutProps {
-  title: string;
-  top_title?: string;
-  sub_title?: string;
-  button_text: string;
-  bg_image?: string;
-  breadcrumb?: BreadcrumbProps[];
-  isGray?: boolean;
+    title: string;
+    top_title?: string;
+    sub_title?: string;
+    button_text: string;
+    bg_image?: string;
+    breadcrumb?: BreadcrumbProps[];
+    isGray?: boolean;
 }
 
 export const PageTitleLayout = ({
@@ -36,16 +37,28 @@ export const PageTitleLayout = ({
 
     return (
         <div className="relative h-screen max-w-[1920px] flex justify-center items-center bg-cover bg-center bg-no-repeat">
-            <div
+            {/* <div
                 className="absolute inset-0 bg-cover bg-center bg-no-repeat"
                 style={{
                     backgroundImage: `url(${bg_image})`,
                     filter: isGray ? "grayscale(100%)" : "none",
                 }}
-            />
+            /> */}
+            {bg_image &&
+                <Image
+                    src={bg_image}
+                    alt={"BG_IMAGE"}
+                    priority                    
+                    fill
+                    sizes="100vw"
+                    style={{
+                        objectFit: 'cover'
+                    }}
+
+                />
+            }
             <div
-                className={`absolute inset-0 ${
-                    isGray ? "bg-gradient-to-t" : "bg-gradient-to-r"
+                className={`absolute inset-0 ${isGray ? "bg-gradient-to-t" : "bg-gradient-to-r"
                 } from-black to-black/10`}
             />
             <div className="max-w-[1280px] h-screen flex flex-col justify-center md:items-center gap-y-6 px-5 z-10">
