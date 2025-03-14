@@ -67,7 +67,7 @@ export const FeedbackForm = () => {
 
     return (
         <Card className="bg-[#18181A] border-none md:p-8 rounded-3xl">
-            <CardHeader className="font-bold text-white text-xl md:text-2xl">
+            <CardHeader className="font-bold text-white text-xl md:text-2xl md:mb-8">
                 {t("title")}
             </CardHeader>
             <CardContent>
@@ -77,7 +77,7 @@ export const FeedbackForm = () => {
                             <FormField
                                 control={form.control}
                                 name="sender_name"
-                                render={({ field }) => (
+                                render={({ field }) => (    
                                     <FormItem className="flex flex-col items-start">
                                         <FormLabel>{t("name")}</FormLabel>
                                         <FormControl className="w-full">

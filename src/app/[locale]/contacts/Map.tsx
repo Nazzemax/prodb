@@ -159,6 +159,14 @@ export const Map: React.FC = () => {
                     center={center}
                     options={mapOptions}
                 >
+                    <Marker
+                        position={center}
+                        icon={{
+                            url: "/map/mapMarker.svg",
+                            scaledSize: new window.google.maps.Size(50, 50), //место для кастомной иконки
+                        }}
+                    />
+                            
                     <OverlayView
                         position={center}
                         mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
@@ -184,13 +192,8 @@ export const Map: React.FC = () => {
                                 transform: "translateX(-50%)",
                             }}
                         >
-                            <Marker
-                                position={center}
-                                icon={{
-                                    url: "/map/mapMarker.svg",
-                                    scaledSize: new window.google.maps.Size(50, 50), //место для кастомной иконки
-                                }}
-                            />
+                            
+                            
                             {mapCondition ? (
                                 <p style={{ fontWeight: "700", textAlign: "start" }}>
                                     {t("adress1")}

@@ -115,7 +115,7 @@ export const BrandingFeedbackForm = ({
 
     return (
         <Card className="bg-background-dark2 border-none md:p-8 rounded-3xl">
-            <CardHeader className="font-bold text-primary-foreground text-xl md:text-2xl">
+            <CardHeader className="font-bold text-primary-foreground text-xl md:text-2xl md:mb-8">
                 {t("title")}
             </CardHeader>
             <CardContent>
@@ -132,7 +132,7 @@ export const BrandingFeedbackForm = ({
                                     toast.error("Выберите хотя бы один вариант в каждом поле");
                                 }
                             }}>
-                                <TabsList className="flex flex-col items-start lg:flex-row mb-8 mt-5 md:mt-0 bg-transparent">
+                                <TabsList className="flex flex-col items-start lg:flex-row sm:mb-10 max-sm:mb-10 mb-8 md:mb-10 mt-5 md:mt-0  bg-transparent">
                                     <TabsTrigger value='business' className="space-x-2 group">
                                         {isFirstStepCompleted
                                             ? <div className="border-2 rounded-full p-2  group-data-[state=active]:border-accent">
