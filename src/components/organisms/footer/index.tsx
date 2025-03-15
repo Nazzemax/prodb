@@ -13,7 +13,7 @@ export const Footer = () => {
 
     return (
         <footer className="space-y-16 p-4 md:p-16 bg-background">
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-y-5 mt-8">
+            <div className="flex flex-col xl:flex-row justify-between gap-y-5 mt-8">
                 <div className="flex flex-col justify-between">
                     <motion.div
                         variants={textVariant(0.3)}

@@ -82,7 +82,7 @@ export const Header = () => {
                 <NavigationBar />
                 <div className="flex gap-x-0.5 items-center">
                     <LanguageSelect />
-                    <div className="flex lg:hidden">
+                    <div className="flex xl:hidden">
                         <MenuSheet />
                     </div>
                 </div>
