@@ -22,7 +22,7 @@ import {
 import { usePrevSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
 
-export const NavigationBar = () => {
+export const NavigationBar = React.memo(() => {
     const slug = usePrevSlug();
     const isCases = slug === "cases";
     const t = useTranslations("HomePage");
@@ -166,7 +166,9 @@ export const NavigationBar = () => {
             </NavigationMenuList>
         </NavigationMenu>
     );
-};
+})
+
+NavigationBar.displayName = 'NavigationBar'
 
 const ListItem = React.forwardRef<
   React.ComponentRef<"a">,

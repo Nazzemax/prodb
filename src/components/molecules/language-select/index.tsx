@@ -10,7 +10,7 @@ import {
 import RussianIcon from "@/assets/dropdown/rus.svg";
 import UzbIcon from "@/assets/dropdown/usb.svg";
 import UsaIcon from "@/assets/dropdown/usa.svg";
-import { useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useAppDispatch } from "@/hooks/useAppDispatch";
 import { baseApi } from "@/api/Base";
@@ -36,7 +36,7 @@ const languageList: LanguageProps[] = [
     { id: "3", title: "O'zbek", shortTitle: "UZ", headers: "uz", icon: <UzbIcon /> },
 ];
 
-export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
+export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
     const locale = useLocale() as Locale;
     const router = useRouter();
     const pathname = usePathname();
@@ -56,7 +56,7 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
         }
     }, [locale, dispatch, isClient]);
 
-    const onChangeLanguage = (value: string) => {
+    const onChangeLanguage = useCallback((value: string) => {
         dispatch(languageActions.setLanguage(value));
         dispatch(baseApi.util.resetApiState());
 
@@ -66,7 +66,7 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
         if (value !== locale) {
             router.replace(pathname, { locale: value as Locale });
         }
-    };
+    }, [dispatch, locale, pathname, router])
 
     useEffect(() => {
         setIsClient(true);
@@ -110,4 +110,6 @@ export const LanguageSelect = ({ isMobile }: { isMobile?: boolean }) => {
             {isCase && <ButtonWithIcon className="max-lg:hidden" variant="secondary">Связаться</ButtonWithIcon>}
         </div>
     );
-};
+})
+
+LanguageSelect.displayName = "LanguageSelect";

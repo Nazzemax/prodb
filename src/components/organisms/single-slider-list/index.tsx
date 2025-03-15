@@ -6,6 +6,7 @@ import { FC } from 'react';
 import { CustomCarouselControls } from '@/components/molecules/custom-controls';
 import { useGetBannersQuery } from '@/api/Banners';
 import { Spinner } from '@/components/atoms/spinner';
+import Fade from 'embla-carousel-fade';
 
 export const SingleSliderList = () => {
     const { data, error, isLoading } = useGetBannersQuery()
@@ -33,6 +34,7 @@ export const SingleSliderList = () => {
             opts={{
                 loop: true,
             }}
+            plugins={[Fade()]}
             className="w-full h-screen max-w-[1920px]"
         >
             <CarouselContent>
