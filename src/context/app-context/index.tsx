@@ -1,5 +1,4 @@
 'use client';
-
 import { useGetBusinessTypesQuery } from "@/api/BusinessType";
 import { useGetCompanyInfoQuery } from "@/api/Company";
 import { CompanyInfoResponse } from "@/api/Company/types";

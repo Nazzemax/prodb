@@ -2,10 +2,6 @@ import { Link } from '@/i18n/navigation'
 import localFont from 'next/font/local'
 import { memo } from 'react'
 
-// const akrobatFontBlack = localFont({
-//     src: "../../../../public/fonts/Akrobat-Black.otf",
-// })
-
 const akrobatFontExtraBold = localFont({
     src: "../../../../public/fonts/Akrobat-ExtraBold.otf",
 })
@@ -13,9 +9,12 @@ const akrobatFontSemibold = localFont({
     src: "../../../../public/fonts/Akrobat-Bold.otf",
 })
 
+    const Reload = () => location.reload()
+
+
 export const Logo = memo(() => {
     return (
-        <Link href={'/home'} className={`flex items-center text-accent ${akrobatFontExtraBold.className} text-2xl md:text-3xl font-extrabold`}>
+        <Link href={'/'} target='_top' onClick={Reload} className={`flex items-center text-accent ${akrobatFontExtraBold.className} text-2xl md:text-3xl font-extrabold`}>
             <div className="flex flex-col gap-1 mr-2">
                 <div className="w-[26px] h-[8px] bg-accent rounded-bl-[4px] rounded-tr-[4px]"></div>
                 <div

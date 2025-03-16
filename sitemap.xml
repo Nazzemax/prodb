@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset 
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+>
+  <url>
+    <loc>https://boldbrands.pro/ru/home</loc>
+    <lastmod>2025-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://boldbrands.pro/ru/home" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://boldbrands.pro/en/home" />
+    <xhtml:link rel="alternate" hreflang="uz" href="https://boldbrands.pro/uz/home" />
+  </url>
+  <url>
+    <loc>https://boldbrands.pro/en/home</loc>
+    <lastmod>2025-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://boldbrands.pro/ru/home" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://boldbrands.pro/en/home" />
+    <xhtml:link rel="alternate" hreflang="uz" href="https://boldbrands.pro/uz/home" />
+  </url>
+  <url>
+    <loc>https://boldbrands.pro/uz/home</loc>
+    <lastmod>2025-03-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://boldbrands.pro/ru/home" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://boldbrands.pro/en/home" />
+    <xhtml:link rel="alternate" hreflang="uz" href="https://boldbrands.pro/uz/home" />
+  </url>
+</urlset>

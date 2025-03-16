@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+body, html {
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   overflow-y: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
   scroll-behavior: smooth;
 }
 
-/* html::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-} */
+
 
 @layer base {
   :root {
