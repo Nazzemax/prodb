@@ -52,7 +52,7 @@ export const MobileNavigationBar = ({
             { title: t("navLinks.home"), href: "/home" },
             { title: t("navLinks.about"), href: "/about" },
             { title: t("navLinks.cases"), href: "/cases" },
-            { title: t("navLinks.blog"), href: "/blog" },
+            // { title: t("navLinks.blog"), href: "/blog" },
         ],
         [t]
     );
