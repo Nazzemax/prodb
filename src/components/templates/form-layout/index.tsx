@@ -37,7 +37,7 @@ const BgImage = memo(() => {
                 alt="form_bg"
                 width={800}
                 height={600}
-                className="w-auto h-auto"
+                className="w-full h-auto"
             />
         </div>
     )

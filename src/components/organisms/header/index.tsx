@@ -4,7 +4,7 @@ import { Logo } from "@/components/atoms/logo";
 import { LanguageSelect } from "@/components/molecules/language-select";
 import { MenuSheet } from "@/components/molecules/menu-sheet";
 import { NavigationBar } from "@/components/molecules/navigation-bar";
-import { memo, useEffect, useMemo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 export const Header = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -80,7 +80,7 @@ export const Header = () => {
     }, [lastScrollY, scrollUpDistance, lastBannerId]);
 
     return (
-        <div
+        <header
             className={`fixed top-0 left-0 right-0 w-full max-w-[1920px] m-auto z-[50] transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
             } ${isBlurred ? "bg-black/30 backdrop-blur-md" : "bg-black/0"} ${isShadowVisible ? "shadow-md" : "shadow-none"
             }`}
@@ -96,6 +96,6 @@ export const Header = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </header>
     );
 };

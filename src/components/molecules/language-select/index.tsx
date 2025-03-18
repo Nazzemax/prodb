@@ -21,6 +21,7 @@ import { Locale } from "@/i18n/routing";
 import { usePathname, useRouter } from "@/i18n/navigation";
 import { useLocale } from "next-intl";
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
+import { useAppData } from "@/context/app-context";
 
 interface LanguageProps {
     id: string;
@@ -40,6 +41,7 @@ export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
     const locale = useLocale() as Locale;
     const router = useRouter();
     const pathname = usePathname();
+    const { scrollToFeedback } = useAppData()
 
     const [isClient, setIsClient] = useState(false);
     const [isCase, setIsCase] = useState(false);
@@ -105,7 +107,15 @@ export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
                     ))}
                 </SelectContent>
             </Select>
-            {isCase && <ButtonWithIcon className="max-lg:hidden" variant="secondary">Связаться</ButtonWithIcon>}
+            {isCase &&
+                <ButtonWithIcon
+                    onClick={scrollToFeedback}
+                    className="max-lg:hidden"
+                    variant="secondary"
+                >
+                    Связаться
+                </ButtonWithIcon>
+            }
         </div>
     );
 })
