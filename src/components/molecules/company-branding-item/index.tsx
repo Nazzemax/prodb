@@ -13,6 +13,7 @@ export const CompanyBrandingItem: FC<CompanyBrandingItemProps> = ({ image }) => 
             width={400}
             height={302}
             className="rounded-2xl aspect-video mx-2"
+            quality={100}
         />
     )
 }

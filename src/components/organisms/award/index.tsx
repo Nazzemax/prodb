@@ -55,6 +55,7 @@ export const Award = ({
                         alt="award"
                         width={0}
                         height={0}
+                        quality={100}
                     />
                 </motion.div>
                 <AwardBg className="absolute z-0" />

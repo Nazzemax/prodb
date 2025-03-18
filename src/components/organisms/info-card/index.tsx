@@ -64,6 +64,7 @@ export const InfoCard = ({
                             width={648}
                             height={404}
                             className="rounded-2xl w-full h-full"
+                            quality={100}
                         />
                     }
                 </div>

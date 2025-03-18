@@ -102,6 +102,7 @@ export const Advantages: React.FC<Smm> = ({isSmm = false}) => {
                                     alt={`circle${index + 1}`}
                                     className={styles.image}
                                     priority={index === 0} 
+                                    quality={100}
                                 />
                                 <div className={`${styles.advantages__cirlceText} `} style={isSmm ? {flexDirection:'column-reverse'}:undefined}>
                                     <span className={styles.advantages__circleTitle}>
@@ -129,6 +130,7 @@ export const Advantages: React.FC<Smm> = ({isSmm = false}) => {
                                     alt={`circle${index + 3}`}
                                     className={styles.image}
                                     priority={index === 0} 
+                                    quality={100}
                                 />
                                 <div className={`${styles.advantages__cirlceText}`}  style={isSmm ? {flexDirection:'column-reverse'}:undefined}>
                                     <span className={styles.advantages__circleTitle}>

@@ -14,6 +14,7 @@ export const CompanyPartnerItem: FC<CompanyPartnerItemProps> = ({ company_name, 
             width={274}
             height={216}
             className="grayscale hover:grayscale-0 transition-all duration-300"
+            quality={100}
         />
     )
 }

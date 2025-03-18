@@ -47,6 +47,7 @@ export const PageTitleLayout = ({
                     style={{
                         objectFit: 'cover'
                     }}
+                    quality={100}
                 />
             }
             <div

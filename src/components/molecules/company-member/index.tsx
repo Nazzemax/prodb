@@ -21,6 +21,7 @@ export const CompanyMember: FC<CompanyMemberProps> = ({
                     width={308}
                     height={460}
                     className="rounded-2xl w-full h-auto object-cover"
+                    quality={100}
                 />
                 <div className="absolute bottom-5 left-5 z-50">
                     <div className="flex flex-col gap-0.5">

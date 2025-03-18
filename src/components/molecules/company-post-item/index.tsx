@@ -39,6 +39,7 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
                     height={0}
                     sizes="100vw"
                     className="rounded-2xl w-full h-[320px] object-cover transition-transform duration-500 scale-100 group-hover:scale-125"
+                    quality={100}
                 />
                 <div className="absolute top-7 left-6 flex gap-2 flex-wrap">
                     {tags.map((tag) => (
@@ -63,6 +64,7 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
                             height={0}
                             sizes="100vw"
                             className="w-auto h-auto"
+                            quality={100}
                         />
                         <span className="truncate">{social.subscribers} {social.title}</span>
                     </Badge>
