@@ -8,6 +8,7 @@ import { ServiceCrmIcon2} from "@/assets/services/crm";
 import { MarketingIcon } from "@/assets/services/marketing";
 import { SeoHowWeWork5 } from "@/assets/services/seo";
 import { RequestHandler } from "@/components/atoms/request-handler";
+import { FeedbackForm } from "@/components/forms/feedback-form";
 import { MarketingSupportFeedbackForm } from "@/components/forms/marketing-support-form";
 import { CompanyPostList } from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
@@ -36,7 +37,7 @@ const MarketingSupportPage = () => {
         title: t('WhatWeDo.mainTitle'),
         items: [
             {
-                image: "/images/services/marketing-support/marketing1.png",
+                image: "/images/services/marketing-support/marketing1.webp",
                 image_right: false,
                 title: t('WhatWeDo.fTitle'),
                 sub_title: '',
@@ -47,7 +48,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing2.png",
+                image: "/images/services/marketing-support/marketing2.webp",
                 image_right: true,
                 title: t('WhatWeDo.sTitle'),
                 sub_title: '',
@@ -58,7 +59,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing3.png",
+                image: "/images/services/marketing-support/marketing3.webp",
                 image_right: false,
                 title: t('WhatWeDo.thTitle'),
                 sub_title: '',
@@ -69,7 +70,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing4.png",
+                image: "/images/services/marketing-support/marketing4.webp",
                 image_right: true,
                 title: t('WhatWeDo.fourTitle'),
                 sub_title: '',
@@ -80,7 +81,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing5.png",
+                image: "/images/services/marketing-support/marketing5.webp",
                 image_right: false,
                 title: t('WhatWeDo.fiveTitle'),
                 sub_title: '',
@@ -171,7 +172,7 @@ const MarketingSupportPage = () => {
                 card_title={t("MarketingSupport.bottomTitle")}
                 card_description={t("MarketingSupport.bottomText")}
                 card_icon={<MarketingSupportIcon />}
-                image={'/images/services/smm/creating-ad_1.webp'}
+                image={'/images/services/marketing-support/marketing_infocard.webp'}
             />
             <ServicePostList
                 title={serviceData.title}
@@ -185,12 +186,7 @@ const MarketingSupportPage = () => {
             <MarketingResults data={dataResults} />
             <CompanyPostList />
             <FormLayout
-                nestedForm={
-                    <MarketingSupportFeedbackForm
-                        business_types={business_types}
-                        task_types={task_types || []}
-                    />
-                }
+                nestedForm={<FeedbackForm/>}
             />
         </RequestHandler>
     );

@@ -9,24 +9,62 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import CompanyInfoSVG from "@/assets/backgrounds/company_info.svg";
 import { useTranslations } from "next-intl";
+import { useSlug } from "@/hooks/useSlug";
+import { useGetCompanyVideoReviewsQuery } from "@/api/Company";
 
 export const ClientReviewList = ({
     hasSubTitle,
     hasBg,
-    title,
-    sub_title,
-    reviews,
 }: {
   hasSubTitle?: boolean;
   hasBg?: boolean;
-  title: string;
-  sub_title: string;
-  reviews: Array<{ video: string }>;
 }) => {
-    // const { data } = useGetCompanyVideoReviewsQuery();
+    const { data: reviews = [] } = useGetCompanyVideoReviewsQuery();
     const [currentPage, setCurrentPage] = useState(0);
-    const totalPages = reviews.length;
 
+    const pathname = useSlug() as 
+    "blog" |
+    "cases" |
+    "home" |
+    "smm" |
+    "video-production"
+    ;
+
+    const paths = {
+        "blog": {
+            sub_title: reviews[2]?.sub_title || "",
+            title: reviews[2]?.title || "",
+            items: reviews[2]?.items || [],
+            totalPages: reviews[2]?.items.length,
+        },
+        "cases": {
+            sub_title: reviews[1]?.sub_title || "",
+            title: reviews[1]?.title || "",
+            items: reviews[1]?.items || [],
+            totalPages: reviews[1]?.items.length,
+        },
+        "home": {
+            sub_title: reviews[1]?.sub_title || "",
+            title: reviews[1]?.title || "",
+            items: reviews[1]?.items || [],
+            totalPages: reviews[1]?.items.length,
+        },
+        "smm": {
+            sub_title: reviews[1]?.sub_title || "",
+            title: reviews[1]?.title || "",
+            items: reviews[1]?.items || [],
+            totalPages: reviews[1]?.items.length,
+        },
+        "video-production": {
+            sub_title: reviews[0]?.sub_title || "",
+            title: reviews[0]?.title || "",
+            items: reviews[0]?.items || [],
+            totalPages: reviews[0]?.items.length,
+        },
+
+    };
+
+    const { sub_title, title, items, totalPages} = paths[pathname] || {};
     const t = useTranslations("Cases");
 
     const handleNext = () => {
@@ -45,9 +83,9 @@ export const ClientReviewList = ({
                 <div className={cn("max-w-[1280px] m-auto", hasBg ? "py-16" : "")}>
                     <div className="flex flex-col md:flex-row justify-between gap-y-5">
                         <div className="space-y-4">
-                            {hasSubTitle && (
+                            {hasSubTitle && sub_title && (
                                 <SubTitle className="uppercase lg:text-xl">
-                                    {sub_title || ""}
+                                    {sub_title}
                                 </SubTitle>
                             )}
                             <Heading
@@ -85,7 +123,7 @@ export const ClientReviewList = ({
                                     <span
                                         className={cn(hasBg ? "text-gray2" : "text-graphic-gray")}
                                     >
-                    / {totalPages}
+                                        / {totalPages}
                                     </span>
                                 </div>
 
@@ -107,7 +145,7 @@ export const ClientReviewList = ({
                     <div className="player-wrapper rounded-md mt-5 md:mt-10">
                         <ReactPlayer
                             fallback={<>Загрузка...</>}
-                            url={reviews[currentPage]?.video || ""}
+                            url={items[currentPage]?.video || ""}
                             width={"100%"}
                             height={"100%"}
                             controls={true}

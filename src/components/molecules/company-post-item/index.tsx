@@ -30,13 +30,14 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
     } = props
 
     return (
-        <Link href={`/cases/${id}`} className="p-4">
+        <Link href={`/cases/${id}`}>
             <div className="relative overflow-hidden rounded-3xl group">
                 <Image
                     src={image}
                     alt={'case image'}
-                    width={535}
-                    height={320}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
                     className="rounded-2xl w-full h-[320px] object-cover transition-transform duration-500 scale-100 group-hover:scale-125"
                 />
                 <div className="absolute top-7 left-6 flex gap-2 flex-wrap">
@@ -51,15 +52,16 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
                 {social_media.map((social) => (
                     <Badge
                         variant={'tag'}
-                        className="flex items-center gap-1 whitespace-nowrap overflow-hidden"
+                        className="flex items-center grow gap-1 whitespace-nowrap overflow-hidden"
                         key={social.title}
                     >
                         {/* <span>{social.logo}</span> */}
                         <Image
                             src={social.logo}
                             alt={social.title}
-                            width={24}
-                            height={24}
+                            width={0}
+                            height={0}
+                            sizes="100vw"
                             className="w-auto h-auto"
                         />
                         <span className="truncate">{social.subscribers} {social.title}</span>

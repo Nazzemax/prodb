@@ -15,7 +15,7 @@ import { useTranslations } from "next-intl";
 import { useGetVideoProductionQuery } from "@/api/VideoProduction";
 import { VideoCompany } from "@/components/organisms/video-about-videoproduction";
 import { ClientReviewList } from "@/components/organisms/client-review-list";
-import { useGetCompanyVideoReviewsQuery } from "@/api/Company";
+// import { useGetCompanyVideoReviewsQuery } from "@/api/Company";
 
 const VideoProductionPage = () => {
     const slug = useSlug();
@@ -24,7 +24,7 @@ const VideoProductionPage = () => {
     const { business_types } = useAppData();
     const { data: videoData } = useGetVideoProductionQuery();
     const t = useTranslations("ServicePage5");
-    const { data: reviews } = useGetCompanyVideoReviewsQuery();
+    // const { data: reviews } = useGetCompanyVideoReviewsQuery();
 
     const serviceData = {
         title: t("Services.title"),
@@ -126,13 +126,13 @@ const VideoProductionPage = () => {
             />
             <VideoCompany />
             <ServicePostList title={serviceData.title} items={serviceData.items} />
-            {reviews && (
-                <ClientReviewList
-                    title={reviews[0].title}
-                    sub_title={reviews[0].sub_title}
-                    reviews={reviews[0].items}
-                />
-            )}
+            {/* {reviews && ( */}
+            <ClientReviewList
+            // title={reviews[0].title}
+            // sub_title={reviews[0].sub_title}
+            // reviews={reviews[0].items}
+            />
+            {/* )} */}
             <FormLayout
                 title={"Рассчитайте стоимость вашего Видеопроекта"}
                 nestedForm={

@@ -1,3 +1,5 @@
+import { StringValidation } from "zod";
+
 //SMM
 export interface ISmmCreatingAdData {
   eyebrow?: string;

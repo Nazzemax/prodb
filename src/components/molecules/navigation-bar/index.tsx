@@ -82,39 +82,36 @@ export const NavigationBar = React.memo(() => {
         <NavigationMenu>
             <NavigationMenuList className={cn("hidden xl:flex")}>
                 <NavigationMenuItem>
-                    <Link href="/home" legacyBehavior passHref>
-                        <NavigationMenuLink
-                            className={cn(
-                                navigationMenuTriggerStyle(),
-                                isCases ? "text-primary hover:bg-black/5" : "text-white"
-                            )}
-                        >
-                            {t("navLinks.home")}
-                        </NavigationMenuLink>
+                    <Link
+                        href="/home"
+                        className={cn(
+                            navigationMenuTriggerStyle(),
+                            isCases ? "text-primary hover:bg-black/5" : "text-white"
+                        )}
+                    >
+                        {t("navLinks.home")}
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/about" legacyBehavior passHref>
-                        <NavigationMenuLink
-                            className={cn(
-                                navigationMenuTriggerStyle(),
-                                isCases ? "text-primary hover:bg-black/5" : "text-white"
-                            )}
-                        >
-                            {t("navLinks.about")}
-                        </NavigationMenuLink>
+                    <Link
+                        href="/about"
+                        className={cn(
+                            navigationMenuTriggerStyle(),
+                            isCases ? "text-primary hover:bg-black/5" : "text-white"
+                        )}
+                    >
+                        {t("navLinks.about")}
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/cases" legacyBehavior passHref>
-                        <NavigationMenuLink
-                            className={cn(
-                                navigationMenuTriggerStyle(),
-                                isCases ? "text-primary hover:bg-black/5" : "text-white"
-                            )}
-                        >
-                            {t("navLinks.cases")}
-                        </NavigationMenuLink>
+                    <Link
+                        href="/cases"
+                        className={cn(
+                            navigationMenuTriggerStyle(),
+                            isCases ? "text-primary hover:bg-black/5" : "text-white"
+                        )}
+                    >
+                        {t("navLinks.cases")}
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
@@ -128,7 +125,7 @@ export const NavigationBar = React.memo(() => {
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
                         <ul className="flex flex-col w-[400px] gap-2 p-3">
-                            {components.map((component,idx) => (
+                            {components.map((component, idx) => (
                                 <ListItem
                                     key={idx}
                                     title={component.title}
@@ -140,27 +137,25 @@ export const NavigationBar = React.memo(() => {
                     </NavigationMenuContent>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/blog" legacyBehavior passHref>
-                        <NavigationMenuLink
-                            className={cn(
-                                navigationMenuTriggerStyle(),
-                                isCases ? "text-primary hover:bg-black/5" : "text-white"
-                            )}
-                        >
-                            {t("navLinks.blog")}
-                        </NavigationMenuLink>
+                    <Link
+                        href="/blog"
+                        className={cn(
+                            navigationMenuTriggerStyle(),
+                            isCases ? "text-primary hover:bg-black/5" : "text-white"
+                        )}
+                    >
+                        {t("navLinks.blog")}
                     </Link>
                 </NavigationMenuItem>
                 <NavigationMenuItem>
-                    <Link href="/contacts" legacyBehavior passHref>
-                        <NavigationMenuLink
-                            className={cn(
-                                navigationMenuTriggerStyle(),
-                                isCases ? "text-primary hover:bg-black/5" : "text-white"
-                            )}
-                        >
-                            {t("navLinks.contacts")}
-                        </NavigationMenuLink>
+                    <Link
+                        href="/contacts"
+                        className={cn(
+                            navigationMenuTriggerStyle(),
+                            isCases ? "text-primary hover:bg-black/5" : "text-white"
+                        )}
+                    >
+                        {t("navLinks.contacts")}
                     </Link>
                 </NavigationMenuItem>
             </NavigationMenuList>
@@ -171,8 +166,8 @@ export const NavigationBar = React.memo(() => {
 NavigationBar.displayName = 'NavigationBar'
 
 const ListItem = React.forwardRef<
-  React.ComponentRef<"a">,
-  React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode }
+    React.ComponentRef<"a">,
+    React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode }
 >(({ className, title, icon, ...props }, ref) => {
     return (
         <li>

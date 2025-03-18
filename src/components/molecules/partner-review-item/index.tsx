@@ -33,7 +33,7 @@ export const ReviewItem = ({ rating, user_image, user_name, user_position, text 
                     </div>
                     <div className="flex gap-x-3">
                         <Avatar className="bg-yellow-600">
-                            <AvatarImage src={user_image} />
+                            <AvatarImage src={user_image}/>
                             <AvatarFallback>{user_name}</AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col">

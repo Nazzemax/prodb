@@ -37,13 +37,6 @@ export const PageTitleLayout = ({
 
     return (
         <div className="relative h-screen max-w-[1920px] flex justify-center items-center bg-cover bg-center bg-no-repeat">
-            {/* <div
-                className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-                style={{
-                    backgroundImage: `url(${bg_image})`,
-                    filter: isGray ? "grayscale(100%)" : "none",
-                }}
-            /> */}
             {bg_image &&
                 <Image
                     src={bg_image}
@@ -54,7 +47,6 @@ export const PageTitleLayout = ({
                     style={{
                         objectFit: 'cover'
                     }}
-
                 />
             }
             <div

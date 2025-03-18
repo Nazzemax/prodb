@@ -2,16 +2,15 @@ import Link from "next/link"
 import { Badge } from "@/components/ui/badge";
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 export interface FeatureProps {
     title: string;
     tags: { tags: string; }[];
-    href?: string;
+    link: string;
     image: string;
 }
 
-export const CompanyFeatureItem = ({ image, title, tags, href }: FeatureProps) => {
+export const CompanyFeatureItem = ({ image, title, tags, link }: FeatureProps) => {
 
     const t = useTranslations("Buttons")
     
@@ -44,7 +43,7 @@ export const CompanyFeatureItem = ({ image, title, tags, href }: FeatureProps) =
                     variant="feature"
                     className="text-accent mt-auto"
                 >
-                    <Link href={href || ''}>
+                    <Link href={link}>
                         {t("details")}
                     </Link>
                 </ButtonWithIcon>

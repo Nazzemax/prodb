@@ -5,8 +5,6 @@ import { VideoLoader } from "@/components/atoms/video-loader";
 import { CompanyPostItem } from "@/components/molecules/company-post-item";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { fadeIn, staggerTransition, viewportConfig } from "@/lib/motion";
-import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Divide } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useMemo, useEffect } from "react";
@@ -56,8 +54,6 @@ export const CasesList = ({ posts }: CasesListProps) => {
         );
     };
 
-    console.log(selectedTags)
-
     const filteredPosts = useMemo(() => {
         return posts.filter((post) => {
             const matchesSearch = post.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
@@ -102,17 +98,7 @@ export const CasesList = ({ posts }: CasesListProps) => {
                         <div className="col-span-full text-center"><VideoLoader /></div>
                     ) : (
                         paginatedPosts.map((post, idx) => (
-                            <motion.div
-                                key={idx}
-                                variants={fadeIn("up", "spring", idx * 0.2)}
-                                initial="hidden"
-                                whileInView="show"
-                                viewport={viewportConfig}
-                                transition={staggerTransition(idx)}
-                                className="max-w-full"
-                            >
-                                <CompanyPostItem {...post} />
-                            </motion.div>
+                            <CompanyPostItem key={idx} {...post} />
                         ))
                     )}
                 </article>

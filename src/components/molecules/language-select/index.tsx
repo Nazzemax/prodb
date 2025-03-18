@@ -59,8 +59,6 @@ export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
     const onChangeLanguage = useCallback((value: string) => {
         dispatch(languageActions.setLanguage(value));
         dispatch(baseApi.util.resetApiState());
-
-      
         document.cookie = `NEXT_LOCALE=${value}; path=/; max-age=31536000; SameSite=Lax`;
 
         if (value !== locale) {

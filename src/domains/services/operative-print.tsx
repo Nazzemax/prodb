@@ -18,6 +18,7 @@ import { DesignDepartment } from "@/components/organisms/design-department";
 import { ContextAd5Icon } from "@/assets/services/context-ad";
 import { ServiceBrandingIcon1, ServiceBrandingIcon3 } from "@/assets/services/branding";
 import { SeoHowWeWork4, SeoHowWeWork5 } from "@/assets/services/seo";
+import { FeedbackForm } from "@/components/forms/feedback-form";
 
 export interface ParallaxItem {
     src: string;
@@ -125,12 +126,7 @@ const PrintPage = () => {
             <PrintedLogos />
             <FormLayout
                 title={"Рассчитайте стоимость услуги"}
-                nestedForm={
-                    <CostCalculationForm
-                        business_types={business_types}
-                        promotion_types={promotion_types || []}
-                    />
-                }
+                nestedForm={<FeedbackForm/>}
             />
         </RequestHandler>
     );

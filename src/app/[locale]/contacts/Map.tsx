@@ -162,7 +162,7 @@ export const Map: React.FC = () => {
                     <Marker
                         position={center}
                         icon={{
-                            url: "/map/mapMarker.svg",
+                            url: "/map/MapMarker.svg",
                             scaledSize: new window.google.maps.Size(50, 50), //место для кастомной иконки
                         }}
                     />

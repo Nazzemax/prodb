@@ -1,4 +1,5 @@
 import { baseApi } from "../Base";
+import { baseUrl } from "../Base/baseApi";
 import {
     CompanyAchievementsResponse,
     CompanyAdvertisingResponse,
@@ -104,3 +105,35 @@ export const {
     useGetCompanyTeamQuery,
     useGetCompanyVideoReviewsQuery,
 } = companyApi
+
+
+export async function getVideoReviews(cache: RequestCache = "force-cache") {
+    try {
+        let acceptLanguage = "ru";
+
+        if (typeof window !== "undefined") {
+            acceptLanguage = localStorage.getItem("locale") || "ru";
+        } else {
+            const { cookies } = await import("next/headers");
+            const cookieStore = await cookies();
+            acceptLanguage = cookieStore.get("NEXT_LOCALE")?.value || "ru";
+        }
+
+        const res = await fetch(`${baseUrl}/company-video-reviews/`, {
+            cache,
+            headers: {
+                "Accept-Language": acceptLanguage,
+            },
+        });
+
+        if (!res.ok) {
+            console.error(`Ошибка загрузки баннеров: ${res.status} ${res.statusText}`);
+            throw new Error("Failed to fetch home page data");
+        }
+
+        return res.json();
+    } catch (error) {
+        console.error("Ошибка в getVideoReviews:", error);
+        throw error;
+    }
+}

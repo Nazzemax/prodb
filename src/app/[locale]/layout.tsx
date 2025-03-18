@@ -6,7 +6,7 @@ import "./globals.css";
 import { Providers } from "@/providers";
 
 import { notFound } from "next/navigation";
-import { getMessages, setRequestLocale } from "next-intl/server";
+import { getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { ReactNode } from "react";
 import { routing } from "../../i18n/routing";
@@ -29,11 +29,22 @@ const cannonade = localFont({
 export const metadata: Metadata = {
     title: "Bold Brands",
     description: "Bold Brands International ваш внешний отдел маркетинга",
+    icons: {
+        icon: [
+            { url: '/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+            { url: '/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+        ],
+        apple: '/apple-touch-icon.png',
+        other: {
+            rel: 'manifest',
+            url: '/site.webmanifest',
+        },
+    }
 };
 
 type Props = {
-  children: ReactNode;
-  params: Promise<{ locale: string }>;
+    children: ReactNode;
+    params: Promise<{ locale: string }>;
 };
 
 export function generateStaticParams() {
@@ -52,19 +63,13 @@ export default async function LocaleLayout({ children, params }: Props) {
         <html lang={locale}>
             <head>
                 <meta name="viewport" content="initial-scale=1, width=device-width" />
-                {/* <script
-          async
-          crossOrigin="anonymous"
-          src="https://unpkg.com/react-scan/dist/auto.global.js"
-        /> */}
             </head>
-            {/* <ReactScan /> */}
             <body className={`${cannonade.className} antialiased `}>
                 <NextIntlClientProvider messages={messages}>
                     <Providers>
                         <div className="max-w-[1920px] m-auto relative">
                             <Header />
-                            <div className="">{children}</div>
+                            <main>{children}</main>
                             <Footer />
                         </div>
                     </Providers>

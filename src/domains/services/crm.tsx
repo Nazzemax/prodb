@@ -61,7 +61,7 @@ const CrmPage = () => {
         title: t("integrationServices.titleIntegrationServices"),
         items: [
             {
-                image: "/images/services/crm/crm1.png",
+                image: "/images/services/crm/crm1.webp",
                 image_right: false,
                 title: t("integrationServices.servicesList.0.serviceTitle"),
                 description: t("integrationServices.servicesList.0.serviceDescription"),
@@ -71,7 +71,7 @@ const CrmPage = () => {
                 ],
             },
             {
-                image: "/images/services/crm/crm2.png",
+                image: "/images/services/crm/crm2.webp",
                 image_right: true,
                 title: t("integrationServices.servicesList.1.serviceTitle"),
                 description: t("integrationServices.servicesList.1.serviceDescription"),
@@ -81,7 +81,7 @@ const CrmPage = () => {
                 ],
             },
             {
-                image: "/images/services/crm/crm3.png",
+                image: "/images/services/crm/crm3.webp",
                 image_right: false,
                 title: t("integrationServices.servicesList.2.serviceTitle"),
                 description: t("integrationServices.servicesList.2.serviceDescription"),
@@ -91,7 +91,7 @@ const CrmPage = () => {
                 ],
             },
             {
-                image: "/images/services/crm/crm4.png",
+                image: "/images/services/crm/crm4.webp",
                 image_right: true,
                 title: t("integrationServices.servicesList.3.serviceTitle"),
                 description: t("integrationServices.servicesList.3.serviceDescription"),
@@ -133,7 +133,7 @@ const CrmPage = () => {
                 card_title={t("integrationApproach.teamTraining.titleTeamTraining")}
                 card_description={t("integrationApproach.teamTraining.descriptionTeamTraining")}
                 card_icon={<CrmIcon />}
-                image={'/images/services/crm/info-crm.png'}
+                image={'/images/services/marketing-support/marketing_infocard.webp'}
             />
             <Award
                 badgeTitle={t("PartersBlog.titleParters")}

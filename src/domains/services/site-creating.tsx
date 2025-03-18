@@ -26,28 +26,28 @@ const SiteCreatingPage = () => {
         description: t('Approach.description'),
         items: [
             {
-                image: "/images/services/site/site1.png",
+                image: "/images/services/site/site1.webp",
                 image_right: false,
                 title: t('Approach.items.0.title'),
                 sub_title: t('Approach.items.0.sub_title'),
                 description: t('Approach.items.0.description'),
             },
             {
-                image: "/images/services/site/site2.png",
+                image: "/images/services/site/site2.webp",
                 image_right: true,
                 title: t('Approach.items.1.title'),
                 sub_title: t('Approach.items.1.sub_title'),
                 description: t('Approach.items.1.description'),
             },
             {
-                image: "/images/services/site/site3.png",
+                image: "/images/services/site/site3.webp",
                 image_right: false,
                 title: t('Approach.items.2.title'),
                 sub_title: t('Approach.items.2.sub_title'),
                 description: t('Approach.items.2.description'),
             },
             {
-                image: "/images/services/site/site4.png",
+                image: "/images/services/site/site4.webp",
                 image_right: true,
                 title: t('Approach.items.3.title'),
                 sub_title: t('Approach.items.3.sub_title'),

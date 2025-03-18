@@ -9,6 +9,7 @@ import {
     viewportConfig
 } from '@/lib/motion';
 import { useAppData } from '@/context/app-context';
+import Image from 'next/image';
 
 interface SingleSliderProps {
     index: number;
@@ -33,8 +34,18 @@ export const SingleSliderItem = ({
         <CarouselItem key={index}>
             <div
                 className="relative h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-                style={{ backgroundImage: `url(${image})` }}
+                // style={{ backgroundImage: `url(${image})` }}
             >
+                <Image
+                    src={image}
+                    alt={"BG_IMAGE"}
+                    priority
+                    fill
+                    sizes="100vw"
+                    style={{
+                        objectFit: 'cover'
+                    }}
+                />
                 <div className="absolute inset-0 bg-gradient-to-r from-black to-black/20"></div>
                 <div className="flex flex-col text-left mb-12 md:mb-0 gap-y-2 md:gap-y-5 z-50 px-5 md:pl-0 md:mx-40 max-w-[1280px]">
                     <motion.div
