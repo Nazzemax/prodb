@@ -11,7 +11,7 @@ const FloatingWhatsapp = () => {
         chatMessage="Доброго времени суток, чем могу вам помочь?"
         statusMessage="Онлайн"
         darkMode
-        avatar="/bold_logo.svg"
+        avatar="https://bishkek.headhunter.kg/employer-logo/6266415.png"
         placeholder="Введите текст"
     />
 }
