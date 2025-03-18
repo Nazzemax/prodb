@@ -1,3 +1,6 @@
+"use client";
+
+import { useGetArticlesQuery } from "@/api/Article"
 import { Article, ArticlesResponse } from "@/api/Article/types"
 import { Heading } from "@/components/atoms/heading"
 import { BlogPostItem } from "@/components/molecules/blog-post-item"
@@ -100,19 +103,20 @@ import { useState } from "react"
 //     },
 // ]
 
-interface BlogPostListProps {
-    articles: ArticlesResponse;
-}
+
 
 export const BlogPostList = ({
-    articles
-}: BlogPostListProps) => {
+    
+}) => {
     const t = useTranslations("BlogPage")
+    const { data: articles } = useGetArticlesQuery()
     const pageSize = 12;
     const [currentPage, setCurrentPage] = useState(1);
 
-    const totalPages = Math.ceil(articles.posts.length / pageSize);
-    const paginatedPosts = articles.posts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+    if(!articles) return
+
+    const totalPages = Math.ceil(articles?.posts?.length / pageSize);
+    const paginatedPosts = articles?.posts?.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
     const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
     const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
@@ -120,7 +124,7 @@ export const BlogPostList = ({
     return (
         <div className="max-w-[1328px] flex flex-col m-auto px-5 mb-10 min-h-[944px]">
             <div>
-                <Heading as="h2">{articles.title}</Heading>
+                <Heading className="pt-8" as="h2">{articles.title}</Heading>
                 <p className="text-gray2 text-sm md:text-base mt-3">{articles.description}</p>
             </div>
             <article className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-5 mt-10 mb-10">

@@ -15,6 +15,7 @@ import dynamic from "next/dynamic";
 import { getBanners } from "@/api/Banners";
 import { getVideoReviews, useGetCompanyVideoReviewsQuery } from "@/api/Company";
 import { ClientReviewList } from "@/components/organisms/client-review-list";
+import { BlogPostList } from "@/components/organisms/blog-post-list";
 
 
 const FloatingWhatsapp = dynamic(() => import("@/components/atoms/floating-whatsapp"));
@@ -36,6 +37,7 @@ const HomePage = async () => {
             <CompanyChallengeList />
             <CompanyFeatures />
             <CompanyPostList />
+            <BlogPostList />
             <Award
                 badgeTitle={t("section2.btn")}
                 title={t("section2.title")}
@@ -44,13 +46,10 @@ const HomePage = async () => {
             />
             <CompanyPartners />
             <PartnerReviewList />
-            {/* {reviews && */}
-            <ClientReviewList
-            // title={reviews[1].title}
-            // sub_title={reviews[1].sub_title}
-            // reviews={reviews[1].items}
-            />
-            {/* } */}
+        
+            <ClientReviewList/>
+
+      
             <FormLayout
                 title={"Получите бесплатную консультацию"}
                 nestedForm={<FeedbackForm />}
