@@ -1,14 +1,14 @@
+import { NextIntlClientProvider } from "next-intl";
+import { notFound } from "next/navigation";
+import { ReactNode } from "react";
+import { getMessages } from "next-intl/server";
+import localFont from "next/font/local";
 import { Footer } from "@/components/organisms/footer";
 import { Header } from "@/components/organisms/header";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "@/providers";
 
-import { notFound } from "next/navigation";
-import { getMessages } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
-import { ReactNode } from "react";
 import { routing } from "../../i18n/routing";
 
 const cannonade = localFont({

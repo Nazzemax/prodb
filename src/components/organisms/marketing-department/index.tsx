@@ -12,13 +12,16 @@ import {
     staggerTransition,
     viewportConfig,
 } from "@/lib/motion";
+import { cn } from "@/lib/utils";
+import useInView from "@/hooks/useInView";
 
 interface Props {
-  isPrint?: boolean;
+    isPrint?: boolean;
 }
 
 export const MarketingDepartment: React.FC<Props> = ({ isPrint }) => {
     const { data, isLoading, error } = useGetMarketingDepartmentQuery();
+    const { ref: titleRef, isInView: isTitleVisible } = useInView();
 
     return (
         <section
@@ -32,7 +35,9 @@ export const MarketingDepartment: React.FC<Props> = ({ isPrint }) => {
             <div className="flex flex-col gap-y-16 w-full max-w-[1280px] py-14 md:py-36">
                 <RequestHandler isLoading={isLoading} error={error} data={data}>
                     <div className="flex flex-col md:flex-row gap-y-5 gap-x-10">
-                        <Heading as="h2">{data?.title}</Heading>
+                        <Heading as="h2">
+                            {data?.title}
+                        </Heading>
                         <p className="flex items-end text-gray2 text-lg lg:text-2xl">
                             {data?.sub_title}
                         </p>
@@ -40,19 +45,15 @@ export const MarketingDepartment: React.FC<Props> = ({ isPrint }) => {
                     {/* Главы */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {data?.chapters.map((chapter, idx) => (
-                            <motion.div
+                            <div
                                 key={chapter.number}
-                                variants={fadeIn("up", "spring", idx * 0.1)}
-                                initial="hidden"
-                                whileInView="show"
-                                viewport={viewportConfig}
-                                transition={staggerTransition(idx)}
+                                className={cn(isTitleVisible ? "animate-text" : "")}
                             >
                                 <MarketingChapter
                                     number={chapter.number}
                                     title={chapter.title}
                                 />
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
                 </RequestHandler>

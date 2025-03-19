@@ -52,8 +52,8 @@ export const InfoCard = ({
                     </Card>
                     
                     {video && (
-                        <div className="w-full h-full min-w-[335px] min-h-[342px]">
-                            <VideoPlayer controls={false} video={video} />
+                        <div className="w-full min-w-[335px] min-h-[330px]">
+                            <VideoPlayer video={video} />
                         </div>
                     )}
                     

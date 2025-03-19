@@ -24,35 +24,13 @@ const centerBishkek: { lat: number; lng: number } = {
 
 // Координаты для Ташкента
 const centerTashkent: { lat: number; lng: number } = {
-    lat: 41.310758,
-    lng: 69.310728,
-};
-
-// Координаты для окна адреса в Бишкеке
-const infoWindowBishkek: { lat: number; lng: number } = {
-    lat: 42.847085,
-    lng: 74.618839,
-};
-
-// Координаты для окна адреса в Ташкенте
-const infoWindowTashkent: { lat: number; lng: number } = {
-    lat: 41.311576,
-    lng: 69.311335,
+    lat: 41.31038, 
+    lng: 69.30958595771149,
 };
 
 //стилизация карты
 const mapOptions: google.maps.MapOptions = {
     styles: [
-    // {
-    //     featureType: "all",
-    //     elementType: "geometry",
-    //     stylers: [{ saturation: -100 }, { lightness: -10 }],
-    // },
-    // {
-    //     featureType: "all",
-    //     elementType: "labels.text.fill",
-    //     stylers: [{ color: "#313336" }],
-    // },
         {
             featureType: "all",
             elementType: "labels.text.stroke",
@@ -63,46 +41,6 @@ const mapOptions: google.maps.MapOptions = {
             elementType: "geometry",
             stylers: [{ visibility: "on" }],
         },
-    // {
-    //     featureType: "landscape",
-    //     elementType: "geometry",
-    //     stylers: [{ color: "#131313" }],
-    // },
-    // {
-    //     featureType: "road",
-    //     elementType: "geometry",
-    //     stylers: [{ color: "#64686E" }],
-    // },
-    // {
-    //     featureType: "water",
-    //     elementType: "geometry",
-    //     stylers: [{ color: "#64686E" }],
-    // },
-    // {
-    //     featureType: "poi",
-    //     elementType: "geometry",
-    //     stylers: [{ color: "#52555A" }],
-    // },
-    // {
-    //     featureType: "poi",
-    //     elementType: "labels.text.fill",
-    //     stylers: [{ color: "#313336" }],
-    // },
-    // {
-    //     featureType: "transit",
-    //     elementType: "geometry",
-    //     stylers: [{ color: "#64686E" }],
-    // },
-    // {
-    //     featureType: "poi",
-    //     elementType: "labels.icon", // Для изменения иконок меток
-    //     stylers: [{ color: "#434343" }],
-    // },
-    // {
-    //     featureType: "poi.business",
-    //     elementType: "geometry",
-    //     stylers: [{ visibility: "on" }, { color: "#1e1e1e" }],
-    // },
     ],
     mapTypeControl: false,
     fullscreenControl: false,
@@ -116,10 +54,6 @@ export const Map: React.FC = () => {
     const center: { lat: number; lng: number } = mapCondition
         ? centerBishkek
         : centerTashkent;
-
-    const centerInfoWindow: { lat: number; lng: number } = mapCondition
-        ? infoWindowBishkek
-        : infoWindowTashkent;
 
     const { isLoaded, loadError }: { isLoaded: boolean; loadError?: Error } =
     useLoadScript({

@@ -1,16 +1,24 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useGetCompanyChallengesQuery } from '@/api/Company'
 import ChallengeCard from '@/components/molecules/company-challenge-card'
 import { Heading } from '@/components/atoms/heading'
 import { ChallengesBg, ChallengesSVG } from '@/assets/backgrounds'
 import { RequestHandler } from '@/components/atoms/request-handler'
 import { motion } from 'framer-motion'
-import { fadeIn, staggerTransition, textVariant, viewportConfig } from '@/lib/motion'
+import { fadeIn, staggerTransition, viewportConfig } from '@/lib/motion'
+import { Spinner } from '@/components/atoms/spinner'
 
 export const CompanyChallengeList = () => {
     const { data, isLoading, error } = useGetCompanyChallengesQuery()
+    const [isHydrated, setIsHydrated] = useState(false);
+
+    useEffect(() => {
+        setIsHydrated(true);
+    }, []);
+
+    if (!isHydrated) return <div className="flex justify-center items-center h-screen"><Spinner /></div>;
 
     return (
         <section className="bg-background-gray">

@@ -7,9 +7,18 @@ import { useGetCompanyServicesQuery } from "@/api/Company"
 import { RequestHandler } from "@/components/atoms/request-handler"
 import { motion } from "framer-motion"
 import { fadeIn, staggerTransition, viewportConfig } from "@/lib/motion"
+import { useEffect, useState } from "react";
+import { Spinner } from "@/components/atoms/spinner";
 
 export const CompanyFeatures = () => {
     const { data, isLoading, error } = useGetCompanyServicesQuery()
+    const [isHydrated, setIsHydrated] = useState(false);
+
+    useEffect(() => {
+        setIsHydrated(true);
+    }, []);
+
+    if (!isHydrated) return <div className="flex justify-center items-center h-screen"><Spinner /></div>;
 
     return (
         <section className="w-full max-w-[1920px] m-auto px-4 sm:px-20 md:px-40 pb-20">

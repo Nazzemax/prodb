@@ -13,7 +13,6 @@ import { VideoAboutCompany } from "@/components/organisms/video-about-company";
 import { getTranslations } from "next-intl/server";
 import dynamic from "next/dynamic";
 import { getBanners } from "@/api/Banners";
-// import { getVideoReviews, useGetCompanyVideoReviewsQuery } from "@/api/Company";
 import { ClientReviewList } from "@/components/organisms/client-review-list";
 import { BlogPostList } from "@/components/organisms/blog-post-list";
 
@@ -24,13 +23,12 @@ const SingleSliderList = dynamic(() => import("@/components/organisms/single-sli
 const HomePage = async () => {
     const t = await getTranslations("HomePage");
     const banners = await getBanners();
-    // const { data: reviews } = useGetCompanyVideoReviewsQuery();
 
     return (
         <>
+            <FloatingWhatsapp />
             <NewsBanner />
             <SingleSliderList banners={banners} />
-            <FloatingWhatsapp />
             <MarketingDepartment />
             <VideoAboutCompany />
             <Advantages />
@@ -46,10 +44,7 @@ const HomePage = async () => {
             />
             <CompanyPartners />
             <PartnerReviewList />
-        
-            <ClientReviewList/>
-
-      
+            {/* <ClientReviewList/> */}
             <FormLayout
                 title={"Получите бесплатную консультацию"}
                 nestedForm={<FeedbackForm />}

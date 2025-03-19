@@ -94,6 +94,7 @@ export const NavigationBar = React.memo(() => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
+                        prefetch={false}
                         href="/about"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -138,6 +139,7 @@ export const NavigationBar = React.memo(() => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
+                        prefetch={false}
                         href="/blog"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -149,6 +151,7 @@ export const NavigationBar = React.memo(() => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
+                        prefetch={false}
                         href="/contacts"
                         className={cn(
                             navigationMenuTriggerStyle(),

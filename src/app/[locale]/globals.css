@@ -156,3 +156,42 @@ h3,
 h4 {
   font-family: 'Cannonade Bold', sans-serif;
 }
+
+/* ANIMATIONS */
+@keyframes textAppear {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-text {
+  animation: textAppear 0.7s ease-out forwards;
+  animation-delay: 0.7s;
+}
+
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(100px); /* Используем направление 'up' */
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.7s ease-out forwards;
+  animation-delay: 0.7s; /* Это задержка из параметра `fadeIn` */
+}
+
+
+.animate-stagger {
+  animation: fadeIn 0.7s ease-out forwards;
+  animation-delay: var(--delay);
+}

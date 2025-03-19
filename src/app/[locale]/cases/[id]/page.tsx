@@ -36,7 +36,7 @@ const CasePage = () => {
             }
             <Separator className="bg-graphic-gray h-[1px] mb-8 md:mb-14" />
             {data?.tasks && <CaseTaskList tasks={data?.tasks} />}
-            {data?.images && data?.images.length > 0 &&
+            {data?.images &&
                 <>
                     <CaseImages images={data?.images} />
                     <Separator className="bg-graphic-gray h-[1px] mb-8 md:mb-14" />
