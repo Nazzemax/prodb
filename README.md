@@ -1,3 +1,12 @@
+---
+
+![React](https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg =50x50)  
+![Node.js](https://upload.wikimedia.org/wikipedia/commons/6/64/Node.js_logo_2015.svg =50x50)  
+![JavaScript](https://upload.wikimedia.org/wikipedia/commons/6/69/JavaScript-logo.png =50x50)  
+![TypeScript](https://upload.wikimedia.org/wikipedia/commons/4/41/Typescript_logo_2020.svg =50x50)
+
+---
+
 # Documentation
 
 ---
