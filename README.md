@@ -76,8 +76,8 @@ bash (Ubuntu)
 <div class="image-container" align="center">
   <img src="https://github.com/user-attachments/assets/808b3c6b-6499-4b67-8521-9295e6785fc7" width="430" />
   <img src="https://github.com/user-attachments/assets/85945786-ce8d-4d9b-83e1-2b2c135497a1" width="430" />
+  <img src="https://raw.githubusercontent.com/user-attachments/assets/ee00ad00-16b7-4dcd-beba-343ba23b5c68.gif" width="430" />
 </div>
-![original-2b1d3cbb24b2dc9b96c48729627cc8aa](https://github.com/user-attachments/assets/7eafd6c3-ffc4-4f17-bc80-a2b7f82b76d2)
 
 <p align="center">We using Framer-motioan & GSAP for animate our web-site!</p>
 
