@@ -66,7 +66,7 @@ bash (Ubuntu)
 
 <h1 align="center">UI styles mix</h1>
 <div align="center">
-  <img src="https://github.com/user-attachments/assets/83138bd6-9048-4606-8f1f-4f19b75e66c7" width="800" />
+  <img src="https://github.com/user-attachments/assets/83138bd6-9048-4606-8f1f-4f19b75e66c7" width="400" />
 </div>
 <p align="center">We combined Tailwind CSS & SCSS for best practice.</p>
 
