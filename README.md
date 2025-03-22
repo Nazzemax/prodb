@@ -72,15 +72,15 @@ bash (Ubuntu)
 text
 
 ---
-
+<div class="image-container" align="center">
 ## Animations
 
-<div class="image-container" align="center">
-  <img src="https://github.com/user-attachments/assets/808b3c6b-6499-4b67-8521-9295e6785fc7" width="400" />
-  <img src="https://github.com/user-attachments/assets/85945786-ce8d-4d9b-83e1-2b2c135497a1" width="400" />
-</div>
-text
 
+  <img src="https://github.com/user-attachments/assets/808b3c6b-6499-4b67-8521-9295e6785fc7" width="430" />
+  <img src="https://github.com/user-attachments/assets/85945786-ce8d-4d9b-83e1-2b2c135497a1" width="430" />
+
+text
+</div>
 ---
 
 ## Deployment
