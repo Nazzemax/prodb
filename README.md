@@ -79,6 +79,7 @@ bash (Ubuntu)
   <img src="https://github.com/user-attachments/assets/770d8b70-d2e3-4f9f-b594-bc3fdfd560f5.gif" width="860" height="500" />
 </div>
 
+![0_YnDvdubHGriUDo3a](https://github.com/user-attachments/assets/927e1f5e-038e-4ea9-b57b-304f3c001dab)
 
 
 <p align="center">We using Framer-motioan & GSAP for animate our web-site!</p>
