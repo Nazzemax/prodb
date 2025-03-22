@@ -95,7 +95,7 @@ text
 ## Admin panel
 
 <div class="image-container">
-  <img src="https://github.com/user-attachments/assets/44e45ee1-c52e-4b8f-8ff5-b0c2cc281d2b" width="600" />
+  <img src="https://github.com/user-attachments/assets/17aaafd8-9f80-48ed-aedc-bd5a82c559d3" width="600" />
 </div>
 text
 
