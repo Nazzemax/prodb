@@ -74,8 +74,8 @@ bash (Ubuntu)
 
 <h1 align="center">Animations</h1>
 <div class="image-container" align="center">
-  <img src="https://github.com/user-attachments/assets/808b3c6b-6499-4b67-8521-9295e6785fc7" width="380" />
-  <img src="https://github.com/user-attachments/assets/85945786-ce8d-4d9b-83e1-2b2c135497a1" width="380" />
+  <img src="https://github.com/user-attachments/assets/808b3c6b-6499-4b67-8521-9295e6785fc7" width="395" />
+  <img src="https://github.com/user-attachments/assets/85945786-ce8d-4d9b-83e1-2b2c135497a1" width="395" />
 </div>
 
 ![0_YnDvdubHGriUDo3a](https://github.com/user-attachments/assets/9aef9551-2eec-4637-b54e-dbe8c903838b)
