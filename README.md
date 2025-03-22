@@ -69,7 +69,8 @@ bash (Ubuntu)
 <div align="center">
   <img src="https://github.com/user-attachments/assets/9adfbd29-a81b-4ce0-9388-f63f2f42e2e2" width="600" />
 </div>
-text
+
+<p align="center">We combined Tailwind CSS & SCSS for best practice.</p>
 
 ---
 
@@ -79,7 +80,7 @@ text
   <img src="https://github.com/user-attachments/assets/808b3c6b-6499-4b67-8521-9295e6785fc7" width="430" />
   <img src="https://github.com/user-attachments/assets/85945786-ce8d-4d9b-83e1-2b2c135497a1" width="430" />
 </div>
-<p> align="center">We using Framer-motioan & GSAP for animate our web-site!</p>
+<p align="center">We using Framer-motioan & GSAP for animate our web-site!</p>
 
 ---
 
@@ -88,7 +89,7 @@ text
 <div align="center">
   <img src="https://e0.pxfuel.com/wallpapers/900/438/desktop-wallpaper-flawless-app-delivery-nginx-s-vision-for-the-future.jpg" width="1000" />
 </div>
-text
+<p align="center">We is deploying our web-site with NGINX.</p>
 
 ---
 
@@ -97,5 +98,5 @@ text
 <div align="center">
   <img src="https://github.com/user-attachments/assets/17aaafd8-9f80-48ed-aedc-bd5a82c559d3" width="1000" />
 </div>
-text
 
+<p align="center">Our admin panel was been cwrite with Jazzmin framework.</p>
