@@ -63,7 +63,7 @@ export const CompanyTeam = () => {
                 error={error}
                 data={data}
             >
-                <div className='max-w-[1280px] space-y-4 md:space-y-8 py-14 lg:py-36 overflow-hidden'>
+                <div className='max-w-[1328px] space-y-4 md:space-y-8 py-14 lg:py-36 overflow-hidden'>
                     <Heading as='h2' className='w-full md:w-2/3 px-5'>{data?.title}</Heading>
                     <p className='text-gray2 text-base px-5 w-full md:w-2/3'>{data?.sub_title}</p>
                     <div className=''>

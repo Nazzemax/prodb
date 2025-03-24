@@ -4,6 +4,7 @@ import { StringValidation } from "zod";
 export interface ISmmCreatingAdData {
   eyebrow?: string;
   title: string;
+  isSmm?:boolean;
   sub_title?: string;
   items: {
     image: string;

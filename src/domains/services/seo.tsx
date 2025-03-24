@@ -48,7 +48,7 @@ const SeoPage = () => {
                     isGray
                 />
             )}
-            <ServiceStaticCardList title={seoData.title} items={seoData.items} />
+            <ServiceStaticCardList title={seoData.title} items={seoData.items} isSmm />
             <ServicePostList title={seoPostsData.title} items={seoPostsData.items} />
             <CompanyServiceCardList
                 title={seoCardsData.title}

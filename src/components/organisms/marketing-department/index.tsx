@@ -21,7 +21,7 @@ const MarketingDepartment: React.FC<Props> = ({data}) => {
                 id="marketing-department"
                 className="absolute top-3/4 md:top-32 left-0 -z-50 max-w-[1920px]"
             />
-            <div className="flex flex-col gap-y-16 w-full max-w-[1280px] py-14 md:py-36">
+            <div className="flex flex-col gap-y-16 w-full max-w-[1328px] py-14 md:py-36">
                 <RequestHandler data={data}>
                     <div className="flex flex-col md:flex-row gap-y-5 gap-x-10">
                         <Heading as="h2">

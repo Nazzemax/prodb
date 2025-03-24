@@ -104,6 +104,7 @@ const SmmPage = () => {
                 eyebrow={smmCreatingAdData.eyebrow}
                 sub_title={smmCreatingAdData.sub_title}
                 items={smmCreatingAdData.items}
+                isSmm
             />
             <CompanyServiceCardList
                 title={smmTeamMembers.title}

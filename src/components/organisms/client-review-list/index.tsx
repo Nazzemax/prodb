@@ -87,7 +87,7 @@ export const ClientReviewList = ({
             className={cn("", hasBg ? "bg-background-dark mx-5 rounded-lg" : "")}
         >
             <div className="relative px-5 md:px-14 lg:px-32 my-16 md:my-24 overflow-hidden z-10">
-                <div className={cn("max-w-[1280px] m-auto", hasBg ? "py-16" : "")}>
+                <div className={cn("max-w-[1328px] m-auto", hasBg ? "py-16" : "")}>
                     <div className="flex flex-col md:flex-row justify-between gap-y-5">
                         <div className="space-y-4">
                             {hasSubTitle && sub_title && (

@@ -72,7 +72,7 @@ export const CasesList = ({ posts }: CasesListProps) => {
 
     return (
         <section className="max-w-[1920px] mt-16">
-            <div className="max-w-[1280px] m-auto px-5">
+            <div className="max-w-[1328px] m-auto px-5">
                 <div className="flex flex-col md:flex-row justify-between md:items-end gap-y-5">
                     <div className="space-y-5">
                         <Heading as="h2">{t("text.title")}</Heading>

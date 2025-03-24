@@ -13,7 +13,7 @@ const CompanyChallengeList: FC<Props> = ({ data }) => {
 
     return (
         <section className="bg-background-gray">
-            <div className="max-w-[1280px] m-auto relative py-4 md:py-16 lg:py-28 z-10 overflow-hidden">
+            <div className="max-w-[1328px] m-auto relative py-4 md:py-16 lg:py-28 z-10 overflow-hidden">
                 <RequestHandler
                     data={data}
                 >
