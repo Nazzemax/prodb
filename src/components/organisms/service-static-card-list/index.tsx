@@ -14,7 +14,7 @@ export const ServiceStaticCardList = ({
     return (
         <div className="w-full max-w-[1920px] flex justify-center px-4 lg:px-10 py-5 md:py-20 bg-[#FAFAFC]">
             <div className="max-w-[1280px] flex flex-col justify-center items-center gap-y-5 lg:gap-y-10">
-                <div className="flex flex-col xl:flex-row gap-4">
+                <div className="flex flex-col xl:flex-row gap-4 mr-auto max-w-[761px]">
                     <div>
                         {eyebrow && <h5 className="text-gray uppercase">{eyebrow}</h5>}
                         <Heading as="h2">{title}</Heading>
