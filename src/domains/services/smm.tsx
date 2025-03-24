@@ -31,7 +31,7 @@ const SmmPage = () => {
                 description: t("zigzak.subdesk1"),
             },
             {
-                image: "/images/services/smm/smmBg-2-min.jpg",
+                image: "/images/services/smm/smmBg-2-min.webp",
                 image_right: true,
                 title: t("zigzak.subtitle2"),
                 description: t("zigzak.subdesk2"),
@@ -49,7 +49,7 @@ const SmmPage = () => {
                 description: t("zigzak.subdesk4"),
             },
             {
-                image: "/images/services/smm/smmBg-5-min.jpg",
+                image: "/images/services/smm/smmBg-5-min.webp",
                 image_right: false,
                 title: t("zigzak.subtitle5"),
                 description: t("zigzak.subdesk5"),
@@ -61,7 +61,7 @@ const SmmPage = () => {
                 description: t("zigzak.subdesk6"),
             },
             {
-                image: "/images/services/smm/smmBg-7-min.jpg",
+                image: "/images/services/smm/smmBg-7-min.png",
                 image_right: false,
                 title: t("zigzak.subtitle7"),
                 description: t("zigzak.subdesk7"),

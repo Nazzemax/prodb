@@ -176,7 +176,7 @@ export const useSeoPostsData = () => {
                 ],
             },
             {
-                image: "/images/services/seo/seo3-min.png",
+                image: "/images/services/seo/seo3-min.webp",
                 image_right: false,
                 title: t("servicesSEO.title3"),
                 tags: [
@@ -186,7 +186,7 @@ export const useSeoPostsData = () => {
                 ],
             },
             {
-                image: "/images/services/seo/seo4-min.png",
+                image: "/images/services/seo/seo4-min.webp",
                 image_right: true,
                 title: t("servicesSEO.title4"),
                 tags: [
