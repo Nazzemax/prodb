@@ -21,57 +21,68 @@ import {
 } from "@/components/ui/navigation-menu";
 import { usePrevSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
+import { usePrefetch } from "@/api/StaticPages";
 
-export const NavigationBar = React.memo(() => {
-    const slug = usePrevSlug();
-    const isCases = slug === "cases";
+export const NavigationBar = () => {
+    const prevSlug = usePrevSlug();
+    const isCases = prevSlug === "cases";
     const t = useTranslations("HomePage");
+    const prefetchPage = usePrefetch("getStaticPageBySlug")
 
     const components = React.useMemo(
         () => [
             {
                 title: t("navLinks.services.branding"),
                 href: "/services/branding",
+                page: "branding",
                 icon: <BrandingIcon />,
             },
             {
                 title: t("navLinks.services.smm"),
                 href: "/services/smm",
+                page: "smm",
                 icon: <DigitalPromotionIcon />,
             },
             {
                 title: t("navLinks.services.videoProduction"),
                 href: "/services/video-production",
+                page: "video-production",
                 icon: <VideoProductionIcon />,
             },
             {
                 title: t("navLinks.services.siteCreating"),
                 href: "/services/site-creating",
+                page: "site-creating",
                 icon: <WebDevIcon />,
             },
             {
                 title: t("navLinks.services.marketingSupport"),
                 href: "/services/marketing-support",
+                page: "marketing-support",
                 icon: <MarketingPromotionIcon />,
             },
             {
                 title: t("navLinks.services.crm"),
                 href: "/services/crm",
+                page: "crm",
                 icon: <CRMIcon />,
             },
             {
                 title: t("navLinks.services.seo"),
                 href: "/services/seo",
+                page: "seo",
                 icon: <CRMIcon />,
             },
             {
                 title: t("navLinks.services.contextAd"),
                 href: "/services/context-ads",
+                page: "context-ads",
                 icon: <CRMIcon />,
             },
             {
                 title: t("navLinks.services.operativePrint"),
                 href: "/services/operative-print",
+                page: "operative-print",
                 icon: <CRMIcon />,
             }
         ],
@@ -80,7 +91,7 @@ export const NavigationBar = React.memo(() => {
 
     return (
         <NavigationMenu>
-            <NavigationMenuList className={cn("hidden xl:flex")}>
+            <NavigationMenuList className={cn("hidden lg:flex")}>
                 <NavigationMenuItem>
                     <Link
                         href="/home"
@@ -94,7 +105,7 @@ export const NavigationBar = React.memo(() => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
-                        prefetch={false}
+                        onMouseEnter={() => prefetchPage('about')}
                         href="/about"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -106,6 +117,7 @@ export const NavigationBar = React.memo(() => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
+                        onMouseEnter={() => prefetchPage('cases')}
                         href="/cases"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -132,6 +144,7 @@ export const NavigationBar = React.memo(() => {
                                     title={component.title}
                                     href={component.href}
                                     icon={component.icon}
+                                    prefetchingPage={component.page}
                                 />
                             ))}
                         </ul>
@@ -139,7 +152,7 @@ export const NavigationBar = React.memo(() => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
-                        prefetch={false}
+                        onMouseEnter={() => prefetchPage('blog')}
                         href="/blog"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -151,7 +164,6 @@ export const NavigationBar = React.memo(() => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
-                        prefetch={false}
                         href="/contacts"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -164,18 +176,21 @@ export const NavigationBar = React.memo(() => {
             </NavigationMenuList>
         </NavigationMenu>
     );
-})
+}
 
 NavigationBar.displayName = 'NavigationBar'
 
 const ListItem = React.forwardRef<
     React.ComponentRef<"a">,
-    React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode }
->(({ className, title, icon, ...props }, ref) => {
+    React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode, prefetchingPage: string; }
+>(({ className, title, icon, prefetchingPage, ...props }, ref) => {
+    const prefetchPage = usePrefetch("getStaticPageBySlug")
+    
     return (
         <li>
             <NavigationMenuLink asChild>
                 <a
+                    onMouseEnter={() => prefetchPage(prefetchingPage)}
                     ref={ref}
                     className={cn(
                         "flex items-center gap-2 select-none space-y- 1 rounded-sm p-3 leading-normal no-underline outline-none transition-colors hover:bg-background-gray2 hover:text-foreground focus:bg-background-gray2 focus:text-primary",

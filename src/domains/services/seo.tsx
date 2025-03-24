@@ -2,16 +2,6 @@
 
 import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
 import { useGetSiteStatusQuery } from "@/api/Types";
-import { ServiceBrandingIcon1 } from "@/assets/services/branding";
-import {
-    Card1Icon,
-    Card2Icon,
-    Card3Icon,
-    SeoHowWeWork2,
-    SeoHowWeWork3,
-    SeoHowWeWork4,
-    SeoHowWeWork5,
-} from "@/assets/services/seo";
 import { RequestHandler } from "@/components/atoms/request-handler";
 import { SeoFeedbackForm } from "@/components/forms/seo-feedback-form";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";

@@ -35,7 +35,7 @@ export const Award = ({
                 >
                     <Badge className="mb-6 p-2 rounded-3xl bg-transparent border border-gray-600 text-xl uppercase">{badgeTitle}</Badge>
                     <Heading className="text-primary-foreground text-center max-w-md lg:max-w-full">{title}</Heading>
-                    {sub_title && <h3 className="text-xl lg:text-2xl text-center font-bold mt-4">{sub_title}</h3>}
+                    {sub_title && <h2 className="text-xl lg:text-2xl text-center font-bold mt-4">{sub_title}</h2>}
                 </motion.div>
                 <motion.div
                     variants={fadeIn('up', 'spring')}

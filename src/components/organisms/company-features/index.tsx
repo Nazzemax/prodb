@@ -5,8 +5,6 @@ import FeaturesBgSVG from '@/assets/backgrounds/features_bg.svg'
 import { Heading } from "@/components/atoms/heading"
 import { useGetCompanyServicesQuery } from "@/api/Company"
 import { RequestHandler } from "@/components/atoms/request-handler"
-import { motion } from "framer-motion"
-import { fadeIn, staggerTransition, viewportConfig } from "@/lib/motion"
 import { useEffect, useState } from "react";
 import { Spinner } from "@/components/atoms/spinner";
 
@@ -34,20 +32,11 @@ export const CompanyFeatures = () => {
                     </Heading>
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8">
-                    {data?.items.map((feature, idx) => (
-                        <motion.div
-                            key={idx}
-                            variants={fadeIn('up', 'spring', idx * 0.2)}
-                            initial="hidden"
-                            whileInView="show"
-                            viewport={viewportConfig}
-                            transition={staggerTransition(idx)}
-                        >
-                            <CompanyFeatureItem
-                                {...feature}
-                            />
-                        </motion.div>
-
+                    {data?.items.map((feature) => (
+                        <CompanyFeatureItem
+                            key={feature.title}
+                            {...feature}
+                        />
                     ))}
                 </div>
             </RequestHandler>

@@ -18,7 +18,7 @@ export const CompanyPostList = ({ title }: { title?: string }) => {
     const t = useTranslations("ThreePost");
 
     return (
-        <div className="w-full overflow-x-hidden py-20 bg-background-gray">
+        <div className="w-full overflow-hidden py-20 bg-background-gray">
             <RequestHandler
                 isLoading={isLoading}
                 error={error}
@@ -40,11 +40,11 @@ export const CompanyPostList = ({ title }: { title?: string }) => {
                                 delay: 8000,
                             })
                         ]}
-                        className="hidden md:flex overflow-hidden"
+                        className="hidden md:flex max-w-[1280px] m-auto px-5"
                     >
                         <CarouselContent className="gap-4 md:ml-28">
                             {data?.items.map((post, idx) => (
-                                <CarouselItem key={idx} className="md:basis-1/2 xl:basis-2/5">
+                                <CarouselItem key={idx} className="md:basis-1/2 xl:basis-5/12">
                                     <CompanyPostItem {...post} />
                                 </CarouselItem>
                             ))}

@@ -113,26 +113,19 @@ const VideoProductionPage = () => {
                 />
             )}
             <InfoCard
+                card_icon={<VideoProductionIcon />}
                 title={"Креатив, который выделяет ваш бренд"}
-                description={
-                    "С более чем 10-летним опытом в видеопродакшн, наша команда профессионалов создает видеоролики, которые не только привлекают внимание, но и эффективно достигают ваших бизнес-целей."
-                }
+                description={"С более чем 10-летним опытом в видеопродакшн, наша команда профессионалов создает видеоролики, которые не только привлекают внимание, но и эффективно достигают ваших бизнес-целей."}
                 video={videoData?.items[0].video}
                 card_title={"В Bold Brands мы уверены"}
-                card_description={
-                    "Качественный видеоконтент — это ключ к успешному продвижению вашего бизнеса."
-                }
-                card_icon={<VideoProductionIcon />}
+                card_description={"Качественный видеоконтент — это ключ к успешному продвижению вашего бизнеса."}
             />
             <VideoCompany />
-            <ServicePostList title={serviceData.title} items={serviceData.items} />
-            {/* {reviews && ( */}
-            <ClientReviewList
-            // title={reviews[0].title}
-            // sub_title={reviews[0].sub_title}
-            // reviews={reviews[0].items}
+            <ServicePostList
+                title={serviceData.title}
+                items={serviceData.items}
             />
-            {/* )} */}
+            <ClientReviewList />
             <FormLayout
                 title={"Рассчитайте стоимость вашего Видеопроекта"}
                 nestedForm={

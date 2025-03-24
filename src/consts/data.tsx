@@ -153,7 +153,7 @@ export const useSeoData = () => {
 export const useSeoPostsData = () => {
     const t = useTranslations("ServicesPage3");
     return {
-        title: t("servicesSEO.title"),
+        title: t("services.title"),
         items: [
             {
                 image: "/images/services/seo/seo1-min.png",
@@ -221,37 +221,37 @@ export const useSeoPostsData = () => {
 export const useSeoCardsData = () => {
     const t = useTranslations("ServicesPage3");
     return {
-        title: t("howWeWork.title"),
+        title: t("howWeWork.title1"),
         items: [
             {
                 image: <ServiceBrandingIcon1 />,
                 number: "01",
-                title: t("howWeWork.title1"),
-                description: t("howWeWork.desk1"),
+                title: t("howWeWork.title11"),
+                description: t("howWeWork.description11"),
             },
             {
                 image: <SeoHowWeWork2 />,
                 number: "02",
-                title: t("howWeWork.title2"),
-                description: t("howWeWork.desk2"),
+                title: t("howWeWork.title12"),
+                description: t("howWeWork.description12"),
             },
             {
                 image: <SeoHowWeWork3 />,
                 number: "03",
-                title: t("howWeWork.title3"),
-                description: t("howWeWork.desk3"),
+                title: t("howWeWork.title13"),
+                description: t("howWeWork.description13"),
             },
             {
                 image: <SeoHowWeWork4 />,
                 number: "04",
-                title: t("howWeWork.title4"),
-                description: t("howWeWork.desk4"),
+                title: t("howWeWork.title14"),
+                description: t("howWeWork.description14"),
             },
             {
                 image: <SeoHowWeWork5 />,
                 number: "05",
-                title: t("howWeWork.title5"),
-                description: t("howWeWork.desk5"),
+                title: t("howWeWork.title15"),
+                description: t("howWeWork.description15"),
             },
         ],
     };

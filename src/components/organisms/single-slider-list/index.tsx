@@ -22,24 +22,6 @@ const MemoizedCarouselNext = memo(({ className }: { className?: string }) => (
 MemoizedCarouselNext.displayName = "MemoizedCarouselNext";
 
 const SingleSliderList = ({ banners }: { banners: Banner[] }) => {
-    // const { data, error, isLoading } = useGetBannersQuery()
-
-    // if (isLoading) {
-    //     return (
-    //         <div className="flex justify-center items-center h-screen">
-    //             <Spinner />
-    //         </div>
-    //     );
-    // }
-
-    // if (error) {
-    //     return (
-    //         <div className="flex justify-center items-center h-screen text-accent">
-    //             <p>Не удалось загрузить слайдеры. Попробуйте</p>
-    //         </div>
-    //     );
-    // }
-
     return (
         <Carousel
             hasProgressBar

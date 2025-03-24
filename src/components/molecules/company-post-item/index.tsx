@@ -53,7 +53,7 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
                 {social_media.map((social) => (
                     <Badge
                         variant={'tag'}
-                        className="flex items-center grow gap-1 whitespace-nowrap overflow-hidden"
+                        className="flex items-center grow gap-1 whitespace-nowrap overflow-hidden max-w-[50%]"
                         key={social.title}
                     >
                         {/* <span>{social.logo}</span> */}

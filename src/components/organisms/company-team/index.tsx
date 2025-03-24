@@ -80,7 +80,7 @@ export const CompanyTeam = () => {
                         >
                             <CarouselContent>
                                 {data?.items.map((member, idx) => (
-                                    <CarouselItem key={idx} className="basis-4/5 md:basis-1/2 lg:basis-1/4 p-4">
+                                    <CarouselItem key={idx} className="basis-3/5">
                                         <CompanyMember
                                             {...member}
                                         />

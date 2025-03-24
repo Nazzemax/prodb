@@ -1,38 +1,42 @@
+import dynamic from "next/dynamic";
+import { getTranslations } from "next-intl/server";
 import { Award } from "@/components/organisms/award";
-import { CompanyChallengeList } from "@/components/organisms/company-challenge-list";
 import { CompanyFeatures } from "@/components/organisms/company-features";
 import { CompanyPartners } from "@/components/organisms/company-partners";
 import { CompanyPostList } from "@/components/organisms/company-post-list";
-import { MarketingDepartment } from "@/components/organisms/marketing-department";
 import { FeedbackForm } from "@/components/forms/feedback-form";
 import { FormLayout } from "@/components/templates/form-layout";
 import { PartnerReviewList } from "@/components/organisms/partner-review-list";
 import { Advantages } from "@/components/organisms/advantages/Advantages";
 import NewsBanner from '@/components/atoms/NewsBanne/NewsBanne';
 import { VideoAboutCompany } from "@/components/organisms/video-about-company";
-import { getTranslations } from "next-intl/server";
-import dynamic from "next/dynamic";
 import { getBanners } from "@/api/Banners";
 import { ClientReviewList } from "@/components/organisms/client-review-list";
 import { BlogPostList } from "@/components/organisms/blog-post-list";
+import SingleSliderList from "@/components/organisms/single-slider-list";
+import { getMarketingDepartment } from "@/api/Marketing";
+import { getCompanyChallenges } from "@/api/Company";
 
 
 const FloatingWhatsapp = dynamic(() => import("@/components/atoms/floating-whatsapp"));
-const SingleSliderList = dynamic(() => import("@/components/organisms/single-slider-list"));
+const MarketingDepartment = dynamic(() => import("@/components/organisms/marketing-department"));
+const CompanyChallengeList = dynamic(() => import("@/components/organisms/company-challenge-list"));
 
 const HomePage = async () => {
     const t = await getTranslations("HomePage");
     const banners = await getBanners();
+    const MarketingDepartmentData = await getMarketingDepartment();
+    const companyChallenges = await getCompanyChallenges();
 
     return (
         <>
             <FloatingWhatsapp />
             <NewsBanner />
             <SingleSliderList banners={banners} />
-            <MarketingDepartment />
+            <MarketingDepartment data={MarketingDepartmentData} />
             <VideoAboutCompany />
             <Advantages />
-            <CompanyChallengeList />
+            <CompanyChallengeList data={companyChallenges} />
             <CompanyFeatures />
             <CompanyPostList />
             <BlogPostList />
@@ -44,7 +48,7 @@ const HomePage = async () => {
             />
             <CompanyPartners />
             <PartnerReviewList />
-            {/* <ClientReviewList/> */}
+            <ClientReviewList />
             <FormLayout
                 title={"Получите бесплатную консультацию"}
                 nestedForm={<FeedbackForm />}

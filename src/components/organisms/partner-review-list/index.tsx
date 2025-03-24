@@ -12,36 +12,22 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useAppData } from "@/context/app-context";
-import {
-    fadeIn,
-    viewportConfig,
-    staggerTransition,
-    textVariant,
-} from "@/lib/motion";
-import { motion } from "framer-motion";
 
 export const PartnerReviewList = () => {
     const { data, isLoading, error } = useGetPartnersReviewsQuery();
     const { reviewRef } = useAppData();
 
     return (
-        <div ref={reviewRef} className="w-full max-w-[1920px] px-4 md:px-10 mb-24">
+        <div ref={reviewRef} className="w-full max-w-[1920px] px-4 md:px-10 mb-24 lg:px-44">
             <RequestHandler isLoading={isLoading} error={error} data={data}>
-                <div className="grid grid-cols-1 xl:grid-cols-2 place-items-center gap-10">
+                <div className="grid grid-cols-1 2xl:grid-cols-2 place-items-center gap-10">
                     <div className="flex flex-col justify-center gap-y-5 text-center">
                         <Heading as="h2">{data?.title}</Heading>
-                        <p className="text-xl text-gray2">
+                        <p className="text-xl text-gray2 max-w-[600px] m-auto">
                             {data?.description}
                         </p>
                     </div>
-                    <motion.div
-                        variants={fadeIn("up", "spring", 0.3)}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={viewportConfig}
-                        transition={staggerTransition(0)}
-                        className="flex items-center justify-center"
-                    >
+                    <div className="flex items-center justify-center">
                         <Carousel className="w-[350px] md:w-[480px] max-w-md">
                             <CarouselContent className="">
                                 {data?.items.map((review, idx) => (
@@ -66,7 +52,7 @@ export const PartnerReviewList = () => {
                                 />
                             </div>
                         </Carousel>
-                    </motion.div>
+                    </div>
                 </div>
             </RequestHandler>
         </div>

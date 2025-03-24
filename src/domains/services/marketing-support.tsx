@@ -1,7 +1,6 @@
 'use client';
 
 import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { useGetTaskTypesQuery } from "@/api/Types";
 import { MarketingSupportIcon } from "@/assets/info-card";
 import { ContextAd5Icon } from "@/assets/services/context-ad";
 import { ServiceCrmIcon2} from "@/assets/services/crm";
@@ -9,7 +8,6 @@ import { MarketingIcon } from "@/assets/services/marketing";
 import { SeoHowWeWork5 } from "@/assets/services/seo";
 import { RequestHandler } from "@/components/atoms/request-handler";
 import { FeedbackForm } from "@/components/forms/feedback-form";
-import { MarketingSupportFeedbackForm } from "@/components/forms/marketing-support-form";
 import { CompanyPostList } from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { InfoCard } from "@/components/organisms/info-card";
@@ -17,7 +15,6 @@ import { MarketingResults } from "@/components/organisms/marketing-results";
 import { ServicePostList } from "@/components/organisms/service-post-list";
 import { FormLayout } from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useAppData } from "@/context/app-context";
 import { useSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
 
@@ -30,8 +27,6 @@ const MarketingSupportPage = () => {
     const t2 = useTranslations("Buttons")
     const slug = useSlug()
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug)
-    const { data: task_types } = useGetTaskTypesQuery()
-    const { business_types } = useAppData()
 
     const serviceData = {
         title: t('WhatWeDo.mainTitle'),

@@ -1,6 +1,5 @@
 "use client";
 
-// import { useGetCompanyVideoReviewsQuery } from "@/api/Company";
 import { useGetPostsQuery } from "@/api/Post";
 import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
 import { RequestHandler } from "@/components/atoms/request-handler";
@@ -18,7 +17,6 @@ const CasesPage = () => {
     const slug = useSlug();
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
     const { data: post_data } = useGetPostsQuery();
-    // const { data: reviews } = useGetCompanyVideoReviewsQuery();
     const t = useTranslations("Cases");
 
     type BannerTexts = {
@@ -47,14 +45,7 @@ const CasesPage = () => {
                 />
             )}
             <CasesList posts={post_data?.results || []} />
-            {/* {reviews && ( */}
-            <ClientReviewList
-                hasBg
-            //   title={reviews[1].title}
-            //   sub_title={reviews[1].sub_title}
-            //   reviews={reviews[1].items}
-            />
-            {/* )} */}
+            <ClientReviewList hasBg />
             <CompanyPartners />
             <PartnerReviewList />
             <FormLayout nestedForm={<FeedbackForm />} />

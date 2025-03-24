@@ -33,8 +33,7 @@ export const ReviewItem = ({ rating, user_image, user_name, user_position, text 
                     </div>
                     <div className="flex gap-x-3">
                         <Avatar className="bg-yellow-600">
-                            <AvatarImage src={user_image}/>
-                            <AvatarFallback>{user_name}</AvatarFallback>
+                            <AvatarImage alt={user_name} src={user_image}/>
                         </Avatar>
                         <div className="flex flex-col">
                             <h2 className="font-bold w-3/4 lg:w-full text-lg leading-6">{user_name}</h2>
@@ -69,8 +68,7 @@ export const ReviewItem = ({ rating, user_image, user_name, user_position, text 
                                     </DialogTitle>
                                     <div className="flex gap-x-3">
                                         <Avatar className="bg-yellow-600">
-                                            <AvatarImage src={user_image} />
-                                            <AvatarFallback>{user_name}</AvatarFallback>
+                                            <AvatarImage alt={user_name} src={user_image} />
                                         </Avatar>
                                         <div className="flex flex-col">
                                             <DialogTitle><div className="font-bold w-3/4 md:w-full text-lg leading-6">{user_name}</div></DialogTitle>

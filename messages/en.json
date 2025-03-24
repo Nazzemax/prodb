@@ -160,6 +160,88 @@
       "content2": "Websites in the top search results are perceived as more reliable. This strengthens customer trust and encourages repeat sales.",
       "title3": "Long-Term Results",
       "content3": "SEO investments pay off in the long run, unlike paid advertising, which only provides short-term effects."
+    },
+    "servicesSEO": {
+      "title": "Our SEO Optimization Services",
+      "title1": "Technical Website Audit",
+      "tag1_1": "Page load speed check",
+      "tag1_2": "Error detection and code fixing",
+      "tag1_3": "Mobile optimization",
+      "title2": "Effective Keyword Selection",
+      "tag2_1": "Target audience search query analysis",
+      "tag2_2": "Competitiveness and frequency evaluation",
+      "tag2_3": "Semantic core compilation",
+      "title3": "On-Page Optimization",
+      "tag3_1": "Improving website structure and navigation",
+      "tag3_2": "Meta tag and header optimization",
+      "tag3_3": "Creating high-quality and unique content",
+      "title4": "Off-Page Optimization (Link Building)",
+      "tag4_1": "Publishing articles and links on authoritative resources",
+      "tag4_2": "Managing reviews and brand mentions",
+      "tag4_3": "Building a natural link profile",
+      "title5": "Local SEO",
+      "tag5_1": "Optimization for local search queries",
+      "tag5_2": "Setting up profiles in Google My Business and Yandex Directory",
+      "tag5_3": "Collecting and managing customer reviews",
+      "title6": "Ongoing Monitoring and Analytics",
+      "tag6_1": "Tracking search rankings",
+      "tag6_2": "Analyzing user behavior on the website",
+      "tag6_3": "Adjusting strategy based on data"
+    },
+    "services": {
+      "title": "Our SEO Optimization Services",
+      "title1": "Technical Website Audit",
+      "tags1": {
+        "tag1": "Page load speed check",
+        "tag2": "Error detection and code fixing",
+        "tag3": "Mobile optimization"
+      },
+      "title2": "Effective Keyword Selection",
+      "tags2": {
+        "tag1": "Target audience search query analysis",
+        "tag2": "Competitiveness and frequency evaluation",
+        "tag3": "Semantic core compilation"
+      },
+      "title3": "On-Page Optimization",
+      "tags3": {
+        "tag1": "Improving website structure and navigation",
+        "tag2": "Meta tag and header optimization",
+        "tag3": "Creating high-quality and unique content"
+      },
+      "title4": "Off-Page Optimization (Link Building)",
+      "tags4": {
+        "tag1": "Publishing articles and links on authoritative resources",
+        "tag2": "Managing reviews and brand mentions",
+        "tag3": "Building a natural link profile"
+      },
+      "title5": "Local SEO",
+      "tags5": {
+        "tag1": "Optimization for local search queries",
+        "tag2": "Setting up profiles in Google My Business and Yandex Directory",
+        "tag3": "Collecting and managing customer reviews"
+      },
+      "title6": "Ongoing Monitoring and Analytics",
+      "tags6": {
+        "tag1": "Tracking search rankings",
+        "tag2": "Analyzing user behavior on the website",
+        "tag3": "Adjusting strategy based on data"
+      }
+    },
+    "howWeWork": {
+      "title1": "How we work",
+      "title11": "Business and competitor analysis",
+      "description11": "We dive into the specifics of your market and study the strengths and weaknesses of your competitors.",
+      "title12": "Development of an individual strategy",
+      "description12": "We create an action plan taking into account the specifics of your business and goals",
+      "title13": "Implementation of optimization measures",
+      "description13": "We carry out technical and content optimization, and work on external ranking factors.",
+      "title14": "Tracking Results and Reporting",
+      "description14": "We regularly provide reports on the work done and the results achieved.",
+      "title15": "Continuous improvement",
+      "description15": "We adapt the strategy in accordance with changes in search engine algorithms and market trends"
+    },
+    "faq": {
+      "title": "Frequently asked questions"
     }
   },
   "ServicePage4": {
@@ -544,7 +626,7 @@
       "companyDescription": "ваш внешний отдел маркетинга",
       "copyright": "© 2024 Bold Brands International. Все права защищены"
     },
-    "title":"Servicces",
+    "title": "Servicces",
     "companyLinks": {
       "aboutUs": "О нас",
       "cases": "Кейсы",
@@ -557,7 +639,7 @@
       "webDevelopment": "Web development and design",
       "marketingSupport": "Integrated\u00A0marketing promotion",
       "automationAnalytics": "Seo optimization",
-      "printing":"Operative Print"
+      "printing": "Operative Print"
     },
     "contactInfo": {
       "addresses": {

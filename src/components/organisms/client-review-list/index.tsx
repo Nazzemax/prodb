@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ReactPlayer from "react-player/lazy";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Heading } from "@/components/atoms/heading";
@@ -16,19 +16,24 @@ export const ClientReviewList = ({
     hasSubTitle,
     hasBg,
 }: {
-  hasSubTitle?: boolean;
-  hasBg?: boolean;
+    hasSubTitle?: boolean;
+    hasBg?: boolean;
 }) => {
     const { data: reviews = [] } = useGetCompanyVideoReviewsQuery();
     const [currentPage, setCurrentPage] = useState(0);
+    const [isMounted, setIsMounted] = useState(false);
 
-    const pathname = useSlug() as 
-    "blog" |
-    "cases" |
-    "home" |
-    "smm" |
-    "video-production"
-    ;
+    useEffect(() => {
+        setIsMounted(true)
+    }, [])
+
+    const pathname = useSlug() as
+        "blog" |
+        "cases" |
+        "home" |
+        "smm" |
+        "video-production"
+        ;
 
     const paths = {
         "blog": {
@@ -64,7 +69,7 @@ export const ClientReviewList = ({
 
     };
 
-    const { sub_title, title, items, totalPages} = paths[pathname] || {};
+    const { sub_title, title, items, totalPages } = paths[pathname] || {};
     const t = useTranslations("Cases");
 
     const handleNext = () => {
@@ -74,6 +79,8 @@ export const ClientReviewList = ({
     const handlePrev = () => {
         setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
     };
+
+    if (!isMounted) return null;
 
     return (
         <section

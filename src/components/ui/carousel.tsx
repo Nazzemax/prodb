@@ -159,6 +159,8 @@ const Carousel = React.forwardRef<
 
                     {hasProgressBar && (
                         <Progress
+                            aria-label="Прогресс загрузки"
+                            role="progressbar"
                             className="absolute bottom-0 h-2"
                             value={progress}
                         />

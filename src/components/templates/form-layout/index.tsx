@@ -3,14 +3,7 @@
 import { FeedbackContactItem } from "@/components/atoms/feedback-contact-item";
 import { Heading } from "@/components/atoms/heading";
 import { useAppData } from "@/context/app-context";
-import {
-    fadeIn,
-    staggerTransition,
-    textVariant,
-    viewportConfig,
-} from "@/lib/motion";
 import mergeRefs, { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
 import { Mail, Phone } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";

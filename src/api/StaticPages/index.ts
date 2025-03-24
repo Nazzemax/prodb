@@ -24,4 +24,5 @@ export const staticPagesApi = baseApi.injectEndpoints({
 export const {
     useGetStaticPagesQuery,
     useGetStaticPageBySlugQuery,
+    usePrefetch,
 } = staticPagesApi

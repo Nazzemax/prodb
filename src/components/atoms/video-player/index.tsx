@@ -48,6 +48,7 @@ export const VideoPlayer = ({ video }: { video: string; controls?: boolean }) =>
                 controls={true}
                 playing={isVisible && isPlaying}
                 muted={true}
+                // light={true}
                 playsinline
                 width="100%"
                 height="100%"

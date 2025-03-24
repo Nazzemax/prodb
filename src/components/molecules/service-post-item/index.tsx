@@ -54,7 +54,7 @@ export const ServicePostItem = memo(
                     )}
 
                     {video_link && (
-                        <div className="w-full h-full min-w-[335px] min-h-[330px] relative aspect-video">
+                        <div className="w-full h-full relative">
                             <VideoPlayer video={video_link} />
                         </div>
                     )}

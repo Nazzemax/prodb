@@ -1,7 +1,6 @@
 "use client";
 
 import { useGetArticlesQuery } from "@/api/Article"
-import { Article, ArticlesResponse } from "@/api/Article/types"
 import { Heading } from "@/components/atoms/heading"
 import { BlogPostItem } from "@/components/molecules/blog-post-item"
 import { Button } from "@/components/ui/button"
@@ -9,105 +8,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
-// const data = [
-//     {
-//         id: 1,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 2,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 3,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 4,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 5,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 6,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 7,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 8,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 9,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 10,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 11,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 12,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-//     {
-//         id: 13,
-//         title: 'Для жизни. Мясников пояснил, почему нельзя совсем отказываться от соли',
-//         description: 'В эфире программы “О самом главном” Александр Мясников рассказал о нюансах',
-//         date: '11.03.2024',
-//         image: '/images/main_page/diploma.jpg'
-//     },
-// ]
-
-
-
-export const BlogPostList = ({
-    
-}) => {
+export const BlogPostList = () => {
     const t = useTranslations("BlogPage")
     const { data: articles } = useGetArticlesQuery()
     const pageSize = 12;

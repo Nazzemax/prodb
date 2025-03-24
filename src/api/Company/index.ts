@@ -1,5 +1,5 @@
 import { baseApi } from "../Base";
-import { baseUrl } from "../Base/baseApi";
+import { baseUrl, fetchData } from "../Base/baseApi";
 import {
     CompanyAchievementsResponse,
     CompanyAdvertisingResponse,
@@ -136,4 +136,8 @@ export async function getVideoReviews(cache: RequestCache = "force-cache") {
         console.error("Ошибка в getVideoReviews:", error);
         throw error;
     }
+}
+
+export async function getCompanyChallenges() {
+    return fetchData<CompanyChallengesResponse>("/company-challenges/")
 }

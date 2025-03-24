@@ -12,7 +12,6 @@ import { useGetPromotionTypesQuery } from "@/api/Types";
 import { useTranslations } from "next-intl";
 import { ClientReviewList } from "@/components/organisms/client-review-list";
 import { BlogPostList } from "@/components/organisms/blog-post-list";
-import { useGetArticlesQuery } from "@/api/Article";
 
 const BlogPage = () => {
     const t = useTranslations("AboutPage");
@@ -20,7 +19,6 @@ const BlogPage = () => {
     const slug = useSlug();
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
     const { data: promotion_types } = useGetPromotionTypesQuery();
-    const { data: articles } = useGetArticlesQuery()
     const { business_types } = useAppData();
 
     const names = {
@@ -43,8 +41,7 @@ const BlogPage = () => {
                     ]}
                 />
             )}
-            <ClientReviewList
-                hasBg/>
+            <ClientReviewList hasBg />
             <BlogPostList />
             <FormLayout
                 title={"Рассчитайте стоимость услуги"}

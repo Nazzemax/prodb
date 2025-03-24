@@ -3,8 +3,8 @@
 import { Spinner } from "../spinner";
 
 interface RequestHandlerProps {
-    isLoading: boolean;
-    error: any;
+    isLoading?: boolean;
+    error?: any;
     data: any;
     children: React.ReactNode;
 }

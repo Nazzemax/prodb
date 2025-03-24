@@ -6,21 +6,21 @@ import { FloatingWhatsApp } from 'react-floating-whatsapp'
 
 const FloatingWhatsapp = () => {
     const [mounted, setMounted] = useState(false)
-    // const isUz = localStorage.getItem("locale")
+    const [locale, setLocale] = useState<string | null>(null);
     const { data } = useAppData()
     useEffect(() => {
-        setMounted(true)
+        setMounted(true);
+        setLocale(localStorage.getItem("locale"));
     }, [])
 
-    if (!mounted) {
-        return null;
-    }
-
-    if(!data) return null
+    if (!mounted || !data) return null;
 
     return (
         <FloatingWhatsApp
-            phoneNumber={data?.phones[0].phone.split(" ").join("")} 
+            phoneNumber={locale === "uz"
+                ? data?.phones[1].phone.replace(/\s/g, "")
+                : data?.phones[0].phone.replace(/\s/g, "")
+            }
             accountName="Bold Brands International"
             notificationSound
             chatMessage="Доброго времени суток, чем могу вам помочь?"

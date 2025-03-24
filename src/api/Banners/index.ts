@@ -1,6 +1,5 @@
 
-import { baseApi } from "../Base";
-import { baseUrl } from "../Base/baseApi";
+import { baseApi, baseUrl } from "../Base/baseApi";
 import { Banner } from "./types";
 
 const bannersApi = baseApi.injectEndpoints({
@@ -18,18 +17,11 @@ const bannersApi = baseApi.injectEndpoints({
 
 export const { useGetBannersQuery } = bannersApi;
 
-
 export async function getBanners(cache: RequestCache = "force-cache") {
     try {
-        let acceptLanguage = "ru";
-
-        if (typeof window !== "undefined") {
-            acceptLanguage = localStorage.getItem("i18nextLng") || "ru";
-        } else {
-            const { cookies } = await import("next/headers");
-            const cookieStore = await cookies(); // Нужно дождаться промиса
-            acceptLanguage = cookieStore.get("NEXT_LOCALE")?.value || "ru";
-        }
+        const { cookies } = await import("next/headers");
+        const cookieStore = cookies();
+        const acceptLanguage = (await cookieStore).get("NEXT_LOCALE")?.value || "ru";
 
         const res = await fetch(`${baseUrl}/banners/`, {
             cache,
@@ -40,7 +32,7 @@ export async function getBanners(cache: RequestCache = "force-cache") {
 
         if (!res.ok) {
             console.error(`Ошибка загрузки баннеров: ${res.status} ${res.statusText}`);
-            throw new Error("Failed to fetch home page data");
+            throw new Error("Failed to fetch banners");
         }
 
         return res.json();

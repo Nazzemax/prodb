@@ -109,6 +109,7 @@ export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
             </Select>
             {isCase &&
                 <ButtonWithIcon
+                    aria-label="Связаться"
                     onClick={scrollToFeedback}
                     className="max-lg:hidden"
                     variant="secondary"

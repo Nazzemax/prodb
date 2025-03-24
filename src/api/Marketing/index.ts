@@ -1,4 +1,5 @@
 import { baseApi } from "../Base";
+import { fetchData } from "../Base/baseApi";
 import { MarketingDepartmentResponse, MarketingSupportResponse } from "./types";
 
 
@@ -30,3 +31,7 @@ export const {
     useGetMarketingDepartmentQuery,
     useGetMarketingSupportQuery
 } = MarketingApi
+
+export async function getMarketingDepartment(cache: RequestCache = "force-cache") {
+    return fetchData<MarketingDepartmentResponse>("/marketing-department/", cache)
+}

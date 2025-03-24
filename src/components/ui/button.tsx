@@ -40,13 +40,15 @@ export interface ButtonProps
     VariantProps<typeof buttonVariants> {
     asChild?: boolean;
     iconColor?: string;
+    ariaLabel?: string;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-    ({ className, variant, size, asChild = false, ...props }, ref) => {
+    ({ className, variant, size, asChild = false, ariaLabel = 'Применить', ...props }, ref) => {
         const Comp = asChild ? Slot : "button"
         return (
             <Comp
+                aria-label={ariaLabel}
                 className={cn(buttonVariants({ variant, size, className }))}
                 ref={ref}
                 {...props}

@@ -1,27 +1,16 @@
-"use client";
 
 import { MarketingChapter } from "@/components/molecules/marketing-department-chapter";
 import MarketingDepartmentBg from "@/assets/backgrounds/marketing_department.svg";
 import { Heading } from "@/components/atoms/heading";
-import { useGetMarketingDepartmentQuery } from "@/api/Marketing";
 import { RequestHandler } from "@/components/atoms/request-handler";
-import { motion } from "framer-motion";
-import {
-    defaultTransition,
-    fadeIn,
-    staggerTransition,
-    viewportConfig,
-} from "@/lib/motion";
-import { cn } from "@/lib/utils";
-import useInView from "@/hooks/useInView";
+import { MarketingDepartmentResponse } from "@/api/Marketing/types";
 
 interface Props {
     isPrint?: boolean;
+    data: MarketingDepartmentResponse;
 }
 
-export const MarketingDepartment: React.FC<Props> = ({ isPrint }) => {
-    const { data, isLoading, error } = useGetMarketingDepartmentQuery();
-    const { ref: titleRef, isInView: isTitleVisible } = useInView();
+const MarketingDepartment: React.FC<Props> = ({data}) => {
 
     return (
         <section
@@ -33,7 +22,7 @@ export const MarketingDepartment: React.FC<Props> = ({ isPrint }) => {
                 className="absolute top-3/4 md:top-32 left-0 -z-50 max-w-[1920px]"
             />
             <div className="flex flex-col gap-y-16 w-full max-w-[1280px] py-14 md:py-36">
-                <RequestHandler isLoading={isLoading} error={error} data={data}>
+                <RequestHandler data={data}>
                     <div className="flex flex-col md:flex-row gap-y-5 gap-x-10">
                         <Heading as="h2">
                             {data?.title}
@@ -42,13 +31,9 @@ export const MarketingDepartment: React.FC<Props> = ({ isPrint }) => {
                             {data?.sub_title}
                         </p>
                     </div>
-                    {/* Главы */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        {data?.chapters.map((chapter, idx) => (
-                            <div
-                                key={chapter.number}
-                                className={cn(isTitleVisible ? "animate-text" : "")}
-                            >
+                        {data?.chapters.map((chapter) => (
+                            <div key={chapter.number}>
                                 <MarketingChapter
                                     number={chapter.number}
                                     title={chapter.title}
@@ -61,3 +46,5 @@ export const MarketingDepartment: React.FC<Props> = ({ isPrint }) => {
         </section>
     );
 };
+
+export default MarketingDepartment;

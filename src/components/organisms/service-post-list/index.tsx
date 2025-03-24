@@ -1,14 +1,11 @@
-import { AnimatedItem } from "@/components/atoms/animated-item";
 import { Heading } from "@/components/atoms/heading";
 import { ServicePostItem } from "@/components/molecules/service-post-item";
-import { deafultTextAnimation } from "@/lib/motion";
-import { motion } from "framer-motion";
 import { memo } from "react";
 
 export interface IServicePostItem {
     image?: string;
     video_link?: string;
-    btn?:string;
+    btn?: string;
     image_right: boolean;
     title: string;
     sub_title?: string;
@@ -18,14 +15,14 @@ export interface IServicePostItem {
 }
 
 export interface IServicePostItemBranding {
-    image?: string; 
+    image?: string;
     video_link?: string;
     btn?: string;
     image_right: boolean;
     title: string;
     sub_title?: string;
-    tags?: { tags: string }[]; 
-    description?: string; 
+    tags?: { tags: string }[];
+    description?: string;
     has_button?: boolean;
 }
 
@@ -46,27 +43,25 @@ export const ServicePostList = memo(({
                 {description
                     ? <div className="flex flex-col lg:flex-row gap-4">
                         <Heading as="h2" className="lg:basis-[60%] space-y-5">{title}</Heading>
-                        <motion.p {...deafultTextAnimation} className="text-gray2 flex items-start text-sm md:text-base lg:basis-[40%]">{description}</motion.p>
+                        <p className="text-gray2 flex items-start text-sm md:text-base lg:basis-[40%]">{description}</p>
                     </div>
                     : <Heading as="h2">{title}</Heading>
                 }
 
                 <div className="w-full flex flex-col gap-y-12 md:gap-y-20">
-                    {items?.map((post, idx) => (
-                        <AnimatedItem key={idx} idx={idx}>
-                            <ServicePostItem
-                                image={post.image}
-                                image_right={post.image_right}
-                                title={post.title}
-                                sub_title={post.sub_title}
-                                description={post.description}
-                                video_link={post.video_link}
-                                tags={post.tags}
-                                btn={post.btn}
-                                has_button={post.has_button}
-                            />
-                        </AnimatedItem>
-
+                    {items?.map((post) => (
+                        <ServicePostItem
+                            key={post.title}
+                            image={post.image}
+                            image_right={post.image_right}
+                            title={post.title}
+                            sub_title={post.sub_title}
+                            description={post.description}
+                            video_link={post.video_link}
+                            tags={post.tags}
+                            btn={post.btn}
+                            has_button={post.has_button}
+                        />
                     ))}
                 </div>
             </div>

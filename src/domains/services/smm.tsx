@@ -72,7 +72,6 @@ const SmmPage = () => {
     const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
     const { data: ads } = useGetCompanyAdvertisingQuery();
     const { data: social_types } = useGetSocialTypesQuery();
-    // const { data: reviews } = useGetCompanyVideoReviewsQuery();
     const { business_types } = useAppData();
 
     const smmCreatingAdData = useSmmCreatingAdData();
@@ -112,13 +111,7 @@ const SmmPage = () => {
                 button={t("smm.btn")}
             />
             <Advantages isSmm />
-            {/* {reviews && */}
-            <ClientReviewList
-            // title={reviews[1].title}
-            // sub_title={reviews[1].sub_title}
-            // reviews={reviews[1].items}
-            />
-            {/* } */}
+            <ClientReviewList />
             <FormLayout
                 title={"Узнайте стоимость SMM-продвижения"}
                 nestedForm={
