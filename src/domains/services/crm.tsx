@@ -91,7 +91,7 @@ const CrmPage = () => {
                 ],
             },
             {
-                image: "/images/services/crm/crmfour.webp",
+                image: "/images/services/crm/crmfourth.webp",
                 image_right: true,
                 title: t("integrationServices.servicesList.3.serviceTitle"),
                 description: t("integrationServices.servicesList.3.serviceDescription"),
