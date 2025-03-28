@@ -21,9 +21,9 @@ export const VideoCompany = () => {
     };
 
     return (
-        <div className="relative mt-8">
+        <div className="relative">
             {!showVideo ? (
-                <div className="h-[50vh] md:h-[80dvh] max-sm:h-[400px] max-lg:h-[600px] lg:h-[600px] bg-[url('/images/main_page/video_bg.webp')] bg-cover bg-center flex justify-center items-center">
+                <div className="h-[50vh] md:h-[80vh] bg-[url('/images/main_page/video_bg.webp')] bg-cover bg-center flex justify-center items-center">
                     <Button
                         onClick={onClickVideo}
                         variant={"clean"}
@@ -51,7 +51,7 @@ export const VideoCompany = () => {
                     </motion.div>
                 </div>
             ) : (
-                <div className="max-w-[1920px] max-sm:h-[400px] max-lg:h-[600px] lg:h-[600px] max-xl-h-[1000px] xl:h-[1000px] mx-2 md:mx-0">
+                <div className="max-w-[1920px] h-[80vh] mx-2 md:mx-0">
                     <ReactPlayer
                         onReady={() => setPlay(true)}
                         key={data?.video}

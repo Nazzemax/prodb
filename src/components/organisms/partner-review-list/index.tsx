@@ -23,7 +23,7 @@ export const PartnerReviewList = () => {
                 <div className="grid grid-cols-1 2xl:grid-cols-2 place-items-center gap-10">
                     <div className="flex flex-col justify-center gap-y-5 text-center">
                         <Heading as="h2">{data?.title}</Heading>
-                        <p className="text-xl text-gray2 max-w-[600px] m-auto">
+                        <p className="text-xl text-gray2 max-w-[600px] m-autog">
                             {data?.description}
                         </p>
                     </div>

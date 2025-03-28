@@ -65,7 +65,7 @@ export const FooterLinks = () => {
         },
         {
             label: data?.addresses[1].title || "",
-            title: data?.addresses[1].address || "",
+            title: " Яшнободский район, Янгибозор 1/4",
             href: 'https://go.2gis.com/0MCXh'
         },
         { 

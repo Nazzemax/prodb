@@ -42,7 +42,7 @@ export const CompanyPostList = ({ title }: { title?: string }) => {
                         ]}
                         className="hidden md:flex max-w-[1328px] m-auto px-5"
                     >
-                        <CarouselContent className="gap-4 md:ml-28">
+                        <CarouselContent className="gap-4">
                             {data?.items.map((post, idx) => (
                                 <CarouselItem key={idx} className="md:basis-1/2 xl:basis-5/12">
                                     <CompanyPostItem {...post} />

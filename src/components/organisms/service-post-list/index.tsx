@@ -48,7 +48,7 @@ export const ServicePostList = memo(({
                     : <Heading as="h2">{title}</Heading>
                 }
 
-                <div className="w-full flex flex-col gap-y-12 md:gap-y-20">
+                <div className="w-full flex flex-col gap-y-20">
                     {items?.map((post) => (
                         <ServicePostItem
                             key={post.title}

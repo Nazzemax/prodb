@@ -91,12 +91,13 @@ export const CompanyTeam = () => {
                         </Carousel>
                         <div className='hidden md:grid grid-cols-3 lg:grid-cols-4'>
                             {data?.items.map((member, idx) => (
-                                <CompanyMember
-                                    key={idx}
-                                    name={member.name}
-                                    position={member.position}
-                                    image={member.image}
-                                />
+                                <AnimatedItem key={idx} idx={idx}>
+                                    <CompanyMember
+                                        name={member.name}
+                                        position={member.position}
+                                        image={member.image}
+                                    />
+                                </AnimatedItem>
                             ))}
                         </div>
                     </div>

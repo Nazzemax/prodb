@@ -37,7 +37,7 @@ export const ServicePostItem = memo(
         return (
             <div
                 className={cn(
-                    "flex gap-5 flex-col-reverse",
+                    "flex gap-5 lg:gap-10 flex-col-reverse",
                     image_right ? "lg:flex-row-reverse" : "lg:flex-row"
                 )}
             >
@@ -59,7 +59,7 @@ export const ServicePostItem = memo(
                         </div>
                     )}
                 </div>
-                <div className="lg:w-1/2 flex flex-col justify-center items-start gap-y-2 md:gap-y-4 lg:p-14">
+                <div className="lg:w-1/2 flex flex-col justify-center items-start gap-y-2 md:gap-y-4">
                     <Heading as="h4" className="text-2xl md:text-3xl">
                         {title}
                     </Heading>
