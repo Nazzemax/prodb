@@ -621,16 +621,21 @@
     "adress2": "Yashnobod District, Yangibozor 1"
   },
   "footer": {
+    "titles": {
+      "about": "About Company",
+      "we": "We are here",
+      "work": "Working time"
+    },
     "companyInfo": {
       "companyName": "Bold Brands International",
       "companyDescription": "ваш внешний отдел маркетинга",
       "copyright": "© 2024 Bold Brands International. Все права защищены"
     },
-    "title": "Servicces",
+    "title": "Services",
     "companyLinks": {
-      "aboutUs": "О нас",
-      "cases": "Кейсы",
-      "reviews": "Отзывы"
+      "aboutUs": "About us",
+      "cases": "Cases",
+      "reviews": "Reviews"
     },
     "servicesLinks": {
       "branding": "Branding",

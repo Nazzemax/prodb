@@ -346,12 +346,17 @@
     }
   },
   "footer": {
+    "titles": {
+      "about": "О компании",
+      "we": "Мы есть",
+      "work": "Работаем"
+    },
     "companyInfo": {
       "companyName": "Bold Brands International",
       "companyDescription": "ваш внешний отдел маркетинга",
       "copyright": "© 2024 Bold Brands International. Все права защищены"
     },
-    "title":"Услуги",
+    "title": "Услуги",
     "companyLinks": {
       "aboutUs": "О нас",
       "cases": "Кейсы",
@@ -364,7 +369,7 @@
       "webDevelopment": "Веб-разработка и дизайн",
       "marketingSupport": "Комплексное\u00A0маркетинговое сопровождение",
       "automationAnalytics": "Автоматизация и аналитика",
-      "printing":"Оперативная печать"
+      "printing": "Оперативная печать"
     },
     "contactInfo": {
       "addresses": {

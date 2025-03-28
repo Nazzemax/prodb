@@ -327,16 +327,21 @@
     }
   },
   "footer": {
+    "titles": {
+      "about": "Kompaniya haqida",
+      "we": "Biz",
+      "work": "Ishlaymiz"
+    },
     "companyInfo": {
       "companyName": "Bold Brands International",
       "companyDescription": "ваш внешний отдел маркетинга",
       "copyright": "© 2024 Bold Brands International. Все права защищены"
     },
-    "title":"Xizmatlar",
+    "title": "Xizmatlar",
     "companyLinks": {
       "aboutUs": "Biz haqimizda",
       "cases": "Ishlar",
-      "reviews": "Отзывы"
+      "reviews": "Шарҳлар"
     },
     "servicesLinks": {
       "branding": "Brandlash",
@@ -345,7 +350,7 @@
       "webDevelopment": "Veb Ishlab chiqish va dizayn",
       "marketingSupport": "Integratsiyalashgan\u00A0marketing targ'iboti",
       "automationAnalytics": "SEO optimallashtirish",
-       "printing":"Onlayn bosib chiqarish"
+      "printing": "Onlayn bosib chiqarish"
     },
     "contactInfo": {
       "addresses": {
