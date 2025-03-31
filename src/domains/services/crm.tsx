@@ -133,7 +133,7 @@ const CrmPage = () => {
                 card_title={t("integrationApproach.teamTraining.titleTeamTraining")}
                 card_description={t("integrationApproach.teamTraining.descriptionTeamTraining")}
                 card_icon={<CrmIcon />}
-                image={'/images/services/marketing-support/marketing_infocard.webp'}
+                image={'/images/services/marketing-support/marketing.webp'}
             />
             <Award
                 badgeTitle={t("PartersBlog.titleParters")}
