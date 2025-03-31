@@ -32,7 +32,7 @@ const MarketingSupportPage = () => {
         title: t('WhatWeDo.mainTitle'),
         items: [
             {
-                image: "/images/services/marketing-support/marketing1.webp",
+                image: "/images/services/marketing-support/marketingone.webp",
                 image_right: false,
                 title: t('WhatWeDo.fTitle'),
                 sub_title: '',
@@ -43,7 +43,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing2.webp",
+                image: "/images/services/marketing-support/marketingtwo.webp",
                 image_right: true,
                 title: t('WhatWeDo.sTitle'),
                 sub_title: '',
@@ -54,7 +54,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing3.webp",
+                image: "/images/services/marketing-support/marketingthree.webp",
                 image_right: false,
                 title: t('WhatWeDo.thTitle'),
                 sub_title: '',
@@ -65,7 +65,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing4.webp",
+                image: "/images/services/marketing-support/marketingzero.webp",
                 image_right: true,
                 title: t('WhatWeDo.fourTitle'),
                 sub_title: '',
@@ -76,7 +76,7 @@ const MarketingSupportPage = () => {
                 ]
             },
             {
-                image: "/images/services/marketing-support/marketing5.webp",
+                image: "/images/services/marketing-support/marketingfive.webp",
                 image_right: false,
                 title: t('WhatWeDo.fiveTitle'),
                 sub_title: '',
@@ -167,7 +167,7 @@ const MarketingSupportPage = () => {
                 card_title={t("MarketingSupport.bottomTitle")}
                 card_description={t("MarketingSupport.bottomText")}
                 card_icon={<MarketingSupportIcon />}
-                image={'/images/services/marketing-support/marketing_infocard.webp'}
+                image={'/images/services/marketing-support/marketing.webp'}
             />
             <ServicePostList
                 title={serviceData.title}

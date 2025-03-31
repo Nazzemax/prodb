@@ -61,7 +61,7 @@ const CrmPage = () => {
         title: t("integrationServices.titleIntegrationServices"),
         items: [
             {
-                image: "/images/services/crm/crm1.webp",
+                image: "/images/services/crm/crmone.webp",
                 image_right: false,
                 title: t("integrationServices.servicesList.0.serviceTitle"),
                 description: t("integrationServices.servicesList.0.serviceDescription"),
@@ -71,7 +71,7 @@ const CrmPage = () => {
                 ],
             },
             {
-                image: "/images/services/crm/crm2.webp",
+                image: "/images/services/crm/crmtwo.webp",
                 image_right: true,
                 title: t("integrationServices.servicesList.1.serviceTitle"),
                 description: t("integrationServices.servicesList.1.serviceDescription"),
@@ -81,7 +81,7 @@ const CrmPage = () => {
                 ],
             },
             {
-                image: "/images/services/crm/crm3.webp",
+                image: "/images/services/crm/crmthree.webp",
                 image_right: false,
                 title: t("integrationServices.servicesList.2.serviceTitle"),
                 description: t("integrationServices.servicesList.2.serviceDescription"),
