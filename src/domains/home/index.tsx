@@ -16,8 +16,6 @@ import { BlogPostList } from "@/components/organisms/blog-post-list";
 import SingleSliderList from "@/components/organisms/single-slider-list";
 import { getMarketingDepartment } from "@/api/Marketing";
 import { getCompanyChallenges } from "@/api/Company";
-import { useAppData } from "@/context/app-context";
-
 
 const FloatingWhatsapp = dynamic(() => import("@/components/atoms/floating-whatsapp"));
 const MarketingDepartment = dynamic(() => import("@/components/organisms/marketing-department"));

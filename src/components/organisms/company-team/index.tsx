@@ -1,57 +1,12 @@
 'use client';
 
 import { useGetCompanyTeamQuery } from '@/api/Company';
-import { AnimatedItem } from '@/components/atoms/animated-item';
 import { Heading } from '@/components/atoms/heading';
 import { RequestHandler } from '@/components/atoms/request-handler';
 import { CompanyMember } from '@/components/molecules/company-member'
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel'
-import { fadeIn, viewportConfig, staggerTransition } from '@/lib/motion';
 import Autoplay from 'embla-carousel-autoplay'
-import { motion } from 'framer-motion';
 import React from 'react'
-
-const data = {
-    title: 'Команда, которой можно доверять',
-    sub_title: 'Каждый из нас вносит уникальный вклад, помогая вашему бизнесу расти и процветать. Познакомьтесь с людьми, которые превращают идеи в реальность',
-    items: [
-        {
-            name: 'Талгар Чокушов',
-            position: 'Генеральный директор',
-            image: '/images/about_page/team_member.webp'
-        },
-        {
-            name: 'Талгар Чокушов',
-            position: 'Генеральный директор',
-            image: '/images/about_page/team_member.webp'
-        },
-        {
-            name: 'Талгар Чокушов',
-            position: 'Генеральный директор',
-            image: '/images/about_page/team_member.webp'
-        },
-        {
-            name: 'Талгар Чокушов',
-            position: 'Генеральный директор',
-            image: '/images/about_page/team_member.webp'
-        },
-        {
-            name: 'Талгар Чокушов',
-            position: 'Генеральный директор',
-            image: '/images/about_page/team_member.webp'
-        },
-        {
-            name: 'Талгар Чокушов',
-            position: 'Генеральный директор',
-            image: '/images/about_page/team_member.webp'
-        },
-        {
-            name: 'Талгар Чокушов',
-            position: 'Генеральный директор',
-            image: '/images/about_page/team_member.webp'
-        },
-    ]
-}
 
 export const CompanyTeam = () => {
     const { data, isLoading, error } = useGetCompanyTeamQuery()
@@ -91,13 +46,12 @@ export const CompanyTeam = () => {
                         </Carousel>
                         <div className='hidden md:grid grid-cols-3 lg:grid-cols-4'>
                             {data?.items.map((member, idx) => (
-                                <AnimatedItem key={idx} idx={idx}>
-                                    <CompanyMember
-                                        name={member.name}
-                                        position={member.position}
-                                        image={member.image}
-                                    />
-                                </AnimatedItem>
+                                <CompanyMember
+                                    key={idx}
+                                    name={member.name}
+                                    position={member.position}
+                                    image={member.image}
+                                />
                             ))}
                         </div>
                     </div>
