@@ -23,6 +23,7 @@ export const CompanyFeatureItem = ({ image, title, tags, link }: FeatureProps) =
                         alt={title}
                         fill
                         className="object-cover"
+                        loading="lazy"
                     />
                 </div>
             </div>

@@ -33,18 +33,13 @@ export const CompanyTeam = () => {
                             ]}
                             className="w-full md:hidden"
                         >
-                            <CarouselContent>
+                            <CarouselContent className='flex gap-4'>
                                 {data?.items.map((member, idx) => (
-                                    <CarouselItem key={idx} className="basis-3/5">
-                                        <CompanyMember
-                                            {...member}
-                                        />
-                                    </CarouselItem>
-
+                                    <CompanyMember key={idx} {...member} />
                                 ))}
                             </CarouselContent>
                         </Carousel>
-                        <div className='hidden md:grid grid-cols-3 lg:grid-cols-4'>
+                        <div className='hidden md:grid grid-cols-3 lg:grid-cols-4 gap-4 px-5'>
                             {data?.items.map((member, idx) => (
                                 <CompanyMember
                                     key={idx}

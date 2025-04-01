@@ -35,9 +35,7 @@ export const SingleSliderItem = ({
                     priority
                     fill
                     sizes="100vw"
-                    style={{
-                        objectFit: 'cover'
-                    }}
+                    className='object-cover'
                     quality={90}
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black to-black/20"></div>
