@@ -17,7 +17,6 @@ import SingleSliderList from "@/components/organisms/single-slider-list";
 import { getMarketingDepartment } from "@/api/Marketing";
 import { getCompanyChallenges } from "@/api/Company";
 
-const FloatingWhatsapp = dynamic(() => import("@/components/atoms/floating-whatsapp"));
 const MarketingDepartment = dynamic(() => import("@/components/organisms/marketing-department"));
 const CompanyChallengeList = dynamic(() => import("@/components/organisms/company-challenge-list"));
 
@@ -29,7 +28,6 @@ const HomePage = async () => {
 
     return (
         <>
-            <FloatingWhatsapp />
             <NewsBanner />
             <SingleSliderList banners={banners} />
             <MarketingDepartment data={MarketingDepartmentData} />

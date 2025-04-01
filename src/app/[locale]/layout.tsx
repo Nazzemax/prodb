@@ -9,8 +9,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "@/providers";
 import Script from "next/script";
+const FloatingWhatsapp = dynamic(() => import("@/components/atoms/floating-whatsapp"));
+
 
 import { routing } from "../../i18n/routing";
+import dynamic from "next/dynamic";
 
 const cannonade = localFont({
     src: [
@@ -63,7 +66,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     return (
         <html lang={locale}>
             <head>
-                <Script id="yandex-metrika-script" strategy="afterInteractive">
+                <Script id="yandex-metrika-script" strategy="lazyOnload">
                     {`
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
     m[i].l=1*new Date();
@@ -81,7 +84,7 @@ export default async function LocaleLayout({ children, params }: Props) {
     });
   `}
                 </Script>
-                <Script id="fb-pixel-script" strategy="afterInteractive">
+                <Script id="fb-pixel-script" strategy="lazyOnload">
                     {`
           !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -100,7 +103,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                     strategy="afterInteractive"
                     async
                 />
-                <Script id="gtag-inline-script" strategy="afterInteractive">
+                <Script id="gtag-inline-script" strategy="lazyOnload">
                     {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -134,6 +137,7 @@ export default async function LocaleLayout({ children, params }: Props) {
                 <NextIntlClientProvider messages={messages}>
                     <Providers>
                         <div className="max-w-[1920px] m-auto relative">
+                            <FloatingWhatsapp />
                             <Header />
                             <main>{children}</main>
                             <Footer />
