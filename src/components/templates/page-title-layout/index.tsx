@@ -1,4 +1,3 @@
-import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import {
     Breadcrumb,
     BreadcrumbItem,
@@ -9,10 +8,8 @@ import {
 } from "@/components/ui/breadcrumb";
 import { BreadcrumbProps } from "./type";
 import { Heading } from "@/components/atoms/heading";
-import { motion } from "framer-motion";
-import { fadeIn, viewportConfig, staggerTransition } from "@/lib/motion";
-import { useAppData } from "@/context/app-context";
 import Image from "next/image";
+import { FeedbackButton } from "@/components/atoms/feedback-button";
 
 interface PageTitleLayoutProps {
     title: string;
@@ -33,21 +30,20 @@ export const PageTitleLayout = ({
     bg_image,
     isGray,
 }: PageTitleLayoutProps) => {
-    const { scrollToFeedback } = useAppData()
 
     return (
         <div className="relative h-screen max-w-[1920px] flex justify-center items-center bg-cover bg-center bg-no-repeat">
             {bg_image &&
                 <Image
                     src={bg_image}
-                    alt={"BG_IMAGE"}
-                    priority                    
+                    alt="BG_IMAGE"
+                    priority
+                    fetchPriority="high"
                     fill
                     sizes="100vw"
-                    style={{
-                        objectFit: 'cover'
-                    }}
-                    quality={100}
+                    className="object-cover"
+                    quality={75}
+                    blurDataURL="/image.webp"
                 />
             }
             <div
@@ -58,13 +54,8 @@ export const PageTitleLayout = ({
                 <Breadcrumb>
                     <BreadcrumbList>
                         {breadcrumb?.map((item, idx) => (
-                            <motion.div
+                            <div
                                 key={idx}
-                                variants={fadeIn("up", "spring", idx * 0.2)}
-                                initial="hidden"
-                                whileInView="show"
-                                viewport={viewportConfig}
-                                transition={staggerTransition(idx)}
                                 className="flex items-center gap-3"
                             >
                                 <BreadcrumbItem>
@@ -77,7 +68,7 @@ export const PageTitleLayout = ({
                                     )}
                                 </BreadcrumbItem>
                                 {idx !== breadcrumb.length - 1 && <BreadcrumbSeparator />}
-                            </motion.div>
+                            </div>
                         ))}
                     </BreadcrumbList>
                 </Breadcrumb>
@@ -95,9 +86,7 @@ export const PageTitleLayout = ({
                         {sub_title}
                     </h3>
                 )}
-                <ButtonWithIcon onClick={scrollToFeedback} className="mt-3">
-                    {button_text}
-                </ButtonWithIcon>
+                <FeedbackButton button_text={button_text} />
             </div>
         </div>
     );

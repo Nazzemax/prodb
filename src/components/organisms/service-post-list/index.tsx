@@ -32,7 +32,7 @@ interface ServicePostListProps {
     items?: IServicePostItemBranding[];
 }
 
-export const ServicePostList = memo(({
+export const ServicePostList = ({
     title,
     description,
     items,
@@ -67,6 +67,4 @@ export const ServicePostList = memo(({
             </div>
         </div>
     )
-})
-
-ServicePostList.displayName = 'ServicePostList'
+}

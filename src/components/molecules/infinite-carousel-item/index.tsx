@@ -5,15 +5,15 @@ interface CompanyBrandingItemProps {
     image: string;
 }
 
-export const CompanyBrandingItem: FC<CompanyBrandingItemProps> = ({ image }) => {
+export const InfiniteCarouselItem: FC<CompanyBrandingItemProps> = ({ image }) => {
     return (
         <Image
             src={image}
             alt={'Брендинг'}
             width={400}
             height={302}
-            className="rounded-2xl aspect-video mx-2"
-            quality={100}
+            className="w-[300px] h-[200px] md:min-w-[400px] md:min-h-[300px] overflow-hidden rounded-2xl object-cover mx-2"
+            quality={75}
         />
     )
 }

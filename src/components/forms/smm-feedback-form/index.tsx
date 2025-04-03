@@ -13,12 +13,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MultiSelect } from "@/components/atoms/multi-select";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useSmmFormFeedbackSchema } from "./schema";
 import { Type } from "@/api/Types/types";
-import { SmmServiceFormRequest } from "@/api/Form/types";
 import { useTranslations } from "next-intl";
 import { useAppData } from "@/context/app-context";
 import { useSendFormMutation } from "@/api/Form";
@@ -28,12 +26,10 @@ import { FormTerms } from "@/components/atoms/form-terms";
 
 
 interface SmmFeedbackFormProps {
-    business_types: Type[];
     social_types: Type[];
 }
 
 export const SmmFeedbackForm = ({
-    business_types,
     social_types,
 }: SmmFeedbackFormProps) => {
     const [sendForm, {
@@ -60,7 +56,7 @@ export const SmmFeedbackForm = ({
     const [quantity, setQuantity] = useState<string>('');
     const [openTerms, setOpenTerms] = useState(false);
     const [isFirstStepCompleted, setIsFirstStepCompleted] = useState(false);
-    const { data } = useAppData()
+    const { business_types } = useAppData()
     const showTerms = () => {
         setOpenTerms((prev) => !prev);
     };

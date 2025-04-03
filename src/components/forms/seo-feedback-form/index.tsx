@@ -13,7 +13,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MultiSelect } from "@/components/atoms/multi-select";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useSeoFeedbackFormSchema } from "./schema";
@@ -27,12 +26,10 @@ import { FormTerms } from "@/components/atoms/form-terms";
 
 
 interface FeedbackFormProps {
-    business_types: Type[];
     site_statuses: Type[];
 }
 
 export const SeoFeedbackForm = ({
-    business_types,
     site_statuses,
 }: FeedbackFormProps) => {
 
@@ -61,7 +58,7 @@ export const SeoFeedbackForm = ({
     const [purpose, setPurpose] = useState<string>('');
     const [openTerms, setOpenTerms] = useState(false);
     const [isFirstStepCompleted, setIsFirstStepCompleted] = useState(false);
-    const { data } = useAppData()
+    const { business_types } = useAppData()
     const showTerms = () => {
         setOpenTerms((prev) => !prev);
     };

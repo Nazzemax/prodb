@@ -1,6 +1,7 @@
 import { Heading } from "@/components/atoms/heading";
 import { SmmCompanyPartnerItem } from "@/components/molecules/smm-company-partner-item";
 
+
 interface SMMPartnersCarouselProps {
     title: string;
     sub_title: string;

@@ -1,25 +1,13 @@
-import { baseApi } from "../Base";
+import { fetchData } from "../Base/baseApi";
 import { Post, PostsResponse } from "./types";
+import { getLocale } from "next-intl/server";
 
+export async function getPosts() {
+    const locale = await getLocale();
+    return fetchData<PostsResponse>("/posts/", locale);
+}
 
-export const postApi = baseApi.injectEndpoints({
-    endpoints(build) {
-        return {
-            getPosts: build.query<PostsResponse, void>({
-                query: () => ({
-                    url: '/posts/',
-                })
-            }),
-            getPostById: build.query<Post, string>({
-                query: (id) => ({
-                    url: `/posts/${id}/`
-                })
-            })
-        }
-    }
-})
-
-export const {
-    useGetPostsQuery,
-    useGetPostByIdQuery,
-} = postApi
+export async function getPostById(id: string) {
+    const locale = await getLocale();
+    return fetchData<Post>(`/posts/${id}/`, locale);
+}

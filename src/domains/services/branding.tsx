@@ -1,22 +1,17 @@
-"use client";
-
-import { CompanyPostList } from "@/components/organisms/company-post-list";
+import CompanyPostList from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { InfoCard } from "@/components/organisms/info-card";
 import {
     ServicePostList,
 } from "@/components/organisms/service-post-list";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { BrandingFeedbackForm } from "@/components/forms/branding-feedback-form";
 import { BrandingIcon } from "@/assets/info-card";
-import { useSlug } from "@/hooks/useSlug";
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { RequestHandler } from "@/components/atoms/request-handler";
+import { getStaticPageBySlug } from "@/api/StaticPages";
 import { CompanyBranding } from "@/components/organisms/company-branding";
-import { useAppData } from "@/context/app-context";
-import { useGetServiceTypesQuery } from "@/api/Types";
-import { Banner, IDesignBrand, ISmmTeamMembers } from "@/consts/types";
+import { getServiceTypes } from "@/api/Types";
+import { IDesignBrand, ISmmTeamMembers } from "@/consts/types";
 import {
     ServiceBrandingIcon1,
     ServiceBrandingIcon2,
@@ -24,17 +19,19 @@ import {
     ServiceBrandingIcon4,
     ServiceBrandingIcon5,
 } from "@/assets/services/branding";
-import { useTranslations } from "next-intl";
-import { useGetCompanyFeaturesQuery } from "@/api/Company";
+import { getCompanyFeatures } from "@/api/Company";
+import { getTranslations } from "next-intl/server";
 
-const BradingPage = () => {
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: services_types } = useGetServiceTypesQuery();
-    const { data: serviceData } = useGetCompanyFeaturesQuery();
-    const { business_types } = useAppData();
-    const t = useTranslations("ServicePage4");
-    const t2 = useTranslations("Buttons");
+export const revalidate = 60;
+
+const BradingPage = async () => {
+    const data = await getStaticPageBySlug('branding');
+    const t = await getTranslations("ServicePage4");
+    const t2 = await getTranslations("Buttons");
+    const [services_types, serviceData] = await Promise.all([
+        getServiceTypes(),
+        getCompanyFeatures(),
+    ])
 
     const serviceDataStatic = {
         title: "Создаем бренд, который говорит сам за себя",
@@ -140,21 +137,15 @@ const BradingPage = () => {
         },
     };
 
-    const banner: Banner = {
-        title: t("banner.title"),
-        sub_title: t("banner.description"),
-        button_text: t("banner.btn"),
-    };
-
 
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     title={data?.title}
                     sub_title={data?.content}
                     bg_image={data.image}
-                    button_text={banner.button_text}
+                    button_text={t("banner.btn")}
                     breadcrumb={[
                         { text: "Главная", href: "/home" },
                         { text: "Брендинг", href: "/services/branding" },
@@ -186,12 +177,11 @@ const BradingPage = () => {
                 title={"Узнайте стоимость разработки бренда"}
                 nestedForm={
                     <BrandingFeedbackForm
-                        business_types={business_types}
                         services_types={services_types || []}
                     />
                 }
             />
-        </RequestHandler>
+        </>
     );
 };
 

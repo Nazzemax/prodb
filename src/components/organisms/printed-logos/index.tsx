@@ -1,17 +1,13 @@
-"use client";
-
-import { useGetPrintingServicesQuery } from "@/api/ServiceOffering";
+import { getPrintingServices } from "@/api/ServiceOffering";
 import { Heading } from "@/components/atoms/heading";
-import { RequestHandler } from "@/components/atoms/request-handler";
-import { CompanyPartnerItem } from "@/components/molecules/company-partner-item";
-import { PrintedLogoItem } from "@/components/molecules/printed-logo-item";
+import { InfiniteCarouselItem } from "@/components/molecules/infinite-carousel-item";
 import Marquee from "react-fast-marquee";
 
-export const PrintedLogos = () => {
-    const { data, isLoading, error } = useGetPrintingServicesQuery();
+export const PrintedLogos = async () => {
+    const data = await getPrintingServices();
 
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             <Heading
                 as="h3"
                 className="text-center text-primary text-2xl mb-8 md:mb-12"
@@ -22,14 +18,14 @@ export const PrintedLogos = () => {
                 <Marquee>
                     {[...(data?.items || []), ...(data?.items || [])].map(
                         (logo, idx) => (
-                            <PrintedLogoItem
+                            <InfiniteCarouselItem
                                 key={idx}
-                                logo={logo.logo}
+                                image={logo.logo}
                             />
                         )
                     )}
                 </Marquee>
             </div>
-        </RequestHandler>
+        </>
     );
 };

@@ -1,16 +1,8 @@
-"use client";
-
-import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { RequestHandler } from "@/components/atoms/request-handler";
-import { useSlug } from "@/hooks/useSlug";
-import { useAppData } from "@/context/app-context";
-import { useGetPromotionTypesQuery } from "@/api/Types";
-import { useTranslations } from "next-intl";
+import { getStaticPageBySlug } from "@/api/StaticPages";
 import { ParallaxSection } from "@/components/organisms/parallax";
-import { useGetBusinessCardsQuery } from "@/api/BusinessType";
+import { getBusinessCards } from "@/api/BusinessType";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { ISmmTeamMembers } from "@/consts/types";
 import { PrintedLogos } from "@/components/organisms/printed-logos";
@@ -18,7 +10,10 @@ import { DesignDepartment } from "@/components/organisms/design-department";
 import { ContextAd5Icon } from "@/assets/services/context-ad";
 import { ServiceBrandingIcon1, ServiceBrandingIcon3 } from "@/assets/services/branding";
 import { SeoHowWeWork4, SeoHowWeWork5 } from "@/assets/services/seo";
-import { FeedbackForm } from "@/components/forms/feedback-form";
+import FeedbackForm from "@/components/forms/feedback-form";
+import { getTranslations } from "next-intl/server";
+
+export const revalidate = 60;
 
 export interface ParallaxItem {
     src: string;
@@ -31,8 +26,18 @@ export interface ParallaxProps {
     images: ParallaxItem[];
 }
 
-const PrintPage = () => {
-    const t = useTranslations("ServicesPage9");
+type Designs = {
+    title1: string;
+    description1: string;
+    btn: string;
+    title2: string;
+    design: string;
+};
+
+const PrintPage = async () => {
+    const data = await getStaticPageBySlug('operative-print');
+    const cards = await getBusinessCards();
+    const t = await getTranslations("ServicesPage9");
 
     const servicePrintData: ISmmTeamMembers = {
         title: t("howWeWork.title1"),
@@ -69,25 +74,6 @@ const PrintPage = () => {
             },
         ],
     };
-
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: promotion_types } = useGetPromotionTypesQuery();
-    const {
-        data: cards,
-        isError,
-        isLoading: loading,
-    } = useGetBusinessCardsQuery();
-    const { business_types } = useAppData();
-
-    type Designs = {
-        title1: string;
-        description1: string;
-        btn: string;
-        title2: string;
-        design: string;
-    };
-
     const designs: Designs = {
         title1: t("banner.title1"),
         description1: t("banner.description1"),
@@ -97,7 +83,7 @@ const PrintPage = () => {
     };
 
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     bg_image={data?.image}
@@ -128,7 +114,7 @@ const PrintPage = () => {
                 title={"Рассчитайте стоимость услуги"}
                 nestedForm={<FeedbackForm/>}
             />
-        </RequestHandler>
+        </>
     );
 };
 

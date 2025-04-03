@@ -1,4 +1,3 @@
-import AboutPage from "@/domains/about";
 import CasesPage from "@/domains/cases";
 import { Metadata } from "next";
 

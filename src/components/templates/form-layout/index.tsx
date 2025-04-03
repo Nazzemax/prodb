@@ -38,7 +38,7 @@ const BgImage = memo(() => {
 
 BgImage.displayName = "FormBgImage"
 
-export const FormLayout = forwardRef<HTMLDivElement, FormProps>(
+const FormLayout = forwardRef<HTMLDivElement, FormProps>(
     (
         { title = "Рассчитайте стоимость услуги", nestedForm, isContactPage },
         ref
@@ -117,5 +117,7 @@ export const FormLayout = forwardRef<HTMLDivElement, FormProps>(
         );
     }
 );
+
+export default FormLayout;
 
 FormLayout.displayName = "FormLayout";

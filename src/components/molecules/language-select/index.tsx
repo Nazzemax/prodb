@@ -41,12 +41,16 @@ export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
     const locale = useLocale() as Locale;
     const router = useRouter();
     const pathname = usePathname();
-    const { scrollToFeedback } = useAppData()
+    const { scrollToFeedback } = useAppData();
 
     const [isClient, setIsClient] = useState(false);
     const [isCase, setIsCase] = useState(false);
     const dispatch = useAppDispatch();
     const selectedLanguage = useSelector(getLanguage);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
 
     useEffect(() => {
         setIsCase(/^\/cases\/[^/]+/.test(pathname));
@@ -61,16 +65,11 @@ export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
     const onChangeLanguage = useCallback((value: string) => {
         dispatch(languageActions.setLanguage(value));
         dispatch(baseApi.util.resetApiState());
-        document.cookie = `NEXT_LOCALE=${value}; path=/; max-age=31536000; SameSite=Lax`;
 
         if (value !== locale) {
             router.replace(pathname, { locale: value as Locale });
         }
-    }, [dispatch, locale, pathname, router])
-
-    useEffect(() => {
-        setIsClient(true);
-    }, []);
+    }, [dispatch, locale, pathname, router]);
 
     if (!isClient || selectedLanguage === null) return null;
 
@@ -119,6 +118,6 @@ export const LanguageSelect = memo(({ isMobile }: { isMobile?: boolean }) => {
             }
         </div>
     );
-})
+});
 
 LanguageSelect.displayName = "LanguageSelect";

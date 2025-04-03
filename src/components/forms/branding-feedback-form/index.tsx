@@ -13,12 +13,10 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MultiSelect } from "@/components/atoms/multi-select";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { useBrandingFeedbackSchema } from "./schema";
 import { Type } from "@/api/Types/types";
-import { ServiceFormRequest } from "@/api/Form/types";
 import { useTranslations } from "next-intl";
 import { useAppData } from "@/context/app-context";
 import { useSendFormMutation } from "@/api/Form";
@@ -28,15 +26,13 @@ import { FormTerms } from "@/components/atoms/form-terms";
 
 
 interface FeedbackFormProps {
-    business_types: Type[];
     services_types: Type[];
 }
 
 export const BrandingFeedbackForm = ({
-    business_types,
     services_types,
 }: FeedbackFormProps) => {
-    const { data } = useAppData()
+    const { business_types } = useAppData()
 
     const t = useTranslations('Form')
     const [sendForm, {

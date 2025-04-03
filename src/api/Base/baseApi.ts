@@ -8,44 +8,39 @@ export const baseApi = createApi({
         credentials: "include",
         prepareHeaders: (headers) => {
             if (typeof window !== "undefined") {
-                const locale = localStorage.getItem("locale") || "ru";
-                headers.set("Accept-Language", locale);
+                const locale = localStorage.getItem("locale") || "ru"
+                headers.set("Accept-Language", locale)
             }
-            return headers;
+            return headers
         }
     }),
     reducerPath: "baseApi",
     endpoints: () => ({}),
-    tagTypes: [""],
-});
+    tagTypes: []
+})
 
-export async function fetchData<T>(endpoint: string, cache: RequestCache = "force-cache"): Promise<T> {
+export async function fetchData<T>(
+    endpoint: string,
+    locale: string = 'ru',
+    cache: RequestCache = "force-cache"
+): Promise<T> {
     try {
-        let acceptLanguage = "ru"
-
-        if(typeof window !== "undefined") {
-            acceptLanguage = localStorage.getItem('locale') || "ru"
-        } else {
-            const { cookies } = await import("next/headers")
-            const cookieStore = await cookies();
-            acceptLanguage = cookieStore.get("NEXT_LOCALE")?.value || "ru";
-        }
-
         const res = await fetch(`${baseUrl}${endpoint}`, {
+            next: { revalidate: 60 },
             cache,
             headers: {
-                "Accept-Language": acceptLanguage,
+                "Accept-Language": locale
             }
         })
 
-        if(!res.ok) {
-            console.log("Ошибка загрузки:", res.status, res.statusText)
+        if (!res.ok) {
+            console.error("Ошибка загрузки:", res.status, res.statusText)
             throw new Error(`Failed to fetch ${endpoint}`)
         }
-        
+
         return res.json()
     } catch (error) {
-        console.error(`Ошибка в ${endpoint}:`, error);
-        throw error;
+        console.error(`Ошибка в ${endpoint}:`, error)
+        throw error
     }
 }

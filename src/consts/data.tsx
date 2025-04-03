@@ -1,15 +1,7 @@
 import CreatingAd1SVG from "@/assets/services/smm/creating-ad_1.svg";
 import CreatingAd2SVG from "@/assets/services/smm/creating-ad_2.svg";
 import CreatingAd3SVG from "@/assets/services/smm/creating-ad_3.svg";
-
-import { ISmmCreatingAdData, ISmmTeamMembers } from "./types";
-import {
-    ServiceBrandingIcon1,
-    ServiceBrandingIcon2,
-    ServiceBrandingIcon3,
-    ServiceBrandingIcon4,
-    ServiceBrandingIcon5,
-} from "@/assets/services/branding";
+import {ServiceBrandingIcon1} from "@/assets/services/branding";
 import {
     Card1Icon,
     Card2Icon,
@@ -38,13 +30,11 @@ import {
     ContextAdCard3Icon,
 } from "@/assets/services/context-ad";
 import { useTranslations } from "next-intl";
-
-// SERVICES
-// SMM
+import { getTranslations } from "next-intl/server";
 
 // : ISmmCreatingAdData
-export const useSmmCreatingAdData = () => {
-    const t = useTranslations("ServicesPage1");
+export const fetchSmmCreatingAdData = async () => {
+    const t = await getTranslations("ServicesPage1");
 
     return {
         eyebrow: t("createReklam.miniText"),
@@ -73,8 +63,8 @@ export const useSmmCreatingAdData = () => {
     };
 };
 //SMM
-export const useSmmTeamMembers = () => {
-    const t = useTranslations("ServicesPage1");
+export const fetchSmmTeamMembers = async () => {
+    const t = await getTranslations("ServicesPage1");
     return {
         title: t("smm.title"),
         items: [
@@ -119,12 +109,9 @@ export const useSmmTeamMembers = () => {
 };
 
 
-
-
-
 //SEO
-export const useSeoData = () => {
-    const t = useTranslations("ServicesPage3");
+export const fetchSeoData = async () => {
+    const t = await getTranslations("ServicesPage3");
     return {
         title: t("whySEO.title"),
         items: [
@@ -150,8 +137,8 @@ export const useSeoData = () => {
     };
 };
 
-export const useSeoPostsData = () => {
-    const t = useTranslations("ServicesPage3");
+export const fetchSeoPostsData = async () => {
+    const t = await getTranslations("ServicesPage3");
     return {
         title: t("services.title"),
         items: [
@@ -218,8 +205,8 @@ export const useSeoPostsData = () => {
         ],
     };
 };
-export const useSeoCardsData = () => {
-    const t = useTranslations("ServicesPage3");
+export const fetchSeoCardsData = async () => {
+    const t = await getTranslations("ServicesPage3");
     return {
         title: t("howWeWork.title1"),
         items: [
@@ -258,8 +245,8 @@ export const useSeoCardsData = () => {
 };
 
 //CONTEXT AD
-export const useContextAdData = () => {
-    const t = useTranslations("ServicesPage2");
+export const fetchContextAdData = async () => {
+    const t = await getTranslations("ServicesPage2");
     return {
         title: t("whyContext.title"),
         button:'',
@@ -286,8 +273,8 @@ export const useContextAdData = () => {
     };
 };
 
-export const useContextAdCardData = () => {
-    const t = useTranslations("ServicesPage2");
+export const fetchContextAdCardData  = async () => {
+    const t = await getTranslations("ServicesPage2");
     return {
         title: t("howWeWork.title"),
         items: [

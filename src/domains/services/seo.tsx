@@ -1,46 +1,36 @@
-"use client";
-
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { useGetSiteStatusQuery } from "@/api/Types";
-import { RequestHandler } from "@/components/atoms/request-handler";
+import { getStaticPageBySlug } from "@/api/StaticPages";
+import { getSiteStatus } from "@/api/Types";
 import { SeoFeedbackForm } from "@/components/forms/seo-feedback-form";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { Faq } from "@/components/organisms/faq";
 import { ServicePostList } from "@/components/organisms/service-post-list";
 import { ServiceStaticCardList } from "@/components/organisms/service-static-card-list";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useSeoData, useSeoPostsData, useSeoCardsData } from "@/consts/data";
-import { Banner } from "@/consts/types";
-import { useAppData } from "@/context/app-context";
-import { useSlug } from "@/hooks/useSlug";
-import { useTranslations } from "next-intl";
+import { fetchSeoData, fetchSeoPostsData, fetchSeoCardsData } from "@/consts/data";
+import { getTranslations } from "next-intl/server";
 
-const SeoPage = () => {
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: site_statuses } = useGetSiteStatusQuery();
-    const { business_types } = useAppData();
-    const t = useTranslations("ServicesPage3");
-    const t2 = useTranslations("Buttons");
+export const revalidate = 60;
 
-    const banner: Banner = {
-        title: t("banner.title"),
-        sub_title: t("banner.description"),
-        button_text: t("banner.btn"),
-    };
+const SeoPage = async () => {
+    const data = await getStaticPageBySlug('seo');
+    const [t, t2, site_statuses, seoData, seoPostsData, seoCardsData] = await Promise.all([
+        getTranslations("ServicesPage3"),
+        getTranslations("Buttons"),
+        getSiteStatus(),
+        fetchSeoData(),
+        fetchSeoPostsData(),
+        fetchSeoCardsData(),
+    ])
 
-    const seoData = useSeoData();
-    const seoPostsData = useSeoPostsData();
-    const seoCardsData = useSeoCardsData();
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     title={data?.title}
                     sub_title={data?.content}
                     bg_image={data.image}
-                    button_text={banner.button_text}
+                    button_text={t("banner.btn")}
                     breadcrumb={[
                         { text: "Главная", href: "/home" },
                         { text: "SEO-оптимизация", href: "/services/seo" },
@@ -60,12 +50,11 @@ const SeoPage = () => {
                 title="Узнайте стоимость SEO-оптимизации "
                 nestedForm={
                     <SeoFeedbackForm
-                        business_types={business_types}
                         site_statuses={site_statuses || []}
                     />
                 }
             />
-        </RequestHandler>
+        </>
     );
 };
 

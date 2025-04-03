@@ -13,7 +13,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MultiSelect } from "@/components/atoms/multi-select";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Type } from "@/api/Types/types";
@@ -27,12 +26,10 @@ import { FormTerms } from "@/components/atoms/form-terms";
 
 
 interface FeedbackFormProps {
-    business_types: Type[];
     site_types: Type[];
 }
 
 export const SiteCreatingFeedbackForm = ({
-    business_types,
     site_types,
 }: FeedbackFormProps) => {
 
@@ -51,7 +48,7 @@ export const SiteCreatingFeedbackForm = ({
             acceptTerms: false,
         },
     });
-    const { data } = useAppData()
+    const { business_types } = useAppData()
     const t = useTranslations("Form")
     const [tabValue, setTabValue] = useState("business");
     const [selectedSiteTypes, setSelectedSiteTypes] = useState<string[]>([]);

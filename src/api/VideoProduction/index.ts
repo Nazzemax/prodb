@@ -1,18 +1,8 @@
-import { baseApi } from "../Base";
+import { fetchData } from "../Base/baseApi";
 import { VideoProductionResponse } from "./types";
+import { getLocale } from "next-intl/server";
 
-
-export const videoProductionApi = baseApi.injectEndpoints({
-    endpoints(build) {
-        return {
-            getVideoProduction: build.query<VideoProductionResponse, void>({
-                query: () => ({
-                    url: '/video-production/',
-                })
-            }),
-
-        }
-    }
-})
-
-export const { useGetVideoProductionQuery } = videoProductionApi
+export async function getVideoProduction() {
+    const locale = await getLocale();
+    return fetchData<VideoProductionResponse>("/video-production/", locale);
+}

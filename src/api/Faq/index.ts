@@ -1,20 +1,8 @@
-
-
-import { baseApi } from "../Base";
+import { fetchData } from "../Base/baseApi";
 import { Faq } from "./types";
+import { getLocale } from "next-intl/server";
 
-
-export const FaqApi = baseApi.injectEndpoints({
-    endpoints(build) {
-        return {
-            getFaqs: build.query<Faq[], void>({
-                query: () => ({
-                    url: '/faq/',
-                })
-            }),
-
-        }
-    }
-})
-
-export const { useGetFaqsQuery } = FaqApi
+export async function getFaqs() {
+    const locale = await getLocale();
+    return fetchData<Faq[]>("/faq/", locale);
+}

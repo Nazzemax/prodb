@@ -2,10 +2,8 @@
 
 import { SingleSliderItem } from '@/components/molecules/single-slider-item'
 import { Carousel, CarouselContent, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
-import { FC, memo } from 'react';
+import { memo } from 'react';
 import { CustomCarouselControls } from '@/components/molecules/custom-controls';
-// import { useGetBannersQuery } from '@/api/Banners';
-// import { Spinner } from '@/components/atoms/spinner';
 import Fade from 'embla-carousel-fade';
 import { Banner } from '@/api/Banners/types';
 

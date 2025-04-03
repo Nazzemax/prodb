@@ -1,24 +1,24 @@
-import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
+import Image from "next/image";
+import { memo } from "react";
+import { FeedbackButton } from "@/components/atoms/feedback-button";
 import { Heading } from "@/components/atoms/heading";
 import { VideoPlayer } from "@/components/atoms/video-player";
 import { Badge } from "@/components/ui/badge";
-import { useAppData } from "@/context/app-context";
 import { cn } from "@/lib/utils";
-import Image from "next/image";
-import { memo } from "react";
 
 interface ServicePostItemProps {
-  image?: string;
-  video_link?: string;
-  btn?: string;
-  image_right: boolean;
-  title: string;
-  sub_title?: string;
-  tags?: { tags: string }[];
-  description?: string;
-  has_button?: boolean;
-  scrollToFeedback?: () => void;
+    image?: string;
+    video_link?: string;
+    btn?: string;
+    image_right: boolean;
+    title: string;
+    sub_title?: string;
+    tags?: { tags: string }[];
+    description?: string;
+    has_button?: boolean;
+    scrollToFeedback?: () => void;
 }
+
 
 export const ServicePostItem = memo(
     ({
@@ -32,7 +32,6 @@ export const ServicePostItem = memo(
         description,
         has_button,
     }: ServicePostItemProps) => {
-        const { scrollToFeedback } = useAppData();
 
         return (
             <div
@@ -53,7 +52,6 @@ export const ServicePostItem = memo(
                             loading="lazy"
                         />
                     )}
-
                     {video_link && (
                         <div className="w-full h-full relative">
                             <VideoPlayer video={video_link} />
@@ -80,9 +78,9 @@ export const ServicePostItem = memo(
                         </div>
                     )}
                     {has_button && (
-                        <ButtonWithIcon onClick={scrollToFeedback} variant="feature">
-                            {btn}
-                        </ButtonWithIcon>
+                        <>
+                            <FeedbackButton button_text={btn || ''} variant={'feature'} />
+                        </>
                     )}
                 </div>
             </div>

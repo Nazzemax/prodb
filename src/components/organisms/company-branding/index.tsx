@@ -1,10 +1,10 @@
-import { useGetCompanyBrandingQuery } from "@/api/Company"
+import { getCompanyBranding } from "@/api/Company"
 import { Heading } from "@/components/atoms/heading"
-import { CompanyBrandingItem } from "@/components/molecules/company-branding-item"
+import { InfiniteCarouselItem } from "@/components/molecules/infinite-carousel-item"
 import Marquee from "react-fast-marquee"
 
-export const CompanyBranding = () => {
-    const { data } = useGetCompanyBrandingQuery()
+export const CompanyBranding = async  () => {
+    const data = await getCompanyBranding();
 
     return (
         <>
@@ -17,7 +17,7 @@ export const CompanyBranding = () => {
             <div className="relative flex overflow-hidden group my-8 md:my-14 lg:mb-28">
                 <Marquee>
                     {[...(data?.items || []), ...(data?.items || [])].map((branding, idx) => (
-                        <CompanyBrandingItem
+                        <InfiniteCarouselItem
                             key={idx}
                             image={branding.image}
                         />

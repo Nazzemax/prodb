@@ -12,6 +12,11 @@ const nextConfig: NextConfig = withSvgr({
                 hostname: "api.boldbrands.pro",
                 pathname: "**",
             },
+            {
+                protocol: "https",
+                hostname: "img.youtube.com",
+                pathname: "**",
+            },
         ],
     },
 });

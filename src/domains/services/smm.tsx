@@ -1,25 +1,27 @@
-"use client";
-
-import { useGetCompanyAdvertisingQuery } from "@/api/Company";
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { useGetSocialTypesQuery } from "@/api/Types";
-import { RequestHandler } from "@/components/atoms/request-handler";
+import { getCompanyAds } from "@/api/Company";
+import { getStaticPageBySlug } from "@/api/StaticPages";
+import { getSocialTypes } from "@/api/Types";
 import { SmmFeedbackForm } from "@/components/forms/smm-feedback-form";
-import { Advantages } from "@/components/organisms/advantages/Advantages";
-import { ClientReviewList } from "@/components/organisms/client-review-list";
+import Advantages from "@/components/organisms/advantages/Advantages";
+import ClientReviewList from "@/components/organisms/client-review-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { ServicePostList } from "@/components/organisms/service-post-list";
 import { ServiceStaticCardList } from "@/components/organisms/service-static-card-list";
 import { SMMPartnersCarousel } from "@/components/organisms/smm-partner-carousel";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useSmmCreatingAdData, useSmmTeamMembers } from "@/consts/data";
-import { useAppData } from "@/context/app-context";
-import { useSlug } from "@/hooks/useSlug";
-import { useTranslations } from "next-intl";
+import { fetchSmmCreatingAdData, fetchSmmTeamMembers } from "@/consts/data";
+import { getTranslations } from "next-intl/server";
 
-const SmmPage = () => {
-    const t = useTranslations("ServicesPage1");
+export const revalidate = 60;
+
+const SmmPage = async () => {
+    const data = await getStaticPageBySlug('smm');
+    const ads = await getCompanyAds();
+    const t = await getTranslations("ServicesPage1");
+    const smmCreatingAdData = await fetchSmmCreatingAdData();
+    const smmTeamMembers = await fetchSmmTeamMembers();
+    const social_types = await getSocialTypes();
 
     const serviceData = {
         title: t("zigzak.title"),
@@ -68,17 +70,9 @@ const SmmPage = () => {
             },
         ],
     };
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: ads } = useGetCompanyAdvertisingQuery();
-    const { data: social_types } = useGetSocialTypesQuery();
-    const { business_types } = useAppData();
-
-    const smmCreatingAdData = useSmmCreatingAdData();
-    const smmTeamMembers = useSmmTeamMembers();
 
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     title={data?.title}
@@ -117,12 +111,11 @@ const SmmPage = () => {
                 title={"Узнайте стоимость SMM-продвижения"}
                 nestedForm={
                     <SmmFeedbackForm
-                        business_types={business_types}
                         social_types={social_types || []}
                     />
                 }
             />
-        </RequestHandler>
+        </>
     );
 };
 

@@ -1,7 +1,8 @@
-import { url } from "inspector";
-import { baseApi } from "../Base";
-import { Type } from "../Types/types";
-import { ParallaxData } from "./types";
+import { baseApi } from "../Base"
+import { Type } from "../Types/types"
+import { ParallaxData } from "./types"
+import { fetchData } from "../Base/baseApi"
+import { getLocale } from "next-intl/server" // 👈 used only on server
 
 export const businessTypes = baseApi.injectEndpoints({
     endpoints(build) {
@@ -10,15 +11,16 @@ export const businessTypes = baseApi.injectEndpoints({
                 query: () => ({
                     url: "/business-types/",
                 }),
+                // Optional: provide tagTypes: ['BusinessTypes']
             }),
-            getBusinessCards: build.query<ParallaxData, void>({
-                query: () => ({
-                    url: "/business-cards/",
-                }),
-            }),
-        };
+        }
     },
-});
+})
 
-export const { useGetBusinessTypesQuery, useGetBusinessCardsQuery } =
-  businessTypes;
+export const { useGetBusinessTypesQuery } = businessTypes
+
+// ✅ Locale-aware version, works in server components or loaders
+export async function getBusinessCards() {
+    const locale = await getLocale()
+    return fetchData<ParallaxData>("/business-cards/", locale)
+}

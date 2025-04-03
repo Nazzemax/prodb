@@ -1,6 +1,11 @@
+'use client';
+
 import { useEffect, useRef, useState } from "react";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 import { VideoLoader } from "../video-loader";
+import dynamic from "next/dynamic";
+
+const ReactPlayer = dynamic(() => import("react-player"), { ssr: false });
 
 export const VideoPlayer = ({ video }: { video: string; controls?: boolean }) => {
     const playerRef = useRef<HTMLDivElement>(null);

@@ -1,18 +1,8 @@
+import { getLocale } from "next-intl/server"
+import { fetchData } from "../Base/baseApi"
+import { ArticlesResponse } from "./types"
 
-import { baseApi } from "../Base";
-import { ArticlesResponse } from "./types";
-
-const articleApi = baseApi.injectEndpoints({
-    endpoints(build) {
-        return {
-            getArticles: build.query<ArticlesResponse, void>({
-                query: () => ({
-                    url: "/articles/",
-                    method: "GET",
-                }),
-            }),
-        };
-    },
-});
-
-export const { useGetArticlesQuery } = articleApi;
+export async function getArticles() {
+    const locale = await getLocale()
+    return fetchData<ArticlesResponse>("/articles/", locale)
+}

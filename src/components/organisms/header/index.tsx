@@ -6,7 +6,7 @@ import { MenuSheet } from "@/components/molecules/menu-sheet";
 import { NavigationBar } from "@/components/molecules/navigation-bar";
 import { memo, useEffect, useState } from "react";
 
-export const Header = () => {
+const Header = () => {
     const [isVisible, setIsVisible] = useState(true);
     const [lastScrollY, setLastScrollY] = useState(0);
     const [scrollUpDistance, setScrollUpDistance] = useState(0);
@@ -84,7 +84,7 @@ export const Header = () => {
             className={`fixed top-0 left-0 right-0 w-full max-w-[1920px] m-auto z-[50] transition-all duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
             } ${isBlurred ? "bg-black/30 backdrop-blur-md" : "bg-black/0"} ${isShadowVisible ? "shadow-md" : "shadow-none"
             }`}
-            style={{ marginTop: hasBanner ? "4rem" : "0" }}
+            style={{ marginTop: hasBanner ? "3rem" : "0" }}
         >
             <div className="flex justify-between items-center p-5 md:px-14 md:py-5">
                 <Logo />
@@ -99,3 +99,5 @@ export const Header = () => {
         </header>
     );
 };
+
+export default Header;

@@ -1,31 +1,13 @@
-import { useGetFaqsQuery } from "@/api/Faq";
+import React from "react";
+import { getTranslations } from "next-intl/server";
+import { getFaqs } from "@/api/Faq";
 import { Heading } from "@/components/atoms/heading";
 import { FaqItem } from "@/components/molecules/faq-item";
 import { Accordion } from "@/components/ui/accordion";
-import { useTranslations } from "next-intl";
-import React from "react";
 
-const faq = [
-    {
-        question: "Сколько времени занимает SEO-оптимизация?",
-        answer:
-      "SEO — это долгосрочная стратегия. Первые результаты обычно видны через 2-3 месяца, но значимые достижения требуют 6-12 месяцев работы.",
-    },
-    {
-        question: "Можно ли гарантировать выход в топ-1?",
-        answer:
-      "SEO — это долгосрочная стратегия. Первые результаты обычно видны через 2-3 месяца, но значимые достижения требуют 6-12 месяцев работы.",
-    },
-    {
-        question: "Сколько стоит SEO-продвижение?",
-        answer:
-      "SEO — это долгосрочная стратегия. Первые результаты обычно видны через 2-3 месяца, но значимые достижения требуют 6-12 месяцев работы.",
-    },
-];
-
-export const Faq = () => {
-    const { data } = useGetFaqsQuery();
-    const t = useTranslations("ServicesPage3");
+export const Faq = async () => {
+    const data = await getFaqs();
+    const t = await getTranslations("ServicesPage3");
 
     const title: string = t("faq.title");
 

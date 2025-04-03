@@ -21,13 +21,11 @@ import {
 } from "@/components/ui/navigation-menu";
 import { usePrevSlug } from "@/hooks/useSlug";
 import { useTranslations } from "next-intl";
-import { usePrefetch } from "@/api/StaticPages";
 
 export const NavigationBar = () => {
     const prevSlug = usePrevSlug();
     const isCases = prevSlug === "cases";
     const t = useTranslations("HomePage");
-    const prefetchPage = usePrefetch("getStaticPageBySlug")
 
     const components = React.useMemo(
         () => [
@@ -105,7 +103,7 @@ export const NavigationBar = () => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
-                        onMouseEnter={() => prefetchPage('about')}
+                        // onMouseEnter={() => prefetchPage('about')}
                         href="/about"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -117,7 +115,7 @@ export const NavigationBar = () => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
-                        onMouseEnter={() => prefetchPage('cases')}
+                        // onMouseEnter={() => prefetchPage('cases')}
                         href="/cases"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -152,7 +150,7 @@ export const NavigationBar = () => {
                 </NavigationMenuItem>
                 <NavigationMenuItem>
                     <Link
-                        onMouseEnter={() => prefetchPage('blog')}
+                        // onMouseEnter={() => prefetchPage('blog')}
                         href="/blog"
                         className={cn(
                             navigationMenuTriggerStyle(),
@@ -184,13 +182,13 @@ const ListItem = React.forwardRef<
     React.ComponentRef<"a">,
     React.ComponentPropsWithoutRef<"a"> & { icon?: React.ReactNode, prefetchingPage: string; }
 >(({ className, title, icon, prefetchingPage, ...props }, ref) => {
-    const prefetchPage = usePrefetch("getStaticPageBySlug")
+    // const prefetchPage = usePrefetch("getStaticPageBySlug")
     
     return (
         <li>
             <NavigationMenuLink asChild>
                 <a
-                    onMouseEnter={() => prefetchPage(prefetchingPage)}
+                    // onMouseEnter={() => prefetchPage(prefetchingPage)}
                     ref={ref}
                     className={cn(
                         "flex items-center gap-2 select-none space-y- 1 rounded-sm p-3 leading-normal no-underline outline-none transition-colors hover:bg-background-gray2 hover:text-foreground focus:bg-background-gray2 focus:text-primary",

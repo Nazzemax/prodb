@@ -36,7 +36,7 @@ export function objectToQueryString(obj: Record<string, any>): string {
                     .map((item, index) =>
                         // Рекурсивно обрабатываем вложенные объекты в массиве
                         Object.keys(item)
-                            .map((subKey) => 
+                            .map((subKey) =>
                                 // Преобразуем каждый элемент в нужный формат
                                 `FIELDS[${key}][${index}][${subKey}]=${encodeURIComponent(item[subKey])}`
                             )
@@ -46,7 +46,7 @@ export function objectToQueryString(obj: Record<string, any>): string {
             } else if (typeof obj[key] === "object") {
                 // Обрабатываем вложенные объекты
                 return Object.keys(obj[key])
-                    .map((subKey) => 
+                    .map((subKey) =>
                         `FIELDS[${key}][${subKey}]=${encodeURIComponent(obj[key][subKey])}`
                     )
                     .join("&");
@@ -57,3 +57,20 @@ export function objectToQueryString(obj: Record<string, any>): string {
         })
         .join("&");
 }
+
+export const getYouTubeId = (url: string | undefined): string | null | undefined => {
+    if (!url || !url.startsWith("http")) return null;
+
+    try {
+        const parsedUrl = new URL(url);
+        if (parsedUrl.hostname === "youtu.be") {
+            return parsedUrl.pathname.substring(1);
+        }
+        if (parsedUrl.hostname.includes("youtube.com")) {
+            return parsedUrl.searchParams.get("v");
+        }
+    } catch (error) {
+        console.error("Invalid YouTube URL:", url);
+        return null;
+    }
+};

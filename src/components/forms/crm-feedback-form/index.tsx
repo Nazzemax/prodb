@@ -27,12 +27,10 @@ import { FormTerms } from "@/components/atoms/form-terms";
 
 
 interface FeedbackFormProps {
-    business_types: Type[];
     task_types: Type[];
 }
 
 export const CrmFeedbackForm = ({
-    business_types,
     task_types,
 }: FeedbackFormProps) => {
 
@@ -54,7 +52,7 @@ export const CrmFeedbackForm = ({
             acceptTerms: false,
         },
     });
-    const { data } = useAppData()
+    const { business_types } = useAppData()
     const [tabValue, setTabValue] = useState("business");
     const [selectedServiceTypes, setSelectedServiceTypes] = useState<string[]>([]);
     const [selectedBusinessTypes, setSelectedBusinessTypes] = useState<string[]>([]);

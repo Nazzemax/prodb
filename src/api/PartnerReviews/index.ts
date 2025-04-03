@@ -1,18 +1,8 @@
-import { baseApi } from "../Base";
+import { fetchData } from "../Base/baseApi";
 import { PartnersReviewsResponse } from "./types";
+import { getLocale } from "next-intl/server";
 
-
-export const partnersReviewsApi = baseApi.injectEndpoints({
-    endpoints(build) {
-        return {
-            getPartnersReviews: build.query<PartnersReviewsResponse, void>({
-                query: () => ({
-                    url: '/partners-reviews/',
-                })
-            }),
-
-        }
-    }
-})
-
-export const { useGetPartnersReviewsQuery } = partnersReviewsApi
+export async function getPartnersReviews() {
+    const locale = await getLocale();
+    return fetchData<PartnersReviewsResponse>("/partners-reviews/", locale);
+}

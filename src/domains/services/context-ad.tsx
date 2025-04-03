@@ -1,25 +1,24 @@
-"use client";
-
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { RequestHandler } from "@/components/atoms/request-handler";
-import { FeedbackForm } from "@/components/forms/feedback-form";
-import { CompanyPostList } from "@/components/organisms/company-post-list";
+import { getStaticPageBySlug } from "@/api/StaticPages";
+import FeedbackForm from "@/components/forms/feedback-form";
+import CompanyPostList from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { ServiceStaticCardList } from "@/components/organisms/service-static-card-list";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useContextAdCardData, useContextAdData } from "@/consts/data";
+import { fetchContextAdCardData , fetchContextAdData } from "@/consts/data";
 import { Banner } from "@/consts/types";
-import { useSlug } from "@/hooks/useSlug";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-const ContextAdsPage = () => {
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const contextAdData = useContextAdData();
-    const contextAdCardData = useContextAdCardData();
-    const t = useTranslations("ServicesPage2");
-    const t2 = useTranslations("Buttons");
+export const revalidate = 60;
+
+const ContextAdsPage = async () => {
+    const data = await getStaticPageBySlug('context-ads');
+    const [t, t2, contextAdData, contextAdCardData] = await Promise.all([
+        getTranslations("ServicesPage2"),
+        getTranslations("Buttons"),
+        fetchContextAdData(),
+        fetchContextAdCardData(),
+    ])
 
     const banner: Banner = {
         title: t("banner.title"),
@@ -27,8 +26,10 @@ const ContextAdsPage = () => {
         button_text: t("banner.btn"),
     };
 
+    console.log("Данные загружены на сервере");
+
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     title={data.title}
@@ -53,7 +54,7 @@ const ContextAdsPage = () => {
             />
             <CompanyPostList />
             <FormLayout nestedForm={<FeedbackForm />} />
-        </RequestHandler>
+        </>
     );
 };
 

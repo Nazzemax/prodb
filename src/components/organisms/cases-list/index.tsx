@@ -1,3 +1,5 @@
+'use client';
+
 import { Post } from "@/api/Post/types";
 import { Heading } from "@/components/atoms/heading";
 import { SearchInput } from "@/components/atoms/search-input";

@@ -23,7 +23,7 @@ import { Spinner } from "@/components/atoms/spinner";
 import { FormTerms } from "@/components/atoms/form-terms";
 
 
-export const FeedbackForm = () => {
+const FeedbackForm = () => {
     const { data } = useAppData()
     const [sendForm, {
         isLoading,
@@ -183,4 +183,4 @@ export const FeedbackForm = () => {
     )
 }
 
-
+export default FeedbackForm;

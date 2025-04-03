@@ -1,51 +1,74 @@
 import dynamic from "next/dynamic";
 import { getTranslations } from "next-intl/server";
-import { Award } from "@/components/organisms/award";
-import { CompanyFeatures } from "@/components/organisms/company-features";
-import { CompanyPartners } from "@/components/organisms/company-partners";
-import { CompanyPostList } from "@/components/organisms/company-post-list";
-import { FeedbackForm } from "@/components/forms/feedback-form";
-import { FormLayout } from "@/components/templates/form-layout";
-import { PartnerReviewList } from "@/components/organisms/partner-review-list";
-import { Advantages } from "@/components/organisms/advantages/Advantages";
-import NewsBanner from '@/components/atoms/NewsBanne/NewsBanne';
-import { VideoAboutCompany } from "@/components/organisms/video-about-company";
 import { getBanners } from "@/api/Banners";
-import { ClientReviewList } from "@/components/organisms/client-review-list";
-import { BlogPostList } from "@/components/organisms/blog-post-list";
 import SingleSliderList from "@/components/organisms/single-slider-list";
 import { getMarketingDepartment } from "@/api/Marketing";
-import { getCompanyChallenges } from "@/api/Company";
+import { getCompanyChallenges, getCompanyPartners } from "@/api/Company";
+import MarketingDepartment from "@/components/organisms/marketing-department";
+import Advantages from "@/components/organisms/advantages/Advantages";
+import CompanyChallengeList from "@/components/organisms/company-challenge-list";
+import CompanyFeatures from "@/components/organisms/company-features";
+import CompanyPostList from "@/components/organisms/company-post-list";
+import { getArticles } from "@/api/Article";
+import BlogPostList from "@/components/organisms/blog-post-list";
+import CompanyPartners from "@/components/organisms/company-partners";
+import { getPartnersReviews } from "@/api/PartnerReviews";
+import PartnerReviewList from "@/components/organisms/partner-review-list";
+import ClientReviewList from "@/components/organisms/client-review-list";
+import VideoAboutCompany from "@/components/organisms/video-about-company";
+import Award from "@/components/organisms/award";
+import FormLayout from "@/components/templates/form-layout";
+import FeedbackForm from "@/components/forms/feedback-form";
+import { Suspense } from "react";
+import { PageLoader } from "@/components/atoms/page-loader";
 
-const MarketingDepartment = dynamic(() => import("@/components/organisms/marketing-department"));
-const CompanyChallengeList = dynamic(() => import("@/components/organisms/company-challenge-list"));
+const NewsBanner = dynamic(() => import("@/components/atoms/NewsBanner/NewsBanner"));
+
+export const revalidate = 60;
 
 const HomePage = async () => {
-    const t = await getTranslations("HomePage");
+    const t = await getTranslations("HomePage.section2");
     const banners = await getBanners();
-    const MarketingDepartmentData = await getMarketingDepartment();
-    const companyChallenges = await getCompanyChallenges();
+    const marketingDepartmentData = await getMarketingDepartment()
+    const companyChallenges = await getCompanyChallenges()
+    const articles = await getArticles()
+    const partners = await getCompanyPartners()
+    const reviews = await getPartnersReviews()
 
     return (
         <>
-            <NewsBanner />
-            <SingleSliderList banners={banners} />
-            <MarketingDepartment data={MarketingDepartmentData} />
-            <VideoAboutCompany/>
-            <Advantages />
-            <CompanyChallengeList data={companyChallenges} />
-            <CompanyFeatures />
-            <CompanyPostList />
-            <BlogPostList />
+            <NewsBanner banners={banners} />
+            <Suspense fallback={<PageLoader />}>
+                <SingleSliderList banners={banners} />
+                <MarketingDepartment data={marketingDepartmentData} />
+            </Suspense>
+            <Suspense fallback={<PageLoader />}>
+                <VideoAboutCompany />
+            </Suspense>
+            <Suspense fallback={<PageLoader />}>
+                <Advantages />
+                <CompanyChallengeList data={companyChallenges} />
+            </Suspense>
+            <Suspense fallback={<PageLoader />}>
+                <CompanyFeatures />
+                <CompanyPostList />
+            </Suspense>
+            <Suspense fallback={<PageLoader />}>
+                <BlogPostList data={articles} />
+            </Suspense>
             <Award
-                badgeTitle={t("section2.btn")}
-                title={t("section2.title")}
-                sub_title={t("section2.description")}
+                badgeTitle={t("btn")}
+                title={t("title")}
+                sub_title={t("description")}
                 image={"/images/main_page/diploma.jpg"}
             />
-            <CompanyPartners />
-            <PartnerReviewList />
-            <ClientReviewList />
+            <Suspense fallback={<PageLoader />}>
+                <CompanyPartners data={partners} />
+                <PartnerReviewList data={reviews} />
+            </Suspense>
+            <Suspense fallback={<PageLoader />}>
+                <ClientReviewList />
+            </Suspense>
             <FormLayout
                 title={"Получите бесплатную консультацию"}
                 nestedForm={<FeedbackForm />}

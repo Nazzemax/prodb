@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useGetBannersQuery } from "@/api/Banners";
+import { Banner } from "@/api/Banners/types";
 
 export interface BannerText {
   text: string;
@@ -10,15 +10,14 @@ export interface BannerText {
 
 const BANNER_DISMISSED_KEY_PREFIX = "banner_dismissed_";
 
-const NewsBanner: React.FC = () => {
-    const { data, error, isLoading } = useGetBannersQuery();
+const NewsBanner = ({ banners }: { banners: Banner[] }) => {
     const [showBanner, setShowBanner] = useState(false);
     const [bannerContent, setBannerContent] = useState<BannerText | null>(null);
     const [currentBannerKey, setCurrentBannerKey] = useState<string | null>(null);
 
     useEffect(() => {
     // Find valid banner content
-        const validBanner = data?.find((b) => {
+        const validBanner = banners?.find((b) => {
             const banner = b.banner_text as BannerText | undefined;
             return banner?.text?.trim() && banner?.link?.trim();
         });
@@ -44,7 +43,7 @@ const NewsBanner: React.FC = () => {
                 );
             }
         }
-    }, [data]);
+    }, [banners]);
 
     const handleDismiss = () => {
         if (currentBannerKey) {
@@ -62,7 +61,7 @@ const NewsBanner: React.FC = () => {
     };
 
     // Don't render if any of these conditions are met
-    if (error || isLoading || !showBanner || !bannerContent) return null;
+    if (!showBanner || !bannerContent) return null;
 
     return (
         <div className="fixed top-0 left-0 w-full bg-red-500 text-white text-sm md:text-base z-[60] flex items-center justify-center px-6 py-4 shadow-md">

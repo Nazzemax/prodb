@@ -1,7 +1,7 @@
 import { baseApi } from "../Base";
 import { fetchData } from "../Base/baseApi";
 import { MarketingDepartmentResponse, MarketingSupportResponse } from "./types";
-
+import { getLocale } from "next-intl/server";
 
 export const MarketingApi = baseApi.injectEndpoints({
     endpoints(build) {
@@ -21,7 +21,6 @@ export const MarketingApi = baseApi.injectEndpoints({
                     url: '/design-development/'
                 })
             })
-
         }
     }
 })
@@ -33,5 +32,6 @@ export const {
 } = MarketingApi
 
 export async function getMarketingDepartment(cache: RequestCache = "force-cache") {
-    return fetchData<MarketingDepartmentResponse>("/marketing-department/", cache)
+    const locale = await getLocale();
+    return fetchData<MarketingDepartmentResponse>("/marketing-department/", locale, cache);
 }

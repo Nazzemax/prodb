@@ -5,13 +5,6 @@ import MarketingDepartmentBg from "@/assets/backgrounds/marketing_department.svg
 import { Heading } from "@/components/atoms/heading";
 import { useGetDesignSupportQuery } from "@/api/Marketing";
 import { RequestHandler } from "@/components/atoms/request-handler";
-import { motion } from "framer-motion";
-import {
-    defaultTransition,
-    fadeIn,
-    staggerTransition,
-    viewportConfig,
-} from "@/lib/motion";
 
 
 export const DesignDepartment: React.FC = () => {
@@ -28,35 +21,22 @@ export const DesignDepartment: React.FC = () => {
             />
             <div className="flex flex-col gap-y-16 w-full max-w-[1280px] py-14 md:py-36">
                 <RequestHandler isLoading={isLoading} error={error} data={data}>
-                    <motion.div
-                        variants={fadeIn("left")}
-                        initial="hidden"
-                        whileInView="show"
-                        viewport={viewportConfig}
-                        transition={defaultTransition}
+                    <div
                         className="flex flex-col md:flex-row gap-y-5 gap-x-10"
                     >
                         <Heading as="h2">{data?.title}</Heading>
                         <p className="flex items-end text-gray2 text-lg lg:text-2xl">
                             {data?.sub_title}
                         </p>
-                    </motion.div>
+                    </div>
                     {/* Главы */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                         {data?.chapters.map((chapter, idx) => (
-                            <motion.div
-                                key={chapter.number}
-                                variants={fadeIn("up", "spring", idx * 0.1)}
-                                initial="hidden"
-                                whileInView="show"
-                                viewport={viewportConfig}
-                                transition={staggerTransition(idx)}
-                            >
-                                <MarketingChapter
-                                    number={chapter.number}
-                                    title={chapter.title}
-                                />
-                            </motion.div>
+                            <MarketingChapter
+                                key={idx}
+                                number={chapter.number}
+                                title={chapter.title}
+                            />
                         ))}
                     </div>
                 </RequestHandler>

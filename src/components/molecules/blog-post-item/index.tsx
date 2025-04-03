@@ -27,6 +27,7 @@ export const BlogPostItem = ({
                         alt={title}
                         width={390}
                         height={250}
+                        loading="lazy"
                         className="rounded-t-lg w-full h-[200px] object-cover transition-transform duration-500 scale-100 group-hover:scale-110 will-change-transform"
                     />
                 </CardHeader>

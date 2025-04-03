@@ -1,23 +1,27 @@
-"use client";
-
-import { useGetPostsQuery } from "@/api/Post";
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { RequestHandler } from "@/components/atoms/request-handler";
-import { FeedbackForm } from "@/components/forms/feedback-form";
+import { getCompanyPartners } from "@/api/Company";
+import { getPartnersReviews } from "@/api/PartnerReviews";
+import { getPosts } from "@/api/Post";
+import { getStaticPageBySlug } from "@/api/StaticPages";
+import FeedbackForm from "@/components/forms/feedback-form";
 import { CasesList } from "@/components/organisms/cases-list";
-import { ClientReviewList } from "@/components/organisms/client-review-list";
-import { CompanyPartners } from "@/components/organisms/company-partners";
-import { PartnerReviewList } from "@/components/organisms/partner-review-list";
-import { FormLayout } from "@/components/templates/form-layout";
+import ClientReviewList from "@/components/organisms/client-review-list";
+import CompanyPartners from "@/components/organisms/company-partners";
+import PartnerReviewList from "@/components/organisms/partner-review-list";
+import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useSlug } from "@/hooks/useSlug";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-const CasesPage = () => {
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: post_data } = useGetPostsQuery();
-    const t = useTranslations("Cases");
+export const revalidate = 60;
+
+const CasesPage = async () => {
+    const data = await getStaticPageBySlug('cases');
+    const post_data = await getPosts();
+    const t = await getTranslations("Cases");
+    const [partners, reviews] =
+        await Promise.all([
+            getCompanyPartners(),
+            getPartnersReviews()
+        ]);
 
     type BannerTexts = {
         title: string;
@@ -32,7 +36,7 @@ const CasesPage = () => {
     };
 
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     bg_image={data.image}
@@ -46,10 +50,10 @@ const CasesPage = () => {
             )}
             <CasesList posts={post_data?.results || []} />
             <ClientReviewList hasBg />
-            <CompanyPartners />
-            <PartnerReviewList />
+            <CompanyPartners data={partners} />
+            <PartnerReviewList data={reviews} />
             <FormLayout nestedForm={<FeedbackForm />} />
-        </RequestHandler>
+        </>
     );
 };
 

@@ -1,61 +1,38 @@
-import { baseApi } from "../Base";
+import { fetchData } from "../Base/baseApi";
 import { Type } from "./types";
+import { getLocale } from "next-intl/server";
 
+export async function getPromotionTypes() {
+    const locale = await getLocale();
+    return fetchData<Type[]>("/promotion-types/", locale);
+}
 
-export const typesApi = baseApi.injectEndpoints({
-    endpoints(build) {
-        return {
-            getPromotionTypes: build.query<Type[], void>({
-                query: () => ({
-                    url: '/promotion-types/'
-                })
-            }),
-            getPurposeTypes: build.query<Type[], void>({
-                query: () => ({
-                    url: '/purpose-types/'
-                })
-            }),
-            getServiceTypes: build.query<Type[], void>({
-                query: () => ({
-                    url: '/service-types/'
-                })
-            }),
-            getSiteTypes: build.query<Type[], void>({
-                query: () => ({
-                    url: '/site-types/'
-                })
-            }),
-            getSiteStatus: build.query<Type[], void>({
-                query: () => ({
-                    url: '/site-status/'
-                })
-            }),
-            getTaskTypes: build.query<Type[], void>({
-                query: () => ({
-                    url: '/task-types/'
-                })
-            }),
-            getVideoTypes: build.query<Type[], void>({
-                query: () => ({
-                    url: '/video-types/'
-                })
-            }),
-            getSocialTypes: build.query<Type[], void>({
-                query: () => ({
-                    url: '/social-types/'
-                })
-            }),
-        }
-    }
-})
+export async function getServiceTypes() {
+    const locale = await getLocale();
+    return fetchData<Type[]>("/service-types/", locale);
+}
 
-export const {
-    useGetPromotionTypesQuery,
-    useGetPurposeTypesQuery,
-    useGetServiceTypesQuery,
-    useGetSiteTypesQuery,
-    useGetSiteStatusQuery,
-    useGetTaskTypesQuery,
-    useGetVideoTypesQuery,
-    useGetSocialTypesQuery,
-} = typesApi
+export async function getTaskTypes() {
+    const locale = await getLocale();
+    return fetchData<Type[]>("/task-types/", locale);
+}
+
+export async function getSiteStatus() {
+    const locale = await getLocale();
+    return fetchData<Type[]>("/site-status/", locale);
+}
+
+export async function getSiteTypes() {
+    const locale = await getLocale();
+    return fetchData<Type[]>("/site-types/", locale);
+}
+
+export async function getSocialTypes() {
+    const locale = await getLocale();
+    return fetchData<Type[]>("/social-types/", locale);
+}
+
+export async function getVideoTypes() {
+    const locale = await getLocale();
+    return fetchData<Type[]>("/video-types/", locale);
+}

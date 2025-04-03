@@ -10,7 +10,7 @@ interface RequestHandlerProps {
 }
 
 export const RequestHandler: React.FC<RequestHandlerProps> = ({ isLoading, error, data, children }) => {
-    if (isLoading) {
+    if (isLoading || !data) {
         return (
             <div className="flex justify-center items-center h-screen">
                 <Spinner />
@@ -22,14 +22,6 @@ export const RequestHandler: React.FC<RequestHandlerProps> = ({ isLoading, error
         return (
             <div className="flex justify-center items-center h-screen text-red-500">
                 <p>Ошибка загрузки данных. Попробуйте позже.</p>
-            </div>
-        );
-    }
-
-    if (!data) {
-        return (
-            <div className="flex justify-center items-center h-screen">
-                <p>Нет данных для отображения.</p>
             </div>
         );
     }

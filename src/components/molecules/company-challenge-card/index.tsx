@@ -26,7 +26,14 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
                 className
             )}
         >
-            <Image src={logo} alt={title} width={48} height={48} className="w-auto h-auto" />
+            <Image
+                src={logo}
+                alt={title}
+                width={48}
+                height={48}
+                className="w-auto h-auto"
+                loading="lazy"
+            />
             <h3 className="text-[28px] leading-[1.2] font-bold">{title}</h3>
             <div className="text-sm leading-tight font-medium text-gray2 text-ellipsis max-h-28">{formatDescription(description)}</div>
         </div>

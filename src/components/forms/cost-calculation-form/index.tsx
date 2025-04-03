@@ -13,7 +13,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCostCalculationSchema } from "./schema";
 import { useState } from "react";
 import { MultiSelect } from "@/components/atoms/multi-select";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Check } from "lucide-react";
@@ -26,15 +25,13 @@ import { useSendFormMutation } from "@/api/Form";
 import { FormTerms } from "@/components/atoms/form-terms";
 
 interface CostCalculationFormProps {
-    business_types: Type[];
     promotion_types: Type[];
 }
 
 export const CostCalculationForm = ({
-    business_types,
     promotion_types,
 }: CostCalculationFormProps) => {
-    const { data } = useAppData()
+    const { business_types } = useAppData()
     const t = useTranslations('Form')
 
     const [sendForm, {

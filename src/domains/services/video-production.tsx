@@ -1,30 +1,23 @@
-"use client";
-
 import { InfoCard } from "@/components/organisms/info-card";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { ServicePostList } from "@/components/organisms/service-post-list";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { VideoProductionForm } from "@/components/forms/video-production-form";
 import { VideoProductionIcon } from "@/assets/info-card";
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { useSlug } from "@/hooks/useSlug";
-import { RequestHandler } from "@/components/atoms/request-handler";
-import { useAppData } from "@/context/app-context";
-import { useGetVideoTypesQuery } from "@/api/Types";
-import { useTranslations } from "next-intl";
-import { useGetVideoProductionQuery } from "@/api/VideoProduction";
+import { getStaticPageBySlug } from "@/api/StaticPages";
+import { getVideoTypes } from "@/api/Types";
+import { getVideoProduction } from "@/api/VideoProduction";
 import { VideoCompany } from "@/components/organisms/video-about-videoproduction";
-import { ClientReviewList } from "@/components/organisms/client-review-list";
-// import { useGetCompanyVideoReviewsQuery } from "@/api/Company";
+import ClientReviewList from "@/components/organisms/client-review-list";
+import { getTranslations } from "next-intl/server";
 
-const VideoProductionPage = () => {
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: video_types } = useGetVideoTypesQuery();
-    const { business_types } = useAppData();
-    const { data: videoData } = useGetVideoProductionQuery();
-    const t = useTranslations("ServicePage5");
-    // const { data: reviews } = useGetCompanyVideoReviewsQuery();
+export const revalidate = 60;
+
+const VideoProductionPage = async () => {
+    const data = await getStaticPageBySlug('video-production');
+    const videoData = await getVideoProduction();
+    const t = await getTranslations("ServicePage5");
+    const video_types = await getVideoTypes();
 
     const serviceData = {
         title: t("Services.title"),
@@ -99,7 +92,7 @@ const VideoProductionPage = () => {
     };
 
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     title={data.title}
@@ -133,12 +126,11 @@ const VideoProductionPage = () => {
                 title={"Рассчитайте стоимость вашего Видеопроекта"}
                 nestedForm={
                     <VideoProductionForm
-                        business_types={business_types}
                         video_types={video_types || []}
                     />
                 }
             />
-        </RequestHandler>
+        </>
     );
 };
 

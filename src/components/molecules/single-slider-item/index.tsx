@@ -31,31 +31,34 @@ export const SingleSliderItem = ({
             >
                 <Image
                     src={image}
-                    alt={"BG_IMAGE"}
+                    alt="BG_IMAGE"
                     priority
+                    fetchPriority="high"
                     fill
                     sizes="100vw"
-                    className='object-cover'
-                    quality={90}
+                    className="object-cover"
+                    quality={75} 
+                    placeholder="blur"
+                    blurDataURL="/image.webp"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black to-black/20"></div>
                 <div className="flex flex-col text-left mb-12 md:mb-0 gap-y-2 md:gap-y-5 z-50 px-5 md:pl-0 md:mx-40 max-w-[1280px]">
                     <Heading
                         as="h1"
                         className={cn(
-                            "animate-text font-bold text-white",
+                            "fade-out font-bold text-white",
                         )}
                     >
                         {title}
                     </Heading>
                     <p
                         className={cn(
-                            "text-lg md:text-2xl text-gray mt-2 animate-fadeIn",
+                            "text-lg md:text-2xl text-gray mt-2 fade-in",
                         )}
                     >
                         {sub_title}
                     </p>
-                    <ButtonWithIcon className='animate-fadeIn' onClick={scrollToFeedback}>
+                    <ButtonWithIcon className='fade-out' onClick={scrollToFeedback}>
                         {button_text}
                     </ButtonWithIcon>
                 </div>

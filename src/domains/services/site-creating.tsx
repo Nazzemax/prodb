@@ -1,25 +1,18 @@
-'use client';
-
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { useGetSiteTypesQuery } from "@/api/Types";
-import { RequestHandler } from "@/components/atoms/request-handler";
+import { getStaticPageBySlug } from "@/api/StaticPages";
+import { getSiteTypes } from "@/api/Types";
 import { SiteCreatingFeedbackForm } from "@/components/forms/site-creating-form";
-import { CompanyPostList } from "@/components/organisms/company-post-list";
+import CompanyPostList from "@/components/organisms/company-post-list";
 import { ServicePostList } from "@/components/organisms/service-post-list";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useAppData } from "@/context/app-context";
-import { useSlug } from "@/hooks/useSlug";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
+export const revalidate = 60;
 
-
-const SiteCreatingPage = () => {
-    const slug = useSlug()
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug)
-    const { data: site_types } = useGetSiteTypesQuery()
-    const { business_types } = useAppData()
-    const t = useTranslations("ServicePage6");
+const SiteCreatingPage = async () => {
+    const data = await getStaticPageBySlug('site-creating')
+    const site_types = await getSiteTypes()
+    const t = await getTranslations("ServicePage6");
 
     const serviceData = {
         title: t('Approach.title'),
@@ -55,14 +48,9 @@ const SiteCreatingPage = () => {
             },
         ]
     };
-    
 
     return (
-        <RequestHandler
-            isLoading={isLoading}
-            error={error}
-            data={data}
-        >
+        <>
             {data &&
                 <PageTitleLayout
                     title={data.title}
@@ -86,11 +74,10 @@ const SiteCreatingPage = () => {
                 title={"Рассчитайте стоимость услуги "}
                 nestedForm={
                     <SiteCreatingFeedbackForm
-                        business_types={business_types}
                         site_types={site_types || []} />
                 }
             />
-        </RequestHandler>
+        </>
     );
 }
 

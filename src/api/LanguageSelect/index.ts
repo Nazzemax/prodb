@@ -5,7 +5,7 @@ interface LanguageState {
 }
 
 const initialState: LanguageState = {
-    selectedLanguage: typeof window !== "undefined" ? localStorage.getItem("locale") || "ru" : "ru",
+    selectedLanguage: "ru" // ✅ Always safe to start with default
 };
 
 const languageSlice = createSlice({
@@ -14,15 +14,17 @@ const languageSlice = createSlice({
     reducers: {
         setLanguage: (state, action: PayloadAction<string>) => {
             state.selectedLanguage = action.payload;
+
             if (typeof window !== "undefined") {
                 localStorage.setItem("locale", action.payload);
             }
         },
+        // Optional: useful for hydration or bootstrapping
         initLanguage: (state, action: PayloadAction<string>) => {
             state.selectedLanguage = action.payload;
         },
     },
 });
 
-export const { actions: languageActions } = languageSlice
-export const { reducer: languageReducer } = languageSlice
+export const { actions: languageActions } = languageSlice;
+export const { reducer: languageReducer } = languageSlice;

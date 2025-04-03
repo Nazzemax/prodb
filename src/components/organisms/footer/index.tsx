@@ -7,7 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import { useAppData } from "@/context/app-context";
 import React, { memo, useState } from "react";
 
-export const Footer = () => {
+const Footer = () => {
     const { data } = useAppData();
     const MemoizedLinks = memo(FooterLinks);
     const [openTerms, setOpenTerms] = useState(false)
@@ -42,3 +42,5 @@ export const Footer = () => {
         </footer>
     );
 };
+
+export default Footer;

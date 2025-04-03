@@ -1,25 +1,21 @@
-"use client";
-
 import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
-import { FormLayout } from "@/components/templates/form-layout";
+import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
-import { useGetStaticPageBySlugQuery } from "@/api/StaticPages";
-import { RequestHandler } from "@/components/atoms/request-handler";
-import { useSlug } from "@/hooks/useSlug";
+import { getStaticPageBySlug } from "@/api/StaticPages";
 
-import { useAppData } from "@/context/app-context";
-import { useGetPromotionTypesQuery } from "@/api/Types";
-import { useTranslations } from "next-intl";
-import { ClientReviewList } from "@/components/organisms/client-review-list";
-import { BlogPostList } from "@/components/organisms/blog-post-list";
+import ClientReviewList from "@/components/organisms/client-review-list";
+import BlogPostList from "@/components/organisms/blog-post-list";
+import { getTranslations } from "next-intl/server";
+import { getArticles } from "@/api/Article";
+import { getPromotionTypes } from "@/api/Types";
 
-const BlogPage = () => {
-    const t = useTranslations("AboutPage");
+export const revalidate = 60;
 
-    const slug = useSlug();
-    const { data, isLoading, error } = useGetStaticPageBySlugQuery(slug);
-    const { data: promotion_types } = useGetPromotionTypesQuery();
-    const { business_types } = useAppData();
+const BlogPage = async () => {
+    const data = await getStaticPageBySlug('blog');
+    const t = await getTranslations("AboutPage");
+    const promotion_types = await getPromotionTypes();
+    const articles = await getArticles();
 
     const names = {
         title: t("banner.title"),
@@ -28,7 +24,7 @@ const BlogPage = () => {
     };
 
     return (
-        <RequestHandler isLoading={isLoading} error={error} data={data}>
+        <>
             {data && (
                 <PageTitleLayout
                     bg_image={data.image}
@@ -42,17 +38,15 @@ const BlogPage = () => {
                 />
             )}
             <ClientReviewList hasBg />
-            <BlogPostList />
+            <BlogPostList data={articles} />
             <FormLayout
-                title={"Рассчитайте стоимость услуги"}
                 nestedForm={
                     <CostCalculationForm
-                        business_types={business_types}
                         promotion_types={promotion_types || []}
                     />
                 }
             />
-        </RequestHandler>
+        </>
     );
 };
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetArticlesQuery } from "@/api/Article"
+import { ArticlesResponse } from "@/api/Article/types";
 import { Heading } from "@/components/atoms/heading"
 import { BlogPostItem } from "@/components/molecules/blog-post-item"
 import { Button } from "@/components/ui/button"
@@ -8,9 +8,12 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { useTranslations } from "next-intl"
 import { useState } from "react"
 
-export const BlogPostList = () => {
+interface BlogPostListProps {
+    data: ArticlesResponse;
+}
+
+const BlogPostList = ({ data: articles }: BlogPostListProps) => {
     const t = useTranslations("BlogPage")
-    const { data: articles } = useGetArticlesQuery()
     const pageSize = 12;
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -67,3 +70,5 @@ export const BlogPostList = () => {
         </div>
     )
 }
+
+export default BlogPostList;

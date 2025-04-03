@@ -1,29 +1,28 @@
-'use client';
-
-import { useGetPostByIdQuery } from "@/api/Post";
-import { RequestHandler } from "@/components/atoms/request-handler";
-import { FeedbackForm } from "@/components/forms/feedback-form";
+import { getPostById } from "@/api/Post";
+import FeedbackForm from "@/components/forms/feedback-form";
 import { CaseItemHeader } from "@/components/molecules/case-item-header";
 import { CaseImages } from "@/components/organisms/case-images";
 import { CaseStats } from "@/components/organisms/case-stats";
 import { CaseTaskList } from "@/components/organisms/case-task-list";
-import { CompanyPostList } from "@/components/organisms/company-post-list";
-import { FormLayout } from "@/components/templates/form-layout";
+import CompanyPostList from "@/components/organisms/company-post-list";
+import FormLayout from "@/components/templates/form-layout";
 import { Separator } from "@/components/ui/separator";
-import { useParams } from "next/navigation";
 
+type Params = Promise<{ id: string }>;
 
-const CasePage = () => {
-    const { id } = useParams<{ id: string }>();
-    const { data, error, isLoading } = useGetPostByIdQuery(id, {
-        skip: !id,
-    });
+export async function generateMetadata(props: { params: Params }) {
+    const params = await props.params
+    const data = await getPostById(params.id);
+    return {
+        title: data?.title || "Кейс",
+    };
+}
+
+const CasePage = async (props: { params: Params }) => {
+    const params = await props.params
+    const data = await getPostById(params.id);
     return (
-        <RequestHandler
-            isLoading={isLoading}
-            error={error}
-            data={data}
-        >
+        <>
             {data &&
                 <CaseItemHeader
                     post={data}
@@ -55,10 +54,10 @@ const CasePage = () => {
                     <Separator className="bg-graphic-gray h-[1px] mb-8 md:mb-14" />
                 </>
             }
-            
+
             <CompanyPostList title="Другие кейсы" />
             <FormLayout nestedForm={<FeedbackForm />} />
-        </RequestHandler>
+        </>
     )
 }
 

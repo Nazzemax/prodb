@@ -6,13 +6,14 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Heading } from "@/components/atoms/heading";
 import { SubTitle } from "@/components/atoms/sub-title";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { cn, getYouTubeId } from "@/lib/utils";
 import CompanyInfoSVG from "@/assets/backgrounds/company_info.svg";
 import { useTranslations } from "next-intl";
 import { useSlug } from "@/hooks/useSlug";
 import { useGetCompanyVideoReviewsQuery } from "@/api/Company";
+import { useYouTubeId } from "@/hooks/useVideoId";
 
-export const ClientReviewList = ({
+const ClientReviewList = ({
     hasSubTitle,
     hasBg,
 }: {
@@ -66,8 +67,8 @@ export const ClientReviewList = ({
             items: reviews[0]?.items || [],
             totalPages: reviews[0]?.items.length,
         },
-
     };
+
 
     const { sub_title, title, items, totalPages } = paths[pathname] || {};
     const t = useTranslations("Cases");
@@ -80,8 +81,10 @@ export const ClientReviewList = ({
         setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
     };
 
-    if (!isMounted) return null;
+    const videoId = useYouTubeId(items[currentPage]?.video)
+    const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
+    if (!isMounted) return null;
     return (
         <section
             className={cn("", hasBg ? "bg-background-dark mx-5 rounded-lg" : "")}
@@ -156,6 +159,7 @@ export const ClientReviewList = ({
                             width={"100%"}
                             height={"100%"}
                             controls={true}
+                            light={true}
                             playsinline
                             className="react-player"
                         />
@@ -170,3 +174,5 @@ export const ClientReviewList = ({
         </section>
     );
 };
+
+export default ClientReviewList;
