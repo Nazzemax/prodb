@@ -57,7 +57,7 @@ export const Map: React.FC = () => {
 
     const { isLoaded, loadError }: { isLoaded: boolean; loadError?: Error } =
     useLoadScript({
-        googleMapsApiKey: "AIzaSyCtrTvA1wlB3E3bjqGqPKte_pSN6aVaIoE" as string,
+        googleMapsApiKey: "AIzaSyA6cqgcXuwR9ulml4DBmttbguUx4DL5DQM" as string,
     });
 
     const t = useTranslations("Map");
