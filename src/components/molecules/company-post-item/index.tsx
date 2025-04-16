@@ -60,6 +60,7 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
                         key={social.title}
                     >
                         {/* <span>{social.logo}</span> */}
+                        {social.logo &&
                         <Image
                             src={social.logo}
                             alt={social.title}
@@ -68,7 +69,7 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
                             sizes="100vw"
                             className="w-auto h-auto"
                             quality={100}
-                        />
+                        />}
                         <span className="truncate">{social.subscribers} {social.title}</span>
                     </Badge>
                 ))}
