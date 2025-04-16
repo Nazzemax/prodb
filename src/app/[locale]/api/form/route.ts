@@ -1,7 +1,7 @@
 export async function POST(req: Request) {
     try {
         const params = await req.text();  // Получаем данные с клиента (queryString)
-        const response = await fetch(`https://boldbrands.bitrix24.kz/rest/46/1dzojldih12br67v/crm.lead.add.json?${params}`, {
+        const response = await fetch(`https://boldbrands.bitrix24.kz/rest/1854/yov4gowfxz6loavg/crm.lead.add.json?${params}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
