@@ -16,19 +16,21 @@ const FloatingWhatsapp = () => {
     if (!mounted || !data) return null;
 
     return (
-        <FloatingWhatsApp
-            phoneNumber={locale === "uz"
-                ? data?.phones[1].phone.replace(/\s/g, "")
-                : data?.phones[0].phone.replace(/\s/g, "")
-            }
-            accountName="Bold Brands International"
-            notificationSound
-            chatMessage="Доброго времени суток, чем могу вам помочь?"
-            statusMessage="Онлайн"
-            darkMode
-            avatar="https://bishkek.headhunter.kg/employer-logo/6266415.png"
-            placeholder="Введите текст"
-        />
+        <button >
+            <FloatingWhatsApp
+                phoneNumber={locale === "uz"
+                    ? data?.phones[1].phone.replace(/\s/g, "")
+                    : data?.phones[0].phone.replace(/\s/g, "")
+                }
+                accountName="Bold Brands International"
+                notificationSound
+                chatMessage="Доброго времени суток, чем могу вам помочь?"
+                statusMessage="Онлайн"
+                darkMode
+                avatar="https://bishkek.headhunter.kg/employer-logo/6266415.png"
+                placeholder="Введите текст"
+            />
+        </button>  
     );
 }
 
