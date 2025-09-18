@@ -19,8 +19,8 @@ interface LinkProps {
 
 export const FooterLinks = () => {
     const t = useTranslations("footer")
-    const { data } = useAppData()
-
+    const { data } = useAppData() 
+   
     const links: {
         title: string;
         items: LinkProps[];
@@ -81,7 +81,12 @@ export const FooterLinks = () => {
         {
             label: data?.emails[0].title || "Электронная почта",
             title:  data?.emails[0].email || "info@boldbrands.kg",
-            href: 'mailto:info@boldbrands.kg'
+            href:`mailto:${data?.emails[0].email || ""}`
+        },
+        {
+            label: data?.emails[1].title || "Электронная почта",
+            title:  data?.emails[1].email || "info@boldbrands.kg",
+            href:`mailto:${data?.emails[1].email || ""}`
         },
         {
             label: 'Работаем',

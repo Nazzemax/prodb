@@ -70,17 +70,9 @@ export default async function LocaleLayout({ children, params }: Props) {
     return (
         <html lang={locale}>
             <head>
-                <Script
-                    id="gtag-script"
-                    strategy="lazyOnload"
-                    dangerouslySetInnerHTML={{
-                        __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-TWLSLSMG');`,
-                    }}
-                />
+                <Script id="gtm-init" strategy="afterInteractive">
+                    {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWLSLSMG');`}
+                </Script>
                 <Script id="yandex-metrika-script" strategy="lazyOnload">
                     {`
     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -98,23 +90,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
          webvisor:true
     });
   `}
-                </Script>
-                <Script id="fb-pixel-script" strategy="lazyOnload">
-                    {`
-          !function(f,b,e,v,n,t,s)
-          {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-          n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-          if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-          n.queue=[];t=b.createElement(e);t.async=!0;
-          t.src=v;s=b.getElementsByTagName(e)[0];
-          s.parentNode.insertBefore(t,s)}(window, document,'script',
-          'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '681332601016811');
-          fbq('track', 'PageView');
-        `}
-                </Script>
-              
-              
+                </Script>     
                 <meta name="viewport" content="initial-scale=1, width=device-width" />
 
              
@@ -155,11 +131,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                 </noscript>
             </head>
             <body className={`${cannonade.className} antialiased `}>
-                <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWLSLSMG"
-                    height="0" width="0" style={{display:'none', visibility:'hidden'}}></iframe></noscript>
+                <noscript
+                    dangerouslySetInnerHTML={{
+                        __html:
+              '<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TWLSLSMG" height="0" width="0" style="display:none;visibility:hidden"></iframe>',
+                    }}
+                ></noscript>
                 <noscript>
                     <div>
-                        {}
                         <img
                             src="https://mc.yandex.ru/watch/100644188"
                             style={{ position: "absolute", left: "-9999px" }}
