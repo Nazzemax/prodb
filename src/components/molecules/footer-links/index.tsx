@@ -1,9 +1,9 @@
-import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import React from 'react';
 import InstagramIcon from '@/assets/socials/instagram.svg';
 import FacebookIcon from '@/assets/socials/facebook.svg';
 import WhatsAppIcon from '@/assets/socials/whatsapp.svg';
+import TelegramIcon from '@/assets/socials/telegram.svg';
 import { useAppData } from '@/context/app-context';
 import { useTranslations } from 'next-intl';
 
@@ -23,10 +23,11 @@ export const FooterLinks = () => {
    
     const links: {
         title: string;
+        subtitle?: string;
         items: LinkProps[];
     }[] = [
         {
-            title: 'О компании',
+            title: t('titles.about'),
             items: [
                 { title: t('companyLinks.aboutUs'), href: '/about' },
                 { title: t('companyLinks.cases'), href: '/cases' },
@@ -46,7 +47,8 @@ export const FooterLinks = () => {
             ]
         },
         {
-            title: 'Мы есть',
+            title: t('socialLinks.title'),
+            subtitle:t('socialLinks.sub_title'),
             items: [
                 { href: 'https://www.instagram.com/boldbrands.international', icon: <InstagramIcon />, label: 'Instagram' },
                 { href: 'https://www.facebook.com/boldbrands.kg', icon: <FacebookIcon />, label: 'Facebook' },
@@ -54,11 +56,12 @@ export const FooterLinks = () => {
             ],
         },
         {
-            title: 'Мы есть',
+            title: t('socialLinks.title'),
+            subtitle:t('socialLinks.sub_title2'),
             items: [
-                { href: 'https://www.instagram.com/boldbrands.international', icon: <InstagramIcon />, label: 'Instagram' },
-                { href: 'https://www.facebook.com/boldbrands.kg', icon: <FacebookIcon />, label: 'Facebook' },
-                { href: 'https://wa.me/996999992244', icon: <WhatsAppIcon />, label: 'WhatsApp' }
+                { href: 'https://www.instagram.com/boldbrands.uz/', icon: <InstagramIcon />, label: 'Instagram' },
+                { href: 'https://www.facebook.com/profile.php?id=61571120907112&locale=ru_RU', icon: <FacebookIcon />, label: 'Facebook' },
+                { href: 'https://t.me/boldbrandsuz', icon: <TelegramIcon />, label: 'Telegram' }
             ],
         }
            
@@ -79,10 +82,6 @@ export const FooterLinks = () => {
             label: data?.emails?.[0]?.title || 'Электронная почта (Бишкек)',
             title: data?.emails?.[0]?.email || 'office.kg@boldbrands.pro',
             href: data?.emails?.[0]?.email ? `mailto:${data?.emails?.[0]?.email}` : undefined
-        },
-        {
-            label: 'Работаем',
-            title: data?.work_time || 'Пн-Пт: 09:00-18:00'
         }
     ];
 
@@ -101,12 +100,10 @@ export const FooterLinks = () => {
             label: data?.emails?.[1]?.title || 'Электронная почта (Ташкент)',
             title: data?.emails?.[1]?.email || 'office.uz@boldbrands.pro',
             href: data?.emails?.[1]?.email ? `mailto:${data?.emails?.[1]?.email}` : undefined
-        },
-        {
-            label: 'Работаем',
-            title: data?.work_time || 'Пн-Пт: 09:00-18:00'
         }
     ];
+
+    const workHours = t('socialLinks.workHours');
 
     const isSocialBlock = (block: { items: LinkProps[] }) => block.items.every((i) => !!i.icon);
 
@@ -137,7 +134,8 @@ export const FooterLinks = () => {
                 {socialBlocks.map((block, bIdx) => (
                     <div key={`social-block-${bIdx}`} className="flex flex-col gap-y-3">
                         <h2 className="text-xl">{block.title}</h2>
-                        <ul className="flex gap-y-3">
+                        <h3 className='text-lg'>{block.subtitle}</h3>
+                        <ul className="flex gap-y-3 gap-x-3">
                             {block.items.map((item, iIdx) => (
                                 <SocialItem key={`social-${bIdx}-${iIdx}`} {...item} />
                             ))}
@@ -146,18 +144,23 @@ export const FooterLinks = () => {
                 ))}
             </div>
       
-            <div className="flex flex-col gap-y-4 lg:col-start-1 lg:row-start-2">
-                <h3 className="text-base font-medium">Бишкек</h3>
+            <div className="flex flex-col gap-y-4 lg:col-start-1 lg:row-start-2">        
                 {bishkekContacts.map((c, i) => (
                     <ContactItem key={`bish-${i}`} label={c.label} title={c.title} href={c.href} />
                 ))}
             </div>
 
             <div className="flex flex-col gap-y-4 lg:col-start-2 lg:row-start-2">
-                <h3 className="text-base font-medium">Ташкент</h3>
                 {tashkentContacts.map((c, i) => (
                     <ContactItem key={`tash-${i}`} label={c.label} title={c.title} href={c.href} />
                 ))}
+            </div>
+
+            <div className="flex flex-col gap-y-2 lg:col-start-3 lg:row-start-2">
+                <h3 className="text-gray2 text-sm">{workHours}</h3>
+                <div className="text-lg text-primary">
+                    {data?.work_time || 'Пн-Пт: 09:00-18:00'}
+                </div>
             </div>
         </div>
     )

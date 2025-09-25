@@ -659,10 +659,14 @@
       "workingHours": "Пн — Пт 9:00 — 18:00"
     },
     "socialLinks": {
+       "title":"Follow us",
+        "sub_title":"Bishkek",
+      "sub_title2":"Tashkent",
       "instagram": "Instagram",
       "facebook": "Facebook",
-      "telegram": "Telegram"
+      "telegram": "Telegram",
+       "workHours": "Working hours"
     },
-    "privacyPolicy": "Политика конфиденциальности"
+    "privacyPolicy": "Privacy Policy"
   }
 }

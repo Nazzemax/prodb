@@ -384,9 +384,13 @@
       "workingHours": "Пн — Пт 9:00 — 18:00"
     },
     "socialLinks": {
+      "title":"Мы есть",
+      "sub_title":"Бишкек",
+      "sub_title2":"Ташкент",
       "instagram": "Instagram",
       "facebook": "Facebook",
-      "telegram": "Telegram"
+      "telegram": "Telegram",
+      "workHours": "Работаем"
     },
     "privacyPolicy": "Политика конфиденциальности"
   },

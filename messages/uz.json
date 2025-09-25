@@ -365,11 +365,15 @@
       "workingHours": "Пн — Пт 9:00 — 18:00"
     },
     "socialLinks": {
+      "title":"Бизни кузатинг", 
+       "sub_title":"Бишкек",
+      "sub_title2":"Ташкент",
       "instagram": "Instagram",
       "facebook": "Facebook",
-      "telegram": "Telegram"
+      "telegram": "Telegram",
+      "workHours": "Иш соатлари"
     },
-    "privacyPolicy": "Политика конфиденциальности"
+    "privacyPolicy": "Maxfiylik siyosati"
   },
   "ServicePage4": {
     "banner": {
