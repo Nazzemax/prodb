@@ -1,7 +1,7 @@
 export async function POST(req: Request) {
     try {
 
-        const fixed = `&FIELDS[CATEGORY_ID]=60&FIELDS[CATEGORY_NAME]=${encodeURIComponent("Лид")}&FIELDS[STAGE_ID]=${encodeURIComponent("C60:NEW")}`;
+        const fixed = `&FIELDS[CATEGORY_ID]=60`;
         const params = await req.text();  // Получаем данные с клиента (queryString)
         const response = await fetch(`https://boldbrands.bitrix24.kz/rest/1854/x6xylsxfrgg4lc0t/crm.deal.add.json?${params}${fixed}`, {
             method: 'POST',
