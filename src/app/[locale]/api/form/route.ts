@@ -1,24 +1,23 @@
-import { objectToQueryString } from "@/lib/utils";
-
-
 export async function POST(req: Request) {
     try {
 
-        const fixed = objectToQueryString({CATEGORY_ID: 60}); // Фиксированное поле CATEGORY_ID=60
-        const params = await req.text();  // Получаем данные с клиента (queryString)
+        // Получаем строку от клиента. Ожидаем, что это query-string: "FIELDS[NAME]=John&FIELDS[PHONE]=123"
+        const clientText = await req.text();
 
-        const combined = params && params.length ? `${params}&${fixed}` : fixed;
-        const url = `https://boldbrands.bitrix24.kz/rest/1854/x6xylsxfrgg4lc0t/crm.deal.add.json?${combined}`;
+        // Собираем URLSearchParams из того, что прислал клиент (корректно парсит пустую строку)
+        const params = new URLSearchParams(clientText);
+
+        params.set('FIELDS[CATEGORY_ID]', '60');
+        const url = `https://boldbrands.bitrix24.kz/rest/1854/x6xylsxfrgg4lc0t/crm.deal.add.json?`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
+            body: params.toString(),
         });
 
         const data = await response.json();
-
-        console.log('Bitrix response:', data); // Логируем ответ от Bitrix для отладки
 
         if (!response.ok) {
             return new Response(JSON.stringify({ error: data }), { status: response.status });
