@@ -7,8 +7,8 @@ export async function POST(req: Request) {
         // Собираем URLSearchParams из того, что прислал клиент (корректно парсит пустую строку)
         const params = new URLSearchParams(clientText);
 
-        params.set('FIELDS[CATEGORY_ID]', '60');
-        const url = `https://boldbrands.bitrix24.kz/rest/1854/x6xylsxfrgg4lc0t/crm.deal.add.json?`;
+        // params.set('FIELDS[CATEGORY_ID]', '60');
+        const url = `https://boldbrands.bitrix24.kz/rest/1854/7ddadajkaoif2g9z/crm.lead.add.json?`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
