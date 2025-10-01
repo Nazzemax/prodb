@@ -4,7 +4,7 @@ export async function POST(req: Request) {
         const params = await req.text();
 
         // params.set('FIELDS[CATEGORY_ID]', '60');
-        const url = `https://boldbrands.bitrix24.kz/rest/1854/7ddadajkaoif2g9z/crm.lead.add.json? ${params}`;
+        const url = `https://boldbrands.bitrix24.kz/rest/1854/7ddadajkaoif2g9z/crm.lead.add.json?${params}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
