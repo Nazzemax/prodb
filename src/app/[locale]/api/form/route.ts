@@ -1,20 +1,15 @@
 export async function POST(req: Request) {
     try {
-
-        // Получаем строку от клиента. Ожидаем, что это query-string: "FIELDS[NAME]=John&FIELDS[PHONE]=123"
-        const clientText = await req.text();
-
         // Собираем URLSearchParams из того, что прислал клиент (корректно парсит пустую строку)
-        const params = new URLSearchParams(clientText);
+        const params = await req.text();
 
         // params.set('FIELDS[CATEGORY_ID]', '60');
-        const url = `https://boldbrands.bitrix24.kz/rest/1854/7ddadajkaoif2g9z/crm.lead.add.json?`;
+        const url = `https://boldbrands.bitrix24.kz/rest/1854/7ddadajkaoif2g9z/crm.lead.add.json? ${params}`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: params.toString(),
+            }
         });
 
         const data = await response.json();
