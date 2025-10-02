@@ -1,4 +1,5 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
+import { getPromotionTypes } from "@/api/Types";
 import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import CompanyPostList from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
@@ -13,12 +14,15 @@ export const revalidate = 60;
 
 const ContextAdsPage = async () => {
     const data = await getStaticPageBySlug('context-ads');
-    const [t, t2, contextAdData, contextAdCardData] = await Promise.all([
+    const [t, t2, contextAdData, contextAdCardData, promotion_types] = await Promise.all([
         getTranslations("ServicesPage2"),
         getTranslations("Buttons"),
         fetchContextAdData(),
         fetchContextAdCardData(),
+        getPromotionTypes(),
     ])
+
+  
 
     const banner: Banner = {
         title: t("banner.title"),
@@ -53,7 +57,7 @@ const ContextAdsPage = async () => {
                 button={t2("btn1")}
             />
             <CompanyPostList />
-            <FormLayout nestedForm={<CostCalculationForm promotion_types={[]} />} />
+            <FormLayout nestedForm={<CostCalculationForm promotion_types={promotion_types} />} />
         </>
     );
 };

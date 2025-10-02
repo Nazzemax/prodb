@@ -40,7 +40,7 @@ BgImage.displayName = "FormBgImage"
 
 const FormLayout = forwardRef<HTMLDivElement, FormProps>(
     (
-        { title = "Рассчитайте стоимость услуги", nestedForm, isContactPage },
+        { nestedForm, isContactPage },
         ref
     ) => {
         const t = useTranslations("FormLayout");

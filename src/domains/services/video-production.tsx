@@ -4,7 +4,7 @@ import { ServicePostList } from "@/components/organisms/service-post-list";
 import FormLayout from "@/components/templates/form-layout";
 import { VideoProductionIcon } from "@/assets/info-card";
 import { getStaticPageBySlug } from "@/api/StaticPages";
-import { getVideoTypes } from "@/api/Types";
+import { getPromotionTypes } from "@/api/Types";
 import { getVideoProduction } from "@/api/VideoProduction";
 import { VideoCompany } from "@/components/organisms/video-about-videoproduction";
 import ClientReviewList from "@/components/organisms/client-review-list";
@@ -17,7 +17,7 @@ const VideoProductionPage = async () => {
     const data = await getStaticPageBySlug('video-production');
     const videoData = await getVideoProduction();
     const t = await getTranslations("ServicePage5");
-    const video_types = await getVideoTypes();
+    const promotion_types = await getPromotionTypes();
 
     const serviceData = {
         title: t("Services.title"),
@@ -123,10 +123,9 @@ const VideoProductionPage = async () => {
             <ServicePostList title={serviceData.title} items={serviceData.items} />
             <ClientReviewList />
             <FormLayout
-                title={"Рассчитайте стоимость вашего Видеопроекта"}
                 nestedForm={
                     <CostCalculationForm
-                        promotion_types={video_types || []}
+                        promotion_types={promotion_types}
                     />
                 }
             />

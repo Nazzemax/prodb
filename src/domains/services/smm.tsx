@@ -1,6 +1,6 @@
 import { getCompanyAds } from "@/api/Company";
 import { getStaticPageBySlug } from "@/api/StaticPages";
-import { getSocialTypes } from "@/api/Types";
+import { getPromotionTypes, getSocialTypes } from "@/api/Types";
 import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import Advantages from "@/components/organisms/advantages/Advantages";
 import ClientReviewList from "@/components/organisms/client-review-list";
@@ -21,7 +21,7 @@ const SmmPage = async () => {
     const t = await getTranslations("ServicesPage1");
     const smmCreatingAdData = await fetchSmmCreatingAdData();
     const smmTeamMembers = await fetchSmmTeamMembers();
-    const social_types = await getSocialTypes();
+    const promotion_types = await getPromotionTypes();
 
     const serviceData = {
         title: t("zigzak.title"),
@@ -108,10 +108,9 @@ const SmmPage = async () => {
             <Advantages isSmm />
             <ClientReviewList />
             <FormLayout
-                title={"Узнайте стоимость SMM-продвижения"}
                 nestedForm={
                     <CostCalculationForm
-                        promotion_types={social_types || []}
+                        promotion_types={promotion_types || []}
                     />
                 }
             />

@@ -1,5 +1,5 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
-import { getTaskTypes } from "@/api/Types";
+import { getPromotionTypes } from "@/api/Types";
 import { CrmIcon } from "@/assets/info-card";
 import { ServiceCrmIcon1, ServiceCrmIcon2, ServiceCrmIcon3 } from "@/assets/services/crm";
 import { SeoHowWeWork5 } from "@/assets/services/seo";
@@ -19,7 +19,7 @@ export const revalidate = 60;
 const CrmPage = async () => {
     const t = await getTranslations("ServicesPage7")
     const data = await getStaticPageBySlug('crm')
-    const task_types = await getTaskTypes()
+    const promotion_types = await getPromotionTypes();
    
     const serviceCrmData: ISmmTeamMembers = {
         title: t("BenefitsSection.title"),
@@ -139,7 +139,7 @@ const CrmPage = async () => {
             <FormLayout
                 nestedForm={
                     <CostCalculationForm
-                        promotion_types={task_types || []}
+                        promotion_types={promotion_types || []}
                     />
                 }
             />

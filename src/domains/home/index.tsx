@@ -72,7 +72,6 @@ const HomePage = async () => {
                 <ClientReviewList />
             </Suspense>
             <FormLayout
-                title={"Получите бесплатную консультацию"}
                 nestedForm={<CostCalculationForm promotion_types={promotion_types} />}
             />
         </>

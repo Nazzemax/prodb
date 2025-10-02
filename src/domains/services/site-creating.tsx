@@ -1,5 +1,5 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
-import { getSiteTypes } from "@/api/Types";
+import { getPromotionTypes } from "@/api/Types";
 import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import CompanyPostList from "@/components/organisms/company-post-list";
 import { ServicePostList } from "@/components/organisms/service-post-list";
@@ -11,7 +11,7 @@ export const revalidate = 60;
 
 const SiteCreatingPage = async () => {
     const data = await getStaticPageBySlug('site-creating')
-    const site_types = await getSiteTypes()
+    const promotion_types = await getPromotionTypes();
     const t = await getTranslations("ServicePage6");
 
     const serviceData = {
@@ -71,10 +71,9 @@ const SiteCreatingPage = async () => {
             />
             <CompanyPostList />
             <FormLayout
-                title={"Рассчитайте стоимость услуги "}
                 nestedForm={
                     <CostCalculationForm
-                        promotion_types={site_types || []} />
+                        promotion_types={promotion_types || []} />
                 }
             />
         </>

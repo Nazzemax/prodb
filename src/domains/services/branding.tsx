@@ -9,7 +9,7 @@ import FormLayout from "@/components/templates/form-layout";
 import { BrandingIcon } from "@/assets/info-card";
 import { getStaticPageBySlug } from "@/api/StaticPages";
 import { CompanyBranding } from "@/components/organisms/company-branding";
-import { getServiceTypes } from "@/api/Types";
+import { getPromotionTypes } from "@/api/Types";
 import { IDesignBrand, ISmmTeamMembers } from "@/consts/types";
 import {
     ServiceBrandingIcon1,
@@ -28,9 +28,9 @@ const BradingPage = async () => {
     const data = await getStaticPageBySlug('branding');
     const t = await getTranslations("ServicePage4");
     const t2 = await getTranslations("Buttons");
-    const [services_types, serviceData] = await Promise.all([
-        getServiceTypes(),
+    const [serviceData, promotion_types] = await Promise.all([
         getCompanyFeatures(),
+        getPromotionTypes()
     ])
 
     const serviceDataStatic = {
@@ -174,10 +174,9 @@ const BradingPage = async () => {
                 card_icon={<BrandingIcon />}
             />
             <FormLayout
-                title={"Узнайте стоимость разработки бренда"}
                 nestedForm={
                     <CostCalculationForm
-                        promotion_types={services_types || []}
+                        promotion_types={promotion_types || []}
                     />
                 }
             />

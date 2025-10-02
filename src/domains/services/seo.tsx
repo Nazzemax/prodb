@@ -1,5 +1,5 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
-import { getSiteStatus } from "@/api/Types";
+import { getPromotionTypes, getSiteStatus } from "@/api/Types";
 import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { Faq } from "@/components/organisms/faq";
@@ -14,10 +14,10 @@ export const revalidate = 60;
 
 const SeoPage = async () => {
     const data = await getStaticPageBySlug('seo');
-    const [t, t2, site_statuses, seoData, seoPostsData, seoCardsData] = await Promise.all([
+    const [t, t2, promotion_types, seoData, seoPostsData, seoCardsData] = await Promise.all([
         getTranslations("ServicesPage3"),
         getTranslations("Buttons"),
-        getSiteStatus(),
+        getPromotionTypes(),
         fetchSeoData(),
         fetchSeoPostsData(),
         fetchSeoCardsData(),
@@ -47,10 +47,9 @@ const SeoPage = async () => {
             />
             <Faq />
             <FormLayout
-                title="Узнайте стоимость SEO-оптимизации "
                 nestedForm={
                     <CostCalculationForm
-                        promotion_types={site_statuses || []}
+                        promotion_types={promotion_types || []}
                     />
                 }
             />

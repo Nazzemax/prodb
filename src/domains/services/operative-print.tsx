@@ -113,7 +113,6 @@ const PrintPage = async () => {
             />
             <PrintedLogos />
             <FormLayout
-                title={"Рассчитайте стоимость услуги"}
                 nestedForm={<CostCalculationForm promotion_types={promotion_types}/>}
             />
         </>

@@ -61,7 +61,6 @@ const AboutPage = async () => {
             <CompanyPartners data={partners} />
             <PartnerReviewList data={reviews} />
             <FormLayout
-                title={"Рассчитайте стоимость услуги"}
                 nestedForm={
                     <CostCalculationForm
                         promotion_types={promotion_types || []}
