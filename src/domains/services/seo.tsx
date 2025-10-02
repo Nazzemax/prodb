@@ -1,6 +1,6 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
 import { getSiteStatus } from "@/api/Types";
-import { SeoFeedbackForm } from "@/components/forms/seo-feedback-form";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { Faq } from "@/components/organisms/faq";
 import { ServicePostList } from "@/components/organisms/service-post-list";
@@ -49,8 +49,8 @@ const SeoPage = async () => {
             <FormLayout
                 title="Узнайте стоимость SEO-оптимизации "
                 nestedForm={
-                    <SeoFeedbackForm
-                        site_statuses={site_statuses || []}
+                    <CostCalculationForm
+                        promotion_types={site_statuses || []}
                     />
                 }
             />

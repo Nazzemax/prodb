@@ -61,9 +61,15 @@ const FormLayout = forwardRef<HTMLDivElement, FormProps>(
                 },
                 {
                     icon: <Mail />,
-                    title: t("companyEmail"),
+                    title: t("companyEmail1"),
                     contact: `${info?.emails[0]?.email}`,
                     href: `tel:${info?.emails[0]?.email}`,
+                },
+                {
+                 
+                    title: t("companyEmail2"),
+                    contact: `${info?.emails[1]?.email}`,
+                    href: `tel:${info?.emails[1]?.email}`,
                 },
             ],
             [t, info]

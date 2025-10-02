@@ -1,10 +1,11 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
+import { getPromotionTypes } from "@/api/Types";
 import { MarketingSupportIcon } from "@/assets/info-card";
 import { ContextAd5Icon } from "@/assets/services/context-ad";
 import { ServiceCrmIcon2 } from "@/assets/services/crm";
 import { MarketingIcon } from "@/assets/services/marketing";
 import { SeoHowWeWork5 } from "@/assets/services/seo";
-import FeedbackForm from "@/components/forms/feedback-form";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import CompanyPostList from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { InfoCard } from "@/components/organisms/info-card";
@@ -20,7 +21,8 @@ const MarketingSupportPage = async () => {
     const data = await getStaticPageBySlug("marketing-support");
     const t = await getTranslations("ServicesPage8");
     const t2 = await getTranslations("Buttons");
-
+    const promotion_types = await getPromotionTypes();
+    
     const serviceData = {
         title: t("WhatWeDo.mainTitle"),
         items: [
@@ -154,7 +156,7 @@ const MarketingSupportPage = async () => {
             />
             <MarketingResults data={dataResults} />
             <CompanyPostList />
-            <FormLayout nestedForm={<FeedbackForm />} />
+            <FormLayout nestedForm={<CostCalculationForm promotion_types={promotion_types} />} />
         </>
     );
 };

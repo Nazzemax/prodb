@@ -18,9 +18,10 @@ import ClientReviewList from "@/components/organisms/client-review-list";
 import VideoAboutCompany from "@/components/organisms/video-about-company";
 import Award from "@/components/organisms/award";
 import FormLayout from "@/components/templates/form-layout";
-import FeedbackForm from "@/components/forms/feedback-form";
 import { Suspense } from "react";
 import { PageLoader } from "@/components/atoms/page-loader";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
+import { getPromotionTypes } from "@/api/Types";
 
 const NewsBanner = dynamic(() => import("@/components/atoms/NewsBanner/NewsBanner"));
 
@@ -34,7 +35,8 @@ const HomePage = async () => {
     const articles = await getArticles()
     const partners = await getCompanyPartners()
     const reviews = await getPartnersReviews()
-
+    const promotion_types = await getPromotionTypes();
+    
     return (
         <>
             <NewsBanner banners={banners} />
@@ -71,7 +73,7 @@ const HomePage = async () => {
             </Suspense>
             <FormLayout
                 title={"Получите бесплатную консультацию"}
-                nestedForm={<FeedbackForm />}
+                nestedForm={<CostCalculationForm promotion_types={promotion_types} />}
             />
         </>
     );

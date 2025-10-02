@@ -10,8 +10,9 @@ import { DesignDepartment } from "@/components/organisms/design-department";
 import { ContextAd5Icon } from "@/assets/services/context-ad";
 import { ServiceBrandingIcon1, ServiceBrandingIcon3 } from "@/assets/services/branding";
 import { SeoHowWeWork4, SeoHowWeWork5 } from "@/assets/services/seo";
-import FeedbackForm from "@/components/forms/feedback-form";
 import { getTranslations } from "next-intl/server";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
+import { getPromotionTypes } from "@/api/Types";
 
 export const revalidate = 60;
 
@@ -38,6 +39,7 @@ const PrintPage = async () => {
     const data = await getStaticPageBySlug('operative-print');
     const cards = await getBusinessCards();
     const t = await getTranslations("ServicesPage9");
+    const promotion_types = await getPromotionTypes();
 
     const servicePrintData: ISmmTeamMembers = {
         title: t("howWeWork.title1"),
@@ -112,7 +114,7 @@ const PrintPage = async () => {
             <PrintedLogos />
             <FormLayout
                 title={"Рассчитайте стоимость услуги"}
-                nestedForm={<FeedbackForm/>}
+                nestedForm={<CostCalculationForm promotion_types={promotion_types}/>}
             />
         </>
     );

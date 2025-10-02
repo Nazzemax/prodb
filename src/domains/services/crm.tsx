@@ -3,7 +3,7 @@ import { getTaskTypes } from "@/api/Types";
 import { CrmIcon } from "@/assets/info-card";
 import { ServiceCrmIcon1, ServiceCrmIcon2, ServiceCrmIcon3 } from "@/assets/services/crm";
 import { SeoHowWeWork5 } from "@/assets/services/seo";
-import { CrmFeedbackForm } from "@/components/forms/crm-feedback-form";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import Award from "@/components/organisms/award";
 import CompanyPostList from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
@@ -138,8 +138,8 @@ const CrmPage = async () => {
             <CompanyPostList />
             <FormLayout
                 nestedForm={
-                    <CrmFeedbackForm
-                        task_types={task_types || []}
+                    <CostCalculationForm
+                        promotion_types={task_types || []}
                     />
                 }
             />

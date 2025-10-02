@@ -559,7 +559,8 @@
     "subTitle": "Leave your contact details, and we will call you back",
     "companyKGPhone": "Phone (Bishkek)",
     "companyUZPhone": "Phone (Tashkent)",
-    "companyEmail": "E-mail"
+     "companyEmail1": "Email (Bishkek)",
+     "companyEmail2": "Email (Tashkent)"
   },
   "Form": {
     "title": "Fill out the form and get an offer",

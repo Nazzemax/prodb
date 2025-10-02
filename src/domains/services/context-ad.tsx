@@ -1,5 +1,5 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
-import FeedbackForm from "@/components/forms/feedback-form";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import CompanyPostList from "@/components/organisms/company-post-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
 import { ServiceStaticCardList } from "@/components/organisms/service-static-card-list";
@@ -53,7 +53,7 @@ const ContextAdsPage = async () => {
                 button={t2("btn1")}
             />
             <CompanyPostList />
-            <FormLayout nestedForm={<FeedbackForm />} />
+            <FormLayout nestedForm={<CostCalculationForm promotion_types={[]} />} />
         </>
     );
 };

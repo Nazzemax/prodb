@@ -2,7 +2,6 @@ import { InfoCard } from "@/components/organisms/info-card";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { ServicePostList } from "@/components/organisms/service-post-list";
 import FormLayout from "@/components/templates/form-layout";
-import { VideoProductionForm } from "@/components/forms/video-production-form";
 import { VideoProductionIcon } from "@/assets/info-card";
 import { getStaticPageBySlug } from "@/api/StaticPages";
 import { getVideoTypes } from "@/api/Types";
@@ -10,6 +9,7 @@ import { getVideoProduction } from "@/api/VideoProduction";
 import { VideoCompany } from "@/components/organisms/video-about-videoproduction";
 import ClientReviewList from "@/components/organisms/client-review-list";
 import { getTranslations } from "next-intl/server";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 
 export const revalidate = 60;
 
@@ -125,8 +125,8 @@ const VideoProductionPage = async () => {
             <FormLayout
                 title={"Рассчитайте стоимость вашего Видеопроекта"}
                 nestedForm={
-                    <VideoProductionForm
-                        video_types={video_types || []}
+                    <CostCalculationForm
+                        promotion_types={video_types || []}
                     />
                 }
             />

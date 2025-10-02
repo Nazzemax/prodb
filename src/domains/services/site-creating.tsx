@@ -1,6 +1,6 @@
 import { getStaticPageBySlug } from "@/api/StaticPages";
 import { getSiteTypes } from "@/api/Types";
-import { SiteCreatingFeedbackForm } from "@/components/forms/site-creating-form";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import CompanyPostList from "@/components/organisms/company-post-list";
 import { ServicePostList } from "@/components/organisms/service-post-list";
 import FormLayout from "@/components/templates/form-layout";
@@ -73,8 +73,8 @@ const SiteCreatingPage = async () => {
             <FormLayout
                 title={"Рассчитайте стоимость услуги "}
                 nestedForm={
-                    <SiteCreatingFeedbackForm
-                        site_types={site_types || []} />
+                    <CostCalculationForm
+                        promotion_types={site_types || []} />
                 }
             />
         </>

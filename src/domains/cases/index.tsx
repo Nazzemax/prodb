@@ -2,7 +2,8 @@ import { getCompanyPartners } from "@/api/Company";
 import { getPartnersReviews } from "@/api/PartnerReviews";
 import { getPosts } from "@/api/Post";
 import { getStaticPageBySlug } from "@/api/StaticPages";
-import FeedbackForm from "@/components/forms/feedback-form";
+import { getPromotionTypes } from "@/api/Types";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import { CasesList } from "@/components/organisms/cases-list";
 import ClientReviewList from "@/components/organisms/client-review-list";
 import CompanyPartners from "@/components/organisms/company-partners";
@@ -17,6 +18,8 @@ const CasesPage = async () => {
     const data = await getStaticPageBySlug('cases');
     const post_data = await getPosts();
     const t = await getTranslations("Cases");
+    const promotion_types = await getPromotionTypes();
+    
     const [partners, reviews] =
         await Promise.all([
             getCompanyPartners(),
@@ -52,7 +55,7 @@ const CasesPage = async () => {
             <ClientReviewList hasBg />
             <CompanyPartners data={partners} />
             <PartnerReviewList data={reviews} />
-            <FormLayout nestedForm={<FeedbackForm />} />
+            <FormLayout nestedForm={<CostCalculationForm promotion_types={promotion_types}  />} />
         </>
     );
 };

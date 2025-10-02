@@ -32,7 +32,7 @@ export const FeedbackContactItem: FC<FeedbackContactItemProps> = ({
                     ? <Link 
                         target='_blank' 
                         href={href} 
-                        className={cn('text-white text-lg hover:text-accent ', idx === lastIdx ? 'text-gray2' : '')}
+                        className={cn('text-white text-lg hover:text-accent ', idx === lastIdx - 4? 'text-gray2' : '')}
                     >
                         {contact}
                     </Link>

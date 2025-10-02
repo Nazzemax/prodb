@@ -6,7 +6,6 @@ import {
 } from "@/components/organisms/service-post-list";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import FormLayout from "@/components/templates/form-layout";
-import { BrandingFeedbackForm } from "@/components/forms/branding-feedback-form";
 import { BrandingIcon } from "@/assets/info-card";
 import { getStaticPageBySlug } from "@/api/StaticPages";
 import { CompanyBranding } from "@/components/organisms/company-branding";
@@ -21,6 +20,7 @@ import {
 } from "@/assets/services/branding";
 import { getCompanyFeatures } from "@/api/Company";
 import { getTranslations } from "next-intl/server";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 
 export const revalidate = 60;
 
@@ -176,8 +176,8 @@ const BradingPage = async () => {
             <FormLayout
                 title={"Узнайте стоимость разработки бренда"}
                 nestedForm={
-                    <BrandingFeedbackForm
-                        services_types={services_types || []}
+                    <CostCalculationForm
+                        promotion_types={services_types || []}
                     />
                 }
             />

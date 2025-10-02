@@ -1,4 +1,6 @@
 import { getPostById } from "@/api/Post";
+import { getPromotionTypes } from "@/api/Types";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import FeedbackForm from "@/components/forms/feedback-form";
 import { CaseItemHeader } from "@/components/molecules/case-item-header";
 import { CaseImages } from "@/components/organisms/case-images";
@@ -13,6 +15,8 @@ type Params = Promise<{ id: string }>;
 export async function generateMetadata(props: { params: Params }) {
     const params = await props.params
     const data = await getPostById(params.id);
+   
+
     return {
         title: data?.title || "Кейс",
     };
@@ -21,6 +25,8 @@ export async function generateMetadata(props: { params: Params }) {
 const CasePage = async (props: { params: Params }) => {
     const params = await props.params
     const data = await getPostById(params.id);
+     const promotion_types = await getPromotionTypes();
+
     return (
         <>
             {data &&
@@ -56,7 +62,7 @@ const CasePage = async (props: { params: Params }) => {
             }
 
             <CompanyPostList title="Другие кейсы" />
-            <FormLayout nestedForm={<FeedbackForm />} />
+            <FormLayout nestedForm={<CostCalculationForm promotion_types={promotion_types} />} />
         </>
     )
 }

@@ -589,7 +589,8 @@
     "subTitle": "Aloqa uchun kontaktlarni qoldiring va biz sizga qayta qo‘ng‘iroq qilamiz",
     "companyKGPhone": "Telefon raqami (Bishkek)",
     "companyUZPhone": "Telefon raqami (Tashkent)",
-    "companyEmail": "Elektron pochta"
+     "companyEmail1": "Elektron pochta (Bishkek)",
+     "companyEmail2": "Elektron pochta (Toshkent)"
   },
   "Form": {
     "title": "Shaklni to‘ldiring va taklifni oling",

@@ -1,7 +1,7 @@
 import { getCompanyAds } from "@/api/Company";
 import { getStaticPageBySlug } from "@/api/StaticPages";
 import { getSocialTypes } from "@/api/Types";
-import { SmmFeedbackForm } from "@/components/forms/smm-feedback-form";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import Advantages from "@/components/organisms/advantages/Advantages";
 import ClientReviewList from "@/components/organisms/client-review-list";
 import { CompanyServiceCardList } from "@/components/organisms/company-service-card-list";
@@ -110,8 +110,8 @@ const SmmPage = async () => {
             <FormLayout
                 title={"Узнайте стоимость SMM-продвижения"}
                 nestedForm={
-                    <SmmFeedbackForm
-                        social_types={social_types || []}
+                    <CostCalculationForm
+                        promotion_types={social_types || []}
                     />
                 }
             />
