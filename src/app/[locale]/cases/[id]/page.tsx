@@ -25,7 +25,7 @@ export async function generateMetadata(props: { params: Params }) {
 const CasePage = async (props: { params: Params }) => {
     const params = await props.params
     const data = await getPostById(params.id);
-     const promotion_types = await getPromotionTypes();
+    const promotion_types = await getPromotionTypes();
 
     return (
         <>
