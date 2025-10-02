@@ -29,34 +29,60 @@ export default function mergeRefs<T>(
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function objectToQueryString(obj: Record<string, any>): string {
-    return Object.keys(obj)
-        .map((key) => {
-            if (Array.isArray(obj[key])) {
-                return obj[key]
-                    .map((item, index) =>
-                        // Рекурсивно обрабатываем вложенные объекты в массиве
-                        Object.keys(item)
-                            .map((subKey) =>
-                                // Преобразуем каждый элемент в нужный формат
-                                `FIELDS[${key}][${index}][${subKey}]=${encodeURIComponent(item[subKey])}`
-                            )
-                            .join("&")
-                    )
-                    .join("&");
-            } else if (typeof obj[key] === "object") {
-                // Обрабатываем вложенные объекты
-                return Object.keys(obj[key])
-                    .map((subKey) =>
-                        `FIELDS[${key}][${subKey}]=${encodeURIComponent(obj[key][subKey])}`
-                    )
-                    .join("&");
+    const parts: string[] = [];
+
+    for (const key of Object.keys(obj)) {
+        const value = obj[key];
+
+        if (value == null) continue; // skip null/undefined
+
+        // Arrays
+        if (Array.isArray(value)) {
+            if (value.length === 0) continue;
+
+            const isArrayOfObjects = value.every(
+                (v) => v !== null && typeof v === "object" && !Array.isArray(v)
+            );
+
+            if (isArrayOfObjects) {
+                // Expand arrays of objects (EMAIL, PHONE, ...)
+                value.forEach((item, index) => {
+                    for (const subKey of Object.keys(item)) {
+                        const subVal = item[subKey];
+                        if (subVal == null) continue;
+                        parts.push(
+                            `FIELDS[${key}][${index}][${subKey}]=${encodeURIComponent(String(subVal))}`
+                        );
+                    }
+                });
             } else {
-                // Простые поля
-                return `FIELDS[${key}]=${encodeURIComponent(obj[key])}`;
+                // Array of primitives -> join into single-line string (for SECOND_NAME, LAST_NAME, tags)
+                const joined = value.map((v) => String(v)).join(", ");
+                parts.push(`FIELDS[${key}]=${encodeURIComponent(joined)}`);
             }
-        })
-        .join("&");
+
+            continue;
+        }
+
+        // Plain objects (not arrays) -> expand subkeys
+        if (typeof value === "object") {
+            for (const subKey of Object.keys(value)) {
+                const subVal = value[subKey];
+                if (subVal == null) continue;
+                parts.push(
+                    `FIELDS[${key}][${subKey}]=${encodeURIComponent(String(subVal))}`
+                );
+            }
+            continue;
+        }
+
+        // Scalars
+        parts.push(`FIELDS[${key}]=${encodeURIComponent(String(value))}`);
+    }
+
+    return parts.join("&");
 }
+
 
 export const getYouTubeId = (url: string | undefined): string | null | undefined => {
     if (!url || !url.startsWith("http")) return null;

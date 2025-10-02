@@ -80,8 +80,8 @@ export const CostCalculationForm = ({
             NAME: data.sender_name,
             EMAIL: [{ VALUE: data.sender_email, VALUE_TYPE: "WORK" }],
             PHONE: [{ VALUE: data.sender_phone, VALUE_TYPE: "WORK" }],
-            LAST_NAME: selectedBusinesses.join(', '),
-            SECOND_NAME: selectedServices.join(', '),
+            LAST_NAME: selectedBusinesses,
+            UF_CRM_1759408555: selectedServices,
         })
 
         await sendForm(queryString)

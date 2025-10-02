@@ -89,8 +89,8 @@ export const MarketingSupportFeedbackForm = ({
             NAME: data.sender_name,
             EMAIL: [{ VALUE: data.sender_email, VALUE_TYPE: "WORK" }],
             PHONE: [{ VALUE: data.sender_phone, VALUE_TYPE: "WORK" }],
-            LAST_NAME: selectedBusinessTypes.join(', '),
-            SECOND_NAME: selectedTaskTypes.join(', '),
+            LAST_NAME: selectedBusinessTypes,
+            UF_CRM_1759408555: selectedTaskTypes,
         })
 
         await sendForm(queryString)

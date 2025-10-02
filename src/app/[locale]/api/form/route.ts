@@ -1,18 +1,20 @@
 export async function POST(req: Request) {
     try {
-        // Собираем URLSearchParams из того, что прислал клиент (корректно парсит пустую строку)
-        const params = await req.text();
+        const raw = await req.text(); 
+        const params = new URLSearchParams(raw);
 
-        // params.set('FIELDS[CATEGORY_ID]', '60');
-        const url = `https://boldbrands.bitrix24.kz/rest/1854/7ddadajkaoif2g9z/crm.lead.add.json?${params}`;
+        const url = `https://boldbrands.bitrix24.kz/rest/1854/7ddadajkaoif2g9z/crm.lead.add.json?`;
         const response = await fetch(url, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
-            }
+            },
+            body: params.toString()
         });
 
         const data = await response.json();
+
+        console.log(params.toString());
 
         if (!response.ok) {
             return new Response(JSON.stringify({ error: data }), { status: response.status });
