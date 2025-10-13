@@ -18,11 +18,13 @@ import { RequestHandler } from "@/components/atoms/request-handler";
 export const revalidate = 60;
 
 const AboutPage = async () => {
-    const t = await getTranslations("AboutPage");
-    const data = await getStaticPageBySlug('about');
-    const partners = await getCompanyPartners();
-    const reviews = await getPartnersReviews();
-    const promotion_types = await getPromotionTypes();
+    const [t, data, partners, reviews, promotion_types] = await Promise.all([
+        getTranslations("AboutPage"),
+        getStaticPageBySlug("about"),
+        getCompanyPartners(),
+        getPartnersReviews(),
+        getPromotionTypes(),
+    ]);
 
 
     const names = {

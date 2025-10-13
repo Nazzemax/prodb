@@ -36,10 +36,12 @@ type Designs = {
 };
 
 const PrintPage = async () => {
-    const data = await getStaticPageBySlug('operative-print');
-    const cards = await getBusinessCards();
-    const t = await getTranslations("ServicesPage9");
-    const promotion_types = await getPromotionTypes();
+    const [data, cards, t, promotion_types] = await Promise.all([
+        getStaticPageBySlug("operative-print"),
+        getBusinessCards(),
+        getTranslations("ServicesPage9"),
+        getPromotionTypes(),
+    ]);
 
     const servicePrintData: ISmmTeamMembers = {
         title: t("howWeWork.title1"),

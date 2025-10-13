@@ -12,10 +12,12 @@ import { getPromotionTypes } from "@/api/Types";
 export const revalidate = 60;
 
 const BlogPage = async () => {
-    const data = await getStaticPageBySlug('blog');
-    const t = await getTranslations("AboutPage");
-    const promotion_types = await getPromotionTypes();
-    const articles = await getArticles();
+    const [data, t, promotion_types, articles] = await Promise.all([
+        getStaticPageBySlug("blog"),
+        getTranslations("AboutPage"),
+        getPromotionTypes(),
+        getArticles(),
+    ]);
 
     const names = {
         title: t("banner.title"),

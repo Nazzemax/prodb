@@ -13,15 +13,23 @@ import { getTranslations } from "next-intl/server";
 export const revalidate = 60;
 
 const SeoPage = async () => {
-    const data = await getStaticPageBySlug('seo');
-    const [t, t2, promotion_types, seoData, seoPostsData, seoCardsData] = await Promise.all([
+    const [
+        data,
+        t,
+        t2,
+        promotion_types,
+        seoData,
+        seoPostsData,
+        seoCardsData,
+    ] = await Promise.all([
+        getStaticPageBySlug("seo"),
         getTranslations("ServicesPage3"),
         getTranslations("Buttons"),
         getPromotionTypes(),
         fetchSeoData(),
         fetchSeoPostsData(),
         fetchSeoCardsData(),
-    ])
+    ]);
 
     return (
         <>
