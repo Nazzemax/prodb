@@ -14,10 +14,12 @@ import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 export const revalidate = 60;
 
 const VideoProductionPage = async () => {
-    const data = await getStaticPageBySlug('video-production');
-    const videoData = await getVideoProduction();
-    const t = await getTranslations("ServicePage5");
-    const promotion_types = await getPromotionTypes();
+    const [data, videoData, t, promotion_types] = await Promise.all([
+        getStaticPageBySlug("video-production"),
+        getVideoProduction(),
+        getTranslations("ServicePage5"),
+        getPromotionTypes(),
+    ]);
 
     const serviceData = {
         title: t("Services.title"),

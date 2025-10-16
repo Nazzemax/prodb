@@ -6,8 +6,13 @@ import React, { useState } from "react";
 import AboutUsSVG from "@/assets/company-info/about_us.svg";
 import MobileAboutUsSVG from "@/assets/company-info/mobile_about_us.svg";
 import { useAppData } from "@/context/app-context";
-import ReactPlayer from "react-player";
+import dynamic from "next/dynamic";
 import { VideoLoader } from "@/components/atoms/video-loader";
+
+const ReactPlayer = dynamic(() => import("react-player/lazy"), {
+    ssr: false,
+    loading: () => <VideoLoader />,
+});
 
 export const VideoCompany = () => {
     const { data } = useAppData();
