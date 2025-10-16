@@ -15,16 +15,21 @@ import { getTranslations } from "next-intl/server";
 export const revalidate = 60;
 
 const CasesPage = async () => {
-    const data = await getStaticPageBySlug('cases');
-    const post_data = await getPosts();
-    const t = await getTranslations("Cases");
-    const promotion_types = await getPromotionTypes();
-    
-    const [partners, reviews] =
-        await Promise.all([
-            getCompanyPartners(),
-            getPartnersReviews()
-        ]);
+    const [
+        data,
+        post_data,
+        t,
+        promotion_types,
+        partners,
+        reviews,
+    ] = await Promise.all([
+        getStaticPageBySlug("cases"),
+        getPosts(),
+        getTranslations("Cases"),
+        getPromotionTypes(),
+        getCompanyPartners(),
+        getPartnersReviews(),
+    ]);
 
     type BannerTexts = {
         title: string;

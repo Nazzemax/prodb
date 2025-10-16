@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { unstable_cache } from "next/cache"
 
 export const baseUrl = 'https://api.boldbrands.pro/api/v1'
 
@@ -19,28 +20,55 @@ export const baseApi = createApi({
     tagTypes: []
 })
 
+async function requestData<T>(endpoint: string, locale: string, cache: RequestCache) {
+    try {
+        const shouldShareCache = cache === "force-cache" || cache === "default"
+        let nextOptions: { revalidate: number; tags: string[] } | undefined
+
+        if (shouldShareCache) {
+            nextOptions = {
+                revalidate: 60,
+                tags: [`api:${endpoint}`],
+            }
+        }
+
+        const response = await fetch(`${baseUrl}${endpoint}`, {
+            cache,
+            headers: {
+                "Accept-Language": locale,
+            },
+            next: nextOptions,
+        })
+
+        if (!response.ok) {
+            console.error("Ошибка загрузки:", response.status, response.statusText)
+            throw new Error(`Failed to fetch ${endpoint}`)
+        }
+
+        return (await response.json()) as T
+    } catch (error) {
+        console.error(`Ошибка в ${endpoint}:`, error)
+        throw error
+    }
+}
+
+const cachedRequestData = unstable_cache(
+    async (endpoint: string, locale: string, cache: RequestCache) =>
+        requestData(endpoint, locale, cache),
+    ["fetchData"],
+    { revalidate: 60 }
+)
+
 export async function fetchData<T>(
     endpoint: string,
     locale: string = 'ru',
     cache: RequestCache = "force-cache"
 ): Promise<T> {
-    try {
-        const res = await fetch(`${baseUrl}${endpoint}`, {
-            next: { revalidate: 60 },
-            cache,
-            headers: {
-                "Accept-Language": locale
-            }
-        })
+    const shouldShareCache = cache === "force-cache" || cache === "default"
 
-        if (!res.ok) {
-            console.error("Ошибка загрузки:", res.status, res.statusText)
-            throw new Error(`Failed to fetch ${endpoint}`)
-        }
-
-        return res.json()
-    } catch (error) {
-        console.error(`Ошибка в ${endpoint}:`, error)
-        throw error
+    if (!shouldShareCache) {
+        return requestData<T>(endpoint, locale, cache)
     }
+
+    return cachedRequestData(endpoint, locale, cache) as Promise<T>
 }

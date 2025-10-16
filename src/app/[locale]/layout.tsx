@@ -16,6 +16,8 @@ import Header from "@/components/organisms/header";
 const FloatingWhatsapp = dynamic(
     () => import("@/components/atoms/floating-whatsapp")
 );
+import { getCompanyInfo } from "@/api/Company";
+import { getBusinessTypes } from "@/api/BusinessType";
 
 const cannonade = localFont({
     src: [
@@ -67,9 +69,27 @@ export default async function LocaleLayout({ children, params }: Props) {
     }
 
     const messages = await getMessages();
+
+    const [companyInfoResult, businessTypesResult] = await Promise.allSettled([
+        getCompanyInfo(),
+        getBusinessTypes(),
+    ]);
+
+    const companyInfo =
+        companyInfoResult.status === "fulfilled" ? companyInfoResult.value : null;
+    const businessTypes =
+        businessTypesResult.status === "fulfilled" ? businessTypesResult.value : [];
     return (
         <html lang={locale}>
             <head>
+                <link rel="dns-prefetch" href="https://api.boldbrands.pro" />
+                <link rel="preconnect" href="https://api.boldbrands.pro" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+                <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+                <link rel="preconnect" href="https://mc.yandex.ru" crossOrigin="anonymous" />
+                <link rel="dns-prefetch" href="https://connect.facebook.net" />
+                <link rel="preconnect" href="https://connect.facebook.net" crossOrigin="anonymous" />
                 <Script id="gtm-init" strategy="afterInteractive">
                     {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TWLSLSMG');`}
                 </Script>
@@ -157,7 +177,12 @@ export default async function LocaleLayout({ children, params }: Props) {
                     />
                 </noscript>
                 <NextIntlClientProvider messages={messages}>
-                    <Providers>
+                    <Providers
+                        initialAppData={{
+                            companyInfo,
+                            businessTypes,
+                        }}
+                    >
                         <div className="max-w-[1920px] m-auto relative">
                             <Header />
                             <FloatingWhatsapp />

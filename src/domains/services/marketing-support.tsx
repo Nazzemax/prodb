@@ -18,10 +18,12 @@ import { getTranslations } from "next-intl/server";
 export const revalidate = 60;
 
 const MarketingSupportPage = async () => {
-    const data = await getStaticPageBySlug("marketing-support");
-    const t = await getTranslations("ServicesPage8");
-    const t2 = await getTranslations("Buttons");
-    const promotion_types = await getPromotionTypes();
+    const [data, t, t2, promotion_types] = await Promise.all([
+        getStaticPageBySlug("marketing-support"),
+        getTranslations("ServicesPage8"),
+        getTranslations("Buttons"),
+        getPromotionTypes(),
+    ]);
     
     const serviceData = {
         title: t("WhatWeDo.mainTitle"),
