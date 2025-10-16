@@ -25,13 +25,19 @@ import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 export const revalidate = 60;
 
 const BradingPage = async () => {
-    const data = await getStaticPageBySlug('branding');
-    const t = await getTranslations("ServicePage4");
-    const t2 = await getTranslations("Buttons");
-    const [serviceData, promotion_types] = await Promise.all([
+    const [
+        data,
+        t,
+        t2,
+        serviceData,
+        promotion_types,
+    ] = await Promise.all([
+        getStaticPageBySlug("branding"),
+        getTranslations("ServicePage4"),
+        getTranslations("Buttons"),
         getCompanyFeatures(),
-        getPromotionTypes()
-    ])
+        getPromotionTypes(),
+    ]);
 
     const serviceDataStatic = {
         title: "Создаем бренд, который говорит сам за себя",

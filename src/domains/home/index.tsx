@@ -28,14 +28,25 @@ const NewsBanner = dynamic(() => import("@/components/atoms/NewsBanner/NewsBanne
 export const revalidate = 60;
 
 const HomePage = async () => {
-    const t = await getTranslations("HomePage.section2");
-    const banners = await getBanners();
-    const marketingDepartmentData = await getMarketingDepartment()
-    const companyChallenges = await getCompanyChallenges()
-    const articles = await getArticles()
-    const partners = await getCompanyPartners()
-    const reviews = await getPartnersReviews()
-    const promotion_types = await getPromotionTypes();
+    const [
+        t,
+        banners,
+        marketingDepartmentData,
+        companyChallenges,
+        articles,
+        partners,
+        reviews,
+        promotion_types,
+    ] = await Promise.all([
+        getTranslations("HomePage.section2"),
+        getBanners(),
+        getMarketingDepartment(),
+        getCompanyChallenges(),
+        getArticles(),
+        getCompanyPartners(),
+        getPartnersReviews(),
+        getPromotionTypes(),
+    ]);
     
     return (
         <>

@@ -86,6 +86,11 @@ export async function getCompanyChallenges() {
     return fetchData<CompanyChallengesResponse>("/company-challenges/", locale);
 }
 
+export async function getCompanyInfo(cache: RequestCache = "force-cache") {
+    const locale = await getLocale();
+    return fetchData<CompanyInfoResponse>("/company-info/", locale, cache);
+}
+
 export async function getCompanyAdvantages() {
     const locale = await getLocale();
     return fetchData<CompanyAchievementsResponse>("/company-achievements/", locale);

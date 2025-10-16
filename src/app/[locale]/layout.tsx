@@ -16,6 +16,8 @@ import Header from "@/components/organisms/header";
 const FloatingWhatsapp = dynamic(
     () => import("@/components/atoms/floating-whatsapp")
 );
+import { getCompanyInfo } from "@/api/Company";
+import { getBusinessTypes } from "@/api/BusinessType";
 
 const cannonade = localFont({
     src: [
@@ -67,6 +69,16 @@ export default async function LocaleLayout({ children, params }: Props) {
     }
 
     const messages = await getMessages();
+
+    const [companyInfoResult, businessTypesResult] = await Promise.allSettled([
+        getCompanyInfo(),
+        getBusinessTypes(),
+    ]);
+
+    const companyInfo =
+        companyInfoResult.status === "fulfilled" ? companyInfoResult.value : null;
+    const businessTypes =
+        businessTypesResult.status === "fulfilled" ? businessTypesResult.value : [];
     return (
         <html lang={locale}>
             <head>
@@ -157,7 +169,12 @@ export default async function LocaleLayout({ children, params }: Props) {
                     />
                 </noscript>
                 <NextIntlClientProvider messages={messages}>
-                    <Providers>
+                    <Providers
+                        initialAppData={{
+                            companyInfo,
+                            businessTypes,
+                        }}
+                    >
                         <div className="max-w-[1920px] m-auto relative">
                             <Header />
                             <FloatingWhatsapp />

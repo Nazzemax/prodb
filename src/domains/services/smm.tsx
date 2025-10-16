@@ -16,12 +16,21 @@ import { getTranslations } from "next-intl/server";
 export const revalidate = 60;
 
 const SmmPage = async () => {
-    const data = await getStaticPageBySlug('smm');
-    const ads = await getCompanyAds();
-    const t = await getTranslations("ServicesPage1");
-    const smmCreatingAdData = await fetchSmmCreatingAdData();
-    const smmTeamMembers = await fetchSmmTeamMembers();
-    const promotion_types = await getPromotionTypes();
+    const [
+        data,
+        ads,
+        t,
+        smmCreatingAdData,
+        smmTeamMembers,
+        promotion_types,
+    ] = await Promise.all([
+        getStaticPageBySlug("smm"),
+        getCompanyAds(),
+        getTranslations("ServicesPage1"),
+        fetchSmmCreatingAdData(),
+        fetchSmmTeamMembers(),
+        getPromotionTypes(),
+    ]);
 
     const serviceData = {
         title: t("zigzak.title"),

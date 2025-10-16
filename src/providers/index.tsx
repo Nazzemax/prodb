@@ -4,11 +4,23 @@ import { FC, PropsWithChildren } from "react"
 import { Toaster } from 'sonner';
 import { StoreProvider } from "./redux-provider";
 import { AppContextProvider } from "@/context/app-context";
+import { CompanyInfoResponse } from "@/api/Company/types";
+import { Type } from "@/api/Types/types";
 
-export const Providers: FC<PropsWithChildren> = ({ children }) => {
+type ProvidersProps = PropsWithChildren<{
+    initialAppData: {
+        companyInfo: CompanyInfoResponse | null;
+        businessTypes: Type[];
+    };
+}>;
+
+export const Providers: FC<ProvidersProps> = ({ children, initialAppData }) => {
     return (
         <StoreProvider>
-            <AppContextProvider>
+            <AppContextProvider
+                initialData={initialAppData.companyInfo}
+                initialBusinessTypes={initialAppData.businessTypes}
+            >
                 <Toaster
                     className="toaster group"
                     richColors
@@ -22,3 +34,4 @@ export const Providers: FC<PropsWithChildren> = ({ children }) => {
 
     )
 }
+
