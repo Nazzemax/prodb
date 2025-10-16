@@ -17,9 +17,11 @@ import { getTranslations } from "next-intl/server";
 export const revalidate = 60;
 
 const CrmPage = async () => {
-    const t = await getTranslations("ServicesPage7")
-    const data = await getStaticPageBySlug('crm')
-    const promotion_types = await getPromotionTypes();
+    const [t, data, promotion_types] = await Promise.all([
+        getTranslations("ServicesPage7"),
+        getStaticPageBySlug("crm"),
+        getPromotionTypes(),
+    ]);
    
     const serviceCrmData: ISmmTeamMembers = {
         title: t("BenefitsSection.title"),

@@ -13,14 +13,21 @@ import { getTranslations } from "next-intl/server";
 export const revalidate = 60;
 
 const ContextAdsPage = async () => {
-    const data = await getStaticPageBySlug('context-ads');
-    const [t, t2, contextAdData, contextAdCardData, promotion_types] = await Promise.all([
+    const [
+        data,
+        t,
+        t2,
+        contextAdData,
+        contextAdCardData,
+        promotion_types,
+    ] = await Promise.all([
+        getStaticPageBySlug("context-ads"),
         getTranslations("ServicesPage2"),
         getTranslations("Buttons"),
         fetchContextAdData(),
         fetchContextAdCardData(),
         getPromotionTypes(),
-    ])
+    ]);
 
   
 

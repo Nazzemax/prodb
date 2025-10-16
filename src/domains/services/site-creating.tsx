@@ -10,9 +10,11 @@ import { getTranslations } from "next-intl/server";
 export const revalidate = 60;
 
 const SiteCreatingPage = async () => {
-    const data = await getStaticPageBySlug('site-creating')
-    const promotion_types = await getPromotionTypes();
-    const t = await getTranslations("ServicePage6");
+    const [data, promotion_types, t] = await Promise.all([
+        getStaticPageBySlug("site-creating"),
+        getPromotionTypes(),
+        getTranslations("ServicePage6"),
+    ]);
 
     const serviceData = {
         title: t('Approach.title'),
