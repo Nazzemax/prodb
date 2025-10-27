@@ -56,18 +56,27 @@ export const Map: React.FC = () => {
         : centerTashkent;
 
     const { isLoaded, loadError }: { isLoaded: boolean; loadError?: Error } =
-    useLoadScript({
-        googleMapsApiKey: "AIzaSyA6cqgcXuwR9ulml4DBmttbguUx4DL5DQM" as string,
-    });
+        useLoadScript({
+            googleMapsApiKey: "AIzaSyA6cqgcXuwR9ulml4DBmttbguUx4DL5DQM" as string,
+        });
 
     const t = useTranslations("Map");
 
-    if (loadError)
+    if (loadError) {
         return (
-            <p className="flex justify-center items-center">Ошибка загрузки карты</p>
+            <p className="flex items-center justify-center text-primary-foreground">
+                {t("errorLabel")}
+            </p>
         );
-    if (!isLoaded)
-        return <p className="flex justify-center items-center">Загрузка карты</p>;
+    }
+
+    if (!isLoaded) {
+        return (
+            <p className="flex items-center justify-center text-primary-foreground">
+                {t("loadingLabel")}
+            </p>
+        );
+    }
 
     return (
         <div className="relative w-full flex flex-col items-start justify-center bg-background-dark ">
@@ -83,64 +92,57 @@ export const Map: React.FC = () => {
                     onClick={() => setMapCondition(false)}
                 />
             </div>
-            {loadError && <p className="text-red-500">Ошибка загрузки карты</p>}
-            {!isLoaded ? (
-                <p>Загрузка карты</p>
-            ) : (
-                <GoogleMap
-                    mapContainerStyle={mapContainerStyle}
-                    zoom={16}
-                    center={center}
-                    options={mapOptions}
+            <GoogleMap
+                mapContainerStyle={mapContainerStyle}
+                zoom={16}
+                center={center}
+                options={mapOptions}
+            >
+                <Marker
+                    position={center}
+                    icon={{
+                        url: "/map/MapMarker.svg",
+                        scaledSize: new window.google.maps.Size(50, 50), //место для кастомной иконки
+                    }}
+                />
+
+                <OverlayView
+                    position={center}
+                    mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
+                    getPixelPositionOffset={(
+                        offsetWidth: number,
+                        offsetHeight: number
+                    ) => ({
+                        x: -offsetWidth / 2 + 100, // Смещение вправо
+                        y: -offsetHeight - 100, // Смещение выше маркера
+                    })}
                 >
-                    <Marker
-                        position={center}
-                        icon={{
-                            url: "/map/MapMarker.svg",
-                            scaledSize: new window.google.maps.Size(50, 50), //место для кастомной иконки
+                    <div
+                        style={{
+                            backgroundColor: "white",
+                            padding: "8px 12px",
+                            borderRadius: "8px",
+                            boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
+                            minWidth: "160px",
+                            textAlign: "center",
+                            fontSize: "14px",
+                            lineHeight: "1.4",
+                            fontWeight: 700,
+                            transform: "translateX(-50%)",
                         }}
-                    />
-                            
-                    <OverlayView
-                        position={center}
-                        mapPaneName={OverlayView.OVERLAY_MOUSE_TARGET}
-                        getPixelPositionOffset={(
-                            offsetWidth: number,
-                            offsetHeight: number
-                        ) => ({
-                            x: -offsetWidth / 2 + 100, // Смещение вправо
-                            y: -offsetHeight - 100, // Смещение выше маркера
-                        })}
                     >
-                        <div
-                            style={{
-                                backgroundColor: "white",
-                                padding: "8px 12px",
-                                borderRadius: "8px",
-                                boxShadow: "0 2px 6px rgba(0,0,0,0.3)",
-                                minWidth: "160px",
-                                textAlign: "center",
-                                fontSize: "14px",
-                                lineHeight: "1.4",
-                                fontWeight: 700,
-                                transform: "translateX(-50%)",
-                            }}
-                        >
-                            
-                            
-                            {mapCondition ? (
-                                <p style={{ fontWeight: "700", textAlign: "start" }}>
-                                    {t("adress1")}
-                                </p>
-                            ) : (
-                                <p style={{ fontWeight: "700", textAlign: "start" }}>
-                                    {t("adress2")}
-                                </p>
-                            )}
-                        </div>
-                    </OverlayView>
-                </GoogleMap>
-            )}
+                        {mapCondition ? (
+                            <p style={{ fontWeight: "700", textAlign: "start" }}>
+                                {t("adress1")}
+                            </p>
+                        ) : (
+                            <p style={{ fontWeight: "700", textAlign: "start" }}>
+                                {t("adress2")}
+                            </p>
+                        )}
+                    </div>
+                </OverlayView>
+            </GoogleMap>
         </div>
     );
 };

@@ -1,8 +1,9 @@
-import FormLayout from "@/components/templates/form-layout";
-import { Map } from "./Map";
 import { Metadata } from "next";
-import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
+
 import { getPromotionTypes } from "@/api/Types";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
+import FormLayout from "@/components/templates/form-layout";
+import { DeferredMap } from "./deferred-map";
 
 export const metadata: Metadata = {
     title: "Контакты",
@@ -18,9 +19,9 @@ const ContactsPage = async () => {
                 title={'Получите бесплатную консультацию'}
                 nestedForm={<CostCalculationForm promotion_types={promotion_types} />}
             />
-            <Map/>
+            <DeferredMap />
         </>
     );
 }
- 
+
 export default ContactsPage;

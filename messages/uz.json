@@ -649,6 +649,12 @@
     "btn1": "Bishkek",
     "btn2": "Toshkent",
     "adress1": "Matrosov ko'chasi, 102-uy",
-    "adress2": "Yashnobod tumani, Yangibozor 1"
+    "adress2": "Yashnobod tumani, Yangibozor 1",
+    "loadingLabel": "Xaritani yuklayapmiz...",
+    "errorLabel": "Xaritani yuklab bo'lmadi. Iltimos, keyinroq urinib ko'ring.",
+    "deferredDescription": "Sahifa tezroq ochilishi uchun interaktiv xaritani faqat siz so'raganingizda yuklaymiz.",
+    "deferredHint": "Jonli Google xaritasini ochish uchun tugmani bosing.",
+    "loadMap": "Interaktiv xaritani ko‘rsatish",
+    "preparingMap": "Xarita tayyorlanmoqda..."
   }
 }

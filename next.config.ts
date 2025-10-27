@@ -18,6 +18,44 @@ const nextConfig: NextConfig = withSvgr({
                 pathname: "**",
             },
         ],
+        formats: ["image/avif", "image/webp"],
+    },
+    modularizeImports: {
+        "lucide-react": {
+            transform: "lucide-react/dist/esm/icons/{{kebabCase member}}",
+        },
+        "date-fns": {
+            transform: "date-fns/{{member}}",
+        },
+    },
+    experimental: {
+        optimizePackageImports: [
+            "@headlessui/react",
+            "react-phone-number-input",
+            "sonner",
+        ],
+    },
+    async headers() {
+        return [
+            {
+                source: "/fonts/:path*",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, max-age=31536000, immutable",
+                    },
+                ],
+            },
+            {
+                source: "/:all*(svg|jpg|jpeg|png|gif|webp|ico)",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, max-age=31536000, immutable",
+                    },
+                ],
+            },
+        ];
     },
 });
 

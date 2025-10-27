@@ -619,7 +619,13 @@
     "btn1": "Bishkek",
     "btn2": "Tashkent",
     "adress1": "Matrosova St., 102",
-    "adress2": "Yashnobod District, Yangibozor 1"
+    "adress2": "Yashnobod District, Yangibozor 1",
+    "loadingLabel": "Loading the map...",
+    "errorLabel": "We couldn't load the map. Please try again later.",
+    "deferredDescription": "We only fetch the interactive map when you request it so the page loads as fast as possible.",
+    "deferredHint": "Tap the button to open the live Google Map.",
+    "loadMap": "Show interactive map",
+    "preparingMap": "Preparing map..."
   },
   "footer": {
     "titles": {
