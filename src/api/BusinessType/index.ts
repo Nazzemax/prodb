@@ -24,3 +24,8 @@ export async function getBusinessCards() {
     const locale = await getLocale()
     return fetchData<ParallaxData>("/business-cards/", locale)
 }
+
+export async function getBusinessTypes(cache: RequestCache = "force-cache") {
+    const locale = await getLocale()
+    return fetchData<Type[]>("/business-types/", locale, cache)
+}

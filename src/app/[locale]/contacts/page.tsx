@@ -1,8 +1,19 @@
-import FormLayout from "@/components/templates/form-layout";
-import { Map } from "./Map";
+import dynamic from "next/dynamic";
 import { Metadata } from "next";
-import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
+
 import { getPromotionTypes } from "@/api/Types";
+import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
+import FormLayout from "@/components/templates/form-layout";
+import { LazyHydrate } from "@/components/utils/lazy-hydrate";
+
+const Map = dynamic(() => import("./Map").then((mod) => mod.Map), {
+    ssr: false,
+    loading: () => (
+        <div className="flex h-[60vh] items-center justify-center rounded-[32px] bg-background-dark text-lg font-semibold">
+            Загрузка карты...
+        </div>
+    ),
+});
 
 export const metadata: Metadata = {
     title: "Контакты",
@@ -18,9 +29,11 @@ const ContactsPage = async () => {
                 title={'Получите бесплатную консультацию'}
                 nestedForm={<CostCalculationForm promotion_types={promotion_types} />}
             />
-            <Map/>
+            <LazyHydrate rootMargin="600px">
+                <Map />
+            </LazyHydrate>
         </>
     );
 }
- 
+
 export default ContactsPage;

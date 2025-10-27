@@ -1,7 +1,7 @@
 "use client";
 
+import Image from "next/image";
 import { ParallaxData } from "@/api/BusinessType/types";
-import { ParallaxProps } from "@/domains/services/operative-print";
 import React, { useEffect, useRef } from "react";
 
 export const ParallaxSection: React.FC<ParallaxData> = ({
@@ -64,24 +64,27 @@ export const ParallaxSection: React.FC<ParallaxData> = ({
                 "linear-gradient(0deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 100%)",
                         }}
                     ></div>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                         ref={(el) => {
                             imgRefs.current[index] = el;
                         }}
                         src={item.image}
                         alt={`Parallax Speed`}
                         data-speed={item.speed || 1}
+                        fill
+                        priority={index === 0}
+                        loading={index === 0 ? "eager" : "lazy"}
+                        sizes="100vw"
                         className="
-              absolute 
-              top-0 
-              left-1/2 
+              absolute
+              top-0
+              left-1/2
               -translate-x-1/2
-              pointer-events-none 
+              pointer-events-none
               object-cover
-              w-auto 
-              h-auto 
-              min-w-full 
+              w-auto
+              h-auto
+              min-w-full
               min-h-full
             "
                         style={{ transform: "translate(-50%, 0)" }}

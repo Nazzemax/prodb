@@ -19,6 +19,28 @@ const nextConfig: NextConfig = withSvgr({
             },
         ],
     },
+    async headers() {
+        return [
+            {
+                source: "/fonts/:path*",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, max-age=31536000, immutable",
+                    },
+                ],
+            },
+            {
+                source: "/:all*(svg|jpg|jpeg|png|gif|webp|ico)",
+                headers: [
+                    {
+                        key: "Cache-Control",
+                        value: "public, max-age=31536000, immutable",
+                    },
+                ],
+            },
+        ];
+    },
 });
 
 const withNextIntl = createNextIntlPlugin();
