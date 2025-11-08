@@ -7,7 +7,6 @@ import { SearchInput } from "@/components/atoms/search-input";
 import { VideoLoader } from "@/components/atoms/video-loader";
 import { BlogPostItem } from "@/components/molecules/blog-post-item";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { useLocale, useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FeedbackButton } from "@/components/atoms/feedback-button";
