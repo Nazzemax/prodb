@@ -77,7 +77,8 @@
     "readTime": "Reading time: {minutes} min",
     "tags": "Tags",
     "similarTitle": "Related articles",
-    "allArticles": "All articles"
+    "allArticles": "All articles",
+    "article":"Articles"
   },
   "ThreePost": {
     "btn": "All cases"

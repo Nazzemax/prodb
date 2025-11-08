@@ -41,7 +41,8 @@
     "readTime": "Время чтения: {minutes} мин",
     "tags": "Теги",
     "similarTitle": "Похожие статьи",
-    "allArticles": "Все статьи"
+    "allArticles": "Все статьи",
+    "article":"Статьи"
   },
   "ThreePost": {
     "btn": "Все кейсы"

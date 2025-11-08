@@ -22,6 +22,7 @@ import { Suspense } from "react";
 import { PageLoader } from "@/components/atoms/page-loader";
 import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import { getPromotionTypes } from "@/api/Types";
+import { ArticleList } from "@/components/organisms/article-list";
 
 const NewsBanner = dynamic(() => import("@/components/atoms/NewsBanner/NewsBanner"));
 
@@ -67,7 +68,7 @@ const HomePage = async () => {
                 <CompanyPostList />
             </Suspense>
             <Suspense fallback={<PageLoader />}>
-                <BlogPostList data={articles} />
+                <ArticleList initialData={articles} />
             </Suspense>
             <Award
                 badgeTitle={t("btn")}

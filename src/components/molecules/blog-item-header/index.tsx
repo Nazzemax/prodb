@@ -33,7 +33,7 @@ export const BlogItemHeader = memo(({ post, breadcrumb }: CaseItemHeaderProps) =
                     <BreadcrumbList className="">
                         {[{ text: t("home"), href: "/home" }, ...(breadcrumb ?? [])].map((item, idx, arr) => (
                             <div
-                                key={item.text}
+                                key={idx}
                                 className="flex items-center gap-3 overflow-hidden whitespace-nowrap"
                             >
                                 <BreadcrumbItem className="text-primary">

@@ -41,7 +41,8 @@
     "readTime": "O‘qish vaqti: {minutes} daqiqa",
     "tags": "Teglar",
     "similarTitle": "O‘xshash maqolalar",
-    "allArticles": "Barcha maqolalar"
+    "allArticles": "Barcha maqolalar",
+    "article":"Maqolalar"
   },
   "AboutPage": {
     "BusinessResults": {
