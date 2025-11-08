@@ -4,6 +4,7 @@ import { BlogItemHeader } from "@/components/molecules/blog-item-header";
 import SimilarArticlesList from "@/components/organisms/similar-articles-list";
 import { normalizeTagIds, normalizeTagLabels } from "@/lib/tag-utils";
 import { getTranslations } from "next-intl/server";
+import Link from "next/link";
 
 type Params = Promise<{ slug: string }>;
 
@@ -60,9 +61,9 @@ const BlogsPage = async (props: { params: Params }) => {
                 />
             )}
             <div className="flex justify-center mb-24">
-                <a href="/blog">
+                <Link href="/blog">
                     <ButtonWithIcon>{t("back")}</ButtonWithIcon>
-                </a>
+                </Link>
             </div>
         </>
     );
