@@ -1,60 +1,42 @@
-"use client";
+\"use client\";
 
-import { baseUrl } from "@/api/Base/baseApi";
-import { ArticleListItem, ArticleListResponse } from "@/api/Article/types";
-import { Heading } from "@/components/atoms/heading";
-import { SearchInput } from "@/components/atoms/search-input";
-import { VideoLoader } from "@/components/atoms/video-loader";
-import { BlogPostItem } from "@/components/molecules/blog-post-item";
-import { Badge } from "@/components/ui/badge";
-import { useLocale, useTranslations } from "next-intl";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { FeedbackButton } from "@/components/atoms/feedback-button";
-import { normalizeTagLabels } from "@/lib/tag-utils";
+import { ArticleListItem, ArticleListResponse } from \"@/api/Article/types\";
+import { Heading } from \"@/components/atoms/heading\";
+import { SearchInput } from \"@/components/atoms/search-input\";
+import { VideoLoader } from \"@/components/atoms/video-loader\";
+import { BlogPostItem } from \"@/components/molecules/blog-post-item\";
+import { Badge } from \"@/components/ui/badge\";
+import { Button } from \"@/components/ui/button\";
+import { normalizeTagLabels } from \"@/lib/tag-utils\";
+import { ChevronLeft, ChevronRight } from \"lucide-react\";
+import { useTranslations } from \"next-intl\";
+import { useEffect, useMemo, useState } from \"react\";
 
 interface ArticleListProps {
     initialData: ArticleListResponse;
 }
 
-const resolveAbsoluteUrl = (value?: string | null) => {
-    if (!value) return null;
-    if (value.startsWith("http://") || value.startsWith("https://")) {
-        return value;
-    }
-    if (value.startsWith("/")) {
-        return `${baseUrl}${value}`;
-    }
-    return `${baseUrl}/${value}`;
-};
-
 export const ArticleList = ({ initialData }: ArticleListProps) => {
-    const locale = useLocale();
-    const t = useTranslations("Cases");
-    const [searchTerm, setSearchTerm] = useState("");
+    const t = useTranslations(\"Cases\");
+    const [searchTerm, setSearchTerm] = useState(\"\");
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [posts, setPosts] = useState<ArticleListItem[]>(initialData?.results ?? []);
-    const [nextUrl, setNextUrl] = useState<string | null>(initialData?.next ?? null);
     const [isFiltering, setIsFiltering] = useState(false);
-    const [isLoadingMore, setIsLoadingMore] = useState(false);
-    const [loadError, setLoadError] = useState<string | null>(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 12;
 
     useEffect(() => {
         setPosts(initialData?.results ?? []);
-        setNextUrl(initialData?.next ?? null);
-        setLoadError(null);
-        setIsLoadingMore(false);
+        setCurrentPage(1);
     }, [initialData]);
 
     const tags = useMemo(() => {
         const unique = new Set<string>();
-
         posts.forEach((post) => {
             normalizeTagLabels(post.tags).forEach((label) => unique.add(label));
         });
-
         return Array.from(unique);
     }, [posts]);
-
 
     const useDebounce = (value: string, delay: number) => {
         const [debouncedValue, setDebouncedValue] = useState(value);
@@ -80,6 +62,7 @@ export const ArticleList = ({ initialData }: ArticleListProps) => {
         setSelectedTags((prev) =>
             prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag]
         );
+        setCurrentPage(1);
     };
 
     const filteredPosts = useMemo(() => {
@@ -93,60 +76,27 @@ export const ArticleList = ({ initialData }: ArticleListProps) => {
         });
     }, [posts, debouncedSearchTerm, selectedTags]);
 
-    const hasMore = Boolean(nextUrl);
+    const totalPages = Math.max(1, Math.ceil(filteredPosts.length / pageSize));
+    const paginatedPosts = filteredPosts.slice(
+        (currentPage - 1) * pageSize,
+        currentPage * pageSize
+    );
 
-    const handleLoadMore = useCallback(async () => {
-        if (!nextUrl || isLoadingMore) return;
-        setLoadError(null);
-        setIsLoadingMore(true);
-
-        try {
-            const url = resolveAbsoluteUrl(nextUrl);
-            if (!url) {
-                setNextUrl(null);
-                return;
-            }
-
-            const response = await fetch(url, {
-                headers: {
-                    "Accept-Language": locale,
-                },
-                cache: "no-store",
-            });
-
-            if (!response.ok) {
-                throw new Error(`Failed to load more articles: ${response.statusText}`);
-            }
-
-            const payload: ArticleListResponse = await response.json();
-
-            setPosts((prev) => {
-                const existing = new Set(prev.map((post) => post.slug));
-                const nextPosts =
-                    payload.results?.filter((post) => !existing.has(post.slug)) ?? [];
-                return [...prev, ...nextPosts];
-            });
-            setNextUrl(payload.next ?? null);
-        } catch (error) {
-            console.error(error);
-            setLoadError(t("text.loadMoreError"));
-        } finally {
-            setIsLoadingMore(false);
-        }
-    }, [nextUrl, isLoadingMore, locale, t]);
+    const handleNext = () => setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    const handlePrev = () => setCurrentPage((prev) => Math.max(prev - 1, 1));
 
     return (
-        <section className="max-w-[1920px] mt-24 mb-24">
-            <div className="max-w-[1328px] m-auto px-5">
-                <div className="flex flex-col md:flex-row justify-between md:items-end gap-y-5">
-                    <div className="space-y-5">
-                        <Heading as="h2">Статьи</Heading>
-                        <div className="flex flex-wrap gap-2">
+        <section className=\"max-w-[1920px] mt-24 mb-24\">
+            <div className=\"max-w-[1328px] m-auto px-5\">
+                <div className=\"flex flex-col md:flex-row justify-between md:items-end gap-y-5\">
+                    <div className=\"space-y-5\">
+                        <Heading as=\"h2\">{t(\"text.title\")}</Heading>
+                        <div className=\"flex flex-wrap gap-2\">
                             {tags.map((tag) => (
                                 <Badge
                                     key={tag}
-                                    variant={'case'}
-                                    className={`w-fit hover:cursor-pointer ${selectedTags.includes(tag) ? 'bg-background-dark text-white' : ''}`}
+                                    variant=\"case\"
+                                    className={w-fit hover:cursor-pointer }
                                     onClick={() => toggleTag(tag)}
                                 >
                                     {tag}
@@ -154,36 +104,50 @@ export const ArticleList = ({ initialData }: ArticleListProps) => {
                             ))}
                         </div>
                     </div>
-                    <SearchInput placeholder={t("text.search")} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+                    <SearchInput
+                        placeholder={t(\"text.search\")}
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
                 </div>
 
-                <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-7 gap-y-3 mt-5">
+                <article className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-7 gap-y-3 mt-5\">
                     {isFiltering ? (
-                        <div className="col-span-full text-center">
+                        <div className=\"col-span-full text-center\">
                             <VideoLoader />
                         </div>
                     ) : (
-                        filteredPosts.map((post) => (
+                        paginatedPosts.map((post) => (
                             <BlogPostItem key={post.slug} {...post} />
                         ))
                     )}
                 </article>
                 {!isFiltering && filteredPosts.length < 1 && (
-                    <div className="flex justify-center items-center min-h-[250px]">
-                        По вашему запросу ничего не найдено
+                    <div className=\"flex justify-center items-center min-h-[250px]\">
+                        ???? ??????????? ?????????????? ????????? ???? ?????????????
                     </div>
                 )}
-                {loadError && (
-                    <p className="text-center text-destructive mt-6">{loadError}</p>
-                )}
-                {hasMore && (
-                    <div className="flex justify-center mt-10">
-                        <FeedbackButton
-                            button_text={isLoadingMore ? t("text.loading") : t("text.loadMore")}
-                            onClick={handleLoadMore}
-                            disabled={isLoadingMore}
-                            variant="iconless"
-                        />
+                {filteredPosts.length > pageSize && (
+                    <div className=\"flex justify-center items-center gap-2 mt-8\">
+                        <Button
+                            className=\"bg-background-gray2 hover:bg-graphic-gray\"
+                            variant=\"ghost\"
+                            onClick={handlePrev}
+                            disabled={currentPage === 1}
+                        >
+                            <ChevronLeft />
+                        </Button>
+                        <div className=\"text-sm whitespace-nowrap\">
+                            {currentPage} <span className=\"text-graphic-gray\">/ {totalPages}</span>
+                        </div>
+                        <Button
+                            className=\"bg-background-gray2 hover:bg-graphic-gray\"
+                            variant=\"ghost\"
+                            onClick={handleNext}
+                            disabled={currentPage === totalPages}
+                        >
+                            <ChevronRight />
+                        </Button>
                     </div>
                 )}
             </div>
