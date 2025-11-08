@@ -5,6 +5,7 @@ import { Heading } from "@/components/atoms/heading";
 import { VideoPlayer } from "@/components/atoms/video-player";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { normalizeTagLabels } from "@/lib/tag-utils";
 
 interface ServicePostItemProps {
     image?: string;
@@ -32,6 +33,7 @@ export const ServicePostItem = memo(
         description,
         has_button,
     }: ServicePostItemProps) => {
+        const normalizedTags = normalizeTagLabels(tags);
 
         return (
             <div
@@ -68,11 +70,11 @@ export const ServicePostItem = memo(
                     {description && (
                         <p className="text-gray2 text-sm md:text-base">{description}</p>
                     )}
-                    {tags && (
+                    {normalizedTags.length > 0 && (
                         <div className="flex flex-col gap-y-2">
-                            {tags.map((tag, idx) => (
-                                <Badge variant={"tag"} key={idx}>
-                                    {tag.tags}
+                            {normalizedTags.map((label) => (
+                                <Badge variant={"tag"} key={label}>
+                                    {label}
                                 </Badge>
                             ))}
                         </div>

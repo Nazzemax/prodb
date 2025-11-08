@@ -4,11 +4,19 @@ import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import { useAppData } from "@/context/app-context";
 
 interface FeedbackButtonProps {
-    button_text: string,
-    variant?: "primary" | "secondary" | "ghost" | "feature"; 
+    button_text: string;
+    variant?: "primary" | "secondary" | "ghost" | "feature" | "iconless";
+    onClick?: () => void | Promise<void>;
+    disabled?: boolean;
 }
 
-export const FeedbackButton = ({ button_text, variant }: FeedbackButtonProps) => {
+export const FeedbackButton = ({ button_text, variant, onClick, disabled }: FeedbackButtonProps) => {
     const { scrollToFeedback } = useAppData();
-    return <ButtonWithIcon variant={variant} onClick={scrollToFeedback}>{button_text}</ButtonWithIcon>;
+    const handleClick = onClick ?? scrollToFeedback;
+
+    return (
+        <ButtonWithIcon variant={variant} onClick={handleClick} disabled={disabled}>
+            {button_text}
+        </ButtonWithIcon>
+    );
 };

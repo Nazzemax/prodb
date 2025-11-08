@@ -2,12 +2,11 @@ import { CostCalculationForm } from "@/components/forms/cost-calculation-form";
 import FormLayout from "@/components/templates/form-layout";
 import { PageTitleLayout } from "@/components/templates/page-title-layout";
 import { getStaticPageBySlug } from "@/api/StaticPages";
-
 import ClientReviewList from "@/components/organisms/client-review-list";
-import BlogPostList from "@/components/organisms/blog-post-list";
 import { getTranslations } from "next-intl/server";
-import { getArticles } from "@/api/Article";
 import { getPromotionTypes } from "@/api/Types";
+import { getArticles } from "@/api/Article";
+import { ArticleList } from "@/components/organisms/article-list";
 
 export const revalidate = 60;
 
@@ -40,7 +39,7 @@ const BlogPage = async () => {
                 />
             )}
             <ClientReviewList hasBg />
-            <BlogPostList data={articles} />
+            <ArticleList initialData={articles} /> 
             <FormLayout
                 nestedForm={
                     <CostCalculationForm

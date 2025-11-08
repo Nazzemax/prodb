@@ -3,6 +3,7 @@
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import Link from "next/link";
+import { normalizeTagLabels } from "@/lib/tag-utils";
 
 
 interface CompanyPostItemProps {
@@ -45,9 +46,9 @@ export const CompanyPostItem = (props: CompanyPostItemProps) => {
                     loading="lazy"
                 />
                 <div className="absolute top-7 left-6 flex gap-2 flex-wrap">
-                    {tags.map((tag) => (
-                        <Badge variant={'post'} className="text-sm" key={tag.tags}>
-                            {tag.tags}
+                    {normalizeTagLabels(tags).map((label) => (
+                        <Badge variant={'post'} className="text-sm" key={label}>
+                            {label}
                         </Badge>
                     ))}
                 </div>

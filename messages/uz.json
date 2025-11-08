@@ -31,6 +31,18 @@
       "readAll": "hammasini o'qing"
     }
   },
+  "BlogArticle": {
+    "back": "Blogga qaytish",
+    "share": "Ulashish",
+    "copyLink": "Havolani nusxalash",
+    "copied": "Havola nusxalandi",
+    "published": "E’lon qilingan",
+    "views": "Ko‘rishlar",
+    "readTime": "O‘qish vaqti: {minutes} daqiqa",
+    "tags": "Teglar",
+    "similarTitle": "O‘xshash maqolalar",
+    "allArticles": "Barcha maqolalar"
+  },
   "AboutPage": {
     "BusinessResults": {
       "title": "Biznesingiz uchun ishlaydigan natijalar",
@@ -54,8 +66,11 @@
       "title": "Ishlar",
       "tag1": "SMM",
       "tag2": "Target",
-      "tag3": "Marketing",
-      "search": "Qidirish..."
+    "tag3": "Marketing",
+    "search": "Qidirish...",
+    "loadMore": "Yana ko'rsatish",
+    "loading": "Yuklanmoqda...",
+    "loadMoreError": "Ko'proq maqolalarni yuklab bo'lmadi. Iltimos, qayta urinib ko'ring."
     },
     "video": "Bizning videolarimiz"
   },

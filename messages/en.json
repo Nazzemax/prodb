@@ -54,8 +54,11 @@
       "title": "Cases",
       "tag1": "SMM",
       "tag2": "Target",
-      "tag3": "Marketing",
-      "search": "Search..."
+    "tag3": "Marketing",
+    "search": "Search...",
+    "loadMore": "Show more",
+    "loading": "Loading...",
+    "loadMoreError": "We couldn’t load more articles. Please try again."
     },
     "video": "Our videos"
   },
@@ -63,6 +66,18 @@
     "title": "Articles",
     "sub_title": "Articles that will help you follow the news and our work.",
     "totalPosts": "Total articles: "
+  },
+  "BlogArticle": {
+    "back": "Back to blog",
+    "share": "Share",
+    "copyLink": "Copy link",
+    "copied": "Link copied",
+    "published": "Published",
+    "views": "Views",
+    "readTime": "Reading time: {minutes} min",
+    "tags": "Tags",
+    "similarTitle": "Related articles",
+    "allArticles": "All articles"
   },
   "ThreePost": {
     "btn": "All cases"

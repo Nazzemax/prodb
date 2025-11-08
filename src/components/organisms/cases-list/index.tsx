@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Divide } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useState, useMemo, useEffect } from "react";
+import { normalizeTagLabels } from "@/lib/tag-utils";
 
 interface CasesListProps {
     posts: Post[];
@@ -23,11 +24,15 @@ export const CasesList = ({ posts }: CasesListProps) => {
     const pageSize = 9;
     const t = useTranslations("Cases");
 
-    const tags = [
-        { name: t("text.tag1"), tag: t("text.tag1") },
-        { name: t("text.tag2"), tag: t("text.tag2") },
-        { name: t("text.tag3"), tag: t("text.tag3") },
-    ];
+    const tags = useMemo(() => {
+        const unique = new Set<string>();
+
+        posts.forEach((post) => {
+            normalizeTagLabels(post.tags).forEach((label) => unique.add(label));
+        });
+
+        return Array.from(unique);
+    }, [posts]);
 
 
     const useDebounce = (value: string, delay: number) => {
@@ -58,10 +63,11 @@ export const CasesList = ({ posts }: CasesListProps) => {
 
     const filteredPosts = useMemo(() => {
         return posts.filter((post) => {
+            const postTags = normalizeTagLabels(post.tags);
             const matchesSearch = post.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase());
             const matchesTags =
                 selectedTags.length === 0 ||
-                selectedTags.every((tag) => post.tags.some((t) => t.tags === tag));
+                selectedTags.every((tag) => postTags.includes(tag));
             return matchesSearch && matchesTags;
         });
     }, [posts, debouncedSearchTerm, selectedTags]);
@@ -78,18 +84,24 @@ export const CasesList = ({ posts }: CasesListProps) => {
                 <div className="flex flex-col md:flex-row justify-between md:items-end gap-y-5">
                     <div className="space-y-5">
                         <Heading as="h2">{t("text.title")}</Heading>
-                        <div className="flex gap-2">
-                            {tags.map((tag) => (
-                                <Badge
-                                    key={tag.name}
-                                    variant={'case'}
-                                    className={`hover:cursor-pointer ${selectedTags.includes(tag.tag) ? 'bg-background-dark text-white' : ''}`}
-                                    onClick={() => toggleTag(tag.tag)}
-                                >
-                                    {tag.name}
-                                </Badge>
-                            ))}
-                        </div>
+                        {!!tags.length && (
+                            <div className="flex flex-col gap-2">
+                                {Array.from({ length: Math.ceil(tags.length / 4) }).map((_, rowIdx) => (
+                                    <div key={`tag-row-${rowIdx}`} className="flex flex-wrap gap-2">
+                                        {tags.slice(rowIdx * 4, rowIdx * 4 + 4).map((tag) => (
+                                            <Badge
+                                                key={tag}
+                                                variant={'case'}
+                                                className={`w-fit hover:cursor-pointer ${selectedTags.includes(tag) ? 'bg-background-dark text-white' : ''}`}
+                                                onClick={() => toggleTag(tag)}
+                                            >
+                                                {tag}
+                                            </Badge>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                        )}
                     </div>
                     <SearchInput placeholder={t("text.search")} value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>

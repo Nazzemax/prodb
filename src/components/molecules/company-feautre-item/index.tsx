@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonWithIcon } from "@/components/atoms/button-with-icon";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { normalizeTagLabels } from "@/lib/tag-utils";
 export interface FeatureProps {
     title: string;
     tags: { tags: string; }[];
@@ -30,13 +31,12 @@ export const CompanyFeatureItem = ({ image, title, tags, link }: FeatureProps) =
             <div className="p-6 flex flex-col flex-grow">
                 <h2 className="text-2xl font-bold">{title}</h2>
                 <div className="flex items-center my-4 flex-wrap gap-2">
-                    {tags.map((tag) => (
+                    {normalizeTagLabels(tags).map((label) => (
                         <Badge
                             variant={'tag'}
-                            key={tag.tags}
-                            className=""
+                            key={label}
                         >
-                            {tag.tags}
+                            {label}
                         </Badge>
                     ))}
                 </div>
