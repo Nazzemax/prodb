@@ -32,7 +32,7 @@
     }
   },
   "BlogArticle": {
-    "back": "Blogga qaytish",
+    "back": "Blogga",
     "share": "Ulashish",
     "copyLink": "Havolani nusxalash",
     "copied": "Havola nusxalandi",
@@ -66,11 +66,11 @@
       "title": "Ishlar",
       "tag1": "SMM",
       "tag2": "Target",
-    "tag3": "Marketing",
-    "search": "Qidirish...",
-    "loadMore": "Yana ko'rsatish",
-    "loading": "Yuklanmoqda...",
-    "loadMoreError": "Ko'proq maqolalarni yuklab bo'lmadi. Iltimos, qayta urinib ko'ring."
+      "tag3": "Marketing",
+      "search": "Qidirish...",
+      "loadMore": "Yana ko'rsatish",
+      "loading": "Yuklanmoqda...",
+      "loadMoreError": "Ko'proq maqolalarni yuklab bo'lmadi. Iltimos, qayta urinib ko'ring."
     },
     "video": "Bizning videolarimiz"
   },
@@ -182,27 +182,22 @@
       "tag1_1": "Sahifa yuklanish tezligini tekshirish",
       "tag1_2": "Kod xatolarini aniqlash va tuzatish",
       "tag1_3": "Mobil qurilmalar uchun optimallashtirish",
-
       "title2": "Samarali Kalit So'zlar Tanlash",
       "tag2_1": "Maqsadli auditoriya qidiruv so'rovlarini tahlil qilish",
       "tag2_2": "Raqobatbardoshligi va so'rov chastotasini baholash",
       "tag2_3": "Semantik yadro tuzish",
-
       "title3": "Ichki Optimallashtirish",
       "tag3_1": "Sayt tuzilmasi va navigatsiyasini yaxshilash",
       "tag3_2": "Meta-teglar va sarlavhalarni optimallashtirish",
       "tag3_3": "Yuqori sifatli noyob kontent yaratish",
-
       "title4": "Tashqi Optimallashtirish (Linkbuilding)",
       "tag4_1": "Havfli resurslarda maqola va havolalarni joylashtirish",
       "tag4_2": "Sharhlar va brend haqida eslatmalar bilan ishlash",
       "tag4_3": "Tabiiy havola profilini yaratish",
-
       "title5": "Lokal SEO",
       "tag5_1": "Mahalliy qidiruv so'rovlari uchun optimallashtirish",
       "tag5_2": "Google My Business va Yandex.Spravachnik profil sozlamalari",
       "tag5_3": "Mijoz sharhlarini yig'ish va boshqarish",
-
       "title6": "Doimiy Monitoring va Analitika",
       "tag6_1": "Qidiruv tizimidagi pozitsiyalarni kuzatish",
       "tag6_2": "Saytdagi foydalanuvchi harakatlarini tahlil qilish",
@@ -326,7 +321,6 @@
       "subtitle1": "Jarayonlarni optimallashtirish va savdo hajmini oshirish uchun CRM tizimlarini integratsiyalash",
       "buttonOrderIntegration": "Integratsiyani buyurtma qilish"
     },
-
     "integrationApproach": {
       "titleIntegration": "CRM integratsiyasiga bizning yondashuvimiz",
       "descriptionIntegration": "Biznesingiz ehtiyojlarini o‘rganib chiqib, maqsadlaringizga mos keladigan CRM tizimini tanlaymiz. Jamoamiz ma’lumotlarni uzluksiz ko‘chiradi va tizimni biznes jarayonlaringizni to‘liq qo‘llab-quvvatlaydigan tarzda sozlaydi.",
@@ -335,7 +329,6 @@
         "descriptionTeamTraining": "va CRMdan qulay foydalanish uchun muntazam texnik yordam ko‘rsatamiz."
       }
     },
-
     "PartersBlog": {
       "titleParters": "hamkorlik",
       "SubTitleParters": "Biz Bitrix24ning rasmiy hamkorlarimiz"
@@ -363,7 +356,7 @@
       "digitalMarketing": "Rakamli reklama",
       "videoProduction": "Video ishlab chiqarish",
       "webDevelopment": "Veb Ishlab chiqish va dizayn",
-      "marketingSupport": "Integratsiyalashgan\u00A0marketing targ'iboti",
+      "marketingSupport": "Integratsiyalashgan marketing targ'iboti",
       "automationAnalytics": "SEO optimallashtirish",
       "printing": "Onlayn bosib chiqarish"
     },
@@ -380,9 +373,9 @@
       "workingHours": "Пн — Пт 9:00 — 18:00"
     },
     "socialLinks": {
-      "title":"Бизни кузатинг", 
-       "sub_title":"Бишкек",
-      "sub_title2":"Ташкент",
+      "title": "Бизни кузатинг",
+      "sub_title": "Бишкек",
+      "sub_title2": "Ташкент",
       "instagram": "Instagram",
       "facebook": "Facebook",
       "telegram": "Telegram",
@@ -604,8 +597,8 @@
     "subTitle": "Aloqa uchun kontaktlarni qoldiring va biz sizga qayta qo‘ng‘iroq qilamiz",
     "companyKGPhone": "Telefon raqami (Bishkek)",
     "companyUZPhone": "Telefon raqami (Tashkent)",
-     "companyEmail1": "Elektron pochta (Bishkek)",
-     "companyEmail2": "Elektron pochta (Toshkent)"
+    "companyEmail1": "Elektron pochta (Bishkek)",
+    "companyEmail2": "Elektron pochta (Toshkent)"
   },
   "Form": {
     "title": "Shaklni to‘ldiring va taklifni oling",
@@ -665,5 +658,8 @@
     "btn2": "Toshkent",
     "adress1": "Matrosov ko'chasi, 102-uy",
     "adress2": "Yashnobod tumani, Yangibozor 1"
+  },
+  "Common": {
+    "home": "Bosh sahifa"
   }
 }

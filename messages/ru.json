@@ -32,7 +32,7 @@
     }
   },
   "BlogArticle": {
-    "back": "Назад к блогу",
+    "back": "Блог",
     "share": "Поделиться",
     "copyLink": "Скопировать ссылку",
     "copied": "Ссылка скопирована",
@@ -69,11 +69,11 @@
       "title": "Кейсы",
       "tag1": "SMM",
       "tag2": "Таргет",
-    "tag3": "Маркетинг",
-    "search": "Найти...",
-    "loadMore": "Показать ещё",
-    "loading": "Загрузка...",
-    "loadMoreError": "Не удалось загрузить статьи. Попробуйте позже."
+      "tag3": "Маркетинг",
+      "search": "Найти...",
+      "loadMore": "Показать ещё",
+      "loading": "Загрузка...",
+      "loadMoreError": "Не удалось загрузить статьи. Попробуйте позже."
     },
     "video": "Наши видео"
   },
@@ -382,7 +382,7 @@
       "digitalMarketing": "Digital продвижение",
       "videoProduction": "Видеопродакшн",
       "webDevelopment": "Веб-разработка и дизайн",
-      "marketingSupport": "Комплексное\u00A0маркетинговое сопровождение",
+      "marketingSupport": "Комплексное маркетинговое сопровождение",
       "automationAnalytics": "Автоматизация и аналитика",
       "printing": "Оперативная печать"
     },
@@ -399,9 +399,9 @@
       "workingHours": "Пн — Пт 9:00 — 18:00"
     },
     "socialLinks": {
-      "title":"Мы есть",
-      "sub_title":"Бишкек",
-      "sub_title2":"Ташкент",
+      "title": "Мы есть",
+      "sub_title": "Бишкек",
+      "sub_title2": "Ташкент",
       "instagram": "Instagram",
       "facebook": "Facebook",
       "telegram": "Telegram",
@@ -684,5 +684,8 @@
     "btn2": "Ташкент",
     "adress1": "ул. Матросова, дом 102",
     "adress2": "Яшнабадский район, Янги-бозор, 1 к4"
+  },
+  "Common": {
+    "home": "Главная"
   }
 }

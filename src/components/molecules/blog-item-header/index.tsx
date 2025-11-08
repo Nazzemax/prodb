@@ -1,13 +1,21 @@
-import { ArticleDetail } from "@/api/Article/types"
-import { Heading } from "@/components/atoms/heading"
-import ProseHtml from "@/components/atoms/prose-html"
-import TextWithGallery from "@/components/organisms/text-with-gallery"
-import { BreadcrumbProps } from "@/components/templates/page-title-layout/type"
-import { Badge } from "@/components/ui/badge"
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from "@/components/ui/breadcrumb"
-import Image from "next/image"
-import { memo } from "react"
-import { normalizeTagLabels } from "@/lib/tag-utils"
+import { ArticleDetail } from "@/api/Article/types";
+import { Heading } from "@/components/atoms/heading";
+import ProseHtml from "@/components/atoms/prose-html";
+import TextWithGallery from "@/components/organisms/text-with-gallery";
+import { BreadcrumbProps } from "@/components/templates/page-title-layout/type";
+import { Badge } from "@/components/ui/badge";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator
+} from "@/components/ui/breadcrumb";
+import Image from "next/image";
+import { memo } from "react";
+import { normalizeTagLabels } from "@/lib/tag-utils";
+import { useTranslations } from "next-intl";
 
 
 interface CaseItemHeaderProps {
@@ -15,28 +23,26 @@ interface CaseItemHeaderProps {
     breadcrumb?: BreadcrumbProps[]
 }
 
-export const BlogItemHeader = memo(({
-    post,
-    breadcrumb,
-}: CaseItemHeaderProps) => {
+export const BlogItemHeader = memo(({ post, breadcrumb }: CaseItemHeaderProps) => {
+    const t = useTranslations("Common");
 
     return (
         <div className="max-w-[1920px] pt-12 my-8 md:my-32">
             <div className="max-w-[1280px] m-auto px-5">
                 <Breadcrumb>
                     <BreadcrumbList className="">
-                        {breadcrumb?.map((item, idx) => (
+                        {[{ text: t("home"), href: "/home" }, ...(breadcrumb ?? [])].map((item, idx, arr) => (
                             <div
                                 key={item.text}
                                 className="flex items-center gap-3 overflow-hidden whitespace-nowrap"
                             >
                                 <BreadcrumbItem className="text-primary">
-                                    {idx !== breadcrumb.length - 1
+                                    {idx !== arr.length - 1
                                         ? <BreadcrumbLink href={item.href}>{item.text}</BreadcrumbLink>
                                         : <BreadcrumbPage className="text-primary">{item.text}</BreadcrumbPage>
                                     }
                                 </BreadcrumbItem>
-                                {idx !== breadcrumb.length - 1 && <BreadcrumbSeparator className="text-primary" />}
+                                {idx !== arr.length - 1 && <BreadcrumbSeparator className="text-primary" />}
                             </div>
 
                         ))}

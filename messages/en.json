@@ -54,11 +54,11 @@
       "title": "Cases",
       "tag1": "SMM",
       "tag2": "Target",
-    "tag3": "Marketing",
-    "search": "Search...",
-    "loadMore": "Show more",
-    "loading": "Loading...",
-    "loadMoreError": "We couldn’t load more articles. Please try again."
+      "tag3": "Marketing",
+      "search": "Search...",
+      "loadMore": "Show more",
+      "loading": "Loading...",
+      "loadMoreError": "We couldn’t load more articles. Please try again."
     },
     "video": "Our videos"
   },
@@ -68,7 +68,7 @@
     "totalPosts": "Total articles: "
   },
   "BlogArticle": {
-    "back": "Back to blog",
+    "back": "Blog",
     "share": "Share",
     "copyLink": "Copy link",
     "copied": "Link copied",
@@ -574,8 +574,8 @@
     "subTitle": "Leave your contact details, and we will call you back",
     "companyKGPhone": "Phone (Bishkek)",
     "companyUZPhone": "Phone (Tashkent)",
-     "companyEmail1": "Email (Bishkek)",
-     "companyEmail2": "Email (Tashkent)"
+    "companyEmail1": "Email (Bishkek)",
+    "companyEmail2": "Email (Tashkent)"
   },
   "Form": {
     "title": "Fill out the form and get an offer",
@@ -658,7 +658,7 @@
       "digitalMarketing": "Digital promotion",
       "videoProduction": "Video production",
       "webDevelopment": "Web development and design",
-      "marketingSupport": "Integrated\u00A0marketing promotion",
+      "marketingSupport": "Integrated marketing promotion",
       "automationAnalytics": "Seo optimization",
       "printing": "Operative Print"
     },
@@ -675,14 +675,17 @@
       "workingHours": "Пн — Пт 9:00 — 18:00"
     },
     "socialLinks": {
-       "title":"Follow us",
-        "sub_title":"Bishkek",
-      "sub_title2":"Tashkent",
+      "title": "Follow us",
+      "sub_title": "Bishkek",
+      "sub_title2": "Tashkent",
       "instagram": "Instagram",
       "facebook": "Facebook",
       "telegram": "Telegram",
-       "workHours": "Working hours"
+      "workHours": "Working hours"
     },
     "privacyPolicy": "Privacy Policy"
+  },
+  "Common": {
+    "home": "Home"
   }
 }
