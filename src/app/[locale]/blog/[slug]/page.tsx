@@ -62,7 +62,7 @@ const BlogsPage = async (props: { params: Params }) => {
             )}
             <div className="flex justify-center mb-24">
                 <Link href="/blog">
-                    <ButtonWithIcon>{t("back")}</ButtonWithIcon>
+                    <ButtonWithIcon>{t("backTo")}</ButtonWithIcon>
                 </Link>
             </div>
         </>
