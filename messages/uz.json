@@ -33,6 +33,7 @@
   },
   "BlogArticle": {
     "back": "Blogga",
+     "backTo":"Blogga qaytish",
     "share": "Ulashish",
     "copyLink": "Havolani nusxalash",
     "copied": "Havola nusxalandi",

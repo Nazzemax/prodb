@@ -69,6 +69,7 @@
   },
   "BlogArticle": {
     "back": "Blog",
+    "backTo":"Back to blog",
     "share": "Share",
     "copyLink": "Copy link",
     "copied": "Link copied",
