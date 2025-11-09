@@ -70,6 +70,7 @@
   "BlogArticle": {
     "back": "Blog",
     "backTo":"Back to blog",
+    "notFound": "Article not found",
     "share": "Share",
     "copyLink": "Copy link",
     "copied": "Link copied",

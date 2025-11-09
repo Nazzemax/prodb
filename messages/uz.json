@@ -34,6 +34,7 @@
   "BlogArticle": {
     "back": "Blogga",
      "backTo":"Blogga qaytish",
+    "notFound": "Maqola topilmadi",
     "share": "Ulashish",
     "copyLink": "Havolani nusxalash",
     "copied": "Havola nusxalandi",

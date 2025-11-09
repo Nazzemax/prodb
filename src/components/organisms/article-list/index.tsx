@@ -182,7 +182,7 @@ export const ArticleList = forwardRef<HTMLDivElement, ArticleListProps>(
                     </article>
                     {!isFiltering && filteredPosts.length < 1 && (
                         <div className="flex justify-center items-center min-h-[250px]">
-                            �?�? �?���?��?�? �������?�?�?�? �?��ؐ�?�? �?�� �?�����?��?�?
+                            {tt("notFound")}
                         </div>
                     )}
                     {loadError && (
