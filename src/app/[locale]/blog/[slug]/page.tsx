@@ -47,7 +47,6 @@ const BlogsPage = async (props: { params: Params }) => {
                 <BlogItemHeader
                     post={article}
                     breadcrumb={[
-                        { text: 'Главная', href: '/home' },
                         { text: t("back"), href: "/blog" },
                         { text: article.title, href: `/blog/${article.slug}` },
                     ]}
