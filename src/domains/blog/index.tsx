@@ -7,6 +7,7 @@ import { getTranslations } from "next-intl/server";
 import { getPromotionTypes } from "@/api/Types";
 import { getArticles } from "@/api/Article";
 import { ArticleList } from "@/components/organisms/article-list";
+import React from "react";
 
 export const revalidate = 60;
 
@@ -39,7 +40,7 @@ const BlogPage = async () => {
                 />
             )}
             <ClientReviewList hasBg />
-            <ArticleList initialData={articles} /> 
+            <ArticleList initialData={articles} />
             <FormLayout
                 nestedForm={
                     <CostCalculationForm

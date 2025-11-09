@@ -14,8 +14,10 @@ interface AppContextType {
     error: unknown;
     scrollToFeedback: () => void;
     scrollToReview: () => void;
+    scrollToArticleList: (fallbackHref?: string) => void;
     feedbackRef: RefObject<HTMLDivElement | null>;
     reviewRef: RefObject<HTMLDivElement | null>;
+    articleListRef: RefObject<HTMLDivElement | null>;
 }
 
 const AppContext = createContext<AppContextType | null>(null)
@@ -25,6 +27,7 @@ export const AppContextProvider = ({ children }: { children: React.ReactNode }) 
     const { data: business_types } = useGetBusinessTypesQuery()
     const feedbackRef = useRef<HTMLDivElement>(null);
     const reviewRef = useRef<HTMLDivElement>(null);
+    const articleListRef = useRef<HTMLDivElement>(null);
     const router = useRouter();
 
     const scrollToFeedback = () => {
@@ -40,6 +43,15 @@ export const AppContextProvider = ({ children }: { children: React.ReactNode }) 
         router.push("/about#company-review");
     };
 
+    const scrollToArticleList = (fallbackHref = "/blog#article-list") => {
+        if (articleListRef.current) {
+            articleListRef.current.scrollIntoView({ behavior: "smooth" });
+            return;
+        }
+
+        router.push(fallbackHref);
+    };
+
     return (
         <AppContext.Provider value={{
             data: data ?? null,
@@ -48,8 +60,10 @@ export const AppContextProvider = ({ children }: { children: React.ReactNode }) 
             business_types: business_types ?? [],
             scrollToFeedback,
             scrollToReview,
+            scrollToArticleList,
             feedbackRef,
-            reviewRef
+            reviewRef,
+            articleListRef
         }}>
             {children}
         </AppContext.Provider>
