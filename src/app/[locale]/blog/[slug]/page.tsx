@@ -12,7 +12,9 @@ export async function generateMetadata(props: { params: Params }) {
     const data = await getArticleBySlug(params.slug);
 
     return {
-        title: data?.title || "Blog article",
+        title: data?.title_seo || data?.title || "Blog article",
+        description: data?.description_seo || data?.description || undefined,
+        keywords: data?.keywords_seo,
     };
 }
 
