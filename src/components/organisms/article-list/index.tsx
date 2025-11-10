@@ -169,17 +169,18 @@ export const ArticleList = forwardRef<HTMLDivElement, ArticleListProps>(
                         />
                     </div>
 
-                    <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-7 gap-y-3 mt-5">
-                        {isFiltering ? (
-                            <div className="col-span-full text-center">
+                    <div className="relative mt-5">
+                        <article className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-x-7 gap-y-3">
+                            {filteredPosts.map((post) => (
+                                <BlogPostItem key={post.slug} {...post} />
+                            ))}
+                        </article>
+                        {isFiltering && (
+                            <div className="absolute inset-0 flex items-center justify-center bg-white/80 dark:bg-neutral-950/80 backdrop-blur-sm">
                                 <VideoLoader />
                             </div>
-                        ) : (
-                            filteredPosts.map((post) => (
-                                <BlogPostItem key={post.slug} {...post} />
-                            ))
                         )}
-                    </article>
+                    </div>
                     {!isFiltering && filteredPosts.length < 1 && (
                         <div className="flex justify-center items-center min-h-[250px]">
                             {tt("notFound")}
