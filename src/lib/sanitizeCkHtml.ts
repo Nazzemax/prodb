@@ -44,6 +44,9 @@ const options: IOptions = {
         ],
         source: ["src","srcset","type","media","sizes"],
         table: ["border","cellpadding","cellspacing"],
+        ul: ["style"],
+        ol: ["style"],
+        li: ["style"],
         "*": [
             "class",
             "data-align",
@@ -52,6 +55,20 @@ const options: IOptions = {
             "data-caption",
             "data-image-style"
         ], // allow classes/data-* for CKEditor styling
+    },
+    allowedStyles: {
+        ul: {
+            "list-style-type": [/^(disc|circle|square)$/i],
+            "list-style-position": [/^(inside|outside)$/i],
+        },
+        ol: {
+            "list-style-type": [/^(decimal|decimal-leading-zero|lower-alpha|upper-alpha|lower-roman|upper-roman)$/i],
+            "list-style-position": [/^(inside|outside)$/i],
+        },
+        li: {
+            "list-style-type": [/^(disc|circle|square|decimal|decimal-leading-zero|lower-alpha|upper-alpha|lower-roman|upper-roman)$/i],
+            "list-style-position": [/^(inside|outside)$/i],
+        },
     },
     allowedSchemes: ["http","https","mailto","tel","data"],
     allowedSchemesByTag: {

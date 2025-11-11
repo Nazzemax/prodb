@@ -192,6 +192,7 @@ h4 {
 .ck-content ol {
   padding-left: 1.5rem;
   list-style-position: outside;
+  clear: both;
 }
 
 .ck-content ul {
@@ -199,6 +200,66 @@ h4 {
 }
 
 .ck-content ol {
+  list-style-type: decimal;
+}
+
+.ck-content ul[data-style*="circle" i],
+.ck-content ul[data-list-style*="circle" i],
+.ck-content ul[data-list-type*="circle" i] {
+  list-style-type: circle;
+}
+
+.ck-content ul[data-style*="square" i],
+.ck-content ul[data-list-style*="square" i],
+.ck-content ul[data-list-type*="square" i] {
+  list-style-type: square;
+}
+
+.ck-content ul[data-style*="disc" i],
+.ck-content ul[data-list-style*="disc" i],
+.ck-content ul[data-list-type*="disc" i] {
+  list-style-type: disc;
+}
+
+.ck-content ol[data-style*="decimal-leading-zero" i],
+.ck-content ol[data-list-style*="decimal-leading-zero" i],
+.ck-content ol[data-list-type*="decimal-leading-zero" i] {
+  list-style-type: decimal-leading-zero;
+}
+
+.ck-content ol[data-style*="lower-alpha" i],
+.ck-content ol[data-list-style*="lower-alpha" i],
+.ck-content ol[data-list-type*="lower-alpha" i],
+.ck-content ol[data-style*="lower-latin" i],
+.ck-content ol[data-list-style*="lower-latin" i],
+.ck-content ol[data-list-type*="lower-latin" i] {
+  list-style-type: lower-alpha;
+}
+
+.ck-content ol[data-style*="upper-alpha" i],
+.ck-content ol[data-list-style*="upper-alpha" i],
+.ck-content ol[data-list-type*="upper-alpha" i],
+.ck-content ol[data-style*="upper-latin" i],
+.ck-content ol[data-list-style*="upper-latin" i],
+.ck-content ol[data-list-type*="upper-latin" i] {
+  list-style-type: upper-alpha;
+}
+
+.ck-content ol[data-style*="lower-roman" i],
+.ck-content ol[data-list-style*="lower-roman" i],
+.ck-content ol[data-list-type*="lower-roman" i] {
+  list-style-type: lower-roman;
+}
+
+.ck-content ol[data-style*="upper-roman" i],
+.ck-content ol[data-list-style*="upper-roman" i],
+.ck-content ol[data-list-type*="upper-roman" i] {
+  list-style-type: upper-roman;
+}
+
+.ck-content ol[data-style*="decimal" i],
+.ck-content ol[data-list-style*="decimal" i],
+.ck-content ol[data-list-type*="decimal" i] {
   list-style-type: decimal;
 }
 
