@@ -191,6 +191,15 @@ h4 {
 .ck-content ul,
 .ck-content ol {
   padding-left: 1.5rem;
+  list-style-position: outside;
+}
+
+.ck-content ul {
+  list-style-type: disc;
+}
+
+.ck-content ol {
+  list-style-type: decimal;
 }
 
 .ck-content figure {
