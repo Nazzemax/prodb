@@ -49,6 +49,7 @@ const options: IOptions = {
         li: ["style"],
         "*": [
             "class",
+            "style",
             "data-align",
             "data-style",
             "data-widget",
@@ -68,6 +69,12 @@ const options: IOptions = {
         li: {
             "list-style-type": [/^(disc|circle|square|decimal|decimal-leading-zero|lower-alpha|upper-alpha|lower-roman|upper-roman)$/i],
             "list-style-position": [/^(inside|outside)$/i],
+        },
+        "*": {
+            "font-size": [
+                /^(\d+(\.\d+)?)(px|pt|pc|em|rem|%)$/i,
+                /^(xx-small|x-small|small|medium|large|x-large|xx-large|smaller|larger)$/i
+            ],
         },
     },
     allowedSchemes: ["http","https","mailto","tel","data"],
