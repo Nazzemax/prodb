@@ -1,5 +1,5 @@
 import { baseApi } from "../Base";
-import { baseUrl, fetchData } from "../Base/baseApi";
+import { fetchData } from "../Base/baseApi";
 import {
     CompanyAchievementsResponse,
     CompanyAdvertisingResponse,
@@ -65,25 +65,17 @@ export const {
 
 export async function getVideoReviews(cache: RequestCache = "force-cache") {
     const locale = await getLocale();
-
-    const res = await fetch(`${baseUrl}/company-video-reviews/`, {
-        cache,
-        headers: {
-            "Accept-Language": locale,
-        },
-    });
-
-    if (!res.ok) {
-        console.error(`Ошибка загрузки баннеров: ${res.status} ${res.statusText}`);
-        throw new Error("Failed to fetch home page data");
-    }
-
-    return res.json();
+    return fetchData<CompanyVideoReviewsResponse>("/company-video-reviews/", locale, cache);
 }
 
 export async function getCompanyChallenges() {
     const locale = await getLocale();
     return fetchData<CompanyChallengesResponse>("/company-challenges/", locale);
+}
+
+export async function getCompanyInfo(cache: RequestCache = "force-cache") {
+    const locale = await getLocale();
+    return fetchData<CompanyInfoResponse>("/company-info/", locale, cache);
 }
 
 export async function getCompanyAdvantages() {

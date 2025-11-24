@@ -22,9 +22,44 @@ interface AppContextType {
 
 const AppContext = createContext<AppContextType | null>(null)
 
-export const AppContextProvider = ({ children }: { children: React.ReactNode }) => {
-    const { data, isLoading, error } = useGetCompanyInfoQuery()
-    const { data: business_types } = useGetBusinessTypesQuery()
+interface AppContextProviderProps {
+    children: React.ReactNode;
+    initialData?: CompanyInfoResponse | null;
+    initialBusinessTypes?: Type[];
+}
+
+export const AppContextProvider = ({
+    children,
+    initialData = null,
+    initialBusinessTypes = [],
+}: AppContextProviderProps) => {
+    const {
+        data: fetchedData,
+        isLoading: isCompanyLoading,
+        error: companyError,
+    } = useGetCompanyInfoQuery(undefined, {
+        skip: Boolean(initialData),
+    })
+
+    const {
+        data: fetchedBusinessTypes,
+        isLoading: isBusinessTypesLoading,
+        error: businessTypesError,
+    } = useGetBusinessTypesQuery(undefined, {
+        skip: initialBusinessTypes.length > 0,
+    })
+
+    const data = fetchedData ?? initialData ?? null
+    const business_types =
+        fetchedBusinessTypes ??
+        (initialBusinessTypes.length ? initialBusinessTypes : ([] as Type[]))
+
+    const isLoading = Boolean(
+        (!initialData && isCompanyLoading) ||
+            (initialBusinessTypes.length === 0 && isBusinessTypesLoading)
+    )
+
+    const error = companyError ?? businessTypesError ?? null
     const feedbackRef = useRef<HTMLDivElement>(null);
     const reviewRef = useRef<HTMLDivElement>(null);
     const articleListRef = useRef<HTMLDivElement>(null);
