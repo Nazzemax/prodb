@@ -13,9 +13,6 @@ import { routing } from "../../i18n/routing";
 import dynamic from "next/dynamic";
 import Footer from "@/components/organisms/footer";
 import Header from "@/components/organisms/header";
-const FloatingWhatsapp = dynamic(
-    () => import("@/components/atoms/floating-whatsapp")
-);
 
 const cannonade = localFont({
     src: [
@@ -160,12 +157,26 @@ export default async function LocaleLayout({ children, params }: Props) {
                     <Providers>
                         <div className="max-w-[1920px] m-auto relative">
                             <Header />
-                            <FloatingWhatsapp />
                             <main>{children}</main>
                             <Footer />
                         </div>
                     </Providers>
                 </NextIntlClientProvider>
+                <Script
+                    id="replain-settings"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+              window.replainSettings = { id: 'c7b3592a-a6f3-4e60-a71f-bc5a14cd998f' };
+            `,
+                    }}
+                />
+
+                <Script
+                    id="replain-widget"
+                    src="https://widget.replain.cc/dist/client.js"
+                    strategy="afterInteractive"
+                />
             </body>
         </html>
     );
