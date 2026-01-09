@@ -59,8 +59,10 @@ export const BlogItemHeader = memo(({ post, breadcrumb }: CaseItemHeaderProps) =
                         <Image
                             src={post.photo}
                             alt={post.title}
-                            width={535}
-                            height={400}
+                            width={1280}
+                            height={720}
+                            sizes="(min-width: 1280px) 1180px, (min-width: 768px) 90vw, 100vw"
+                            quality={85}
                             className="rounded-2xl object-cover md:min-w-[320px] w-full min-h-[320px] max-h-[436px]"
                         />
                         <div className="absolute top-7 max-w-[500px] left-6 flex gap-2 flex-wrap">
