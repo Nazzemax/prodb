@@ -6,10 +6,10 @@ export const metadata = {
     openGraph: {
         title: "Главная страница компании | Bold Brands International",
         description: "Мы предлагаем креативные решения для вашего бизнеса. Узнайте, как мы можем помочь вам достичь новых высот.",
-        url: "https://boldbrands.pro",
+        url: "https://boldbrandsint.com",
         images: [
             {
-                url: "https://api.boldbrands.pro/media/banners/slide_3-min_1_imresizer.webp",
+                url: "https://api.boldbrandsint.com/media/banners/slide_3-min_1_imresizer.webp",
                 width: 1200,
                 height: 630,
                 alt: "Bold Brands International - креативные решения для бизнеса"

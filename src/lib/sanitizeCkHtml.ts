@@ -1,7 +1,7 @@
 // src/lib/sanitizeCkHtml.ts
 import sanitizeHtml, { IOptions } from "sanitize-html";
 
-const BASE = "https://api.boldbrands.pro";
+const BASE = "https://api.boldbrandsint.com";
 
 function absolutize(src?: string) {
     if (!src) return src;

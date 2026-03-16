@@ -9,7 +9,7 @@ const nextConfig: NextConfig = withSvgr({
         remotePatterns: [
             {
                 protocol: "https",
-                hostname: "api.boldbrands.pro",
+                hostname: "api.boldbrandsint.com",
                 pathname: "**",
             },
             {
